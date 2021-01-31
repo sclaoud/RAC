@@ -282,24 +282,21 @@ class Ui_Personnes(object):
         self.btnClose.setText(_translate("Personnes", "Close"))
         self.btnFilm.setText(_translate("Personnes", "Film"))
 
-    def closeApp(self):
-         QtCore.QCoreApplication.instance().quit()
-         return
-        #Bouton de fermeture de l'application
-    def msgCloseEvent(i):
-        print("Button clicked is:", i.text())
-        return
+
+#Bouton de fermeture de l'application
     def closeEvent(self):
         msgBox = QMessageBox()
         msgBox.setIcon(QMessageBox.Information)
-        msgBox.setText("Message box pop up window")
+        msgBox.setText("Êtes-vous sure de quitter?")
         msgBox.setWindowTitle("Message de fermeture")
         msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        msgBox.buttonClicked.connect(self.msgCloseEvent)
-
-        returnValue = msgBox.exec()
-        if returnValue == QMessageBox.Ok:
-            print('OK clicked')
+#   Choix du message de fermeture
+        res = msgBox.exec_()
+        if res == QMessageBox.Ok:
+                sys.exit()
+        if res == QMessageBox.Cancel:
+            return True
+        return False
 
 
 
