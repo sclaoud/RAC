@@ -12,6 +12,7 @@ from PyQt5 import  QtCore, QtGui, QtWidgets, Qt
 
 from PyQt5.QtWidgets import QMessageBox
 #   QMessage n'était pas importer depuis QtWidgets et doit être forcer.
+
 from classes import *
 
 
@@ -36,6 +37,7 @@ class Ui_Personnes(object):
         self.verticalLayout.addLayout(self.horizontalLayoutPrenom)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
+    
         self.label = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
@@ -302,6 +304,7 @@ class Ui_Personnes(object):
 
 if __name__ == "__main__":
     import sys
+
 
     app = QtWidgets.QApplication(sys.argv)
     Personnes = QtWidgets.QDialog()

@@ -1,3 +1,8 @@
+"""
+Emplacement des classes
+
+"""
+
 class Personne:
     "Personne"
     def __init__(self, nom, prenom, sexe):
