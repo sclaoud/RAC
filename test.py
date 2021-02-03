@@ -1,37 +1,61 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QAction, QTabWidget, QVBoxLayout
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
 
 
-def window():
-    app = QApplication(sys.argv)
-    win = QWidget()
-    button1 = QPushButton(win)
-    button1.setText("Show dialog!")
-    button1.move(50, 50)
-    button1.clicked.connect(showDialog)
-    win.setWindowTitle("Click button")
-    win.show()
-    sys.exit(app.exec_())
+class App(QMainWindow):
+
+    def __init__(self):
+        super().__init__()
+        self.title = 'PyQt5 tabs - pythonspot.com'
+        self.left = 0
+        self.top = 0
+        self.width = 300
+        self.height = 200
+        self.setWindowTitle(self.title)
+        self.setGeometry(self.left, self.top, self.width, self.height)
+
+        self.table_widget = MyTableWidget(self)
+        self.setCentralWidget(self.table_widget)
+
+        self.show()
 
 
-def showDialog():
-    msgBox = QMessageBox()
-    msgBox.setIcon(QMessageBox.Information)
-    msgBox.setText("Message box pop up window")
-    msgBox.setWindowTitle("QMessageBox Example")
-    msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-    msgBox.buttonClicked.connect(msgButtonClick)
+class MyTableWidget(QWidget):
 
-    returnValue = msgBox.exec()
-    if returnValue == QMessageBox.Ok:
-        print('OK clicked')
+    def __init__(self, parent):
+        super(QWidget, self).__init__(parent)
+        self.layout = QVBoxLayout(self)
 
+        # Initialize tab screen
+        self.tabs = QTabWidget()
+        self.tab1 = QWidget()
+        self.tab2 = QWidget()
+        self.tabs.resize(300, 200)
 
-def msgButtonClick(i):
-    print("Button clicked is:", i.text())
+        # Add tabs
+        self.tabs.addTab(self.tab1, "Tab 1")
+        self.tabs.addTab(self.tab2, "Tab 2")
+
+        # Create first tab
+        self.tab1.layout = QVBoxLayout(self)
+        self.pushButton1 = QPushButton("PyQt5 button")
+        self.tab1.layout.addWidget(self.pushButton1)
+        self.tab1.setLayout(self.tab1.layout)
+
+        # Add tabs to widget
+        self.layout.addWidget(self.tabs)
+        self.setLayout(self.layout)
+
+    @pyqtSlot()
+    def on_click(self):
+        print("\n")
+        for currentQTableWidgetItem in self.tableWidget.selectedItems():
+            print(currentQTableWidgetItem.row(), currentQTableWidgetItem.column(), currentQTableWidgetItem.text())
 
 
 if __name__ == '__main__':
-    window()
+    app = QApplication(sys.argv)
+    ex = App()
+    sys.exit(app.exec_())
