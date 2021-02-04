@@ -4,23 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.003">
-      <change afterPath="$PROJECT_DIR$/Tab.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/TAB.ui" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/films.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/RAC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RAC.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.004&#10;&#10;Recommencer pour la 2eme">
+      <change afterPath="$PROJECT_DIR$/UI/tab2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/tab2.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PythonMeteo.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQLite3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/UImain.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/UIpers_backup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/main.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/main.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/personnes.ui" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UIpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/personne.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tab.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tab.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -208,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612123069305</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="0.004&#10;&#10;Recommencer pour la 2eme">
+      <created>1612387869879</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1612387869879</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -226,6 +221,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="0.002" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.002" />
+    <MESSAGE value="0.004&#10;&#10;Recommencer pour la 2eme" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.004&#10;&#10;Recommencer pour la 2eme" />
   </component>
 </project>
