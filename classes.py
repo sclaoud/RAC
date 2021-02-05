@@ -162,12 +162,15 @@ class CarteCredit:
 
 class film:
     "Films"
-    def __init__(self,nomFilm, dureeFilm, descFilm):
+    def __init__(self, nomFilm, dureeFilm, descFilm):
         self._nomFilm = nomFilm
         self._dureeFilm = dureeFilm
         self._descFilm = descFilm
-        return
+
 
 #getter setter
     def get_nomFilm(self):
-        return
+        return self._nomFilm
+    def set_nomFilm(self, nomFilm):
+        self._nomFilm = nomFilm
+
