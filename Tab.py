@@ -12,8 +12,8 @@ from PyQt5.QtWidgets import QMessageBox
 #   QMessageBox n'était pas importer depuis QtWidgets et doit être forcer ainsi que filedialog
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from classes import Personne
-from classes import *
+#from classes import Personne
+from classes2 import *
 
 
 
@@ -436,6 +436,8 @@ class Ui_Application(object):
     # Lineedit Contenant le titre du film
         self.lineFilm_2 = QtWidgets.QLineEdit(self.verticalLayoutWidget_4)
         self.lineFilm_2.setObjectName("lineFilm_2")
+        self.lineFilm_2.setText('Inscrire le titre du film')
+        self.lineFilm_2 = film.nomFilm(str)
         self.verticalLayout_22.addWidget(self.lineFilm_2)
 
     # Lineedit avec la catégorie du film
