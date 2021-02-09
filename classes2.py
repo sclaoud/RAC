@@ -42,27 +42,31 @@ class Personne(QObject):
 
 class film (QObject):
     "Films"
-    def __init__(self, nomFilm, dureeFilm, descFilm):
+    def __init__(self, nomFilm, dureeFilm, descFilm, catFilm):
         self.nomFilm = nomFilm
         self._dureeFilm = dureeFilm
         self._descFilm = descFilm
+        self._catfilm = catFilm
         return
+
 
 
     @pyqtProperty(str)
     def nomFilm(self):
         return self._nomFilm
     @nomFilm.setter
-    def nomFilm(self, nomFilm):
+    def set_nomFilm(self, nomFilm):
         self._nomFilm = nomFilm
-
+    @nomFilm.getter
+    def get_nomFilm(self, nomFilm):
+        self._nomFilm = nomFilm
+        return self._nomFilm
     @pyqtProperty(int)
     def dureeFilm(self):
         return self._dureeFilm
     @dureeFilm.setter
     def dureeFilm(self, dureeFilm):
         self._dureeFilm = dureeFilm
-
     @pyqtProperty(str)
     def descFilm(self):
         return self._descFilm
@@ -70,11 +74,13 @@ class film (QObject):
     def descFilm(self, descFilm):
         self._descFilm = descFilm
 
-    @pyqtProperty(str)
+    @pyqtProperty(list)
     def catFilm(self):
-        return self._catFilm
+        return self._catfilm
     @catFilm.setter
-    def catFilm(self,catFilm):
-        self._catFilm = catFilm
+    def catfilm(self, catFilm):
+        self._catfilm = catFilm
+
+
 
 

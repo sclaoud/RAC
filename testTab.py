@@ -9,11 +9,12 @@
 
 #Importation des modules
 from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton
+
 #   QMessageBox n'était pas importer depuis QtWidgets et doit être forcer ainsi que filedialog
 from PyQt5.QtCore import pyqtProperty, QCoreApplication, QObject, QUrl
 from PyQt5 import QtCore, QtGui, QtWidgets
-
-
+from classes2 import *
 
 
 
@@ -25,7 +26,9 @@ class Ui_Application(QWidget):
         self.tabMain = QtWidgets.QTabWidget(Application)
         self.tabMain.setGeometry(QtCore.QRect(30, 30, 991, 531))
         self.tabMain.setObjectName("tabMain")
-
+        #liste de films et de personnes pour incrémenter
+        self.listdeFilm = []
+        self.listdePersonne = []
 
 #### DÉBUT DE LA TAB PERSONNE ####
 
@@ -424,7 +427,7 @@ class Ui_Application(QWidget):
         self.verticalLayout_21.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_21.setObjectName("verticalLayout_21")
 
-    # Bouton pour enregistrer une nouvelle entrée Film
+    # Bouton pour enregistrer une nouvelle entrée de Film
         self.btnNouveau_3 = QtWidgets.QPushButton(self.verticalLayoutWidget_3)
         self.btnNouveau_3.setObjectName("btnNouveau_3")
         self.verticalLayout_21.addWidget(self.btnNouveau_3)
@@ -446,22 +449,25 @@ class Ui_Application(QWidget):
     # Lineedit Contenant le titre du film
         self.lineFilm_2 = QtWidgets.QLineEdit(self.verticalLayoutWidget_4)
         self.lineFilm_2.setObjectName("lineFilm_2")
-        self.lineFilm_2.setText('Inscrire le titre du film')
+        self.lineFilm_2.setText("Titre du film")
         self.verticalLayout_22.addWidget(self.lineFilm_2)
-        self.lineFilm_2 = film.nomFilm(self)
 
     # Lineedit avec la durée du film
         self.dureeFilm = QtWidgets.QTimeEdit(self.verticalLayoutWidget_4)
         self.dureeFilm.setObjectName("dureeFilm")
         self.verticalLayout_22.addWidget(self.dureeFilm)
-        self.dureeFilm = film.catFilm(self)
+
 
     # TextEdit contenant une description du film
         self.textDescFilm_2 = QtWidgets.QTextEdit(self.verticalLayoutWidget_4)
         self.textDescFilm_2.setObjectName("textDescFilm_2")
         self.textDescFilm_2.setText('Inscrire la synopsie du film')
         self.verticalLayout_22.addWidget(self.textDescFilm_2)
-        self.textDescFilm_2 = film.descFilm(self)
+
+
+    # Liste des catégories de films (n'est pas iterable)
+        self.cbListCatFilm = ["Animation", "Fantaisie", "Science-Fiction", "Horreur", "Drame",
+                             "Thriller", "Documentaire", "Comédie"]
 
     ## Grid layout contenant les checkbox des catégories de films
         self.label_2 = QtWidgets.QLabel(self.tabFilms)
@@ -470,29 +476,26 @@ class Ui_Application(QWidget):
         self.widget = QtWidgets.QWidget(self.tabFilms)
         self.widget.setGeometry(QtCore.QRect(470, 30, 211, 161))
         self.widget.setObjectName("widget")
-        self.listCatFilm = QtWidgets.QListWidget(self.tabFilms)
+
+        self.model = QtGui.QStandardItemModel()
+        self.listCatFilm = QtGui.QStandardItemModel()
+        self.listCatFilm = QtWidgets.QListView(self.tabFilms)
         self.listCatFilm.setGeometry(QtCore.QRect(490, 30, 171, 192))
         self.listCatFilm.setObjectName("listCatFilm")
 
-        for string in listCatFilm:
-            item = QtGui.QStandardItem(string)
+
+        for list in self.cbListCatFilm:
+            item = QtGui.QStandardItem(list)
             item.setCheckable(True)
-            check = \
-                (QtCore.Qt.Checked if isChecked else QtCore.Qt.Unchecked)
-            item.setCheckState(check)
+                            ### valider si utile à la sauvegarde ou retirer ###
+#                                check = \
+#                                    (QtCore.Qt.Checked if checked else QtCore.Qt.Unchecked)
             self.model.appendRow(item)
 
-        # Liste des catégories de films
-        catFilm = ["Animation", "Fantaisie", "Science-Fiction", "Horreur", "Drame",
-                             "Thriller", "Documentaire", "Comédie"]
-        catFilm.setCheckable(True)
-
-        self.listCatFilm.addItems(catFilm)
+        self.listCatFilm.setModel(self.model)
 
 
-
-
-        self.tabMain.addTab(self.tabFilms, "")
+        self.tabMain.addTab(self.tabFilms,"")
 
     # Bouton de fermeture lancant un QMessageBox de confirmation
         self.btnFermer = QtWidgets.QPushButton(Application)
@@ -515,6 +518,17 @@ class Ui_Application(QWidget):
         self.retranslateUi(Application)
         self.tabMain.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Application)
+
+
+#    #### Qlabel de test ####
+        self.qlabel = QLabel(self.tabFilms)
+        self.qlabel.move(50, 200)
+
+     #### Changement du label en continue pour test ####
+#        self.lineFilm_2.textChanged.connect(self.newFilm)
+
+
+
 
     def retranslateUi(self, Application):
         _translate = QtCore.QCoreApplication.translate
@@ -546,13 +560,14 @@ class Ui_Application(QWidget):
         self.cbClient.setText(_translate("Application", "Client"))
         self.btnSuivant.setText(_translate("Application", ">"))
         self.cbEmploye.setText(_translate("Application", "Employé"))
-        self.tabMain.setTabText(self.tabMain.indexOf(self.tabPersonne), _translate("Application", "Personne"))
+        self.tabMain.setTabText(self.tabMain.indexOf(self.tabPersonne), _translate("Application", ("Personne ({})".format(len(self.listdePersonne)))))
         self.btnPrecedent_2.setText(_translate("Application", "<"))
         self.btnSuivant_2.setText(_translate("Application", ">"))
         self.btnNouveau_3.setText(_translate("Application", "Nouveau"))
         self.btnSupprimer_3.setText(_translate("Application", "Supprimer"))
         self.label_2.setText(_translate("Application", "Catégories du film"))
-        self.tabMain.setTabText(self.tabMain.indexOf(self.tabFilms), _translate("Application", "Films"))
+        #Indication du nombre de films existant dans l'application
+        self.tabMain.setTabText(self.tabMain.indexOf(self.tabFilms), _translate("Application", ("Films ({})".format(len(self.listdeFilm)))))
         self.btnFermer.setText(_translate("Application", "Fermer"))
         self.btnSauvegarder.setText(_translate("Application", "Sauvegarder"))
         self.btnCharger.setText(_translate("Application", "Charger"))
@@ -561,12 +576,29 @@ class Ui_Application(QWidget):
 
  ### Enregistrement de l'entré et remise à zero des films ###
     def newFilm(self):
-        self.labelResult.setText("")
-        for i, v in enumerate(self.cbListCatFilm):
-            self.listCatFilm[i].setText("True" if v.checkState() else "False")
-            self.labelResult.setText("{}, {}".format(self.labelResult.text(),
-                                                     self.listCatFilm[i].text()))
+        film.nomFilm = self.lineFilm_2.text()
+        film.dureeFilm = self.dureeFilm.time()
+        film.descFilm = self.textDescFilm_2.toPlainText()
+        film.catFilm = self.cbListCatFilm.append(list)
+        print (film.nomFilm)
+        print (film.dureeFilm)
+        print (film.descFilm)
+        print (film.catFilm)
 
+#        self.listdeFilm.append(film(film.nomFilm))
+
+
+ #       self.dureeFilm.
+#        self.textDescFilm_2.setText("")
+
+#        for i in range(self.model.rowCount()):
+#            item = self.model.item(i)
+#            item.setCheckState(QtCore.Qt.Unchecked)
+#        self.UpdateFilm()
+
+ ### Update de la liste des films
+    def UpdateFilm(self):
+        self.tabMain.setTabText(self.tabMain.indexOf(self.tabFilms), ("Application", ("Films ({})".format(len(self.listdeFilm)))))
 
  ### Enregistrement de l'entré et remise à zero ### à retravailler
     def NewEntrie(self):
@@ -601,7 +633,7 @@ class Ui_Application(QWidget):
         self.linePwdEmp.setText("")
         self.lineAccess.setText("")
 
- ### Validation des checkbox dans la Qlistwidget listCatFilm
+ ### Validation des checkbox dans la QlistView listCatFilm
     def checkedItems(self):
         for index in range(self.count()):
             item = self.item(index)
@@ -689,80 +721,6 @@ class Ui_Application(QWidget):
         file.close()
         self.contactsUpdate()
 
-class Personne(QObject):
-    "Personne"
-
-    def __init__(self, nom, prenom, sexe, parent=None):
-        super().__init__(parent)
-        self._nom = nom
-        self._prenom = prenom
-        self._sexe = sexe
-
-    @pyqtProperty(str)
-    def nom(self):
-        return self._nom
-    @nom.setter
-    def nom(self, nom):
-        self._nom = nom
-
-    @pyqtProperty(str)
-    def prenom(self):
-        return self._prenom
-    @prenom.setter
-    def prenom(self, prenom):
-        self._prenom = prenom
-
-    @pyqtProperty(str)
-    def sexe(self):
-        return self._sexe
-    @sexe.setter
-    def sexe(self, sexe):
-        self._sexe = sexe
-
-
-
-
-class film (QObject):
-    "Films"
-    def __init__(self, nomFilm, dureeFilm, descFilm):
-        self.nomFilm = nomFilm
-        self._dureeFilm = dureeFilm
-        self._descFilm = descFilm
-        return
-
-
-    @pyqtProperty(str)
-    def nomFilm(self):
-        return self._nomFilm
-    @nomFilm.setter
-    def nomFilm(self, nomFilm):
-        self._nomFilm = nomFilm
-
-    @pyqtProperty(int)
-    def dureeFilm(self):
-        return self._dureeFilm
-    @dureeFilm.setter
-    def dureeFilm(self, dureeFilm):
-        self._dureeFilm = dureeFilm
-
-    @pyqtProperty(str)
-    def descFilm(self):
-        return self._descFilm
-    @descFilm.setter
-    def descFilm(self, descFilm):
-        self._descFilm = descFilm
-
-    @pyqtProperty(str)
-    def catFilm(self):
-        return self._catFilm
-    @catFilm.setter
-    def catFilm(self,catFilm):
-        self._catFilm = catFilm
-
-
-
-
-
 
 
 if __name__ == "__main__":
@@ -773,3 +731,4 @@ if __name__ == "__main__":
     ui.setupUi(Application)
     Application.show()
     sys.exit(app.exec_())
+
