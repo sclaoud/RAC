@@ -5,142 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.006&#10;&#10;fighting avec la tab film">
-      <change afterPath="$PROJECT_DIR$/test2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging-20.9.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging-20.9.dist-info/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging-20.9.dist-info/LICENSE.APACHE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging-20.9.dist-info/LICENSE.BSD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging-20.9.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging-20.9.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging-20.9.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging-20.9.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging/__about__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging/_compat.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging/_structures.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging/_typing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging/markers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging/py.typed" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging/requirements.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging/specifiers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging/tags.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/packaging/version.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/pyparsing-2.4.7.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/pyparsing-2.4.7.dist-info/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/pyparsing-2.4.7.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/pyparsing-2.4.7.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/pyparsing-2.4.7.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/pyparsing-2.4.7.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/pyparsing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sip-6.0.1.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sip-6.0.1.dist-info/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sip-6.0.1.dist-info/LICENSE-GPL2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sip-6.0.1.dist-info/LICENSE-GPL3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sip-6.0.1.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sip-6.0.1.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sip-6.0.1.dist-info/REQUESTED" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sip-6.0.1.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sip-6.0.1.dist-info/entry_points.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sip-6.0.1.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/abstract_builder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/abstract_project.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/argument_parser.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/bindings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/buildable.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/builder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/code_generator.cp38-win_amd64.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/configurable.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/distinfo/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/distinfo/distinfo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/distinfo/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/distutils_builder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/exceptions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/helpers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/installable.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/abi_version.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/module.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/MANIFEST.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/README.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/apiversions.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/array.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/array.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/bool.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/descriptors.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/int_convertors.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/objmap.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/pyproject.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/qtlib.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/setup.cfg.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/setup.py.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/sip.h.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/sip.pyi" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/sip.rst.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/sipint.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/siplib.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/threads.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.7/voidptr.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/MANIFEST.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/README.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/apiversions.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/array.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/array.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/bool.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/descriptors.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/int_convertors.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/objmap.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/pyproject.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/qtlib.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/setup.cfg.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/setup.py.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/sip.h.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/sip.pyi" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/sip.rst.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/sipint.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/siplib.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/threads.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/12.8/voidptr.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/MANIFEST.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/README.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/array.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/array.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/bool.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/descriptors.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/int_convertors.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/objmap.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/pyproject.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/setup.cfg.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/setup.py.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/sip.h.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/sip.pyi" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/sip.rst.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/sipint.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/siplib.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/threads.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/module/source/13.0/voidptr.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/project.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/py_versions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/pyproject.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/tools/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/tools/build.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/tools/install.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/tools/sdist.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/tools/wheel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/sipbuild/version.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/sip-build.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/sip-distinfo.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/sip-install.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/sip-module.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/sip-sdist.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Scripts/sip-wheel.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes2.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testCB.py" beforeDir="false" afterPath="$PROJECT_DIR$/testCB.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testTab.py" beforeDir="false" afterPath="$PROJECT_DIR$/testTab.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -179,6 +46,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="two.files.diff.last.used.folder" value="$PROJECT_DIR$/venv" />
   </component>
@@ -317,8 +185,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.testTab" />
-        <item itemvalue="Python.classes2" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.classes2" />
         <item itemvalue="Python.Logiciel de contacts" />
         <item itemvalue="Python.testCB" />
       </list>

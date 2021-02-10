@@ -28,7 +28,9 @@ class Ui_Application(QWidget):
         self.tabMain.setObjectName("tabMain")
         #liste de films et de personnes pour incrémenter
         self.listdeFilm = []
+        self.positionListFilm =0
         self.listdePersonne = []
+        self.positionListPers = 0
 
 #### DÉBUT DE LA TAB PERSONNE ####
 
@@ -487,11 +489,7 @@ class Ui_Application(QWidget):
         for list in self.cbListCatFilm:
             item = QtGui.QStandardItem(list)
             item.setCheckable(True)
-                            ### valider si utile à la sauvegarde ou retirer ###
-#                                check = \
-#                                    (QtCore.Qt.Checked if checked else QtCore.Qt.Unchecked)
             self.model.appendRow(item)
-
         self.listCatFilm.setModel(self.model)
 
 
@@ -574,31 +572,35 @@ class Ui_Application(QWidget):
 
 #### Fonctions des classes ####
 
- ### Enregistrement de l'entré et remise à zero des films ###
+ ### Enregistrement de l'entré et remise à zero des films ###  à retravailler
     def newFilm(self):
+        self.listdeFilm.append(film(film.nomFilm()))
         film.nomFilm = self.lineFilm_2.text()
         film.dureeFilm = self.dureeFilm.time()
         film.descFilm = self.textDescFilm_2.toPlainText()
-        film.catFilm = self.cbListCatFilm.append(list)
+
+        self.lineFilm_2.setText("")
+#        self.dureeFilm.setTime(00:00:00)
+        self.textDescFilm_2.setText("")
+
+#        film.catFilm = []
+#        for list in self.cbListCatFilm:
+#            list.setCheckable = self.cbListCatFilm(list)
+#            if item.checkState == QtCore.Qt.Unchecked:
+#                item.setCheckState(QtCore.Qt.Checked)
+
+
         print (film.nomFilm)
         print (film.dureeFilm)
         print (film.descFilm)
-        print (film.catFilm)
+#        print (film.catFilm)
 
-#        self.listdeFilm.append(film(film.nomFilm))
-
-
- #       self.dureeFilm.
-#        self.textDescFilm_2.setText("")
-
-#        for i in range(self.model.rowCount()):
-#            item = self.model.item(i)
-#            item.setCheckState(QtCore.Qt.Unchecked)
 #        self.UpdateFilm()
+
 
  ### Update de la liste des films
     def UpdateFilm(self):
-        self.tabMain.setTabText(self.tabMain.indexOf(self.tabFilms), ("Application", ("Films ({})".format(len(self.listdeFilm)))))
+        self.tabMain.setTabText(self.tabMain.indexOf(self.tabFilms), QtCore.QCoreApplication.translate  ("Application", ("Films ({})".format(len(self.listdeFilm)))))
 
  ### Enregistrement de l'entré et remise à zero ### à retravailler
     def NewEntrie(self):
@@ -644,45 +646,45 @@ class Ui_Application(QWidget):
  ### Personne suivante dans la liste de Personne ### à retravailler
     def suivantPers(self):
         # print(self.positionListe)
-        self.prenomTxt.set(self.ListeDePersonnes[self.positionListe].prenom)
-        self.nomTxt.set(self.ListeDePersonnes[self.positionListe].nom)
+        self.prenomTxt.set(self.listdePersonne[self.positionListPers].prenom)
+        self.nomTxt.set(self.listdePersonne[self.positionListPers].nom)
         self.positionListe += 1
 
-        if self.positionListe == len(self.ListeDePersonnes):
+        if self.positionListe == len(self.listdePersonne):
             self.positionListe = 0
         self.contactsUpdate()
 
  ###Personne précédente dans la liste de Personne ### À retravailler
     def precedentPers(self):
         print(self.positionListe)
-        self.prenomTxt.set(self.ListeDePersonnes[self.positionListe].prenom)
-        self.nomTxt.set(self.ListeDePersonnes[self.positionListe].nom)
+        self.prenomTxt.set(self.listdePersonne[self.positionListPers].prenom)
+        self.nomTxt.set(self.listdePersonne[self.positionListPers].nom)
         self.positionListe -=1
         print(self.positionListe)
         if self.positionListe < 0:
-            self.positionListe = len(self.ListeDePersonnes)-1
+            self.positionListe = len(self.listdePersonne)-1
         self.contactsUpdate()
 
  ###Film suivant dans la liste de Film ### À retravailler
     def suivantFilm(self):
         # print(self.positionListe)
-        self.prenomTxt.set(self.ListeDePersonnes[self.positionListe].prenom)
-        self.nomTxt.set(self.ListeDePersonnes[self.positionListe].nom)
+        self.lineFilm_2.set(self.listdeFilm[self.positionListFilm].nomFilm)
+        self.textDescFilm_2.set(self.listdeFilm[self.positionListFilm].descFilm)
         self.positionListe += 1
 
-        if self.positionListe == len(self.ListeDePersonnes):
+        if self.positionListe == len(self.listdeFilm):
             self.positionListe = 0
         self.filmUpdate()
 
  ###Film précédent dans la liste de film ### À retravailler
     def precedentFilm(self):
         print(self.positionListe)
-        self.prenomTxt.set(self.ListeDePersonnes[self.positionListe].prenom)
-        self.nomTxt.set(self.ListeDePersonnes[self.positionListe].nom)
+        self.prenomTxt.set(self.listdeFilm[self.positionListFilm].prenom)
+        self.nomTxt.set(self.listdeFilm[self.positionListFilm].nom)
         self.positionListe -=1
         print(self.positionListe)
         if self.positionListe < 0:
-            self.positionListe = len(self.ListeDePersonnes)-1
+            self.positionListe = len(self.listdeFilm)-1
         self.FilmUpdate()
 
  ### Met à jour le nombre de personne dans le système ### À retravailler
@@ -717,7 +719,7 @@ class Ui_Application(QWidget):
     def charger(self):
         name = QtGui.QFileDialog.getOpenFileName(self, 'Open File')
         file = open(name, "r")
-        self.ListeDePersonnes = file.load(file)
+        self.listdePersonne = file.load(file)
         file.close()
         self.contactsUpdate()
 
