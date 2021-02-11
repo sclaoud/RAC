@@ -175,7 +175,7 @@ class Ui_Application(QWidget):
         #Maximum de 40 Caractere
         self.linePrenom.setMaxLength(40)
         self.verticalLayout_17.addWidget(self.linePrenom)
-        self.linePrenom = Personne.prenom(self)
+
 
     # Lineedit contenant le Nom de la personne
         self.lineNom = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
@@ -184,23 +184,29 @@ class Ui_Application(QWidget):
         #Maximum de 40 Caractere
         self.lineNom.setMaxLength(40)
         self.verticalLayout_17.addWidget(self.lineNom)
-        self.lineNom = Personne.nom(self)
 
-    # RadioButton du choix de sexe de la personne
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        # Choix homme
-        self.rdSexeHomme = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
-        self.rdSexeHomme.setObjectName("rdSexeHomme")
-        self.horizontalLayout_2.addWidget(self.rdSexeHomme)
-        # choix Femme
-        self.rdSexeFemme = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
-        self.rdSexeFemme.setObjectName("rdSexeFemme")
-        self.horizontalLayout_2.addWidget(self.rdSexeFemme)
-        # Préfère ne pas répondre
-        self.rdSexeAlien = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
-        self.rdSexeAlien.setObjectName("rdSexeAlien")
-        self.horizontalLayout_2.addWidget(self.rdSexeAlien)
+    # RadioButton du choix de sexe de la personne
+
+        moods = [QRadioButton("Homme"), QRadioButton("Femme"), QRadioButton("Préfère ne pas répondre")]
+
+        # Set a radio button to be checked by default
+        moods[0].setChecked(True)
+
+        # Radio buttons usually are in a vertical layout
+        button_layout = QHBoxLayout()
+
+        # Create a button group for radio buttons
+        self.mood_button_group = QButtonGroup(self.horizontalLayoutWidget)
+
+        for i in range(len(moods)):
+            # Add each radio button to the button layout
+            self.horizontalLayout_2.addWidget(moods[i])
+            # Add each radio button to the button group & give it an ID of i
+            self.mood_button_group.addButton(moods[i], i)
+            # Connect each radio button to a method to run when it's clicked
+            self.mood_button_group.buttonClicked.connect(self.radio_button_clicked)
         self.verticalLayout_17.addLayout(self.horizontalLayout_2)
         self.horizontalLayout.addLayout(self.verticalLayout_17)
 
@@ -540,9 +546,6 @@ class Ui_Application(QWidget):
         self.label_18.setText(_translate("Application", "Prenom"))
         self.label.setText(_translate("Application", "Nom"))
         self.label_3.setText(_translate("Application", "Sexe"))
-        self.rdSexeHomme.setText(_translate("Application", "Homme"))
-        self.rdSexeFemme.setText(_translate("Application", "Femme"))
-        self.rdSexeAlien.setText(_translate("Application", "Préfère ne pas répondre"))
         self.btnPrecedent.setText(_translate("Application", "<"))
         self.btnNouveau.setText(_translate("Application", "Nouveau"))
         self.btnSupprimer.setText(_translate("Application", "Supprimer"))
@@ -574,29 +577,40 @@ class Ui_Application(QWidget):
 
  ### Enregistrement de l'entré et remise à zero des films ###  à retravailler
     def newFilm(self):
-        self.listdeFilm.append(film(film.nomFilm()))
+#        self.listdeFilm.append(film(film.nomFilm()))
         film.nomFilm = self.lineFilm_2.text()
         film.dureeFilm = self.dureeFilm.time()
         film.descFilm = self.textDescFilm_2.toPlainText()
 
         self.lineFilm_2.setText("")
-#        self.dureeFilm.setTime(00:00:00)
+#        self.dureeFilm.setTime(self, [00,00,00])
         self.textDescFilm_2.setText("")
+
+        film.catFilm
+        for index in range(self.cbListCatFilm):
+#            item = self.item(index)
+#            if item.checkState() == QtWidgets.QCheckBox.isChecked:
+#                yield index, item
 
 #        film.catFilm = []
 #        for list in self.cbListCatFilm:
 #            list.setCheckable = self.cbListCatFilm(list)
-#            if item.checkState == QtCore.Qt.Unchecked:
-#                item.setCheckState(QtCore.Qt.Checked)
+#            if list.checkState == QtCore.Qt.Unchecked:
+#                list.setCheckState(QtCore.Qt.Checked)
 
 
         print (film.nomFilm)
         print (film.dureeFilm)
         print (film.descFilm)
-#        print (film.catFilm)
+        print (film.catFilm)
 
 #        self.UpdateFilm()
 
+ ### choix bouton radio sexe
+    def radio_button_clicked(self):
+        Personne.sexe = self.mood_button_group.checkedButton().text()
+
+    #        print(Personne.sexe)
 
  ### Update de la liste des films
     def UpdateFilm(self):
@@ -604,19 +618,12 @@ class Ui_Application(QWidget):
 
  ### Enregistrement de l'entré et remise à zero ### à retravailler
     def NewEntrie(self):
-        Personne.set_sexe()
-#        if self.rdSexeAlien.isChecked():
-#            return rdValue = c
-#        elif self.rdSexeFemme.isChecked():
-#            return rdValue = b
-#        elif self.rdSexeHomme.isChecked():
-#            return rdValue = a
+        Personne.prenom = self.linePrenom.text()
+        Personne.nom = self.lineNom.text()
+        Personne.sexe = self.mood_button_group.checkedButton().text()
 
         self.linePrenom.setText("")
         self.lineNom.setText("")
-        self.rdSexeHomme.setChecked(False)
-        self.rdSexeFemme.setChecked(False)
-        self.rdSexeAlien.setChecked(False)
         self.cbClient.setChecked(False)
         self.cbEmploye.setChecked(False)
         self.cbActeur.setChecked(False)
@@ -635,12 +642,9 @@ class Ui_Application(QWidget):
         self.linePwdEmp.setText("")
         self.lineAccess.setText("")
 
- ### Validation des checkbox dans la QlistView listCatFilm
-    def checkedItems(self):
-        for index in range(self.count()):
-            item = self.item(index)
-            if item.checkState() == QtWidgets.QCheckBox.isChecked:
-                yield index, item
+        print (Personne.prenom)
+        print (Personne.nom)
+        print (Personne.sexe)
 
 
  ### Personne suivante dans la liste de Personne ### à retravailler
@@ -722,6 +726,7 @@ class Ui_Application(QWidget):
         self.listdePersonne = file.load(file)
         file.close()
         self.contactsUpdate()
+
 
 
 

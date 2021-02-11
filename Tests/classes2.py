@@ -7,35 +7,33 @@ Emplacement des classes
 """
 
 
-class Personne(QObject):
+class Personne(object):
     "Personne"
 
-    def __init__(self, nom, prenom, sexe, parent=None):
+    def __init__(self,prenom, nom, sexe, parent=None):
         super().__init__(parent)
-        self._nom = nom
         self._prenom = prenom
+        self._nom = nom
         self._sexe = sexe
 
-    @pyqtProperty(str)
-    def nom(self):
-        return self._nom
-
-    @nom.setter
-    def nom(self, nom):
-        self._nom = nom
-
-    @pyqtProperty(str)
+#    nom = property(fget=nom.getter, fset=nomFilm.setter, fdel=nomFilm.deleter)
+    @property
     def prenom(self):
         return self._prenom
-
     @prenom.setter
     def prenom(self, prenom):
         self._prenom = prenom
 
-    @pyqtProperty(str)
+    @property
+    def nom(self):
+        return self._nom
+    @nom.setter
+    def nom(self, nom):
+        self._nom = nom
+
+    @property
     def sexe(self):
         return self._sexe
-
     @sexe.setter
     def sexe(self, sexe):
         self._sexe = sexe
@@ -44,11 +42,11 @@ class Personne(QObject):
 class film(object):
     "Films"
 
-    def __init__(self, nomFilm, _dureeFilm, _descFilm, catFilm):
+    def __init__(self, nomFilm, dureeFilm, descFilm, catFilm):
         self._nomFilm = nomFilm
-        self._dureeFilm = pyqtProperty(int, self.dureeFilm, fset=self.get_dureeFilm)
-        self._descFilm = pyqtProperty(str, self.descFilm)
-        self._catFilm = catFilm.append
+        self._dureeFilm = dureeFilm
+        self._descFilm = descFilm
+        self._catFilm = catFilm
 
         return
 
@@ -65,19 +63,6 @@ class film(object):
     def nomFilm(self):
         del self._nomFilm
 
-    nomFilm = property(fget=nomFilm.getter, fset=nomFilm.setter, fdel=nomFilm.deleter)
-
-
-
-#    @pyqtProperty(str)
-#    def nomFilm(self):
-#        return self._nomFilm
-#    @nomFilm.setter
-#    def nomFilm(self, SnomFilm):
-#        self._nomFilm = SnomFilm
-
-
-
     @property
     def dureeFilm(self):
         return self._dureeFilm
@@ -85,10 +70,6 @@ class film(object):
     @dureeFilm.setter
     def dureeFilm(self, dureeFilm):
         self._dureeFilm = dureeFilm
-
-#    @dureeFilm.getter
-#    def get_dureeFilm(self, dureeFilm):
-#        self._dureeFilm = dureeFilm
 
     @property
     def descFilm(self):
@@ -100,10 +81,10 @@ class film(object):
 
     @pyqtProperty(list)
     def catFilm(self):
-        return self._catfilm
+        return self._catFilm
 
     @catFilm.setter
-    def catfilm(self, catFilm):
+    def catFilm(self, catFilm):
         self._catFilm = catFilm
 
 
