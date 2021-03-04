@@ -586,18 +586,19 @@ class Ui_Application(QWidget):
 #        self.dureeFilm.setTime(self, [00,00,00])
         self.textDescFilm_2.setText("")
 
-        film.catFilm
-        for index in range(self.cbListCatFilm):
-#            item = self.item(index)
-#            if item.checkState() == QtWidgets.QCheckBox.isChecked:
-#                yield index, item
+
+        model = self.listCatFilm.model()
+        for index in range(model.rowCount()):
+            item = model.item(index)
+            if item.isCheckable() and item.checkState() == QtCore.Qt.Unchecked:
+                item.setCheckState(QtCore.Qt.Checked)
+        film.catFilm = model
 
 #        film.catFilm = []
-#        for list in self.cbListCatFilm:
-#            list.setCheckable = self.cbListCatFilm(list)
-#            if list.checkState == QtCore.Qt.Unchecked:
-#                list.setCheckState(QtCore.Qt.Checked)
-
+#        for i, v in enumerate(self.cbListCatFilm):
+#            self.listCatFilm[i].setText("True" if v.checkState() else "False")
+#            self.labelResult.setText("{}, {}".format(self.labelResult.text(),
+#                                                     self.listCatFilm[i].text()))
 
         print (film.nomFilm)
         print (film.dureeFilm)
@@ -621,6 +622,13 @@ class Ui_Application(QWidget):
         Personne.prenom = self.linePrenom.text()
         Personne.nom = self.lineNom.text()
         Personne.sexe = self.mood_button_group.checkedButton().text()
+        Personne_test = {
+            'prenom': Personne.prenom,
+            'nom': Personne.nom,
+            'sexe': Personne.sexe
+        }
+
+        self.listdePersonne.append(Personne_test)
 
         self.linePrenom.setText("")
         self.lineNom.setText("")
@@ -642,10 +650,11 @@ class Ui_Application(QWidget):
         self.linePwdEmp.setText("")
         self.lineAccess.setText("")
 
-        print (Personne.prenom)
-        print (Personne.nom)
-        print (Personne.sexe)
+#        print (Personne.prenom)
+#        print (Personne.nom)
+#        print (Personne.sexe)
 
+        self.PersonneUpdate()
 
  ### Personne suivante dans la liste de Personne ### à retravailler
     def suivantPers(self):
@@ -693,7 +702,7 @@ class Ui_Application(QWidget):
 
  ### Met à jour le nombre de personne dans le système ### À retravailler
     def PersonneUpdate(self):
-        self.tabPersonne = QtWidgets.QTabWidget.setTabText("Personne ({})".format(len(self.listPersonne)))
+        self.tabMain.setTabText(0, "Personne ({})".format(len(self.listdePersonne)))
 
 
     # Fenêtre de confirmation de la fermeture de l'application

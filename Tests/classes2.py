@@ -79,7 +79,7 @@ class film(object):
     def descFilm(self, descFilm):
         self._descFilm = descFilm
 
-    @pyqtProperty(list)
+    @property
     def catFilm(self):
         return self._catFilm
 

@@ -4,25 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.007&#10;&#10;fighting avec getter/setter">
-      <change afterPath="$PROJECT_DIR$/Fonctions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/classes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/tab3.py" afterDir="false" />
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.005&#10;&#10;Checkbox enable/disable et echoMode">
+      <change afterPath="$PROJECT_DIR$/UI/tab4.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/RAC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RAC.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logiciel de contacts.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Logiciel de contacts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tab.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Tab.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/classes2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example.qml" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/example.qml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/films.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/films.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/personne.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/personne.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tab3.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUItab.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/test2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testCB.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/testCB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testTab.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/testTab.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/classes2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/classes2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/testTab.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/testTab.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +61,28 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.testTab (1)">
-    <configuration name="GUItab" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Logiciel de contacts" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="RAC" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/Logiciel de contacts.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Tab" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -115,7 +124,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="tab3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="testCB" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -127,28 +136,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/tab3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="RAC" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/testCB.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -202,10 +190,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.testTab (1)" />
-        <item itemvalue="Python.test (1)" />
+        <item itemvalue="Python.Logiciel de contacts" />
+        <item itemvalue="Python.testCB" />
         <item itemvalue="Python.testTab" />
-        <item itemvalue="Python.GUItab" />
-        <item itemvalue="Python.tab3" />
+        <item itemvalue="Python.Tab" />
       </list>
     </recent_temporary>
   </component>
