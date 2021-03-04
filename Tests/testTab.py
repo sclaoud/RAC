@@ -27,10 +27,10 @@ class Ui_Application(QWidget):
         self.tabMain.setGeometry(QtCore.QRect(30, 30, 991, 531))
         self.tabMain.setObjectName("tabMain")
         #liste de films et de personnes pour incrémenter
-        self.listdeFilm = []
-        self.positionListFilm =0
-        self.listdePersonne = []
-        self.positionListPers = 0
+        self.listeFilm = []
+        self.positionFilm =0
+        self.listePersonne = []
+        self.positionPers = 0
 
 #### DÉBUT DE LA TAB PERSONNE ####
 
@@ -192,7 +192,7 @@ class Ui_Application(QWidget):
         moods = [QRadioButton("Homme"), QRadioButton("Femme"), QRadioButton("Préfère ne pas répondre")]
 
         # Set a radio button to be checked by default
-        moods[0].setChecked(True)
+#        moods[0].setChecked(True)
 
         # Radio buttons usually are in a vertical layout
         button_layout = QHBoxLayout()
@@ -404,12 +404,13 @@ class Ui_Application(QWidget):
         self.btnPrecedent = QtWidgets.QPushButton(self.tabPersonne)
         self.btnPrecedent.setGeometry(QtCore.QRect(60, 70, 31, 23))
         self.btnPrecedent.setObjectName("btnPrecedent")
+        self.btnPrecedent.clicked.connect(self.precedentPers)
 
     # Bouton Suivant de la tab Personne
         self.btnSuivant = QtWidgets.QPushButton(self.tabPersonne)
         self.btnSuivant.setGeometry(QtCore.QRect(110, 70, 31, 23))
         self.btnSuivant.setObjectName("btnSuivant")
-
+        self.btnSuivant.clicked.connect(self.suivantPers)
 
 
 
@@ -421,11 +422,13 @@ class Ui_Application(QWidget):
         self.btnPrecedent_2 = QtWidgets.QPushButton(self.tabFilms)
         self.btnPrecedent_2.setGeometry(QtCore.QRect(50, 140, 31, 23))
         self.btnPrecedent_2.setObjectName("btnPrecedent_2")
+        self.btnPrecedent_2.clicked.connect(self.precedentFilm)
 
     # Bouton Suivant de la tab Films
         self.btnSuivant_2 = QtWidgets.QPushButton(self.tabFilms)
         self.btnSuivant_2.setGeometry(QtCore.QRect(110, 140, 31, 23))
         self.btnSuivant_2.setObjectName("btnSuivant_2")
+        self.btnSuivant_2.clicked.connect(self.suivantFilm)
 
     ## Layout vertical contenant les boutons nouveaux et supprimer
         self.verticalLayoutWidget_3 = QtWidgets.QWidget(self.tabFilms)
@@ -561,14 +564,14 @@ class Ui_Application(QWidget):
         self.cbClient.setText(_translate("Application", "Client"))
         self.btnSuivant.setText(_translate("Application", ">"))
         self.cbEmploye.setText(_translate("Application", "Employé"))
-        self.tabMain.setTabText(self.tabMain.indexOf(self.tabPersonne), _translate("Application", ("Personne ({})".format(len(self.listdePersonne)))))
+        self.tabMain.setTabText(self.tabMain.indexOf(self.tabPersonne), _translate("Application", ("Personne ({})".format(len(self.listePersonne)))))
         self.btnPrecedent_2.setText(_translate("Application", "<"))
         self.btnSuivant_2.setText(_translate("Application", ">"))
         self.btnNouveau_3.setText(_translate("Application", "Nouveau"))
         self.btnSupprimer_3.setText(_translate("Application", "Supprimer"))
         self.label_2.setText(_translate("Application", "Catégories du film"))
         #Indication du nombre de films existant dans l'application
-        self.tabMain.setTabText(self.tabMain.indexOf(self.tabFilms), _translate("Application", ("Films ({})".format(len(self.listdeFilm)))))
+        self.tabMain.setTabText(self.tabMain.indexOf(self.tabFilms), _translate("Application", ("Films ({})".format(len(self.listeFilm)))))
         self.btnFermer.setText(_translate("Application", "Fermer"))
         self.btnSauvegarder.setText(_translate("Application", "Sauvegarder"))
         self.btnCharger.setText(_translate("Application", "Charger"))
@@ -599,13 +602,23 @@ class Ui_Application(QWidget):
 #            self.listCatFilm[i].setText("True" if v.checkState() else "False")
 #            self.labelResult.setText("{}, {}".format(self.labelResult.text(),
 #                                                     self.listCatFilm[i].text()))
+        Film_test = {
+            'Titre': film.nomFilm,
+            'duree': film.dureeFilm,
+            'description': film.descFilm
+        }
 
-        print (film.nomFilm)
-        print (film.dureeFilm)
-        print (film.descFilm)
-        print (film.catFilm)
 
-#        self.UpdateFilm()
+        self.listeFilm.append(Film_test)
+
+        self.UpdateFilm()
+        print (self.listeFilm)
+#        print (film.nomFilm)
+#        print (film.dureeFilm)
+#        print (film.descFilm)
+#        print (film.catFilm)
+
+
 
  ### choix bouton radio sexe
     def radio_button_clicked(self):
@@ -613,22 +626,26 @@ class Ui_Application(QWidget):
 
     #        print(Personne.sexe)
 
+### Met à jour le nombre de personne dans le système ### À retravailler
+    def PersonneUpdate(self):
+        self.tabMain.setTabText(0, "Personne ({})".format(len(self.listePersonne)))
+
  ### Update de la liste des films
     def UpdateFilm(self):
-        self.tabMain.setTabText(self.tabMain.indexOf(self.tabFilms), QtCore.QCoreApplication.translate  ("Application", ("Films ({})".format(len(self.listdeFilm)))))
+        self.tabMain.setTabText(1, "Film ({})".format(len(self.listeFilm)))
 
  ### Enregistrement de l'entré et remise à zero ### à retravailler
     def NewEntrie(self):
         Personne.prenom = self.linePrenom.text()
         Personne.nom = self.lineNom.text()
-        Personne.sexe = self.mood_button_group.checkedButton().text()
+        Personne.sexe = self.mood_button_group.checkedId()
         Personne_test = {
-            'prenom': Personne.prenom,
-            'nom': Personne.nom,
-            'sexe': Personne.sexe
+            'prenom' : Personne.prenom,
+            'nom' : Personne.nom,
+            'sexe' : Personne.sexe
         }
 
-        self.listdePersonne.append(Personne_test)
+        self.listePersonne.append(Personne_test)
 
         self.linePrenom.setText("")
         self.lineNom.setText("")
@@ -649,60 +666,63 @@ class Ui_Application(QWidget):
         self.lineUsername.setText("")
         self.linePwdEmp.setText("")
         self.lineAccess.setText("")
-
-#        print (Personne.prenom)
-#        print (Personne.nom)
-#        print (Personne.sexe)
-
+        print (self.listePersonne)
         self.PersonneUpdate()
 
  ### Personne suivante dans la liste de Personne ### à retravailler
     def suivantPers(self):
-        # print(self.positionListe)
-        self.prenomTxt.set(self.listdePersonne[self.positionListPers].prenom)
-        self.nomTxt.set(self.listdePersonne[self.positionListPers].nom)
-        self.positionListe += 1
+#        print(self.positionPers)
+        print(self.listePersonne[self.positionPers]['sexe'])
+        self.linePrenom.setText(self.listePersonne[self.positionPers]['prenom'])
+        self.lineNom.setText(self.listePersonne[self.positionPers]['nom'])
+#        self.mood_button_group.id = (self.listePersonne[self.positionPers]['sexe'])
+        if self.listePersonne[self.positionPers]['sexe'] == 0:
+            self.mood_button_group.setId(QRadioButton("Homme"),0)
+        if self.listePersonne[self.positionPers]['sexe'] == 1:
+            self.mood_button_group.checkedButton(QRadioButton("femme"),1)
+        if self.listePersonne[self.positionPers]['sexe'] == 2:
+            self.mood_button_group[2].setChecked(True)
 
-        if self.positionListe == len(self.listdePersonne):
-            self.positionListe = 0
-        self.contactsUpdate()
+        self.positionPers += 1
+
+        if self.positionPers == len(self.listePersonne):
+            self.positionPers = 0
+        self.PersonneUpdate()
 
  ###Personne précédente dans la liste de Personne ### À retravailler
     def precedentPers(self):
-        print(self.positionListe)
-        self.prenomTxt.set(self.listdePersonne[self.positionListPers].prenom)
-        self.nomTxt.set(self.listdePersonne[self.positionListPers].nom)
-        self.positionListe -=1
-        print(self.positionListe)
-        if self.positionListe < 0:
-            self.positionListe = len(self.listdePersonne)-1
-        self.contactsUpdate()
+        print(self.positionPers)
+        print(self.positionPers)
+        print(self.listePersonne[self.positionPers]['prenom'])
+        self.linePrenom.setText(self.listePersonne[self.positionPers]['prenom'])
+        self.lineNom.setText(self.listePersonne[self.positionPers]['nom'])
+        self.positionPers -=1
+
+        if self.positionPers < 0:
+            self.positionPers = len(self.listePersonne)-1
+        self.PersonneUpdate()
 
  ###Film suivant dans la liste de Film ### À retravailler
     def suivantFilm(self):
-        # print(self.positionListe)
-        self.lineFilm_2.set(self.listdeFilm[self.positionListFilm].nomFilm)
-        self.textDescFilm_2.set(self.listdeFilm[self.positionListFilm].descFilm)
-        self.positionListe += 1
+        print(self.positionFilm)
+        self.lineFilm_2.setText(self.listeFilm[self.positionFilm].nomFilm)
+        self.textDescFilm_2.setText(self.listeFilm[self.positionFilm].descFilm)
+        self.positionFilm += 1
 
-        if self.positionListe == len(self.listdeFilm):
-            self.positionListe = 0
+        if self.positionFilm == len(self.listdeFilm):
+            self.positionFilm = 0
         self.filmUpdate()
 
  ###Film précédent dans la liste de film ### À retravailler
     def precedentFilm(self):
-        print(self.positionListe)
-        self.prenomTxt.set(self.listdeFilm[self.positionListFilm].prenom)
-        self.nomTxt.set(self.listdeFilm[self.positionListFilm].nom)
-        self.positionListe -=1
-        print(self.positionListe)
-        if self.positionListe < 0:
-            self.positionListe = len(self.listdeFilm)-1
-        self.FilmUpdate()
+        print(self.positionFilm)
+        self.prenomTxt.set(self.listeFilm[self.positionFilm].prenom)
+        self.nomTxt.set(self.listeFilm[self.positionFilm].nom)
+        self.positionFilm -=1
 
- ### Met à jour le nombre de personne dans le système ### À retravailler
-    def PersonneUpdate(self):
-        self.tabMain.setTabText(0, "Personne ({})".format(len(self.listdePersonne)))
+        if self.positionFilm < 0:
+            self.positionFilm = len(self.listdeFilm)-1
+        self.FilmUpdate()
 
 
     # Fenêtre de confirmation de la fermeture de l'application
