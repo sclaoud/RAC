@@ -580,22 +580,33 @@ class Ui_Application(QWidget):
 
  ### Enregistrement de l'entré et remise à zero des films ###  à retravailler
     def newFilm(self):
-#        self.listdeFilm.append(film(film.nomFilm()))
         film.nomFilm = self.lineFilm_2.text()
         film.dureeFilm = self.dureeFilm.time()
         film.descFilm = self.textDescFilm_2.toPlainText()
+        for i, v in enumerate(self.cbListCatFilm):
+            self.cbListCatFilm("True" if v.checkState() else "False")
+            print (film.catFilm)
 
+#        film.catFilm = {}
+#        for i in self.cbListCatFilm:
+#            if self.cbListCatFilm[i]:
+#                i.setChecked(True)
+#            else:
+#                i.setChecked(False)
+
+
+
+    ## Efface les champs ##
         self.lineFilm_2.setText("")
-#        self.dureeFilm.setTime(self, [00,00,00])
+        self.dureeFilm.setTime(QtCore.QTime(00, 00))
         self.textDescFilm_2.setText("")
-
-
+    ## Efface les checkbox ##
         model = self.listCatFilm.model()
         for index in range(model.rowCount()):
             item = model.item(index)
-            if item.isCheckable() and item.checkState() == QtCore.Qt.Unchecked:
-                item.setCheckState(QtCore.Qt.Checked)
-        film.catFilm = model
+            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:
+                item.setCheckState(QtCore.Qt.Unchecked)
+
 
 #        film.catFilm = []
 #        for i, v in enumerate(self.cbListCatFilm):
@@ -605,19 +616,50 @@ class Ui_Application(QWidget):
         Film_test = {
             'Titre': film.nomFilm,
             'duree': film.dureeFilm,
-            'description': film.descFilm
+            'description': film.descFilm,
+            'categories' : film.catFilm
         }
 
 
         self.listeFilm.append(Film_test)
 
         self.UpdateFilm()
-        print (self.listeFilm)
+#        print (self.listeFilm)
 #        print (film.nomFilm)
 #        print (film.dureeFilm)
 #        print (film.descFilm)
-#        print (film.catFilm)
+        print (film.catFilm)
 
+    ###Film suivant dans la liste de Film ### À retravailler
+    def suivantFilm(self):
+        print(self.positionFilm)
+        self.lineFilm_2.setText(self.listeFilm[self.positionFilm]['Titre'])
+        self.textDescFilm_2.setText(self.listeFilm[self.positionFilm]['description'])
+        self.dureeFilm.setTime(self.listeFilm[self.positionFilm]['duree'])
+#        self.listCatFilm.model = (self.listeFilm[self.positionFilm]['categories'])
+#        for index in (self.cbListCatFilm):
+#            item = self.listCatFilm.item(index)
+#            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:
+#                item.setCheckState(QtCore.Qt.Checked)
+
+        self.positionFilm += 1
+
+        if self.positionFilm == len(self.listeFilm):
+            self.positionFilm = 0
+        self.UpdateFilm()
+
+        ###Film précédent dans la liste de film ### À retravailler
+
+    def precedentFilm(self):
+        print(self.positionFilm)
+        self.lineFilm_2.setText(self.listeFilm[self.positionFilm]['Titre'])
+        self.textDescFilm_2.setText(self.listeFilm[self.positionFilm]['description'])
+        self.dureeFilm.setTime(self.listeFilm[self.positionFilm]['duree'])
+        self.positionFilm -= 1
+
+        if self.positionFilm < 0:
+            self.positionFilm = len(self.listeFilm) - 1
+        self.UpdateFilm()
 
 
  ### choix bouton radio sexe
@@ -649,9 +691,9 @@ class Ui_Application(QWidget):
 
         self.linePrenom.setText("")
         self.lineNom.setText("")
-        self.cbClient.setChecked(False)
-        self.cbEmploye.setChecked(False)
-        self.cbActeur.setChecked(False)
+#        self.cbClient.setChecked(False)
+#       self.cbEmploye.setChecked(False)
+#        self.cbActeur.setChecked(False)
         self.lineDateInsc.setText("")
         self.lineCourriel.setText("")
         self.linePwdClient.setText("")
@@ -675,13 +717,12 @@ class Ui_Application(QWidget):
         print(self.listePersonne[self.positionPers]['sexe'])
         self.linePrenom.setText(self.listePersonne[self.positionPers]['prenom'])
         self.lineNom.setText(self.listePersonne[self.positionPers]['nom'])
-#        self.mood_button_group.id = (self.listePersonne[self.positionPers]['sexe'])
         if self.listePersonne[self.positionPers]['sexe'] == 0:
-            self.mood_button_group.setId(QRadioButton("Homme"),0)
+            self.mood_button_group.button(0).setChecked(True)
         if self.listePersonne[self.positionPers]['sexe'] == 1:
-            self.mood_button_group.checkedButton(QRadioButton("femme"),1)
+            self.mood_button_group.button(1).setChecked(True)
         if self.listePersonne[self.positionPers]['sexe'] == 2:
-            self.mood_button_group[2].setChecked(True)
+            self.mood_button_group.button(2).setChecked(True)
 
         self.positionPers += 1
 
@@ -691,38 +732,22 @@ class Ui_Application(QWidget):
 
  ###Personne précédente dans la liste de Personne ### À retravailler
     def precedentPers(self):
-        print(self.positionPers)
-        print(self.positionPers)
+#        print(self.positionPers)
         print(self.listePersonne[self.positionPers]['prenom'])
         self.linePrenom.setText(self.listePersonne[self.positionPers]['prenom'])
         self.lineNom.setText(self.listePersonne[self.positionPers]['nom'])
+        if self.listePersonne[self.positionPers]['sexe'] == 0:
+            self.mood_button_group.button(0).setChecked(True)
+        if self.listePersonne[self.positionPers]['sexe'] == 1:
+            self.mood_button_group.button(1).setChecked(True)
+        if self.listePersonne[self.positionPers]['sexe'] == 2:
+            self.mood_button_group.button(2).setChecked(True)
+
         self.positionPers -=1
 
         if self.positionPers < 0:
             self.positionPers = len(self.listePersonne)-1
         self.PersonneUpdate()
-
- ###Film suivant dans la liste de Film ### À retravailler
-    def suivantFilm(self):
-        print(self.positionFilm)
-        self.lineFilm_2.setText(self.listeFilm[self.positionFilm].nomFilm)
-        self.textDescFilm_2.setText(self.listeFilm[self.positionFilm].descFilm)
-        self.positionFilm += 1
-
-        if self.positionFilm == len(self.listdeFilm):
-            self.positionFilm = 0
-        self.filmUpdate()
-
- ###Film précédent dans la liste de film ### À retravailler
-    def precedentFilm(self):
-        print(self.positionFilm)
-        self.prenomTxt.set(self.listeFilm[self.positionFilm].prenom)
-        self.nomTxt.set(self.listeFilm[self.positionFilm].nom)
-        self.positionFilm -=1
-
-        if self.positionFilm < 0:
-            self.positionFilm = len(self.listdeFilm)-1
-        self.FilmUpdate()
 
 
     # Fenêtre de confirmation de la fermeture de l'application
