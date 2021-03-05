@@ -583,9 +583,13 @@ class Ui_Application(QWidget):
         film.nomFilm = self.lineFilm_2.text()
         film.dureeFilm = self.dureeFilm.time()
         film.descFilm = self.textDescFilm_2.toPlainText()
+        model = self.listCatFilm.model()
         for i, v in enumerate(self.cbListCatFilm):
-            self.cbListCatFilm("True" if v.checkState() else "False")
-            print (film.catFilm)
+            item = model.item(i)
+            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:
+                print (i,v)
+#               film.catFilm = [i,v]
+
 
 #        film.catFilm = {}
 #        for i in self.cbListCatFilm:
@@ -608,11 +612,6 @@ class Ui_Application(QWidget):
                 item.setCheckState(QtCore.Qt.Unchecked)
 
 
-#        film.catFilm = []
-#        for i, v in enumerate(self.cbListCatFilm):
-#            self.listCatFilm[i].setText("True" if v.checkState() else "False")
-#            self.labelResult.setText("{}, {}".format(self.labelResult.text(),
-#                                                     self.listCatFilm[i].text()))
         Film_test = {
             'Titre': film.nomFilm,
             'duree': film.dureeFilm,
@@ -624,15 +623,16 @@ class Ui_Application(QWidget):
         self.listeFilm.append(Film_test)
 
         self.UpdateFilm()
-#        print (self.listeFilm)
+        print (self.listeFilm)
 #        print (film.nomFilm)
 #        print (film.dureeFilm)
 #        print (film.descFilm)
-        print (film.catFilm)
+
 
     ###Film suivant dans la liste de Film ### À retravailler
     def suivantFilm(self):
         print(self.positionFilm)
+        print(self.listeFilm)
         self.lineFilm_2.setText(self.listeFilm[self.positionFilm]['Titre'])
         self.textDescFilm_2.setText(self.listeFilm[self.positionFilm]['description'])
         self.dureeFilm.setTime(self.listeFilm[self.positionFilm]['duree'])

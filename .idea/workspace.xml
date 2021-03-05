@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.009&#10;&#10;List fonctionnel, compteur fonctionnel / lecture du radiobtn">
-      <change afterPath="$PROJECT_DIR$/Tests/tab4.py" afterDir="false" />
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.010&#10;&#10;Liste fonctionnels avec nom/prenom/titre/duree/desc&#10;&#10;Problème à régler : &#10;- list de checkbox(catfilm) à inscrire en variable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/classes2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/classes2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/tab4.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tab4.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/testTab.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/testTab.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -246,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614893286903</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="0.010&#10;&#10;Liste fonctionnels avec nom/prenom/titre/duree/desc&#10;&#10;Problème à régler : &#10;- list de checkbox(catfilm) à inscrire en variable">
+      <created>1614974888718</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1614974888718</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -269,7 +275,8 @@
     <MESSAGE value="0.007&#10;&#10;fighting avec getter/setter" />
     <MESSAGE value="0.005&#10;&#10;Checkbox enable/disable et echoMode" />
     <MESSAGE value="0.009&#10;&#10;List fonctionnel, compteur fonctionnel / lecture du radiobtn" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.009&#10;&#10;List fonctionnel, compteur fonctionnel / lecture du radiobtn" />
+    <MESSAGE value="0.010&#10;&#10;Liste fonctionnels avec nom/prenom/titre/duree/desc&#10;&#10;Problème à régler : &#10;- list de checkbox(catfilm) à inscrire en variable" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.010&#10;&#10;Liste fonctionnels avec nom/prenom/titre/duree/desc&#10;&#10;Problème à régler : &#10;- list de checkbox(catfilm) à inscrire en variable" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
