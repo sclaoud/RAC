@@ -477,8 +477,8 @@ class Ui_Application(QWidget):
 
 
     # Liste des catégories de films (n'est pas iterable)
-        self.cbListCatFilm = ["Animation", "Fantaisie", "Science-Fiction", "Horreur", "Drame",
-                             "Thriller", "Documentaire", "Comédie"]
+        self.cbListCatFilm = {"Animation", "Fantaisie", "Science-Fiction", "Horreur", "Drame",
+                             "Thriller", "Documentaire", "Comédie"}
 
     ## Grid layout contenant les checkbox des catégories de films
         self.label_2 = QtWidgets.QLabel(self.tabFilms)
@@ -588,8 +588,7 @@ class Ui_Application(QWidget):
             item = model.item(i)
             if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:
                 print (i,v)
-#               film.catFilm = [i,v]
-
+                film.catFilm.append(i)
 
 #        film.catFilm = {}
 #        for i in self.cbListCatFilm:
@@ -623,7 +622,8 @@ class Ui_Application(QWidget):
         self.listeFilm.append(Film_test)
 
         self.UpdateFilm()
-        print (self.listeFilm)
+#        print (self.listeFilm)
+        print (film.catFilm)
 #        print (film.nomFilm)
 #        print (film.dureeFilm)
 #        print (film.descFilm)

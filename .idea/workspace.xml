@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.010&#10;&#10;Liste fonctionnels avec nom/prenom/titre/duree/desc&#10;&#10;Problème à régler : &#10;- list de checkbox(catfilm) à inscrire en variable">
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.011&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/tab4.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tab4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Tab.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Tab.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/classes2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/classes2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/testTab.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/testTab.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,27 +81,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Tab" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="RAC" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GUItab.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -113,6 +94,27 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="" />
       <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="RAC" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -187,10 +189,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.testTab (1)" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.testCB" />
         <item itemvalue="Python.testTab" />
         <item itemvalue="Python.Logiciel de contacts" />
-        <item itemvalue="Python.Tab" />
       </list>
     </recent_temporary>
   </component>
@@ -252,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614974888718</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="0.011&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)">
+      <created>1614979416069</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1614979416069</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -276,7 +285,8 @@
     <MESSAGE value="0.005&#10;&#10;Checkbox enable/disable et echoMode" />
     <MESSAGE value="0.009&#10;&#10;List fonctionnel, compteur fonctionnel / lecture du radiobtn" />
     <MESSAGE value="0.010&#10;&#10;Liste fonctionnels avec nom/prenom/titre/duree/desc&#10;&#10;Problème à régler : &#10;- list de checkbox(catfilm) à inscrire en variable" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.010&#10;&#10;Liste fonctionnels avec nom/prenom/titre/duree/desc&#10;&#10;Problème à régler : &#10;- list de checkbox(catfilm) à inscrire en variable" />
+    <MESSAGE value="0.011&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.011&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

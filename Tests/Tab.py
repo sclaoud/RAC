@@ -583,7 +583,6 @@ class Ui_Application(object):
 
  ### Enregistrement de l'entré et remise à zero des films ###
     def newFilm(self):
-        self.Film.catFilm.setText("")
 
 
 

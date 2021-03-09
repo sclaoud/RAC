@@ -44,11 +44,11 @@ class Personne(object):
 class film(object):
     "Films"
 
-    def __init__(self, nomFilm, dureeFilm, descFilm):
+    def __init__(self, nomFilm, dureeFilm, descFilm, catFilm):
         self._nomFilm = nomFilm
         self._dureeFilm = dureeFilm
         self._descFilm = descFilm
-        self.catFilm = {}
+        self._catFilm = catFilm
 
         return
 
