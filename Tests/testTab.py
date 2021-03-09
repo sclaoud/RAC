@@ -583,19 +583,15 @@ class Ui_Application(QWidget):
         film.nomFilm = self.lineFilm_2.text()
         film.dureeFilm = self.dureeFilm.time()
         film.descFilm = self.textDescFilm_2.toPlainText()
+
         model = self.listCatFilm.model()
+        cat_film_list = []
         for i, v in enumerate(self.cbListCatFilm):
             item = model.item(i)
             if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:
-                print (i,v)
-                film.catFilm.append(i)
-
-#        film.catFilm = {}
-#        for i in self.cbListCatFilm:
-#            if self.cbListCatFilm[i]:
-#                i.setChecked(True)
-#            else:
-#                i.setChecked(False)
+                print(i, v)
+                cat_film_list.append(i)
+        film.catFilm = cat_film_list
 
 
 
@@ -622,8 +618,8 @@ class Ui_Application(QWidget):
         self.listeFilm.append(Film_test)
 
         self.UpdateFilm()
-#        print (self.listeFilm)
-        print (film.catFilm)
+        print (self.listeFilm)
+#        print (film.catFilm)
 #        print (film.nomFilm)
 #        print (film.dureeFilm)
 #        print (film.descFilm)
@@ -636,11 +632,15 @@ class Ui_Application(QWidget):
         self.lineFilm_2.setText(self.listeFilm[self.positionFilm]['Titre'])
         self.textDescFilm_2.setText(self.listeFilm[self.positionFilm]['description'])
         self.dureeFilm.setTime(self.listeFilm[self.positionFilm]['duree'])
-#        self.listCatFilm.model = (self.listeFilm[self.positionFilm]['categories'])
-#        for index in (self.cbListCatFilm):
-#            item = self.listCatFilm.item(index)
-#            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:
-#                item.setCheckState(QtCore.Qt.Checked)
+        self.cat_film_list = (self.listeFilm[self.positionFilm]['categories'])
+        i = 0
+        while self.model.item(i):
+            item = self.model.item(i)
+            if i in self.cat_film_list:
+                item.setCheckState(QtCore.Qt.Checked)
+            else:
+                item.setCheckState(QtCore.Qt.Unchecked)
+            i += 1
 
         self.positionFilm += 1
 
@@ -655,6 +655,17 @@ class Ui_Application(QWidget):
         self.lineFilm_2.setText(self.listeFilm[self.positionFilm]['Titre'])
         self.textDescFilm_2.setText(self.listeFilm[self.positionFilm]['description'])
         self.dureeFilm.setTime(self.listeFilm[self.positionFilm]['duree'])
+        self.cat_film_list = (self.listeFilm[self.positionFilm]['categories'])
+        i = 0
+        while self.model.item(i):
+            item = self.model.item(i)
+            if i in self.cat_film_list:
+                item.setCheckState(QtCore.Qt.Checked)
+            else :
+                item.setCheckState(QtCore.Qt.Unchecked)
+            i += 1
+
+
         self.positionFilm -= 1
 
         if self.positionFilm < 0:
