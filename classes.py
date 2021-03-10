@@ -93,5 +93,10 @@ class film(object):
     def catFilm(self, catFilm):
         self._catFilm = catFilm
 
+    @property
+    def listeFilm(self):
+        return self._listeFilm
 
-
+    @listeFilm.setter
+    def listeFilm(self, listeFilm):
+        self._listeFilm = listeFilm

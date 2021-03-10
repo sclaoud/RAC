@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.012&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)">
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.1&#10;&#10;TabFilm complété et revampage de la tabPersonne avec des Qlistview.  Repartir à zero avec une GUI qui j'espères sera final.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Fonctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fonctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUItab.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/classes2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/classes2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/testTab.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/testTab.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tab4.py" beforeDir="false" afterPath="$PROJECT_DIR$/TabGUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/TabGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,14 +59,11 @@
       <recent name="C:\Users\pcadmin\Documents\GitHub\RAC\Tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Fonctions">
+  <component name="RunManager" selected="Python.TabGUI">
     <configuration name="Fonctions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -77,7 +71,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Fonctions.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -191,11 +185,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Fonctions" />
-        <item itemvalue="Python.TabGUI (1)" />
-        <item itemvalue="Python.GUItab" />
-        <item itemvalue="Python.testTab (1)" />
         <item itemvalue="Python.TabGUI" />
+        <item itemvalue="Python.TabGUI (1)" />
+        <item itemvalue="Python.Fonctions" />
+        <item itemvalue="Python.Fonctions" />
+        <item itemvalue="Python.Fonctions" />
       </list>
     </recent_temporary>
   </component>
@@ -271,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615312555137</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="0.1&#10;&#10;TabFilm complété et revampage de la tabPersonne avec des Qlistview.  Repartir à zero avec une GUI qui j'espères sera final.">
+      <created>1615323441576</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1615323441576</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -297,7 +298,8 @@
     <MESSAGE value="0.010&#10;&#10;Liste fonctionnels avec nom/prenom/titre/duree/desc&#10;&#10;Problème à régler : &#10;- list de checkbox(catfilm) à inscrire en variable" />
     <MESSAGE value="0.011&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)" />
     <MESSAGE value="0.012&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.012&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)" />
+    <MESSAGE value="0.1&#10;&#10;TabFilm complété et revampage de la tabPersonne avec des Qlistview.  Repartir à zero avec une GUI qui j'espères sera final." />
+    <option name="LAST_COMMIT_MESSAGE" value="0.1&#10;&#10;TabFilm complété et revampage de la tabPersonne avec des Qlistview.  Repartir à zero avec une GUI qui j'espères sera final." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

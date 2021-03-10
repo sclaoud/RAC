@@ -13,7 +13,9 @@ from PyQt5.QtCore import pyqtProperty, QCoreApplication, QObject, QUrl
 from PyQt5 import QtCore, QtGui, QtWidgets
 import Fonctions
 
-class Ui_Application(object):
+
+
+class Ui_Application(QtWidgets.QMainWindow):
     def setupUi(self, Application):
         Application.setObjectName("Application")
         Application.resize(1123, 627)
@@ -22,7 +24,7 @@ class Ui_Application(object):
         self.tabMain.setGeometry(QtCore.QRect(30, 20, 991, 561))
         self.tabMain.setObjectName("tabMain")
 
-#### DÉBUT DE LA TAB PERSONNE ####
+        #### DÉBUT DE LA TAB PERSONNE ####
 
         self.tabPersonne = QtWidgets.QWidget()
         self.tabPersonne.setObjectName("tabPersonne")
@@ -32,7 +34,7 @@ class Ui_Application(object):
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
-    #### Début de la section client ####
+        #### Début de la section client ####
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
@@ -43,7 +45,7 @@ class Ui_Application(object):
         self.label_4.setObjectName("label_4")
         self.verticalLayout_2.addWidget(self.label_4)
 
-    # QDateEdit contenant la date d'inscription du client
+        # QDateEdit contenant la date d'inscription du client
         self.dateEdit_2 = QtWidgets.QDateEdit(self.verticalLayoutWidget)
         self.dateEdit_2.setObjectName("dateEdit_2")
         self.verticalLayout_2.addWidget(self.dateEdit_2)
@@ -55,7 +57,7 @@ class Ui_Application(object):
         self.label_5.setObjectName("label_5")
         self.verticalLayout_3.addWidget(self.label_5)
 
-    # Lineedit contenant le courriel du client
+        # Lineedit contenant le courriel du client
         self.lineCourriel = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.lineCourriel.setObjectName("lineCourriel")
         self.verticalLayout_3.addWidget(self.lineCourriel)
@@ -67,7 +69,7 @@ class Ui_Application(object):
         self.label_6.setObjectName("label_6")
         self.verticalLayout_4.addWidget(self.label_6)
 
-    # LineEdit contenant le mot de passe du client
+        # LineEdit contenant le mot de passe du client
         self.linePwdClient = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.linePwdClient.setObjectName("linePwdClient")
         self.verticalLayout_4.addWidget(self.linePwdClient)
@@ -76,13 +78,13 @@ class Ui_Application(object):
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
 
-    ### Display characters as they are entered while editing otherwise display characters as with Password. ### à tester
+        ### Display characters as they are entered while editing otherwise display characters as with Password. ### à tester
         self.linePwdClient.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
 
-    # Désactiver tant que la cb n'est pas coché
+        # Désactiver tant que la cb n'est pas coché
         self.linePwdClient.setDisabled(True)
 
-    #### Début de la section carte de crédits ####
+        #### Début de la section carte de crédits ####
         self.verticalLayout_6 = QtWidgets.QVBoxLayout()
         self.verticalLayout_6.setObjectName("verticalLayout_6")
         self.labelCarteCredits = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -95,7 +97,7 @@ class Ui_Application(object):
         self.horizontalLayout_7.addLayout(self.verticalLayout_6)
         self.verticalLayout.addLayout(self.horizontalLayout_7)
 
-    #### Section des informations de la personne dans le haut / classe Parent ####
+        #### Section des informations de la personne dans le haut / classe Parent ####
 
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.tabPersonne)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(330, 30, 621, 91))
@@ -106,40 +108,40 @@ class Ui_Application(object):
         self.verticalLayout_16 = QtWidgets.QVBoxLayout()
         self.verticalLayout_16.setObjectName("verticalLayout_16")
         self.label_18 = QtWidgets.QLabel(self.horizontalLayoutWidget)
-        self.label_18.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_18.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
         self.label_18.setObjectName("label_18")
         self.verticalLayout_16.addWidget(self.label_18)
         self.label = QtWidgets.QLabel(self.horizontalLayoutWidget)
-        self.label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
         self.label.setObjectName("label")
         self.verticalLayout_16.addWidget(self.label)
         self.label_3 = QtWidgets.QLabel(self.horizontalLayoutWidget)
-        self.label_3.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_3.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
         self.label_3.setObjectName("label_3")
         self.verticalLayout_16.addWidget(self.label_3)
         self.horizontalLayout.addLayout(self.verticalLayout_16)
         self.verticalLayout_17 = QtWidgets.QVBoxLayout()
         self.verticalLayout_17.setObjectName("verticalLayout_17")
 
-    # Lineedit contenant le Prenom de la personne
+        # Lineedit contenant le Prenom de la personne
         self.linePrenom = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
         self.linePrenom.setObjectName("linePrenom")
-        #Maximum de 40 Caractere
+        # Maximum de 40 Caractere
         self.linePrenom.setMaxLength(40)
         self.verticalLayout_17.addWidget(self.linePrenom)
 
-    # Lineedit contenant le Nom de la personne
+        # Lineedit contenant le Nom de la personne
         self.lineNom = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
         self.lineNom.setObjectName("lineNom")
         self.verticalLayout_17.addWidget(self.lineNom)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        #Maximum de 40 Caractere
+        # Maximum de 40 Caractere
         self.lineNom.setMaxLength(40)
 
-    # RadioButton du choix de sexe de la personne
+        # RadioButton du choix de sexe de la personne
         sexe = [QRadioButton("Homme"), QRadioButton("Femme"), QRadioButton("Préfère ne pas répondre")]
-    # Création du groupe de boutton pour les Qradiobtn
+        # Création du groupe de boutton pour les Qradiobtn
         self.sexeBtnG = QButtonGroup(self.horizontalLayoutWidget)
         for i in range(len(sexe)):
             # Add each radio button to the button layout
@@ -147,13 +149,15 @@ class Ui_Application(object):
             # Add each radio button to the button group & give it an ID of i
             self.sexeBtnG.addButton(sexe[i], i)
             # Connect each radio button to a method to run when it's clicked
-            self.sexeBtnG.buttonClicked.connect(Fonctions.radio_button_clicked)
+            self.sexeBtnG.buttonClicked.connect(Fonctions.operation.radio_button_clicked)
 
         self.verticalLayout_17.addLayout(self.horizontalLayout_2)
         self.horizontalLayout.addLayout(self.verticalLayout_17)
+
         self.btnPrecedent = QtWidgets.QPushButton(self.tabPersonne)
         self.btnPrecedent.setGeometry(QtCore.QRect(60, 70, 31, 23))
         self.btnPrecedent.setObjectName("btnPrecedent")
+
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.tabPersonne)
         self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(160, 20, 160, 112))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
@@ -264,27 +268,44 @@ class Ui_Application(object):
         self.verticalLayout_21 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_3)
         self.verticalLayout_21.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_21.setObjectName("verticalLayout_21")
+
+        # Bouton pour enregistrer une nouvelle entrée de Film
         self.btnNouveau_3 = QtWidgets.QPushButton(self.verticalLayoutWidget_3)
         self.btnNouveau_3.setObjectName("btnNouveau_3")
         self.verticalLayout_21.addWidget(self.btnNouveau_3)
+        self.btnNouveau_3.clicked.connect(Fonctions.operation.newFilm)
+
+        # Bouton pour supprimer l'entré film sélectionné
         self.btnSupprimer_3 = QtWidgets.QPushButton(self.verticalLayoutWidget_3)
         self.btnSupprimer_3.setObjectName("btnSupprimer_3")
         self.verticalLayout_21.addWidget(self.btnSupprimer_3)
+
+        ## Layout vertical contenant les informations du films ##
         self.verticalLayoutWidget_4 = QtWidgets.QWidget(self.tabFilms)
         self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(220, 20, 211, 171))
         self.verticalLayoutWidget_4.setObjectName("verticalLayoutWidget_4")
         self.verticalLayout_22 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_4)
         self.verticalLayout_22.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_22.setObjectName("verticalLayout_22")
+
+        # Lineedit Contenant le titre du film
         self.lineFilm_2 = QtWidgets.QLineEdit(self.verticalLayoutWidget_4)
         self.lineFilm_2.setObjectName("lineFilm_2")
+        self.lineFilm_2.setText("Titre du film")
         self.verticalLayout_22.addWidget(self.lineFilm_2)
+
+        # Lineedit avec la durée du film
         self.timeEdit = QtWidgets.QTimeEdit(self.verticalLayoutWidget_4)
         self.timeEdit.setObjectName("timeEdit")
         self.verticalLayout_22.addWidget(self.timeEdit)
+
+        # TextEdit contenant une description du film
         self.textDescFilm_2 = QtWidgets.QTextEdit(self.verticalLayoutWidget_4)
         self.textDescFilm_2.setObjectName("textDescFilm_2")
+        self.textDescFilm_2.setText('Inscrire la synopsie du film')
         self.verticalLayout_22.addWidget(self.textDescFilm_2)
+
+        ## Grid layout contenant les checkbox des catégories de films
         self.label_2 = QtWidgets.QLabel(self.tabFilms)
         self.label_2.setGeometry(QtCore.QRect(520, 10, 111, 20))
         self.label_2.setObjectName("label_2")
@@ -292,12 +313,18 @@ class Ui_Application(object):
         self.listCatFilm.setGeometry(QtCore.QRect(490, 30, 171, 192))
         self.listCatFilm.setObjectName("listCatFilm")
         self.tabMain.addTab(self.tabFilms, "")
+
+        # Bouton de fermeture lancant un QMessageBox de confirmation
         self.btnFermer = QtWidgets.QPushButton(Application)
         self.btnFermer.setGeometry(QtCore.QRect(890, 590, 75, 23))
         self.btnFermer.setObjectName("btnFermer")
+        self.btnFermer.clicked.connect(Fonctions.operation.closeEvent)
+
+        # Bouton de sauvegarde des données
         self.btnSauvegarder = QtWidgets.QPushButton(Application)
         self.btnSauvegarder.setGeometry(QtCore.QRect(540, 590, 158, 23))
         self.btnSauvegarder.setObjectName("btnSauvegarder")
+        # Bouton de chargement des données
         self.btnCharger_2 = QtWidgets.QPushButton(Application)
         self.btnCharger_2.setGeometry(QtCore.QRect(700, 590, 158, 23))
         self.btnCharger_2.setObjectName("btnCharger_2")
@@ -316,9 +343,6 @@ class Ui_Application(object):
         self.label_18.setText(_translate("Application", "Prenom"))
         self.label.setText(_translate("Application", "Nom"))
         self.label_3.setText(_translate("Application", "Sexe"))
-        self.rdSexeHomme.setText(_translate("Application", "Homme"))
-        self.rdSexeFemme.setText(_translate("Application", "Femme"))
-        self.rdSexeAlien.setText(_translate("Application", "Préfère ne pas répondre"))
         self.btnPrecedent.setText(_translate("Application", "<"))
         self.btnNouveau.setText(_translate("Application", "Nouveau"))
         self.btnSupprimer.setText(_translate("Application", "Supprimer"))
