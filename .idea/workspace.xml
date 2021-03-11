@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.1&#10;&#10;TabFilm complété et revampage de la tabPersonne avec des Qlistview.  Repartir à zero avec une GUI qui j'espères sera final.">
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.11&#10;&#10;Le fait de travailler dans plusieurs fichiers brise les références.  Il est nécessaire de réparer ceux-ci avant de poursuivre.">
+      <change beforePath="$PROJECT_DIR$/.idea/RAC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RAC.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fonctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fonctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/TabGUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fonctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Fonctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TabGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/TabGUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/films.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/personne.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/classes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +51,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
     <property name="two.files.diff.last.used.folder" value="$PROJECT_DIR$/venv" />
   </component>
   <component name="RecentsManager">
@@ -55,6 +59,7 @@
       <recent name="C:\Users\pcadmin\Documents\GitHub\RAC" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pcadmin\Documents\GitHub\RAC\Final" />
       <recent name="C:\Users\pcadmin\Documents\GitHub\RAC" />
       <recent name="C:\Users\pcadmin\Documents\GitHub\RAC\Tests" />
     </key>
@@ -64,12 +69,15 @@
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Fonctions.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\pcadmin\Documents\GitHub\RAC\Final\Fonctions.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -99,7 +107,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="TabGUI (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="TabGUI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -107,11 +115,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UI" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TabGUI.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\pcadmin\Documents\GitHub\RAC\Final\TabGUI.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -128,11 +136,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UI" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\pcadmin\Documents\GitHub\RAC\TabGUI.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\pcadmin\Documents\GitHub\RAC\Final\TabGUI.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -186,8 +194,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.TabGUI" />
-        <item itemvalue="Python.TabGUI (1)" />
         <item itemvalue="Python.Fonctions" />
+        <item itemvalue="Python.TabGUI (1)" />
         <item itemvalue="Python.Fonctions" />
         <item itemvalue="Python.Fonctions" />
       </list>
@@ -272,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615323441576</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="0.11&#10;&#10;Le fait de travailler dans plusieurs fichiers brise les références.  Il est nécessaire de réparer ceux-ci avant de poursuivre.">
+      <created>1615411490957</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1615411490957</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -299,7 +314,8 @@
     <MESSAGE value="0.011&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)" />
     <MESSAGE value="0.012&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)" />
     <MESSAGE value="0.1&#10;&#10;TabFilm complété et revampage de la tabPersonne avec des Qlistview.  Repartir à zero avec une GUI qui j'espères sera final." />
-    <option name="LAST_COMMIT_MESSAGE" value="0.1&#10;&#10;TabFilm complété et revampage de la tabPersonne avec des Qlistview.  Repartir à zero avec une GUI qui j'espères sera final." />
+    <MESSAGE value="0.11&#10;&#10;Le fait de travailler dans plusieurs fichiers brise les références.  Il est nécessaire de réparer ceux-ci avant de poursuivre." />
+    <option name="LAST_COMMIT_MESSAGE" value="0.11&#10;&#10;Le fait de travailler dans plusieurs fichiers brise les références.  Il est nécessaire de réparer ceux-ci avant de poursuivre." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
