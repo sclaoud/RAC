@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.11&#10;&#10;Le fait de travailler dans plusieurs fichiers brise les références.  Il est nécessaire de réparer ceux-ci avant de poursuivre.">
-      <change beforePath="$PROJECT_DIR$/.idea/RAC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RAC.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fonctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Fonctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TabGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/TabGUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/films.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/personne.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/classes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final/Fonctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/Fonctions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +30,12 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Final/TabGUI.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1nq2Soz3tWqDCRvhKZ5tJq2aVtG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -195,7 +195,6 @@
       <list>
         <item itemvalue="Python.TabGUI" />
         <item itemvalue="Python.Fonctions" />
-        <item itemvalue="Python.TabGUI (1)" />
         <item itemvalue="Python.Fonctions" />
         <item itemvalue="Python.Fonctions" />
       </list>
@@ -287,7 +286,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615411490957</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="0.11&#10;&#10;Le fait de travailler dans plusieurs fichiers brise les références.  Il est nécessaire de réparer ceux-ci avant de poursuivre.">
+      <created>1615485921014</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1615485921014</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

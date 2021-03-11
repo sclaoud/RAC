@@ -15,14 +15,20 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from classes import *
 from TabGUI import *
 
-ui = Ui_Application
+
+
+class GUI(QtWidgets.QMainWindow, Ui_Application):
+    def __init__(self):
+        QtWidgets.QMainWindow.__init__(self)
+        self.lineFilm(self)
+
 
 #### Fonctions ####
 class operation:
     ### Enregistrement de l'entré et remise à zero des films ###  à retravailler
     def newFilm(self):
-        film.nomFilm = ui.lineFilm.text()
-        film.dureeFilm = ui.timeEdit.time()
+        film.nomFilm = GUI.lineFilm.text()
+        film.dureeFilm = GUI.timeEdit.time()
         film.descFilm = ui.textDescFilm_2.toPlainText()
 
         model = ui.listCatFilm.model()
