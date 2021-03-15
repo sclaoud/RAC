@@ -80,14 +80,15 @@ class Window(Ui_Application, QDialog):
             # Connect each radio button to a method to run when it's clicked
             self.sexeBtnG.buttonClicked.connect(self.radio_button_clicked)
 
+        self.model = QtGui.QStandardItemModel()
         # Liste des catégories de films (n'est pas iterable)
         self.cbListCatFilm = {"Animation", "Fantaisie", "Science-Fiction", "Horreur", "Drame",
                               "Thriller", "Documentaire", "Comédie"}
-        #        for list in self.cbListCatFilm:
-        #            item = QtGui.QStandardItem(list)
-        #            item.setCheckable(True)
-        #            self.model.appendRow(item)
-        #        self.listCatFilm.setModel(self.model)
+        for list in self.cbListCatFilm:
+            item = QtGui.QStandardItem(list)
+            item.setCheckable(True)
+            self.model.appendRow(item)
+        self.listCatFilm.setModel(self.model)
 
         # Remplissage du champ Titre
         self.lineFilm_2.setText("Titre du film")
@@ -102,7 +103,7 @@ class Window(Ui_Application, QDialog):
 
     ### Enregistrement de l'entré et remise à zero des films ###  à retravailler
     def newFilm(self):
-        film.nomFilm = self.lineFilm.text()
+        film.nomFilm = self.lineFilm_2.text()
         film.dureeFilm = self.timeEdit.time()
         film.descFilm = self.textDescFilm_2.toPlainText()
 
@@ -117,7 +118,7 @@ class Window(Ui_Application, QDialog):
 
         # Efface les champs #
         self.lineFilm_2.setText("")
-        self.dureeFilm.setTime(QtCore.QTime(00, 00))
+        self.timeEdit.setTime(QtCore.QTime(00, 00))
         self.textDescFilm_2.setText("")
         # Efface les checkbox #
         model = self.listCatFilm.model()

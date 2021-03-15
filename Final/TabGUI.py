@@ -244,7 +244,7 @@ class Ui_Application(object):
         self.label_2 = QtWidgets.QLabel(self.tabFilms)
         self.label_2.setGeometry(QtCore.QRect(520, 10, 111, 20))
         self.label_2.setObjectName("label_2")
-        self.listCatFilm = QtWidgets.QListWidget(self.tabFilms)
+        self.listCatFilm = QtWidgets.QListView(self.tabFilms)
         self.listCatFilm.setGeometry(QtCore.QRect(490, 30, 171, 192))
         self.listCatFilm.setObjectName("listCatFilm")
         self.tabMain.addTab(self.tabFilms, "")
