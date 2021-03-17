@@ -45,18 +45,17 @@ class Personne(object):
     positionPers = 0
 
 
-class film(object):
+class Film(object):
     "Films"
+
+    positionFilm = 0
+    listeFilm = []
 
     def __init__(self, nomFilm, dureeFilm, descFilm, catFilm):
         self._nomFilm = nomFilm
         self._dureeFilm = dureeFilm
         self._descFilm = descFilm
         self._catFilm = catFilm
-        self.listeFilm = []
-        self.positionFilm =0
-
-
         return
 
 
@@ -96,10 +95,10 @@ class film(object):
     def catFilm(self, catFilm):
         self._catFilm = catFilm
 
-    @property
-    def listeFilm(self):
-        return self._listeFilm
+#    @property
+#    def listeFilm(self):
+#        return self._listeFilm
 
-    @listeFilm.setter
-    def listeFilm(self, listeFilm):
-        self._listeFilm = listeFilm
+#    @listeFilm.setter
+#    def listeFilm(self, listeFilm):
+#        self._listeFilm = listeFilm

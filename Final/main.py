@@ -103,9 +103,9 @@ class Window(Ui_Application, QDialog):
 
     ### Enregistrement de l'entré et remise à zero des films ###  à retravailler
     def newFilm(self):
-        film.nomFilm = self.lineFilm_2.text()
-        film.dureeFilm = self.timeEdit.time()
-        film.descFilm = self.textDescFilm_2.toPlainText()
+        Film.nomFilm = self.lineFilm_2.text()
+        Film.dureeFilm = self.timeEdit.time()
+        Film.descFilm = self.textDescFilm_2.toPlainText()
 
         model = self.listCatFilm.model()
         cat_film_list = []
@@ -114,7 +114,7 @@ class Window(Ui_Application, QDialog):
             if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:
                 print(i, v)
                 cat_film_list.append(i)
-        film.catFilm = cat_film_list
+        Film.catFilm = cat_film_list
 
         # Efface les champs #
         self.lineFilm_2.setText("")
@@ -128,16 +128,16 @@ class Window(Ui_Application, QDialog):
                 item.setCheckState(QtCore.Qt.Unchecked)
 
         film_dict = {
-            'Titre': film.nomFilm,
-            'duree': film.dureeFilm,
-            'description': film.descFilm,
-            'categories': film.catFilm
+            'Titre': Film.nomFilm,
+            'duree': Film.dureeFilm,
+            'description': Film.descFilm,
+            'categories': Film.catFilm
         }
 
-        film.listeFilm.append(film_dict)
+        Film.listeFilm.append(film_dict)
 
         self.UpdateFilm()
-        print(film.listeFilm)
+        print(Film.listeFilm)
 
     #        print (film.catFilm)
     #        print (film.nomFilm)
@@ -146,12 +146,12 @@ class Window(Ui_Application, QDialog):
 
     ###Film suivant dans la liste de Film ### À retravailler
     def suivantFilm(self):
-        print(film.positionFilm)
-        print(film.listeFilm)
-        self.lineFilm_2.setText(film.listeFilm[film.positionFilm]['Titre'])
-        self.textDescFilm_2.setText(film.listeFilm[film.positionFilm]['description'])
-        self.dureeFilm.setTime(film.listeFilm[film.positionFilm]['duree'])
-        self.cat_film_list = (film.listeFilm[film.positionFilm]['categories'])
+        print(Film.positionFilm)
+        print(Film.listeFilm)
+        self.lineFilm_2.setText(Film.listeFilm[Film.positionFilm]['Titre'])
+        self.textDescFilm_2.setText(Film.listeFilm[Film.positionFilm]['description'])
+        self.timeEdit.setTime(Film.listeFilm[Film.positionFilm]['duree'])
+        self.cat_film_list = (Film.listeFilm[Film.positionFilm]['categories'])
         i = 0
         while self.model.item(i):
             item = self.model.item(i)
@@ -161,20 +161,20 @@ class Window(Ui_Application, QDialog):
                 item.setCheckState(QtCore.Qt.Unchecked)
             i += 1
 
-        self.positionFilm += 1
+        Film.positionFilm += 1
 
-        if self.positionFilm == len(self.listeFilm):
-            self.positionFilm = 0
+        if Film.positionFilm == len(Film.listeFilm):
+            Film.positionFilm = 0
         self.UpdateFilm()
 
     ###Film précédent dans la liste de film ### À retravailler
 
     def precedentFilm(self):
-        print(film.positionFilm)
-        self.lineFilm_2.setText(film.listeFilm[film.positionFilm]['Titre'])
-        self.textDescFilm_2.setText(film.listeFilm[film.positionFilm]['description'])
-        self.dureeFilm.setTime(film.listeFilm[film.positionFilm]['duree'])
-        self.cat_film_list = (film.listeFilm[film.positionFilm]['categories'])
+        print(Film.positionFilm)
+        self.lineFilm_2.setText(Film.listeFilm[Film.positionFilm]['Titre'])
+        self.textDescFilm_2.setText(Film.listeFilm[Film.positionFilm]['description'])
+        self.timeEdit.setTime(Film.listeFilm[Film.positionFilm]['duree'])
+        self.cat_film_list = (Film.listeFilm[Film.positionFilm]['categories'])
         i = 0
         while self.model.item(i):
             item = self.model.item(i)
@@ -184,10 +184,10 @@ class Window(Ui_Application, QDialog):
                 item.setCheckState(QtCore.Qt.Unchecked)
             i += 1
 
-        self.positionFilm -= 1
+        Film.positionFilm -= 1
 
-        if self.positionFilm < 0:
-            self.positionFilm = len(self.listeFilm) - 1
+        if Film.positionFilm < 0:
+            Film.positionFilm = len(Film.listeFilm) - 1
         self.UpdateFilm()
 
     ### choix bouton radio sexe
@@ -202,7 +202,7 @@ class Window(Ui_Application, QDialog):
 
     ### Update de la liste des films
     def UpdateFilm(self):
-        self.tabMain.setTabText(1, "Film ({})".format(len(self.listeFilm)))
+        self.tabMain.setTabText(1, "Film ({})".format(len(Film.listeFilm)))
 
     ### Enregistrement de l'entré et remise à zero ### à retravailler
     def NewEntrie(self):
