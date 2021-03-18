@@ -10,13 +10,15 @@ Emplacement des classes
 class Personne(object):
     "Personne"
 
-    def __init__(self,prenom, nom, sexe, listePersonne, positionPers, parent=None):
+    listePersonne = []
+    positionPers = 0
+
+    def __init__(self,prenom, nom, sexe, parent=None):
         super().__init__(parent)
         self._prenom = prenom
         self._nom = nom
         self._sexe = sexe
-        self._listePersonne = listePersonne
-        self._positionPers = positionPers
+
 
 #    nom = property(fget=nom.getter, fset=nomFilm.setter, fdel=nomFilm.deleter)
 
@@ -41,8 +43,6 @@ class Personne(object):
     def sexe(self, sexe):
         self._sexe = sexe
 
-    listePersonne = []
-    positionPers = 0
 
 
 class Film(object):

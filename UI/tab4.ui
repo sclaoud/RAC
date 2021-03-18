@@ -176,7 +176,38 @@
          <widget class="QLineEdit" name="lineNom"/>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QRadioButton" name="rbtnH">
+            <property name="text">
+             <string>Homme</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">sexeBtnG</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="rbtnF">
+            <property name="text">
+             <string>Femme</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">sexeBtnG</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="rbtnNA">
+            <property name="text">
+             <string>Préfère ne pas répondre</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">sexeBtnG</string>
+            </attribute>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
@@ -215,7 +246,7 @@
       <item>
        <widget class="QPushButton" name="btnModPers">
         <property name="text">
-         <string>PushButton</string>
+         <string>Modifier</string>
         </property>
        </widget>
       </item>
@@ -475,7 +506,7 @@
       <item>
        <widget class="QPushButton" name="btnModFilm">
         <property name="text">
-         <string>PushButton</string>
+         <string>Modifier</string>
         </property>
        </widget>
       </item>
@@ -576,4 +607,7 @@
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="sexeBtnG"/>
+ </buttongroups>
 </ui>

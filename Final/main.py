@@ -6,59 +6,85 @@ Fichier des opérations entre les class et l'interface
 
 # Importation des modules
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QMessageBox, QRadioButton, QButtonGroup, QDialog
+from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog
 
+from Acteurs import Ui_Acteurs
+from CartedeCredits import Ui_UI_CC
 from TabGUI import Ui_Application
 from classes import *
 
+    # Fenêtre de gestions des cartes de crédits
+class WindowCC(Ui_UI_CC, QDialog):
+    def __init__(self):
+        QDialog.__init__((self))
+        self.setupUi(self)
 
+        #bouton pour cacher la fenêtre
+        self.btnCloseCC.clicked.connect(self.hide)
+
+    # Fenêtre de gestions des personnages des acteurs
+class WindowActeurs(Ui_Acteurs, QDialog):
+    def __init__(self):
+        QDialog.__init__((self))
+        self.setupUi(self)
+
+        #bouton pour cacher la fenêtre
+        self.btnCloseActeur.clicked.connect(self.hide)
+
+
+    # Fenêtre principale
 class Window(Ui_Application, QDialog):
     def __init__(self):
         QDialog.__init__((self))
         self.setupUi(self)
 
-        # Désactiver tant que la cb de la bonne section n'est pas coché
+        # Bouton pour modifier les cartes de crédits
+        self.btnGestionCC.clicked.connect(self.ouvrirCC)
+        # Bouton pour modifier les personnages des acteurs
+        self.btnGestionPers.clicked.connect(self.ouvrirActeurs)
+
+        # Désactiver tant que la cb de la section désiré n'est pas coché
         self.linePwdClient.setDisabled(True)
-        self.dateEdit_2.setDisabled(True)
+        self.dateInsc.setDisabled(True)
         self.lineCourriel.setDisabled(True)
-        self.dateEdit.setDisabled(True)
+        self.dateEmb.setDisabled(True)
         self.lineUsername.setDisabled(True)
         self.linePwdEmp.setDisabled(True)
-        self.comboBox.setDisabled(True)
-        self.listChar.setDisabled(True)
-        self.tableView.setDisabled(True)
+        self.comboAcces.setDisabled(True)
+        self.listCharView.setDisabled(True)
+        self.listCCview.setDisabled(True)
         self.btnGestionCC.setDisabled(True)
         self.btnGestionPers.setDisabled(True)
 
-        # Display characters as they are entered while editing otherwise display characters as with Password.
+        # Echomode pour les Password
         self.linePwdClient.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
         self.linePwdEmp.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
 
         # Checkbox si la personne est artiste, active la section Artiste si coché
-        self.cbActeur.toggled.connect(self.listChar.setEnabled)
+        self.cbActeur.toggled.connect(self.listCharView.setEnabled)
         self.cbActeur.toggled.connect(self.btnGestionPers.setEnabled)
         # Checkbox si la personne est Client, active la section client si coché
-        self.cbClient.toggled.connect(self.tableView.setEnabled)
-        self.cbClient.toggled.connect(self.dateEdit_2.setEnabled)
+        self.cbClient.toggled.connect(self.listCCview.setEnabled)
+        self.cbClient.toggled.connect(self.dateInsc.setEnabled)
         self.cbClient.toggled.connect(self.lineCourriel.setEnabled)
         self.cbClient.toggled.connect(self.linePwdClient.setEnabled)
         self.cbClient.toggled.connect(self.btnGestionCC.setEnabled)
         # Checkbox si la personne est employé, active la section employé si coché
-        self.cbEmploye.toggled.connect(self.dateEdit.setEnabled)
+        self.cbEmploye.toggled.connect(self.dateEmb.setEnabled)
         self.cbEmploye.toggled.connect(self.lineUsername.setEnabled)
         self.cbEmploye.toggled.connect(self.linePwdEmp.setEnabled)
-        self.cbEmploye.toggled.connect(self.comboBox.setEnabled)
+        self.cbEmploye.toggled.connect(self.comboAcces.setEnabled)
 
         # Fonction de fermeture 'closeEvent' lorsque l'on appui sur le bouton
         self.btnFermer.clicked.connect(self.closeEvent)
         # Entré un nouveau film
-        self.btnNouveau_3.clicked.connect(self.newFilm)
+        self.btnNvFilm.clicked.connect(self.newFilm)
         # Bouton précédent de la tab Films
-        self.btnPrecedent_2.clicked.connect(self.precedentFilm)
+        self.btnPrecedentFilm.clicked.connect(self.precedentFilm)
         # Bouton Suivant de la tab Films
-        self.btnSuivant_2.clicked.connect(self.suivantFilm)
+        self.btnSuivantFilm.clicked.connect(self.suivantFilm)
         # Entré une nouvelle personne
-        self.btnNouveau.clicked.connect(self.NewEntrie)
+        self.btnNvPers.clicked.connect(self.NewEntrie)
         # Bouton Précédent de la tab Personne
         self.btnPrecedent.clicked.connect(self.precedentPers)
         # Bouton Suivant de la tab Personne
@@ -68,18 +94,11 @@ class Window(Ui_Application, QDialog):
         self.linePrenom.setMaxLength(40)
         self.lineNom.setMaxLength(40)
 
-        # RadioButton du choix de sexe de la personne
-        sexe = [QRadioButton("Homme"), QRadioButton("Femme"), QRadioButton("Préfère ne pas répondre")]
-        # Création du groupe de boutton pour les Qradiobtn
-        self.sexeBtnG = QButtonGroup(self.horizontalLayoutWidget)
-        for i in range(len(sexe)):
-            # Add each radio button to the button layout
-            self.horizontalLayout_2.addWidget(sexe[i])
-            # Add each radio button to the button group & give it an ID of i
-            self.sexeBtnG.addButton(sexe[i], i)
-            # Connect each radio button to a method to run when it's clicked
-            self.sexeBtnG.buttonClicked.connect(self.radio_button_clicked)
+        # Liste des choix du combobox comboAcces pour les employés
+        self.listedesAcces = {"Consultant", "employé", "sécurité", "administrateur", "Direction"}
+        self.comboAcces.addItems(self.listedesAcces)
 
+        # QlisteView de la liste des catégories de films
         self.model = QtGui.QStandardItemModel()
         # Liste des catégories de films (n'est pas iterable)
         self.cbListCatFilm = {"Animation", "Fantaisie", "Science-Fiction", "Horreur", "Drame",
@@ -91,21 +110,22 @@ class Window(Ui_Application, QDialog):
         self.listCatFilm.setModel(self.model)
 
         # Remplissage du champ Titre
-        self.lineFilm_2.setText("Titre du film")
+        self.TitreFilm.setText("Titre du film")
         # Remplissage du champ Synopsis
-        self.textDescFilm_2.setText('Inscrire la synopsie du film')
+        self.textDescFilm.setText('Inscrire la synopsie du film')
         # Bouton de sauvegarde des données
         self.btnSauvegarder.clicked.connect(self.sauvegarder)
         # Bouton de chargement des données
-        self.btnCharger_2.clicked.connect(self.charger)
+        self.btnCharger.clicked.connect(self.charger)
+
 
     #### Fonctions ####
 
     ### Enregistrement de l'entré et remise à zero des films ###  à retravailler
     def newFilm(self):
-        Film.nomFilm = self.lineFilm_2.text()
-        Film.dureeFilm = self.timeEdit.time()
-        Film.descFilm = self.textDescFilm_2.toPlainText()
+        Film.nomFilm = self.TitreFilm.text()
+        Film.dureeFilm = self.dureeFilm.time()
+        Film.descFilm = self.textDescFilm.toPlainText()
 
         model = self.listCatFilm.model()
         cat_film_list = []
@@ -117,9 +137,9 @@ class Window(Ui_Application, QDialog):
         Film.catFilm = cat_film_list
 
         # Efface les champs #
-        self.lineFilm_2.setText("")
-        self.timeEdit.setTime(QtCore.QTime(00, 00))
-        self.textDescFilm_2.setText("")
+        self.TitreFilm.setText("")
+        self.dureeFilm.setTime(QtCore.QTime(00, 00))
+        self.textDescFilm.setText("")
         # Efface les checkbox #
         model = self.listCatFilm.model()
         for index in range(model.rowCount()):
@@ -148,9 +168,9 @@ class Window(Ui_Application, QDialog):
     def suivantFilm(self):
         print(Film.positionFilm)
         print(Film.listeFilm)
-        self.lineFilm_2.setText(Film.listeFilm[Film.positionFilm]['Titre'])
-        self.textDescFilm_2.setText(Film.listeFilm[Film.positionFilm]['description'])
-        self.timeEdit.setTime(Film.listeFilm[Film.positionFilm]['duree'])
+        self.TitreFilm.setText(Film.listeFilm[Film.positionFilm]['Titre'])
+        self.textDescFilm.setText(Film.listeFilm[Film.positionFilm]['description'])
+        self.dureeFilm.setTime(Film.listeFilm[Film.positionFilm]['duree'])
         self.cat_film_list = (Film.listeFilm[Film.positionFilm]['categories'])
         i = 0
         while self.model.item(i):
@@ -171,9 +191,9 @@ class Window(Ui_Application, QDialog):
 
     def precedentFilm(self):
         print(Film.positionFilm)
-        self.lineFilm_2.setText(Film.listeFilm[Film.positionFilm]['Titre'])
-        self.textDescFilm_2.setText(Film.listeFilm[Film.positionFilm]['description'])
-        self.timeEdit.setTime(Film.listeFilm[Film.positionFilm]['duree'])
+        self.TitreFilm.setText(Film.listeFilm[Film.positionFilm]['Titre'])
+        self.textDescFilm.setText(Film.listeFilm[Film.positionFilm]['description'])
+        self.dureeFilm.setTime(Film.listeFilm[Film.positionFilm]['duree'])
         self.cat_film_list = (Film.listeFilm[Film.positionFilm]['categories'])
         i = 0
         while self.model.item(i):
@@ -222,7 +242,7 @@ class Window(Ui_Application, QDialog):
         #        self.cbClient.setChecked(False)
         #       self.cbEmploye.setChecked(False)
         #        self.cbActeur.setChecked(False)
-        self.dateEdit_2.setDate(QtCore.QDate(2021, 1, 1))
+        self.dateInsc.setDate(QtCore.QDate(2021, 1, 1))
         self.lineCourriel.setText("")
         self.linePwdClient.setText("")
         print(Personne.listePersonne)
@@ -234,12 +254,12 @@ class Window(Ui_Application, QDialog):
         print(Personne.listePersonne[Personne.positionPers]['sexe'])
         self.linePrenom.setText(Personne.listePersonne[Personne.positionPers]['prenom'])
         self.lineNom.setText(Personne.listePersonne[Personne.positionPers]['nom'])
-        if Personne.listePersonne[Personne.positionPers]['sexe'] == 0:
-            self.sexeBtnG(0).setChecked(True)
-        if Personne.listePersonne[Personne.positionPers]['sexe'] == 1:
-            self.sexeBtnG(1).setChecked(True)
-        if Personne.listePersonne[Personne.positionPers]['sexe'] == 2:
-            self.sexeBtnG(2).setChecked(True)
+        if Personne.listePersonne[Personne.positionPers]['sexe'] == -2:
+            self.rbtnH.setChecked(True)
+        if Personne.listePersonne[Personne.positionPers]['sexe'] == -3:
+            self.rbtnF.setChecked(True)
+        if Personne.listePersonne[Personne.positionPers]['sexe'] == -4:
+            self.rbtnNA.setChecked(True)
 
         Personne.positionPers += 1
 
@@ -253,12 +273,12 @@ class Window(Ui_Application, QDialog):
         print(Personne.listePersonne[Personne.positionPers]['prenom'])
         self.linePrenom.setText(Personne.listePersonne[Personne.positionPers]['prenom'])
         self.lineNom.setText(Personne.listePersonne[Personne.positionPers]['nom'])
-        if Personne.listePersonne[Personne.positionPers]['sexe'] == 0:
-            self.sexeBtnG(0).setChecked(True)
-        if Personne.listePersonne[Personne.positionPers]['sexe'] == 1:
-            self.sexeBtnG(1).setChecked(True)
-        if Personne.listePersonne[Personne.positionPers]['sexe'] == 2:
-            self.sexeBtnG(2).setChecked(True)
+        if Personne.listePersonne[Personne.positionPers]['sexe'] == -2:
+            self.rbtnH.setChecked(True)
+        if Personne.listePersonne[Personne.positionPers]['sexe'] == -3:
+            self.rbtnF.setChecked(True)
+        if Personne.listePersonne[Personne.positionPers]['sexe'] == -4:
+            self.rbtnNA.setChecked(True)
 
         Personne.positionPers -= 1
 
@@ -283,20 +303,29 @@ class Window(Ui_Application, QDialog):
 
     ### Sauvegarde à retravailler ###
     def sauvegarder(self):
-        name = QtGui.QFileDialog.getSaveFileName(self, 'Save File')
+        name, filter = QtWidgets.QFileDialog.getSaveFileName(self,"QFileDialog.getSaveFileName()","","All Files (*);;Text Files (*.txt)")
         file = open(name, 'w')
-        text = self.textEdit.toPlainText()
+        text = Personne.listePersonne.toPlainText()
         file.write(text)
         file.close()
 
     ### Chargement à retravailler ###
     def charger(self):
-        name = QtGui.QFileDialog.getOpenFileName(self, 'Open File')
+        name = QtWidgets.QFileDialog.getOpenFileName(self, 'Open File')
         file = open(name, "r")
         self.listdePersonne = file.load(file)
         file.close()
-        self.Personne()
+        self.PersonneUpdate()
 
+    ### ouvrir la fenêtre de modification des cartes de crédits
+    def ouvrirCC(self):
+        FenetreCC = WindowCC()
+        FenetreCC.exec_()
+
+    ### ouvrir la fenêtre de modification des cartes de crédits
+    def ouvrirActeurs(self):
+        FenetreActeurs = WindowActeurs()
+        FenetreActeurs.exec_()
 
 # if __name__ == "__main__":
 #    import sys
