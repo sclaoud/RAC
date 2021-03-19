@@ -40,25 +40,34 @@ class WindowActeurs(Ui_Acteurs, QDialog):
 
 class Window(Ui_Application, QDialog):
     def __init__(self):
-        QDialog.__init__((self))
+        QDialog.__init__(self)
         self.setupUi(self)
 
-        # Bouton pour modifier les cartes de crédits
-        self.btnGestionCC.clicked.connect(self.ouvrirCC)
         # Bouton pour modifier les personnages des acteurs
         self.btnGestionPers.clicked.connect(self.ouvrirActeurs)
 
-        # Désactiver tant que la cb de la section désiré n'est pas coché
+        # Désactiver tant que la cb de la section client
         self.linePwdClient.setDisabled(True)
         self.dateInsc.setDisabled(True)
         self.lineCourriel.setDisabled(True)
+        self.listCCview.setDisabled(True)
+        self.btnGestionCC.setDisabled(True)
+        # Checkbox si la personne est Client, active la section client si coché
+        self.cbClient.toggled.connect(self.listCCview.setEnabled)
+        self.cbClient.toggled.connect(self.dateInsc.setEnabled)
+        self.cbClient.toggled.connect(self.lineCourriel.setEnabled)
+        self.cbClient.toggled.connect(self.linePwdClient.setEnabled)
+        self.cbClient.toggled.connect(self.btnGestionCC.setEnabled)
+        # Bouton pour modifier les cartes de crédits
+        self.btnGestionCC.clicked.connect(self.ouvrirCC)
+
+
+        # Désactiver tant que la cb de la section désiré n'est pas coché
         self.dateEmb.setDisabled(True)
         self.lineUsername.setDisabled(True)
         self.linePwdEmp.setDisabled(True)
         self.comboAcces.setDisabled(True)
         self.listCharView.setDisabled(True)
-        self.listCCview.setDisabled(True)
-        self.btnGestionCC.setDisabled(True)
         self.btnGestionPers.setDisabled(True)
 
         # Echomode pour les Password

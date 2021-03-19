@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.14&#10;&#10;Ajout de 2 nouvelles fenêtres pour la gestions des Cartes de crédits et des personnages des acteurs.  Quelques tests de sauvegarde et ajout de la liste déroulante pour comboAcces.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/classes.py" afterDir="false" />
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.15&#10;&#10;Création de la fonction de sauvegarde, chargement en trouble à revoir.&#10;&#10;Création des sous-class client/cartedecredit/acteurs/employe">
       <change beforePath="$PROJECT_DIR$/Final/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -348,7 +346,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616099090674</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="0.15&#10;&#10;Création de la fonction de sauvegarde, chargement en trouble à revoir.&#10;&#10;Création des sous-class client/cartedecredit/acteurs/employe">
+      <created>1616176729841</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1616176729841</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -379,7 +384,8 @@
     <MESSAGE value="0.12&#10;&#10;Réparer le code brisé par la nouvelle façon de travailler (main/classes/TabGUI)" />
     <MESSAGE value="0.13&#10;&#10;Code réparer, retravaillage du TabGUI depuis QTdesigner pour ajouter des boutons de modifications et changer certains noms." />
     <MESSAGE value="0.14&#10;&#10;Ajout de 2 nouvelles fenêtres pour la gestions des Cartes de crédits et des personnages des acteurs.  Quelques tests de sauvegarde et ajout de la liste déroulante pour comboAcces." />
-    <option name="LAST_COMMIT_MESSAGE" value="0.14&#10;&#10;Ajout de 2 nouvelles fenêtres pour la gestions des Cartes de crédits et des personnages des acteurs.  Quelques tests de sauvegarde et ajout de la liste déroulante pour comboAcces." />
+    <MESSAGE value="0.15&#10;&#10;Création de la fonction de sauvegarde, chargement en trouble à revoir.&#10;&#10;Création des sous-class client/cartedecredit/acteurs/employe" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.15&#10;&#10;Création de la fonction de sauvegarde, chargement en trouble à revoir.&#10;&#10;Création des sous-class client/cartedecredit/acteurs/employe" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
