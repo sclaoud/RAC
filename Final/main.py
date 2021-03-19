@@ -7,32 +7,37 @@ Fichier des opérations entre les class et l'interface
 # Importation des modules
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog
+import pandas as pd
 
 from Acteurs import Ui_Acteurs
 from CartedeCredits import Ui_UI_CC
 from TabGUI import Ui_Application
 from classes import *
 
-    # Fenêtre de gestions des cartes de crédits
+
+# Fenêtre de gestions des cartes de crédits
 class WindowCC(Ui_UI_CC, QDialog):
     def __init__(self):
         QDialog.__init__((self))
         self.setupUi(self)
 
-        #bouton pour cacher la fenêtre
+        # bouton pour cacher la fenêtre
         self.btnCloseCC.clicked.connect(self.hide)
 
     # Fenêtre de gestions des personnages des acteurs
+
+
 class WindowActeurs(Ui_Acteurs, QDialog):
     def __init__(self):
         QDialog.__init__((self))
         self.setupUi(self)
 
-        #bouton pour cacher la fenêtre
+        # bouton pour cacher la fenêtre
         self.btnCloseActeur.clicked.connect(self.hide)
 
-
     # Fenêtre principale
+
+
 class Window(Ui_Application, QDialog):
     def __init__(self):
         QDialog.__init__((self))
@@ -117,7 +122,6 @@ class Window(Ui_Application, QDialog):
         self.btnSauvegarder.clicked.connect(self.sauvegarder)
         # Bouton de chargement des données
         self.btnCharger.clicked.connect(self.charger)
-
 
     #### Fonctions ####
 
@@ -301,20 +305,23 @@ class Window(Ui_Application, QDialog):
             return True
         return False
 
-    ### Sauvegarde à retravailler ###
+    # Sauvegarde des données en CSV avec pandas
     def sauvegarder(self):
-        name, filter = QtWidgets.QFileDialog.getSaveFileName(self,"QFileDialog.getSaveFileName()","","All Files (*);;Text Files (*.txt)")
-        file = open(name, 'w')
-        text = Personne.listePersonne.toPlainText()
-        file.write(text)
-        file.close()
+        fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Sauvegarder", "%username%/Documents/Data.csv",
+                                                            "Fichiers csv (*.csv)")
+        if fileName:
+            df = pd.DataFrame(Film.listeFilm, Personne.listePersonne)
+            df.to_csv('data.csv')
+            print(fileName)
 
     ### Chargement à retravailler ###
     def charger(self):
-        name = QtWidgets.QFileDialog.getOpenFileName(self, 'Open File')
-        file = open(name, "r")
-        self.listdePersonne = file.load(file)
-        file.close()
+        files, _ = QtWidgets.QFileDialog.getOpenFileNames(self,"QFileDialog.getOpenFileNames()", "", "Fichiers CSV (*.csv)")
+        if files:
+            df = pd.read_csv
+            Film.listeFilm, Personne.listePersonne = df
+            print(files)
+        self.UpdateFilm()
         self.PersonneUpdate()
 
     ### ouvrir la fenêtre de modification des cartes de crédits
@@ -326,6 +333,7 @@ class Window(Ui_Application, QDialog):
     def ouvrirActeurs(self):
         FenetreActeurs = WindowActeurs()
         FenetreActeurs.exec_()
+
 
 # if __name__ == "__main__":
 #    import sys
