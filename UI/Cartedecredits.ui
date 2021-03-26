@@ -122,7 +122,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="expCC"/>
+       <widget class="QDateEdit" name="expCC"/>
       </item>
       <item>
        <widget class="QLineEdit" name="codesecretCC"/>

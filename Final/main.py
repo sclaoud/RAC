@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog
 import pandas as pd
 
 from Acteurs import Ui_Acteurs
-from CartedeCredits import Ui_UI_CC
+from cartedecredits import Ui_UI_CC
 from TabGUI import Ui_Application
 from classes import *
 
@@ -20,13 +20,37 @@ class WindowCC(Ui_UI_CC, QDialog):
     def __init__(self):
         QDialog.__init__((self))
         self.setupUi(self)
-
         # bouton pour cacher la fenêtre
         self.btnCloseCC.clicked.connect(self.hide)
+        # Sauvegardes des informations de cartes de crédit et affichage dans la fenêtre principale
+        self.btnSaveCC.clicked.connect(self.newCC)
+
+    # Fonction de sauvegarde des informations de cartes de crédit
+    def newCC (self):
+        cartedeCredits.numeroCC = self.NumeroCC.text()
+        cartedeCredits.dateCC = self.expCC.text()
+        cartedeCredits.codeCC = self.codesecretCC.text()
+
+        #Sauvegarde des informations dans un dict
+        CC_dict = {
+            'Numero': cartedeCredits.numeroCC,
+            'date': cartedeCredits.dateCC,
+            'Codesecret': cartedeCredits.codeCC,
+        }
+        cartedeCredits.listCC.append(CC_dict)
+        # Affichage des informations dans listCCview
+        CC = cartedeCredits.listCC
+        self.listCCview = pd.Series(data=CC)
+
+#        for info in self.listCC:
+#            item = QtGui.QStandardItem(info)
+#           item.setCheckable(True)
+#            self.model.appendRow(item)
+#        self.listCCview.setModel(self.model)
+
+        print (cartedeCredits.listCC)
 
     # Fenêtre de gestions des personnages des acteurs
-
-
 class WindowActeurs(Ui_Acteurs, QDialog):
     def __init__(self):
         QDialog.__init__((self))
@@ -35,9 +59,9 @@ class WindowActeurs(Ui_Acteurs, QDialog):
         # bouton pour cacher la fenêtre
         self.btnCloseActeur.clicked.connect(self.hide)
 
+
+
     # Fenêtre principale
-
-
 class Window(Ui_Application, QDialog):
     def __init__(self):
         QDialog.__init__(self)
@@ -242,13 +266,13 @@ class Window(Ui_Application, QDialog):
         Personne.prenom = self.linePrenom.text()
         Personne.nom = self.lineNom.text()
         Personne.sexe = self.sexeBtnG.checkedId()
-        Personne_test = {
+        Personne_dict = {
             'prenom': Personne.prenom,
             'nom': Personne.nom,
             'sexe': Personne.sexe
         }
 
-        Personne.listePersonne.append(Personne_test)
+        Personne.listePersonne.append(Personne_dict)
 
         self.linePrenom.setText("")
         self.lineNom.setText("")

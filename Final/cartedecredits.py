@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Cartedecredits.ui'
+# Form implementation generated from reading ui file 'cartedecredits.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.3
 #
@@ -55,7 +55,7 @@ class Ui_UI_CC(object):
         self.NumeroCC.setMaxLength(16)
         self.NumeroCC.setObjectName("NumeroCC")
         self.verticalLayout.addWidget(self.NumeroCC)
-        self.expCC = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
+        self.expCC = QtWidgets.QDateEdit(self.horizontalLayoutWidget)
         self.expCC.setObjectName("expCC")
         self.verticalLayout.addWidget(self.expCC)
         self.codesecretCC = QtWidgets.QLineEdit(self.horizontalLayoutWidget)

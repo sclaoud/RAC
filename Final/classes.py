@@ -70,6 +70,8 @@ class client (Personne):
 
 class cartedeCredits (client):
 
+    listCC = []
+
     def __init__(self, numeroCC, dateCC, codeCC):
         self._numeroCC = numeroCC
         self._dateCC = dateCC

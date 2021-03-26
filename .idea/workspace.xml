@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.15&#10;&#10;Création de la fonction de sauvegarde, chargement en trouble à revoir.&#10;&#10;Création des sous-class client/cartedecredit/acteurs/employe">
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.16&#10;&#10;Décoration du module main.&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final/CartedeCredits.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/cartedecredits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/Cartedecredits.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/Cartedecredits.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,27 +65,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="Fonctions (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="RAC" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Final" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Final/Fonctions.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="Fonctions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -166,6 +149,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="cartedecredits" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="RAC" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Final" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Final/cartedecredits.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -211,10 +215,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.cartedecredits" />
         <item itemvalue="Python.Fonctions" />
         <item itemvalue="Python.testTab" />
         <item itemvalue="Python.TabGUI" />
-        <item itemvalue="Python.Fonctions (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -353,7 +357,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616176729841</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="0.16&#10;&#10;Décoration du module main.&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir.">
+      <created>1616184046151</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1616184046151</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -385,7 +396,8 @@
     <MESSAGE value="0.13&#10;&#10;Code réparer, retravaillage du TabGUI depuis QTdesigner pour ajouter des boutons de modifications et changer certains noms." />
     <MESSAGE value="0.14&#10;&#10;Ajout de 2 nouvelles fenêtres pour la gestions des Cartes de crédits et des personnages des acteurs.  Quelques tests de sauvegarde et ajout de la liste déroulante pour comboAcces." />
     <MESSAGE value="0.15&#10;&#10;Création de la fonction de sauvegarde, chargement en trouble à revoir.&#10;&#10;Création des sous-class client/cartedecredit/acteurs/employe" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.15&#10;&#10;Création de la fonction de sauvegarde, chargement en trouble à revoir.&#10;&#10;Création des sous-class client/cartedecredit/acteurs/employe" />
+    <MESSAGE value="0.16&#10;&#10;Décoration du module main.&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
+    <option name="LAST_COMMIT_MESSAGE" value="0.16&#10;&#10;Décoration du module main.&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
