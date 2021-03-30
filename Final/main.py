@@ -32,21 +32,19 @@ class WindowCC(Ui_UI_CC, QDialog):
         cartedeCredits.codeCC = self.codesecretCC.text()
 
         #Sauvegarde des informations dans un dict
-        CC_dict = {
-            'Numero': cartedeCredits.numeroCC,
-            'date': cartedeCredits.dateCC,
-            'Codesecret': cartedeCredits.codeCC,
-        }
-        cartedeCredits.listCC.append(CC_dict)
-        # Affichage des informations dans listCCview
-        CC = cartedeCredits.listCC
-        self.listCCview = pd.Series(data=CC)
 
-#        for info in self.listCC:
-#            item = QtGui.QStandardItem(info)
-#           item.setCheckable(True)
-#            self.model.appendRow(item)
-#        self.listCCview.setModel(self.model)
+        CC_dict = {
+            'Numero': '1326 6578 0231',
+            'date': '2021/03/23',
+            'Codesecret': '564',
+        }
+
+#        CC_dict = {
+#            'Numero': cartedeCredits.numeroCC,
+#            'date': cartedeCredits.dateCC,
+#            'Codesecret': cartedeCredits.codeCC,
+#        }
+        cartedeCredits.listCC.append(CC_dict)
 
         print (cartedeCredits.listCC)
 
@@ -58,6 +56,35 @@ class WindowActeurs(Ui_Acteurs, QDialog):
 
         # bouton pour cacher la fenêtre
         self.btnCloseActeur.clicked.connect(self.hide)
+        # Sauvegardes des informations des personnages joués et affichage dans la fenêtre principale
+        self.btnSvActeur.clicked.connect(self.newPers)
+
+    # Fonction de sauvegarde des informations des personnages joués
+    def newPers(self):
+        acteurs.titreFilm = self.TitreduFilm.text()
+        acteurs.personnage = self.NomPers.text()
+        acteurs.debutEmploi = self.dateDebut.time()
+        acteurs.finEmploi = self.dateFin.time()
+        acteurs.cachet = self.cachet.text()
+
+        # Sauvegarde des informations dans un dict
+        Acteurs_dict = {
+            'TitreFilm': acteurs.titreFilm,
+            'Personnage' : acteurs.personnage,
+            'dateDebut' : acteurs.debutEmploi,
+            'dateFin': acteurs.finEmploi,
+            'cachet': acteurs.cachet,
+            }
+        acteurs.listeActeurs.append(Acteurs_dict)
+        # Affichage des informations dans QtableCC
+
+        #        for info in self.listCC:
+        #            item = QtGui.QStandardItem(info)
+        #            item.setCheckable(True)
+        #            self.model.appendRow(item)
+        #        self.QtableCC.setModel(self.model)
+
+        print(acteurs.titreFilm)
 
 
 
@@ -74,10 +101,10 @@ class Window(Ui_Application, QDialog):
         self.linePwdClient.setDisabled(True)
         self.dateInsc.setDisabled(True)
         self.lineCourriel.setDisabled(True)
-        self.listCCview.setDisabled(True)
+        self.QtableCC.setDisabled(True)
         self.btnGestionCC.setDisabled(True)
         # Checkbox si la personne est Client, active la section client si coché
-        self.cbClient.toggled.connect(self.listCCview.setEnabled)
+        self.cbClient.toggled.connect(self.QtableCC.setEnabled)
         self.cbClient.toggled.connect(self.dateInsc.setEnabled)
         self.cbClient.toggled.connect(self.lineCourriel.setEnabled)
         self.cbClient.toggled.connect(self.linePwdClient.setEnabled)
@@ -91,7 +118,7 @@ class Window(Ui_Application, QDialog):
         self.lineUsername.setDisabled(True)
         self.linePwdEmp.setDisabled(True)
         self.comboAcces.setDisabled(True)
-        self.listCharView.setDisabled(True)
+        self.QtableChar.setDisabled(True)
         self.btnGestionPers.setDisabled(True)
 
         # Echomode pour les Password
@@ -99,10 +126,10 @@ class Window(Ui_Application, QDialog):
         self.linePwdEmp.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
 
         # Checkbox si la personne est artiste, active la section Artiste si coché
-        self.cbActeur.toggled.connect(self.listCharView.setEnabled)
+        self.cbActeur.toggled.connect(self.QtableChar.setEnabled)
         self.cbActeur.toggled.connect(self.btnGestionPers.setEnabled)
         # Checkbox si la personne est Client, active la section client si coché
-        self.cbClient.toggled.connect(self.listCCview.setEnabled)
+        self.cbClient.toggled.connect(self.QtableCC.setEnabled)
         self.cbClient.toggled.connect(self.dateInsc.setEnabled)
         self.cbClient.toggled.connect(self.lineCourriel.setEnabled)
         self.cbClient.toggled.connect(self.linePwdClient.setEnabled)
@@ -155,6 +182,14 @@ class Window(Ui_Application, QDialog):
         self.btnSauvegarder.clicked.connect(self.sauvegarder)
         # Bouton de chargement des données
         self.btnCharger.clicked.connect(self.charger)
+
+        # Affichage des informations dans QtableCC
+        dataCC = pd.DataFrame (cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
+
+
+        self.modelCC = TableModelCC(dataCC)
+        self.QtableCC.setModel(self.modelCC)
+
 
     #### Fonctions ####
 

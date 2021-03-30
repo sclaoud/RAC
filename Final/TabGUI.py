@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Tab4.ui'
+# Form implementation generated from reading ui file 'tab4.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.3
 #
@@ -69,9 +69,14 @@ class Ui_Application(object):
         self.labelCarteCredits.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.labelCarteCredits.setObjectName("labelCarteCredits")
         self.verticalLayout_6.addWidget(self.labelCarteCredits, 0, QtCore.Qt.AlignHCenter)
-        self.listCCview = QtWidgets.QListView(self.verticalLayoutWidget)
-        self.listCCview.setObjectName("listCCview")
-        self.verticalLayout_6.addWidget(self.listCCview)
+        self.QtableCC = QtWidgets.QTableView(self.verticalLayoutWidget)
+        self.QtableCC.setAlternatingRowColors(True)
+        self.QtableCC.setObjectName("QtableCC")
+        self.QtableCC.horizontalHeader().setCascadingSectionResizes(True)
+        self.QtableCC.horizontalHeader().setStretchLastSection(True)
+        self.QtableCC.verticalHeader().setCascadingSectionResizes(True)
+        self.QtableCC.verticalHeader().setStretchLastSection(True)
+        self.verticalLayout_6.addWidget(self.QtableCC)
         self.horizontalLayout_7.addLayout(self.verticalLayout_6)
         self.verticalLayout.addLayout(self.horizontalLayout_7)
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.tabPersonne)
@@ -152,9 +157,14 @@ class Ui_Application(object):
         self.label_7.setAlignment(QtCore.Qt.AlignCenter)
         self.label_7.setObjectName("label_7")
         self.verticalLayout_5.addWidget(self.label_7)
-        self.listCharView = QtWidgets.QListView(self.horizontalLayoutWidget_5)
-        self.listCharView.setObjectName("listCharView")
-        self.verticalLayout_5.addWidget(self.listCharView)
+        self.QtableChar = QtWidgets.QTableView(self.horizontalLayoutWidget_5)
+        self.QtableChar.setAlternatingRowColors(True)
+        self.QtableChar.setObjectName("QtableChar")
+        self.QtableChar.horizontalHeader().setCascadingSectionResizes(True)
+        self.QtableChar.horizontalHeader().setStretchLastSection(True)
+        self.QtableChar.verticalHeader().setCascadingSectionResizes(True)
+        self.QtableChar.verticalHeader().setStretchLastSection(True)
+        self.verticalLayout_5.addWidget(self.QtableChar)
         self.horizontalLayout_5.addLayout(self.verticalLayout_5)
         self.horizontalLayoutWidget_6 = QtWidgets.QWidget(self.tabPersonne)
         self.horizontalLayoutWidget_6.setGeometry(QtCore.QRect(80, 440, 871, 88))
