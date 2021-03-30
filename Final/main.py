@@ -25,6 +25,9 @@ class WindowCC(Ui_UI_CC, QDialog):
         # Sauvegardes des informations de cartes de crédit et affichage dans la fenêtre principale
         self.btnSaveCC.clicked.connect(self.newCC)
 
+
+
+
     # Fonction de sauvegarde des informations de cartes de crédit
     def newCC (self):
         cartedeCredits.numeroCC = self.NumeroCC.text()
@@ -34,16 +37,10 @@ class WindowCC(Ui_UI_CC, QDialog):
         #Sauvegarde des informations dans un dict
 
         CC_dict = {
-            'Numero': '1326 6578 0231',
-            'date': '2021/03/23',
-            'Codesecret': '564',
+            'Numero': cartedeCredits.numeroCC,
+            'date': cartedeCredits.dateCC,
+            'Codesecret': cartedeCredits.codeCC,
         }
-
-#        CC_dict = {
-#            'Numero': cartedeCredits.numeroCC,
-#            'date': cartedeCredits.dateCC,
-#            'Codesecret': cartedeCredits.codeCC,
-#        }
         cartedeCredits.listCC.append(CC_dict)
 
         print (cartedeCredits.listCC)
@@ -78,14 +75,7 @@ class WindowActeurs(Ui_Acteurs, QDialog):
         acteurs.listeActeurs.append(Acteurs_dict)
         # Affichage des informations dans QtableCC
 
-        #        for info in self.listCC:
-        #            item = QtGui.QStandardItem(info)
-        #            item.setCheckable(True)
-        #            self.model.appendRow(item)
-        #        self.QtableCC.setModel(self.model)
-
         print(acteurs.titreFilm)
-
 
 
     # Fenêtre principale
@@ -184,11 +174,14 @@ class Window(Ui_Application, QDialog):
         self.btnCharger.clicked.connect(self.charger)
 
         # Affichage des informations dans QtableCC
-        dataCC = pd.DataFrame (cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
-
-
-        self.modelCC = TableModelCC(dataCC)
+        self.dataCC = pd.DataFrame (cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
+        self.modelCC = TableModelCC(self.dataCC)
         self.QtableCC.setModel(self.modelCC)
+
+        # Affichage des informations dans QtableActeurs
+        self.dataActeurs = pd.DataFrame (acteurs.listeActeurs)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
+        self.modelActeurs = TableModelCC(self.dataActeurs)
+        self.QtableChar.setModel(self.modelActeurs)
 
 
     #### Fonctions ####

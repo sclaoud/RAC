@@ -136,7 +136,13 @@ class TableModelCC(QtCore.QAbstractTableModel):
 
 class acteurs (Personne):
 
-    listeActeurs = []
+    listeActeurs = [{
+            'TitreFilm': 'titreFilm',
+            'Personnage' : 'personnage',
+            'dateDebut' : 'debutEmploi',
+            'dateFin': 'finEmploi',
+            'cachet': 'cachet',
+            }]
 
     def __init__(self, titreFilm, personnage, debutEmploi, finEmploi, cachet):
         self._titreFilm = titreFilm

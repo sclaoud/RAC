@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.16&#10;&#10;Décoration du module main.&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir.">
-      <change afterPath="$PROJECT_DIR$/Tests/pandastest.py" afterDir="false" />
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.18&#10;&#10;Modification des qlistview en qtableview et utilisation de pandas pour l'affichage des données.  Préparation des fenêtres CC et acteurs.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/TabGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/TabGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tab4.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tab4.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -372,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616784330106</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="0.18&#10;&#10;Modification des qlistview en qtableview et utilisation de pandas pour l'affichage des données.  Préparation des fenêtres CC et acteurs.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir.">
+      <created>1617131975513</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1617131975513</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -406,7 +410,8 @@
     <MESSAGE value="0.15&#10;&#10;Création de la fonction de sauvegarde, chargement en trouble à revoir.&#10;&#10;Création des sous-class client/cartedecredit/acteurs/employe" />
     <MESSAGE value="0.16&#10;&#10;Décoration du module main.&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
     <MESSAGE value="0.17&#10;&#10;Modification de la classe cartedecredits et de la fonction newCC pour ajouter des cartes de crédit et en faire l'affichage avec pandas (a venir)&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
-    <option name="LAST_COMMIT_MESSAGE" value="0.17&#10;&#10;Modification de la classe cartedecredits et de la fonction newCC pour ajouter des cartes de crédit et en faire l'affichage avec pandas (a venir)&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
+    <MESSAGE value="0.18&#10;&#10;Modification des qlistview en qtableview et utilisation de pandas pour l'affichage des données.  Préparation des fenêtres CC et acteurs.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
+    <option name="LAST_COMMIT_MESSAGE" value="0.18&#10;&#10;Modification des qlistview en qtableview et utilisation de pandas pour l'affichage des données.  Préparation des fenêtres CC et acteurs.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
