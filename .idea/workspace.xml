@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.19&#10;&#10;Work-in-progress : Ajoute des données des cartes de crédits en pandas.dataframes (apparaissent vident pour le moment)&#10;&#10;Idem pour la table qtableview.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir.">
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.20&#10;&#10;Sauvegarde des données la fenêtre Acteurs dans la liste listeActeurs.&#10;Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs)&#10;Ajout des lignes clients et employe dans la listePersonnes (comboAcces a validé)&#10;&#10;---------------------------&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;- Valider les sous-listes acteurs et CC.&#10;- Sauvegarde/Chargement.">
+      <change afterPath="$PROJECT_DIR$/Tests/Data export.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/qtableviewtest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/pandastest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/pandastest.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +25,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -62,7 +71,7 @@
       <recent name="C:\Users\pcadmin\Documents\GitHub\RAC" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.qtableviewtest">
     <configuration name="Fonctions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -189,7 +198,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="testTab" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="qtableviewtest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -201,7 +210,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/testTab.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/qtableviewtest.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -212,11 +221,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.qtableviewtest" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.pandastest" />
         <item itemvalue="Python.cartedecredits" />
         <item itemvalue="Python.Fonctions" />
-        <item itemvalue="Python.testTab" />
       </list>
     </recent_temporary>
   </component>
@@ -383,7 +392,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617135532663</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="0.20&#10;&#10;Sauvegarde des données la fenêtre Acteurs dans la liste listeActeurs.&#10;Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs)&#10;Ajout des lignes clients et employe dans la listePersonnes (comboAcces a validé)&#10;&#10;---------------------------&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;- Valider les sous-listes acteurs et CC.&#10;- Sauvegarde/Chargement.">
+      <created>1617720634244</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1617720634244</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -419,7 +435,8 @@
     <MESSAGE value="0.17&#10;&#10;Modification de la classe cartedecredits et de la fonction newCC pour ajouter des cartes de crédit et en faire l'affichage avec pandas (a venir)&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
     <MESSAGE value="0.18&#10;&#10;Modification des qlistview en qtableview et utilisation de pandas pour l'affichage des données.  Préparation des fenêtres CC et acteurs.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
     <MESSAGE value="0.19&#10;&#10;Work-in-progress : Ajoute des données des cartes de crédits en pandas.dataframes (apparaissent vident pour le moment)&#10;&#10;Idem pour la table qtableview.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
-    <option name="LAST_COMMIT_MESSAGE" value="0.19&#10;&#10;Work-in-progress : Ajoute des données des cartes de crédits en pandas.dataframes (apparaissent vident pour le moment)&#10;&#10;Idem pour la table qtableview.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
+    <MESSAGE value="0.20&#10;&#10;Sauvegarde des données la fenêtre Acteurs dans la liste listeActeurs.&#10;Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs)&#10;Ajout des lignes clients et employe dans la listePersonnes (comboAcces a validé)&#10;&#10;---------------------------&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;- Valider les sous-listes acteurs et CC.&#10;- Sauvegarde/Chargement." />
+    <option name="LAST_COMMIT_MESSAGE" value="0.20&#10;&#10;Sauvegarde des données la fenêtre Acteurs dans la liste listeActeurs.&#10;Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs)&#10;Ajout des lignes clients et employe dans la listePersonnes (comboAcces a validé)&#10;&#10;---------------------------&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;- Valider les sous-listes acteurs et CC.&#10;- Sauvegarde/Chargement." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

@@ -18,14 +18,12 @@ from classes import *
 # Fenêtre de gestions des cartes de crédits
 class WindowCC(Ui_UI_CC, QDialog):
     def __init__(self):
-        QDialog.__init__((self))
+        QDialog.__init__(self)
         self.setupUi(self)
         # bouton pour cacher la fenêtre
         self.btnCloseCC.clicked.connect(self.hide)
         # Sauvegardes des informations de cartes de crédit et affichage dans la fenêtre principale
         self.btnSaveCC.clicked.connect(self.newCC)
-
-
 
 
     # Fonction de sauvegarde des informations de cartes de crédit
@@ -42,13 +40,17 @@ class WindowCC(Ui_UI_CC, QDialog):
             'Codesecret': cartedeCredits.codeCC,
         }
         cartedeCredits.listCC.append(CC_dict)
+#        Window.QtableCC = pd.DataFrame(data=cartedeCredits.listCC)
+        self.dataCC = pd.DataFrame(cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
+        self.modelCC = TableModelCC(self.dataCC) # changer le tableModel si besoin
+
 
         print (cartedeCredits.listCC)
 
     # Fenêtre de gestions des personnages des acteurs
 class WindowActeurs(Ui_Acteurs, QDialog):
     def __init__(self):
-        QDialog.__init__((self))
+        QDialog.__init__(self)
         self.setupUi(self)
 
         # bouton pour cacher la fenêtre
@@ -74,7 +76,7 @@ class WindowActeurs(Ui_Acteurs, QDialog):
             }
         # Transfert du dictionnaire dans la listeActeurs
         acteurs.listeActeurs.append(Acteurs_dict)
-        # Affichage des informations dans QtableCC
+        # Affichage des informations dans QtableActeurs
 
         print(acteurs.listeActeurs)
 
@@ -175,8 +177,8 @@ class Window(Ui_Application, QDialog):
         self.btnCharger.clicked.connect(self.charger)
 
         # Affichage des informations dans QtableCC
-        self.dataCC = pd.DataFrame (cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
-        self.modelCC = TableModelCC(self.dataCC) # changer le tableModel si besoin
+        self.dataCC = pd.DataFrame(cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
+        self.modelCC = TableModelCC(self.dataCC)
         self.QtableCC.setModel(self.modelCC)
 
         # Affichage des informations dans QtableActeurs
@@ -187,7 +189,7 @@ class Window(Ui_Application, QDialog):
 
     #### Fonctions ####
 
-    ### Enregistrement de l'entré et remise à zero des films ###  à retravailler
+    # Enregistrement de l'entré et remise à zero des films TODO : à valider
     def newFilm(self):
         Film.nomFilm = self.TitreFilm.text()
         Film.dureeFilm = self.dureeFilm.time()
@@ -225,12 +227,7 @@ class Window(Ui_Application, QDialog):
         self.UpdateFilm()
         print(Film.listeFilm)
 
-    #        print (film.catFilm)
-    #        print (film.nomFilm)
-    #        print (film.dureeFilm)
-    #        print (film.descFilm)
-
-    ###Film suivant dans la liste de Film ### À retravailler
+    # Film suivant dans la liste de Film
     def suivantFilm(self):
         print(Film.positionFilm)
         print(Film.listeFilm)
@@ -253,7 +250,7 @@ class Window(Ui_Application, QDialog):
             Film.positionFilm = 0
         self.UpdateFilm()
 
-    ###Film précédent dans la liste de film ### À retravailler
+    # Film précédent dans la liste de film
 
     def precedentFilm(self):
         print(Film.positionFilm)
@@ -276,17 +273,17 @@ class Window(Ui_Application, QDialog):
             Film.positionFilm = len(Film.listeFilm) - 1
         self.UpdateFilm()
 
-    ### choix bouton radio sexe
+    # choix bouton radio sexe
     def radio_button_clicked(self):
         Personne.sexe = self.sexeBtnG.checkedButton().text()
 
         print(Personne.sexe)
 
-    ### Met à jour le nombre de personne dans le système ### À retravailler
+    # Met à jour le nombre de personne dans le système
     def PersonneUpdate(self):
         self.tabMain.setTabText(0, "Personne ({})".format(len(Personne.listePersonne)))
 
-    ### Update de la liste des films
+    # Update de la liste des films
     def UpdateFilm(self):
         self.tabMain.setTabText(1, "Film ({})".format(len(Film.listeFilm)))
 
@@ -313,43 +310,70 @@ class Window(Ui_Application, QDialog):
             'dateEmb' : employe.dateEmb,
             'username' : employe.username,
             'empPwD' : employe.empPWD,
-            'acces' : employe.acces
+            'acces' : employe.acces,
+            'cbClient' : self.cbClient.checkState(),
+            'cbActeur' : self.cbActeur.checkState(),
+            'cbEmploye' : self.cbEmploye.checkState()
         }
 
         Personne.listePersonne.append(Personne_dict)
-        Personne.listePersonne.extend(cartedeCredits.listCC)
-        Personne.listePersonne.extend(acteurs.listeActeurs)
+#        Personne.listePersonne.extend(cartedeCredits.listCC)
+#        Personne.listePersonne.extend(acteurs.listeActeurs)
 
+        # Reset des champs pour une nouvelle entrée
         self.linePrenom.setText("")
         self.lineNom.setText("")
-        #        self.cbClient.setChecked(False)
-        #       self.cbEmploye.setChecked(False)
-        #        self.cbActeur.setChecked(False)
+        self.cbClient.setChecked(False)
+        self.cbEmploye.setChecked(False)
+        self.cbActeur.setChecked(False)
         self.dateInsc.setDate(QtCore.QDate(2021, 1, 1))
         self.lineCourriel.setText("")
         self.linePwdClient.setText("")
+        self.dateEmb.setDate(QtCore.QDate(2021, 1, 1))
+        self.lineUsername.setText("")
+        self.linePwdEmp.setText("")
+        self.comboAcces.setCurrentIndex(1)
         print(Personne.listePersonne)
         self.PersonneUpdate()
 
-    ### Personne suivante dans la liste de Personne ### à retravailler
+    ### Personne suivante dans la liste de Personne ### TODO : à retravailler
     def suivantPers(self):
         print(Personne.positionPers)
 #        print(Personne.listePersonne[Personne.positionPers]['sexe'])
         self.linePrenom.setText(Personne.listePersonne[Personne.positionPers]['prenom'])
         self.lineNom.setText(Personne.listePersonne[Personne.positionPers]['nom'])
-        self.dateInsc.setDate(Personne.listePersonne[Personne.positionPers]['dateInsc'])
-        self.lineCourriel.setText(Personne.listePersonne[Personne.positionPers]['courriel'])
-        self.linePwdClient.setText(Personne.listePersonne[Personne.positionPers]['clientPwd'])
         if Personne.listePersonne[Personne.positionPers]['sexe'] == -2:
             self.rbtnH.setChecked(True)
         if Personne.listePersonne[Personne.positionPers]['sexe'] == -3:
             self.rbtnF.setChecked(True)
         if Personne.listePersonne[Personne.positionPers]['sexe'] == -4:
             self.rbtnNA.setChecked(True)
+        #Section client
+        if Personne.listePersonne[Personne.positionPers]['cbClient'] == 2:
+            self.cbClient.setChecked(True)
+        if Personne.listePersonne[Personne.positionPers]['cbClient'] == 0:
+            self.cbClient.setChecked(False)
+        self.dateInsc.setDate(Personne.listePersonne[Personne.positionPers]['dateInsc'])
+        self.lineCourriel.setText(Personne.listePersonne[Personne.positionPers]['courriel'])
+        self.linePwdClient.setText(Personne.listePersonne[Personne.positionPers]['clientPwd'])
+        #Section Acteurs
+        if Personne.listePersonne[Personne.positionPers]['cbActeur'] == 2:
+            self.cbActeur.setChecked(True)
+        if Personne.listePersonne[Personne.positionPers]['cbActeur'] == 0:
+            self.cbActeur.setChecked(False)
+        #Section employé
+        if Personne.listePersonne[Personne.positionPers]['cbEmploye'] == 2:
+            self.cbEmploye.setChecked(True)
+        if Personne.listePersonne[Personne.positionPers]['cbEmploye'] == 0:
+            self.cbEmploye.setChecked(False)
+        self.dateEmb.setDate(Personne.listePersonne[Personne.positionPers]['dateEmb']),
+        self.lineUsername.setText(Personne.listePersonne[Personne.positionPers]['username']),
+        self.linePwdEmp.setText(Personne.listePersonne[Personne.positionPers]['empPwD']),
+        self.comboAcces.setCurrentIndex(Personne.listePersonne[Personne.positionPers]['acces'])
 
         # Affichage des informations dans QtableCC
         self.dataCC = pd.DataFrame (cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
-        self.modelCC = TableModelCC(self.dataCC) # changer le tableModel si besoin
+        self.modelCC = TableModelCC(self.dataCC) # TODO : changer le tableModel si besoin
         self.QtableCC.setModel(self.modelCC)
 
         Personne.positionPers += 1
@@ -358,25 +382,44 @@ class Window(Ui_Application, QDialog):
             Personne.positionPers = 0
         self.PersonneUpdate()
 
-    ###Personne précédente dans la liste de Personne ### À retravailler
+    ###Personne précédente dans la liste de Personne ### TODO : à retravailler
     def precedentPers(self):
         print(Personne.positionPers)
-#        print(Personne.listePersonne[Personne.positionPers]['prenom'])
+        #        print(Personne.listePersonne[Personne.positionPers]['sexe'])
         self.linePrenom.setText(Personne.listePersonne[Personne.positionPers]['prenom'])
         self.lineNom.setText(Personne.listePersonne[Personne.positionPers]['nom'])
-        self.dateInsc.setDate(Personne.listePersonne[Personne.positionPers]['dateInsc'])
-        self.lineCourriel.setText(Personne.listePersonne[Personne.positionPers]['courriel'])
-        self.linePwdClient.setText(Personne.listePersonne[Personne.positionPers]['clientPwd'])
         if Personne.listePersonne[Personne.positionPers]['sexe'] == -2:
             self.rbtnH.setChecked(True)
         if Personne.listePersonne[Personne.positionPers]['sexe'] == -3:
             self.rbtnF.setChecked(True)
         if Personne.listePersonne[Personne.positionPers]['sexe'] == -4:
             self.rbtnNA.setChecked(True)
+        # Section client
+        if Personne.listePersonne[Personne.positionPers]['cbClient'] == 2:
+            self.cbClient.setChecked(True)
+        if Personne.listePersonne[Personne.positionPers]['cbClient'] == 0:
+            self.cbClient.setChecked(False)
+        self.dateInsc.setDate(Personne.listePersonne[Personne.positionPers]['dateInsc'])
+        self.lineCourriel.setText(Personne.listePersonne[Personne.positionPers]['courriel'])
+        self.linePwdClient.setText(Personne.listePersonne[Personne.positionPers]['clientPwd'])
+        #Section Acteurs
+        if Personne.listePersonne[Personne.positionPers]['cbActeur'] == 2:
+            self.cbActeur.setChecked(True)
+        if Personne.listePersonne[Personne.positionPers]['cbActeur'] == 0:
+            self.cbActeur.setChecked(False)
+        #Section employé
+        if Personne.listePersonne[Personne.positionPers]['cbEmploye'] == 2:
+            self.cbEmploye.setChecked(True)
+        if Personne.listePersonne[Personne.positionPers]['cbEmploye'] == 0:
+            self.cbEmploye.setChecked(False)
+        self.dateEmb.setDate(Personne.listePersonne[Personne.positionPers]['dateEmb']),
+        self.lineUsername.setText(Personne.listePersonne[Personne.positionPers]['username']),
+        self.linePwdEmp.setText(Personne.listePersonne[Personne.positionPers]['empPwD']),
+        self.comboAcces.setCurrentIndex(Personne.listePersonne[Personne.positionPers]['acces'])
 
         # Affichage des informations dans QtableCC
         self.dataCC = pd.DataFrame (cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
-        self.modelCC = TableModelCC(self.dataCC) # changer le tableModel si besoin
+        self.modelCC = TableModelCC(self.dataCC) # TODO :  changer le tableModel si besoin
         self.QtableCC.setModel(self.modelCC)
 
         Personne.positionPers -= 1
@@ -385,7 +428,7 @@ class Window(Ui_Application, QDialog):
             Personne.positionPers = len(Personne.listePersonne) - 1
         self.PersonneUpdate()
 
-    # Fenêtre de confirmation de la fermeture de l'application
+    # Fenêtre de confirmation de la fermeture de l'application TODO : Message d'erreur à fix
     def closeEvent(self):
         msgBox = QMessageBox()
         msgBox.setIcon(QMessageBox.Information)
@@ -400,7 +443,7 @@ class Window(Ui_Application, QDialog):
             return True
         return False
 
-    # Sauvegarde des données en CSV avec pandas
+    # Sauvegarde des données en CSV avec pandas TODO : à revoir
     def sauvegarder(self):
         fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Sauvegarder", "%username%/Documents/Data.csv",
                                                             "Fichiers csv (*.csv)")
@@ -409,7 +452,7 @@ class Window(Ui_Application, QDialog):
             df.to_csv('data.csv')
             print(fileName)
 
-    ### Chargement à retravailler ###
+    ### Chargement des données CSV TODO : à revoir
     def charger(self):
         files, _ = QtWidgets.QFileDialog.getOpenFileNames(self,"QFileDialog.getOpenFileNames()", "", "Fichiers CSV (*.csv)")
         if files:
@@ -428,17 +471,6 @@ class Window(Ui_Application, QDialog):
     def ouvrirActeurs(self):
         FenetreActeurs = WindowActeurs()
         FenetreActeurs.exec_()
-
-
-# if __name__ == "__main__":
-#    import sys
-#    app = QtWidgets.QApplication(sys.argv)
-#    Application = QtWidgets.QDialog()
-#    ui = Ui_Application()
-#    ui.setupUi(Application)
-#    Application.show()
-#    sys.exit(app.exec_())
-
 
 if __name__ == "__main__":
     import sys
