@@ -41,6 +41,7 @@ class Personne(object):
 
 class client (Personne):
 
+
     def __init__(self, dateInsc, courriel, clientPwd):
         self._dateInsc = dateInsc
         self._courriel = courriel
@@ -71,15 +72,7 @@ class client (Personne):
 
 class cartedeCredits (client):
 
-    listCC = [{
-            'Numero': '1326 6578 0231',
-            'date': '2021/03/23',
-            'Codesecret': '564',
-        },{
-            'Numero': '1326 6578 0231',
-            'date': '2021/03/23',
-            'Codesecret': '564',
-        }]
+    listCC = []
 
     def __init__(self, numeroCC, dateCC, codeCC):
         self._numeroCC = numeroCC
