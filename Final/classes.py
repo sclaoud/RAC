@@ -101,10 +101,11 @@ class cartedeCredits (client):
     def codeCC(self, codeCC):
         self._codeCC = codeCC
 
-class TableModelCC(QtCore.QAbstractTableModel):
+    # Modele de Table source qui ne sera pas modifier
+class TableModel(QtCore.QAbstractTableModel):
 
     def __init__(self, data):
-        super(TableModelCC, self).__init__()
+        super(TableModel, self).__init__()
         self._data = data
 
     def data(self, index, role):
@@ -127,6 +128,19 @@ class TableModelCC(QtCore.QAbstractTableModel):
             if orientation == Qt.Vertical:
                 return str(self._data.index[section])
 
+    # Filtre de la QtableCC/QtableActeur
+class UpdateModel(QtCore.QSortFilterProxyModel):
+    def __init__(self):
+        super(UpdateModel, self).__init__()
+
+    def filterAcceptsRow(self, sourceRow, sourceParent):
+        print_when_odd_flag = self.cb_status
+        is_odd = True
+        index = self.sourceModel().index(sourceRow, 0, sourceParent)
+        print ("My Row Data: %s" % self.sourceModel().data(index, role=QtCore.Qt.DisplayRole))
+
+
+    # class des acteurs, enfant de personne
 class acteurs (Personne):
 
     listeActeurs = [{
