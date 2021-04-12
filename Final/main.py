@@ -6,15 +6,15 @@ Fichier des opérations entre les class et l'interface
 
 # Importation des modules
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog
+from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QTableWidgetItem
 import pandas as pd
 
 from Acteurs import Ui_Acteurs
 from cartedecredits import Ui_UI_CC
-from TabGUI import Ui_Application
+from TABGUI import Ui_Application
 from classes import *
 
-
+"""
 # Fenêtre de gestions des cartes de crédits
 class WindowCC(Ui_UI_CC, QDialog):
     def __init__(self):
@@ -33,7 +33,6 @@ class WindowCC(Ui_UI_CC, QDialog):
         cartedeCredits.codeCC = self.codesecretCC.text()
 
         #Sauvegarde des informations dans un dict
-
         CC_dict = {
             'Numero': cartedeCredits.numeroCC,
             'date': cartedeCredits.dateCC,
@@ -41,9 +40,6 @@ class WindowCC(Ui_UI_CC, QDialog):
         }
         cartedeCredits.listCC.append(CC_dict)
 #        Window.QtableCC = pd.DataFrame(data=cartedeCredits.listCC)
-        self.dataCC = pd.DataFrame(cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
-        self.modelCC = TableModelCC(self.dataCC) # changer le tableModel si besoin
-
 
         print (cartedeCredits.listCC)
 
@@ -79,7 +75,7 @@ class WindowActeurs(Ui_Acteurs, QDialog):
         # Affichage des informations dans QtableActeurs
 
         print(acteurs.listeActeurs)
-
+"""
 
     # Fenêtre principale
 class Window(Ui_Application, QDialog):
@@ -87,23 +83,26 @@ class Window(Ui_Application, QDialog):
         QDialog.__init__(self)
         self.setupUi(self)
 
-        # Bouton pour modifier les personnages des acteurs
-        self.btnGestionPers.clicked.connect(self.ouvrirActeurs)
+        # Ajustement de la fenêtre QtableCC
+        header = self.QtableCC.horizontalHeader()
+        header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
+        # Ajustement de la fenêtre QtableChar
+        header = self.QtableChar.horizontalHeader()
+        header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
 
-        # Désactiver tant que la cb de la section client
-        self.linePwdClient.setDisabled(True)
-        self.dateInsc.setDisabled(True)
-        self.lineCourriel.setDisabled(True)
-        self.QtableCC.setDisabled(True)
-        self.btnGestionCC.setDisabled(True)
-        # Checkbox si la personne est Client, active la section client si coché
-        self.cbClient.toggled.connect(self.QtableCC.setEnabled)
-        self.cbClient.toggled.connect(self.dateInsc.setEnabled)
-        self.cbClient.toggled.connect(self.lineCourriel.setEnabled)
-        self.cbClient.toggled.connect(self.linePwdClient.setEnabled)
-        self.cbClient.toggled.connect(self.btnGestionCC.setEnabled)
-        # Bouton pour modifier les cartes de crédits
-        self.btnGestionCC.clicked.connect(self.ouvrirCC)
+        # Bouton pour ajouter d'une rangé dans Qtablechar
+        self.btnAjoutPers.clicked.connect(self.AjoutPers)
+        # Bouton pour supprimer la rangé Qtablechar
+        self.btnSuppPers.clicked.connect(self.SuppPers)
+
+        # Bouton pour ajouter une ranger dans la QtableCC
+        self.btnAjoutCC.clicked.connect(self.AjoutCC)
+        # Bouton pour supprimer une ranger dans la QtableCC
+        self.btnSuppCC.clicked.connect(self.SuppCC)
 
 
         # Désactiver tant que la cb de la section désiré n'est pas coché
@@ -112,7 +111,14 @@ class Window(Ui_Application, QDialog):
         self.linePwdEmp.setDisabled(True)
         self.comboAcces.setDisabled(True)
         self.QtableChar.setDisabled(True)
-        self.btnGestionPers.setDisabled(True)
+        self.btnAjoutPers.setDisabled(True)
+        self.linePwdClient.setDisabled(True)
+        self.dateInsc.setDisabled(True)
+        self.lineCourriel.setDisabled(True)
+        self.QtableCC.setDisabled(True)
+        self.btnAjoutCC.setDisabled(True)
+        self.btnSuppCC.setDisabled(True)
+        self.btnSuppPers.setDisabled(True)
 
         # Echomode pour les Password
         self.linePwdClient.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
@@ -120,13 +126,15 @@ class Window(Ui_Application, QDialog):
 
         # Checkbox si la personne est artiste, active la section Artiste si coché
         self.cbActeur.toggled.connect(self.QtableChar.setEnabled)
-        self.cbActeur.toggled.connect(self.btnGestionPers.setEnabled)
+        self.cbActeur.toggled.connect(self.btnAjoutPers.setEnabled)
+        self.cbActeur.toggled.connect(self.btnSuppPers.setEnabled)
         # Checkbox si la personne est Client, active la section client si coché
         self.cbClient.toggled.connect(self.QtableCC.setEnabled)
         self.cbClient.toggled.connect(self.dateInsc.setEnabled)
         self.cbClient.toggled.connect(self.lineCourriel.setEnabled)
         self.cbClient.toggled.connect(self.linePwdClient.setEnabled)
-        self.cbClient.toggled.connect(self.btnGestionCC.setEnabled)
+        self.cbClient.toggled.connect(self.btnAjoutCC.setEnabled)
+        self.cbClient.toggled.connect(self.btnSuppCC.setEnabled)
         # Checkbox si la personne est employé, active la section employé si coché
         self.cbEmploye.toggled.connect(self.dateEmb.setEnabled)
         self.cbEmploye.toggled.connect(self.lineUsername.setEnabled)
@@ -177,14 +185,16 @@ class Window(Ui_Application, QDialog):
         self.btnCharger.clicked.connect(self.charger)
 
         # Affichage des informations dans QtableCC
-        self.dataCC = pd.DataFrame(cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
-        self.modelCC = TableModelCC(self.dataCC)
-        self.QtableCC.setModel(self.modelCC)
+#        self.QtableCC.setItem(dataCC)
+#        self.QtableCC.setItem(row, column, QTableWidgetItem((dataCC[row][column])))
+#        self.dataCC = pd.DataFrame(cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
+#        self.modelCC = TableModel(self.dataCC)
+#        self.QtableCC.setModel(self.modelCC)
 
         # Affichage des informations dans QtableActeurs
-        self.dataActeurs = pd.DataFrame (acteurs.listeActeurs)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
-        self.modelActeurs = TableModelCC(self.dataActeurs) # changer le tableModel si besoin
-        self.QtableChar.setModel(self.modelActeurs)
+#        self.dataActeurs = pd.DataFrame (acteurs.listeActeurs)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
+#        self.modelActeurs = TableModel(self.dataActeurs) # changer le tableModel si besoin
+#        self.QtableChar.setModel(self.modelActeurs)
 
 
     #### Fonctions ####
@@ -317,8 +327,6 @@ class Window(Ui_Application, QDialog):
         }
 
         Personne.listePersonne.append(Personne_dict)
-#        Personne.listePersonne.extend(cartedeCredits.listCC)
-#        Personne.listePersonne.extend(acteurs.listeActeurs)
 
         # Reset des champs pour une nouvelle entrée
         self.linePrenom.setText("")
@@ -335,6 +343,9 @@ class Window(Ui_Application, QDialog):
         self.comboAcces.setCurrentIndex(1)
         print(Personne.listePersonne)
         self.PersonneUpdate()
+
+        #validation du courriel
+#        self.lineCourriel.setValidator(Validation.check)
 
     ### Personne suivante dans la liste de Personne ### TODO : à retravailler
     def suivantPers(self):
@@ -371,10 +382,8 @@ class Window(Ui_Application, QDialog):
         self.linePwdEmp.setText(Personne.listePersonne[Personne.positionPers]['empPwD']),
         self.comboAcces.setCurrentIndex(Personne.listePersonne[Personne.positionPers]['acces'])
 
-        # Affichage des informations dans QtableCC
-        self.dataCC = pd.DataFrame (cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
-        self.modelCC = TableModelCC(self.dataCC) # TODO : changer le tableModel si besoin
-        self.QtableCC.setModel(self.modelCC)
+        # Affichage des informations dans QtableCC TODO: refaire l'affichage
+
 
         Personne.positionPers += 1
 
@@ -385,7 +394,6 @@ class Window(Ui_Application, QDialog):
     ###Personne précédente dans la liste de Personne ### TODO : à retravailler
     def precedentPers(self):
         print(Personne.positionPers)
-        #        print(Personne.listePersonne[Personne.positionPers]['sexe'])
         self.linePrenom.setText(Personne.listePersonne[Personne.positionPers]['prenom'])
         self.lineNom.setText(Personne.listePersonne[Personne.positionPers]['nom'])
         if Personne.listePersonne[Personne.positionPers]['sexe'] == -2:
@@ -417,10 +425,8 @@ class Window(Ui_Application, QDialog):
         self.linePwdEmp.setText(Personne.listePersonne[Personne.positionPers]['empPwD']),
         self.comboAcces.setCurrentIndex(Personne.listePersonne[Personne.positionPers]['acces'])
 
-        # Affichage des informations dans QtableCC
-        self.dataCC = pd.DataFrame (cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
-        self.modelCC = TableModelCC(self.dataCC) # TODO :  changer le tableModel si besoin
-        self.QtableCC.setModel(self.modelCC)
+        # Affichage des informations dans QtableCC TODO: refaire l'affichage
+
 
         Personne.positionPers -= 1
 
@@ -462,15 +468,30 @@ class Window(Ui_Application, QDialog):
         self.UpdateFilm()
         self.PersonneUpdate()
 
-    ### ouvrir la fenêtre de modification des cartes de crédits
-    def ouvrirCC(self):
-        FenetreCC = WindowCC()
-        FenetreCC.exec_()
+    # Ajout d'une nouvelle rangée pour inscrire une nouvelle carte de crédit
+    def AjoutCC(self):
+        rowPosition = self.QtableCC.rowCount()
+        self.QtableCC.insertRow(rowPosition)
 
-    ### ouvrir la fenêtre de modification des cartes des acteurs
-    def ouvrirActeurs(self):
-        FenetreActeurs = WindowActeurs()
-        FenetreActeurs.exec_()
+    # Supprimer la rangée d'une carte de crédit TODO: Non-fonctionnel
+    def SuppCC(self):
+        model = self.model
+        indices = self.QtableCC.selectionModel().selectedRows()
+        for index in sorted(indices):
+            model.removeRow(index.row())
+
+
+     #Ajout d'une nouvelle rangée pour inscrire un nouveau personnage d'acteur
+    def AjoutPers(self):
+        rowPosition = self.QtableChar.rowCount()
+        self.QtableChar.insertRow(rowPosition)
+
+    # Supprimer la rangée d'un personnage d'acteur TODO: Non-fonctionnel
+    def SuppPers(self):
+        model = self.model
+        indices = self.QtableChar.selectionModel().selectedRows()
+        for index in sorted(indices):
+            model.removeRow(index.row())
 
 if __name__ == "__main__":
     import sys

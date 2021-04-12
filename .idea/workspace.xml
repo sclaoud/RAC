@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.21&#10;&#10;Ajout des lignes clients et employe dans la listePersonnes ainsi que des checkbox&#10;Reset des champs des sections employés/clients ainsi que les CB&#10;Recherche de solution pour l'affichage des données dans QtableCC... test de la class UpdateModel (QSortFilterProxyModel).&#10;&#10;---------------------------&#10;todo : &#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.30&#10;&#10;Remplacement des Qtableview pour fonctionner en Qtablewidget preconfigurer dans Qtdesigner (et peutêtre se débarasser de pandas et des table CC et Acteurs par l'occassion)&#10;&#10;---------------------------&#10;todo : &#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
+      <change afterPath="$PROJECT_DIR$/Tests/qtablewidgettest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/tab5.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/tab6.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final/TabGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/TABGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/classes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +59,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="two.files.diff.last.used.folder" value="$PROJECT_DIR$/venv" />
   </component>
   <component name="RecentsManager">
@@ -67,49 +72,7 @@
       <recent name="C:\Users\pcadmin\Documents\GitHub\RAC" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.qtableviewtest">
-    <configuration name="Fonctions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="RAC" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\pcadmin\Documents\GitHub\RAC\Final\Fonctions.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TabGUI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="RAC" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\pcadmin\Documents\GitHub\RAC\Final\TabGUI.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.main">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -215,13 +178,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="qtablewidgettest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="RAC" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/qtablewidgettest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.qtableviewtest" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.qtablewidgettest" />
         <item itemvalue="Python.pandastest" />
+        <item itemvalue="Python.qtableviewtest" />
         <item itemvalue="Python.cartedecredits" />
-        <item itemvalue="Python.Fonctions" />
       </list>
     </recent_temporary>
   </component>
@@ -402,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617738285689</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="0.21.1&#10;test">
+      <created>1617738457407</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1617738457407</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -440,7 +431,8 @@
     <MESSAGE value="0.19&#10;&#10;Work-in-progress : Ajoute des données des cartes de crédits en pandas.dataframes (apparaissent vident pour le moment)&#10;&#10;Idem pour la table qtableview.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
     <MESSAGE value="0.20&#10;&#10;Sauvegarde des données la fenêtre Acteurs dans la liste listeActeurs.&#10;Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs)&#10;Ajout des lignes clients et employe dans la listePersonnes (comboAcces a validé)&#10;&#10;---------------------------&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;- Valider les sous-listes acteurs et CC.&#10;- Sauvegarde/Chargement." />
     <MESSAGE value="0.21&#10;&#10;Ajout des lignes clients et employe dans la listePersonnes ainsi que des checkbox&#10;Reset des champs des sections employés/clients ainsi que les CB&#10;Recherche de solution pour l'affichage des données dans QtableCC... test de la class UpdateModel (QSortFilterProxyModel).&#10;&#10;---------------------------&#10;todo : &#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
-    <option name="LAST_COMMIT_MESSAGE" value="0.21&#10;&#10;Ajout des lignes clients et employe dans la listePersonnes ainsi que des checkbox&#10;Reset des champs des sections employés/clients ainsi que les CB&#10;Recherche de solution pour l'affichage des données dans QtableCC... test de la class UpdateModel (QSortFilterProxyModel).&#10;&#10;---------------------------&#10;todo : &#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
+    <MESSAGE value="0.21.1&#10;test" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.21.1&#10;test" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

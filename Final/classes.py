@@ -5,6 +5,7 @@ Emplacement des classes
 """
 from PyQt5 import QtCore
 from PyQt5.QtCore import Qt
+import re
 
 class Personne(object):
     "Personne"
@@ -72,7 +73,9 @@ class client (Personne):
 
 class cartedeCredits (client):
 
-    listCC = []
+    listCC = [
+        {'Numero': '7840 2654 4450', 'date': '2000-01-01', 'Codesecret': '658'}
+    ]
 
     def __init__(self, numeroCC, dateCC, codeCC):
         self._numeroCC = numeroCC
@@ -127,18 +130,6 @@ class TableModel(QtCore.QAbstractTableModel):
 
             if orientation == Qt.Vertical:
                 return str(self._data.index[section])
-
-    # Filtre de la QtableCC/QtableActeur
-class UpdateModel(QtCore.QSortFilterProxyModel):
-    def __init__(self):
-        super(UpdateModel, self).__init__()
-
-    def filterAcceptsRow(self, sourceRow, sourceParent):
-        print_when_odd_flag = self.cb_status
-        is_odd = True
-        index = self.sourceModel().index(sourceRow, 0, sourceParent)
-        print ("My Row Data: %s" % self.sourceModel().data(index, role=QtCore.Qt.DisplayRole))
-
 
     # class des acteurs, enfant de personne
 class acteurs (Personne):
@@ -282,10 +273,14 @@ class Film(object):
     def catFilm(self, catFilm):
         self._catFilm = catFilm
 
-#    @property
-#    def listeFilm(self):
-#        return self._listeFilm
+    # Validation
+class Validation:
 
-#    @listeFilm.setter
-#    def listeFilm(self, listeFilm):
-#        self._listeFilm = listeFilm
+    def __init__(self, email):
+        # pass the regular expression
+        # and the string in search() method
+        regex = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
+        if (re.search(regex, email)):
+            print("Courriel valide")
+        else:
+            print("Courriel invalide")
