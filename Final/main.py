@@ -7,10 +7,8 @@ Fichier des opérations entre les class et l'interface
 # Importation des modules
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QTableWidgetItem
-import pandas as pd
+#import pandas as pd
 
-from Acteurs import Ui_Acteurs
-from cartedecredits import Ui_UI_CC
 from TABGUI import Ui_Application
 from classes import *
 
@@ -151,6 +149,7 @@ class Window(Ui_Application, QDialog):
         self.btnSuivantFilm.clicked.connect(self.suivantFilm)
         # Entré une nouvelle personne
         self.btnNvPers.clicked.connect(self.NewEntrie)
+        self.btnNvPers.clicked.connect(Validation.check)
         # Bouton Précédent de la tab Personne
         self.btnPrecedent.clicked.connect(self.precedentPers)
         # Bouton Suivant de la tab Personne
@@ -183,19 +182,6 @@ class Window(Ui_Application, QDialog):
         self.btnSauvegarder.clicked.connect(self.sauvegarder)
         # Bouton de chargement des données
         self.btnCharger.clicked.connect(self.charger)
-
-        # Affichage des informations dans QtableCC
-#        self.QtableCC.setItem(dataCC)
-#        self.QtableCC.setItem(row, column, QTableWidgetItem((dataCC[row][column])))
-#        self.dataCC = pd.DataFrame(cartedeCredits.listCC)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
-#        self.modelCC = TableModel(self.dataCC)
-#        self.QtableCC.setModel(self.modelCC)
-
-        # Affichage des informations dans QtableActeurs
-#        self.dataActeurs = pd.DataFrame (acteurs.listeActeurs)# columns = ['Numero', 'Date d\'expiration', 'Code Secret'])
-#        self.modelActeurs = TableModel(self.dataActeurs) # changer le tableModel si besoin
-#        self.QtableChar.setModel(self.modelActeurs)
-
 
     #### Fonctions ####
 
@@ -344,8 +330,6 @@ class Window(Ui_Application, QDialog):
         print(Personne.listePersonne)
         self.PersonneUpdate()
 
-        #validation du courriel
-#        self.lineCourriel.setValidator(Validation.check)
 
     ### Personne suivante dans la liste de Personne ### TODO : à retravailler
     def suivantPers(self):
@@ -451,20 +435,11 @@ class Window(Ui_Application, QDialog):
 
     # Sauvegarde des données en CSV avec pandas TODO : à revoir
     def sauvegarder(self):
-        fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Sauvegarder", "%username%/Documents/Data.csv",
-                                                            "Fichiers csv (*.csv)")
-        if fileName:
-            df = pd.DataFrame(Film.listeFilm, Personne.listePersonne)
-            df.to_csv('data.csv')
-            print(fileName)
+        print(Personne.listePersonne)
 
     ### Chargement des données CSV TODO : à revoir
     def charger(self):
-        files, _ = QtWidgets.QFileDialog.getOpenFileNames(self,"QFileDialog.getOpenFileNames()", "", "Fichiers CSV (*.csv)")
-        if files:
-            df = pd.read_csv('data.csv', index_col='Personne', parse_dates='', header=0, names=['Prenom', 'Nom', 'Sexe'])
-#            Film.listeFilm, Personne.listePersonne = df
-            print(files)
+        print(Personne.listePersonne)
         self.UpdateFilm()
         self.PersonneUpdate()
 
