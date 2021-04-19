@@ -3,8 +3,9 @@
 Emplacement des classes
 
 """
-from PyQt5 import QtCore
+from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QMessageBox
 import re
 
 class Personne(object):
@@ -273,14 +274,3 @@ class Film(object):
     def catFilm(self, catFilm):
         self._catFilm = catFilm
 
-    # Validation
-class Validation:
-
-    def __init__(self, email):
-        # pass the regular expression
-        # and the string in search() method
-        regex = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
-        if (re.search(regex, email)):
-            print("Courriel valide")
-        else:
-            print("Courriel invalide")

@@ -6,6 +6,7 @@ Fichier des opérations entre les class et l'interface
 
 # Importation des modules
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QTableWidgetItem
 #import pandas as pd
 
@@ -149,7 +150,6 @@ class Window(Ui_Application, QDialog):
         self.btnSuivantFilm.clicked.connect(self.suivantFilm)
         # Entré une nouvelle personne
         self.btnNvPers.clicked.connect(self.NewEntrie)
-        self.btnNvPers.clicked.connect(Validation.check)
         # Bouton Précédent de la tab Personne
         self.btnPrecedent.clicked.connect(self.precedentPers)
         # Bouton Suivant de la tab Personne
@@ -285,6 +285,7 @@ class Window(Ui_Application, QDialog):
 
     ### Enregistrement de l'entré et remise à zero ### à retravailler
     def NewEntrie(self):
+
         Personne.prenom = self.linePrenom.text()
         Personne.nom = self.lineNom.text()
         Personne.sexe = self.sexeBtnG.checkedId()
@@ -296,39 +297,53 @@ class Window(Ui_Application, QDialog):
         employe.empPWD = self.linePwdEmp.text()
         employe.acces = self.comboAcces.currentIndex()
 
-        Personne_dict = {
-            'prenom': Personne.prenom,
-            'nom': Personne.nom,
-            'sexe': Personne.sexe,
-            'dateInsc': client.dateInsc,
-            'courriel': client.courriel,
-            'clientPwd' : client.clientPwd,
-            'dateEmb' : employe.dateEmb,
-            'username' : employe.username,
-            'empPwD' : employe.empPWD,
-            'acces' : employe.acces,
-            'cbClient' : self.cbClient.checkState(),
-            'cbActeur' : self.cbActeur.checkState(),
-            'cbEmploye' : self.cbEmploye.checkState()
-        }
+        email = client.courriel
+        regex = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
+        if re.search(regex, email):
+            print("Courriel valide")
 
-        Personne.listePersonne.append(Personne_dict)
+            Personne_dict = {
+                'prenom': Personne.prenom,
+                'nom': Personne.nom,
+                'sexe': Personne.sexe,
+                'dateInsc': client.dateInsc,
+                'courriel': client.courriel,
+                'clientPwd' : client.clientPwd,
+                'dateEmb' : employe.dateEmb,
+                'username' : employe.username,
+                'empPwD' : employe.empPWD,
+                'acces' : employe.acces,
+                'cbClient' : self.cbClient.checkState(),
+                'cbActeur' : self.cbActeur.checkState(),
+                'cbEmploye' : self.cbEmploye.checkState()
+            }
 
-        # Reset des champs pour une nouvelle entrée
-        self.linePrenom.setText("")
-        self.lineNom.setText("")
-        self.cbClient.setChecked(False)
-        self.cbEmploye.setChecked(False)
-        self.cbActeur.setChecked(False)
-        self.dateInsc.setDate(QtCore.QDate(2021, 1, 1))
-        self.lineCourriel.setText("")
-        self.linePwdClient.setText("")
-        self.dateEmb.setDate(QtCore.QDate(2021, 1, 1))
-        self.lineUsername.setText("")
-        self.linePwdEmp.setText("")
-        self.comboAcces.setCurrentIndex(1)
-        print(Personne.listePersonne)
-        self.PersonneUpdate()
+            Personne.listePersonne.append(Personne_dict)
+
+            # Reset des champs pour une nouvelle entrée
+            self.linePrenom.setText("")
+            self.lineNom.setText("")
+            self.cbClient.setChecked(False)
+            self.cbEmploye.setChecked(False)
+            self.cbActeur.setChecked(False)
+            self.dateInsc.setDate(QtCore.QDate(2021, 1, 1))
+            self.lineCourriel.setText("")
+            self.linePwdClient.setText("")
+            self.dateEmb.setDate(QtCore.QDate(2021, 1, 1))
+            self.lineUsername.setText("")
+            self.linePwdEmp.setText("")
+            self.comboAcces.setCurrentIndex(1)
+            print(Personne.listePersonne)
+            self.PersonneUpdate()
+
+        #Si validation incorrect
+        else:
+            courrielMsg = QMessageBox()
+            courrielMsg.setIcon(QMessageBox.Warning)
+            courrielMsg.setInformativeText("Courriel invalide")
+            courrielMsg.setWindowTitle("Courriel Invalide")
+            courrielMsg.exec()
+            print("Courriel invalide")
 
 
     ### Personne suivante dans la liste de Personne ### TODO : à retravailler
