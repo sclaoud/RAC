@@ -8,7 +8,7 @@ Fichier des opérations entre les class et l'interface
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import QRegExp
-from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QTableWidgetItem
+from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog
 import re
 
 from TABGUI import Ui_Application
@@ -294,7 +294,6 @@ class Window(Ui_Application, QDialog):
 
     ### Enregistrement de l'entré et remise à zero ### à retravailler
     def Validation(self):
-        print(self.sexeBtnG.checkedId())
         # inscription des informations dans les class correspondantes
         Personne.prenom = self.linePrenom.text()
         Personne.nom = self.lineNom.text()
@@ -307,7 +306,7 @@ class Window(Ui_Application, QDialog):
         employe.empPWD = self.linePwdEmp.text()
         employe.acces = self.comboAcces.currentIndex()
         # Valide si au moins les premières informations sont entrés
-        if self.linePrenom.text() and self.lineNom.text() and self.sexeBtnG.checkedButton():
+        while self.linePrenom.text() and self.lineNom.text() and self.sexeBtnG.checkedButton():
             # Si une des sections est coché, valider que celle-ci est remplie
             if self.cbClient.isChecked() or self.cbActeur.isChecked() or self.cbEmploye.isChecked():
                 # Si le checkbox de la section client est coché, validation que les champs sont remplies
@@ -324,18 +323,32 @@ class Window(Ui_Application, QDialog):
                             courrielMsg.setInformativeText("Courriel invalide")
                             courrielMsg.setWindowTitle("Courriel Invalide")
                             courrielMsg.exec()
-                            print("Courriel invalide")
+                            break
+
                     # Validation su le mot de passe correspont au standard de sécurité si vide skip
                     if self.linePwdClient.text():
                         password = client.clientPwd
                         if len(password) < 8:
                             print("Le mot de passe du client doit contenir au moins 8 caractères")
+                            break
                         elif re.search('[0-9]', password) is None:
                             print("Le mot de passe du client doit contenir au moins 1 chiffre")
+                            break
                         elif re.search('[A-Z]', password) is None:
                             print("Le mot de passe du client doit contenir au 1 majuscule")
+                            break
+                        elif self.lineCourriel.text():
+                            clientMsg = QMessageBox()
+                            clientMsg.setIcon(QMessageBox.Warning)
+                            clientMsg.setInformativeText("Un courriel est nécessaire pour le client")
+                            clientMsg.setWindowTitle("Avertissement")
+                            clientMsg.exec()
+                            break
                         else:
-                            print("Le mot de passe entré est correct")
+                            print("Le mot de passe entré est fonctionnel")
+                            self.enregistrement()
+                            break
+
                     # Message si des informations sont manquantes dans la section client
                     else:
                         clientMsg = QMessageBox()
@@ -343,17 +356,21 @@ class Window(Ui_Application, QDialog):
                         clientMsg.setInformativeText("Des informations sont manquantes dans la section client")
                         clientMsg.setWindowTitle("Avertissement")
                         clientMsg.exec()
+                        break
 
                 # Si le checkbox de la section Acteur est coché, validation que les champs sont remplies
                 if self.cbActeur.isChecked():
                     if self.cbActeur.isChecked():
                         print("A valider si des informations sont à inscrire")
+                        self.enregistrement()
+                        break
                     else:
                         clientMsg = QMessageBox()
                         clientMsg.setIcon(QMessageBox.Warning)
                         clientMsg.setInformativeText("Des informations sont manquantes dans la section acteur")
                         clientMsg.setWindowTitle("Avertissement")
                         clientMsg.exec()
+                        break
 
                 # Si le checkbox de la section employe est coché, validation que les champs sont remplies
                 if self.cbEmploye.isChecked():
@@ -365,23 +382,36 @@ class Window(Ui_Application, QDialog):
                            userMsg.setInformativeText("Le username de l'employé doit contenir au moins 8 caractères")
                            userMsg.setWindowTitle("Avertissement")
                            userMsg.exec()
+                           break
+
                     # Validation du mot de passe employe si vide skip
                     if self.linePwdClient.text():
                         password = employe.empPWD
                         if len(password) < 8:
                             print("Le mot de passe du client doit contenir au moins 8 caractères")
+                            break
                         elif re.search('[0-9]', password) is None:
                             print("Le mot de passe du client doit contenir au moins 1 chiffre")
+                            break
                         elif re.search('[A-Z]', password) is None:
                             print("Le mot de passe du client doit contenir au 1 majuscule")
+                            break
                         else:
-                            print("Le mot de passe entré est correct")
+                            print("Le mot de passe entrer est correct")
+                            self.enregistrement()
+                            break
+
                     else:
                         empMsg = QMessageBox()
                         empMsg.setIcon(QMessageBox.Warning)
                         empMsg.setInformativeText("Des informations sont manquantes dans la section employée")
                         empMsg.setWindowTitle("Avertissement")
                         empMsg.exec()
+                        break
+
+            else:
+                self.enregistrement()
+                break
 
 
         # Si des champs sont manquantes.
@@ -391,6 +421,8 @@ class Window(Ui_Application, QDialog):
             videMsg.setInformativeText("Des informations sont manquantes sur la personne")
             videMsg.setWindowTitle("Avertissement")
             videMsg.exec()
+
+
 
     def enregistrement(self):
         Personne_dict = {
