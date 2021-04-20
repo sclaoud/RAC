@@ -158,7 +158,7 @@ class Window(Ui_Application, QDialog):
         # Bouton Suivant de la tab Films
         self.btnSuivantFilm.clicked.connect(self.suivantFilm)
         # Entré une nouvelle personne
-        self.btnNvPers.clicked.connect(self.NewEntrie)
+        self.btnNvPers.clicked.connect(self.Validation)
         # Bouton Précédent de la tab Personne
         self.btnPrecedent.clicked.connect(self.precedentPers)
         # Bouton Suivant de la tab Personne
@@ -293,8 +293,9 @@ class Window(Ui_Application, QDialog):
         self.tabMain.setTabText(1, "Film ({})".format(len(Film.listeFilm)))
 
     ### Enregistrement de l'entré et remise à zero ### à retravailler
-    def NewEntrie(self):
-
+    def Validation(self):
+        print(self.sexeBtnG.checkedId())
+        # inscription des informations dans les class correspondantes
         Personne.prenom = self.linePrenom.text()
         Personne.nom = self.lineNom.text()
         Personne.sexe = self.sexeBtnG.checkedId()
@@ -305,56 +306,126 @@ class Window(Ui_Application, QDialog):
         employe.username = self.lineUsername.text()
         employe.empPWD = self.linePwdEmp.text()
         employe.acces = self.comboAcces.currentIndex()
+        # Valide si au moins les premières informations sont entrés
+        if self.linePrenom.text() and self.lineNom.text() and self.sexeBtnG.checkedButton():
+            # Si une des sections est coché, valider que celle-ci est remplie
+            if self.cbClient.isChecked() or self.cbActeur.isChecked() or self.cbEmploye.isChecked():
+                # Si le checkbox de la section client est coché, validation que les champs sont remplies
+                if self.cbClient.isChecked():
+                    # validation du courriel si vide skip
+                    if self.lineCourriel.text():
+                        regexmail = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
+                        if re.search(regexmail, client.courriel):
+                            print("Courriel valide")
+                        # Si courriel non valide
+                        else:
+                            courrielMsg = QMessageBox()
+                            courrielMsg.setIcon(QMessageBox.Warning)
+                            courrielMsg.setInformativeText("Courriel invalide")
+                            courrielMsg.setWindowTitle("Courriel Invalide")
+                            courrielMsg.exec()
+                            print("Courriel invalide")
+                    # Validation su le mot de passe correspont au standard de sécurité si vide skip
+                    if self.linePwdClient.text():
+                        password = client.clientPwd
+                        if len(password) < 8:
+                            print("Le mot de passe du client doit contenir au moins 8 caractères")
+                        elif re.search('[0-9]', password) is None:
+                            print("Le mot de passe du client doit contenir au moins 1 chiffre")
+                        elif re.search('[A-Z]', password) is None:
+                            print("Le mot de passe du client doit contenir au 1 majuscule")
+                        else:
+                            print("Le mot de passe entré est correct")
+                    # Message si des informations sont manquantes dans la section client
+                    else:
+                        clientMsg = QMessageBox()
+                        clientMsg.setIcon(QMessageBox.Warning)
+                        clientMsg.setInformativeText("Des informations sont manquantes dans la section client")
+                        clientMsg.setWindowTitle("Avertissement")
+                        clientMsg.exec()
 
-        #validation du courriel
-        regexmail = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
-        if re.search(regexmail, client.courriel):
-            print("Courriel valide")
+                # Si le checkbox de la section Acteur est coché, validation que les champs sont remplies
+                if self.cbActeur.isChecked():
+                    if self.cbActeur.isChecked():
+                        print("A valider si des informations sont à inscrire")
+                    else:
+                        clientMsg = QMessageBox()
+                        clientMsg.setIcon(QMessageBox.Warning)
+                        clientMsg.setInformativeText("Des informations sont manquantes dans la section acteur")
+                        clientMsg.setWindowTitle("Avertissement")
+                        clientMsg.exec()
+
+                # Si le checkbox de la section employe est coché, validation que les champs sont remplies
+                if self.cbEmploye.isChecked():
+                    # validation du username de l'employé si vide skip
+                    if self.lineUsername.text():
+                        if len(self.lineUsername.text()) < 8:
+                           userMsg = QMessageBox()
+                           userMsg.setIcon(QMessageBox.Warning)
+                           userMsg.setInformativeText("Le username de l'employé doit contenir au moins 8 caractères")
+                           userMsg.setWindowTitle("Avertissement")
+                           userMsg.exec()
+                    # Validation du mot de passe employe si vide skip
+                    if self.linePwdClient.text():
+                        password = employe.empPWD
+                        if len(password) < 8:
+                            print("Le mot de passe du client doit contenir au moins 8 caractères")
+                        elif re.search('[0-9]', password) is None:
+                            print("Le mot de passe du client doit contenir au moins 1 chiffre")
+                        elif re.search('[A-Z]', password) is None:
+                            print("Le mot de passe du client doit contenir au 1 majuscule")
+                        else:
+                            print("Le mot de passe entré est correct")
+                    else:
+                        empMsg = QMessageBox()
+                        empMsg.setIcon(QMessageBox.Warning)
+                        empMsg.setInformativeText("Des informations sont manquantes dans la section employée")
+                        empMsg.setWindowTitle("Avertissement")
+                        empMsg.exec()
 
 
-            Personne_dict = {
-                'prenom': Personne.prenom,
-                'nom': Personne.nom,
-                'sexe': Personne.sexe,
-                'dateInsc': client.dateInsc,
-                'courriel': client.courriel,
-                'clientPwd' : client.clientPwd,
-                'dateEmb' : employe.dateEmb,
-                'username' : employe.username,
-                'empPwD' : employe.empPWD,
-                'acces' : employe.acces,
-                'cbClient' : self.cbClient.checkState(),
-                'cbActeur' : self.cbActeur.checkState(),
-                'cbEmploye' : self.cbEmploye.checkState()
-            }
-
-            Personne.listePersonne.append(Personne_dict)
-
-            # Reset des champs pour une nouvelle entrée
-            self.linePrenom.setText("")
-            self.lineNom.setText("")
-            self.cbClient.setChecked(False)
-            self.cbEmploye.setChecked(False)
-            self.cbActeur.setChecked(False)
-            self.dateInsc.setDate(QtCore.QDate(2021, 1, 1))
-            self.lineCourriel.setText("")
-            self.linePwdClient.setText("")
-            self.dateEmb.setDate(QtCore.QDate(2021, 1, 1))
-            self.lineUsername.setText("")
-            self.linePwdEmp.setText("")
-            self.comboAcces.setCurrentIndex(1)
-            print(Personne.listePersonne)
-            self.PersonneUpdate()
-
-        #Si validation incorrect
+        # Si des champs sont manquantes.
         else:
-            courrielMsg = QMessageBox()
-            courrielMsg.setIcon(QMessageBox.Warning)
-            courrielMsg.setInformativeText("Courriel invalide")
-            courrielMsg.setWindowTitle("Courriel Invalide")
-            courrielMsg.exec()
-            print("Courriel invalide")
+            videMsg = QMessageBox()
+            videMsg.setIcon(QMessageBox.Warning)
+            videMsg.setInformativeText("Des informations sont manquantes sur la personne")
+            videMsg.setWindowTitle("Avertissement")
+            videMsg.exec()
 
+    def enregistrement(self):
+        Personne_dict = {
+            'prenom': Personne.prenom,
+            'nom': Personne.nom,
+            'sexe': Personne.sexe,
+            'dateInsc': client.dateInsc,
+            'courriel': client.courriel,
+            'clientPwd': client.clientPwd,
+            'dateEmb': employe.dateEmb,
+            'username': employe.username,
+            'empPwD': employe.empPWD,
+            'acces': employe.acces,
+            'cbClient': self.cbClient.checkState(),
+            'cbActeur': self.cbActeur.checkState(),
+            'cbEmploye': self.cbEmploye.checkState()
+        }
+
+        Personne.listePersonne.append(Personne_dict)
+
+        # Reset des champs pour une nouvelle entrée
+        self.linePrenom.setText("")
+        self.lineNom.setText("")
+        self.cbClient.setChecked(False)
+        self.cbEmploye.setChecked(False)
+        self.cbActeur.setChecked(False)
+        self.dateInsc.setDate(QtCore.QDate(2021, 1, 1))
+        self.lineCourriel.setText("")
+        self.linePwdClient.setText("")
+        self.dateEmb.setDate(QtCore.QDate(2021, 1, 1))
+        self.lineUsername.setText("")
+        self.linePwdEmp.setText("")
+        self.comboAcces.setCurrentIndex(1)
+        print(Personne.listePersonne)
+        self.PersonneUpdate()
 
     ### Personne suivante dans la liste de Personne ### TODO : à retravailler
     def suivantPers(self):

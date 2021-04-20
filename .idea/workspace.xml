@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.32&#10;&#10;Déplacement de la validation d'une classe à directement la fonction newEntrie pour validation avant l'enregistrement.  Courriel fait uniquement pour le moment, le reste à venir.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement. (courriel fonctionnel)&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
-      <change afterPath="$PROJECT_DIR$/Tests/testregex.py" afterDir="false" />
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.33&#10;&#10;Validation des lignes Prenom/nom avec setValidator.  Après vérification, les qlineedit avec cette fonction.  Validation des tables à venir.  Validation des champs vides à venir.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement. (courriel fonctionnel)&#10;- validation des champs vides.&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -411,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618851424727</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="0.33&#10;&#10;Validation des lignes Prenom/nom avec setValidator.  Après vérification, les qlineedit avec cette fonction.  Validation des tables à venir.  Validation des champs vides à venir.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement. (courriel fonctionnel)&#10;- validation des champs vides.&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
+      <created>1618924780706</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1618924780706</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -428,7 +433,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="0.002" />
     <MESSAGE value="0.004&#10;&#10;Recommencer pour la 2eme" />
     <MESSAGE value="0.006&#10;&#10;fighting avec la tab film" />
     <MESSAGE value="0.007&#10;&#10;fighting avec getter/setter" />
@@ -453,7 +457,8 @@
     <MESSAGE value="0.30&#10;&#10;Remplacement des Qtableview pour fonctionner en Qtablewidget preconfigurer dans Qtdesigner (et peutêtre se débarasser de pandas et des table CC et Acteurs par l'occassion).&#10;&#10;Modification/ajout des bouton d'ajouter et supression des row de la table QtableCC et QtablePers.&#10;&#10;Essai non concluant d'un validator de courriel avec regen.&#10;&#10;&#10;---------------------------&#10;todo : &#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
     <MESSAGE value="0.31&#10;&#10;Message d'erreur lors d'un courriel invalide fonctionne.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement.&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
     <MESSAGE value="0.32&#10;&#10;Déplacement de la validation d'une classe à directement la fonction newEntrie pour validation avant l'enregistrement.  Courriel fait uniquement pour le moment, le reste à venir.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement. (courriel fonctionnel)&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
-    <option name="LAST_COMMIT_MESSAGE" value="0.32&#10;&#10;Déplacement de la validation d'une classe à directement la fonction newEntrie pour validation avant l'enregistrement.  Courriel fait uniquement pour le moment, le reste à venir.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement. (courriel fonctionnel)&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
+    <MESSAGE value="0.33&#10;&#10;Validation des lignes Prenom/nom avec setValidator.  Après vérification, les qlineedit avec cette fonction.  Validation des tables à venir.  Validation des champs vides à venir.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement. (courriel fonctionnel)&#10;- validation des champs vides.&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
+    <option name="LAST_COMMIT_MESSAGE" value="0.33&#10;&#10;Validation des lignes Prenom/nom avec setValidator.  Après vérification, les qlineedit avec cette fonction.  Validation des tables à venir.  Validation des champs vides à venir.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement. (courriel fonctionnel)&#10;- validation des champs vides.&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
