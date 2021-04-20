@@ -3,10 +3,6 @@
 Emplacement des classes
 
 """
-from PyQt5 import QtCore, QtWidgets, QtGui
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMessageBox
-import re
 
 class Personne(object):
     "Personne"
@@ -104,7 +100,7 @@ class cartedeCredits (client):
     @codeCC.setter
     def codeCC(self, codeCC):
         self._codeCC = codeCC
-
+"""
     # Modele de Table source qui ne sera pas modifier
 class TableModel(QtCore.QAbstractTableModel):
 
@@ -130,7 +126,7 @@ class TableModel(QtCore.QAbstractTableModel):
                 return str(self._data.columns[section])
 
             if orientation == Qt.Vertical:
-                return str(self._data.index[section])
+                return str(self._data.index[section])"""
 
     # class des acteurs, enfant de personne
 class acteurs (Personne):

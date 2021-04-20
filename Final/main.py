@@ -7,8 +7,9 @@ Fichier des opérations entre les class et l'interface
 # Importation des modules
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QRegExpValidator
+from PyQt5.QtCore import QRegExp
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QTableWidgetItem
-#import pandas as pd
+import re
 
 from TABGUI import Ui_Application
 from classes import *
@@ -82,6 +83,12 @@ class Window(Ui_Application, QDialog):
         QDialog.__init__(self)
         self.setupUi(self)
 
+        #validation des lignes avec limitations textes/chiffres uniquements
+        regexText = QRegExpValidator(QRegExp(r'^[a-zA-Z]*$'))
+        regexnum = QRegExpValidator(QRegExp(r'[0-9]+'))
+        self.lineNom.setValidator(regexText)
+        self.linePrenom.setValidator(regexText)
+
         # Ajustement de la fenêtre QtableCC
         header = self.QtableCC.horizontalHeader()
         header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
@@ -139,6 +146,8 @@ class Window(Ui_Application, QDialog):
         self.cbEmploye.toggled.connect(self.lineUsername.setEnabled)
         self.cbEmploye.toggled.connect(self.linePwdEmp.setEnabled)
         self.cbEmploye.toggled.connect(self.comboAcces.setEnabled)
+
+
 
         # Fonction de fermeture 'closeEvent' lorsque l'on appui sur le bouton
         self.btnFermer.clicked.connect(self.closeEvent)
@@ -297,10 +306,11 @@ class Window(Ui_Application, QDialog):
         employe.empPWD = self.linePwdEmp.text()
         employe.acces = self.comboAcces.currentIndex()
 
-        email = client.courriel
-        regex = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
-        if re.search(regex, email):
+        #validation du courriel
+        regexmail = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
+        if re.search(regexmail, client.courriel):
             print("Courriel valide")
+
 
             Personne_dict = {
                 'prenom': Personne.prenom,

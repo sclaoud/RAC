@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.31&#10;&#10;Message d'erreur lors d'un courriel invalide fonctionne.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement.&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.32&#10;&#10;Déplacement de la validation d'une classe à directement la fonction newEntrie pour validation avant l'enregistrement.  Courriel fait uniquement pour le moment, le reste à venir.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement. (courriel fonctionnel)&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
+      <change afterPath="$PROJECT_DIR$/Tests/testregex.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/main.py" afterDir="false" />
@@ -82,27 +83,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="" />
       <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="cartedecredits" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="RAC" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Final" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Final/cartedecredits.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -195,13 +175,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="testregex" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="RAC" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/testregex.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.testregex" />
         <item itemvalue="Python.qtablewidgettest" />
         <item itemvalue="Python.pandastest" />
         <item itemvalue="Python.qtableviewtest" />
-        <item itemvalue="Python.cartedecredits" />
       </list>
     </recent_temporary>
   </component>
@@ -403,7 +404,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618434040772</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="0.32&#10;&#10;Déplacement de la validation d'une classe à directement la fonction newEntrie pour validation avant l'enregistrement.  Courriel fait uniquement pour le moment, le reste à venir.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement. (courriel fonctionnel)&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
+      <created>1618851424727</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1618851424727</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -444,7 +452,8 @@
     <MESSAGE value="0.21.1&#10;test" />
     <MESSAGE value="0.30&#10;&#10;Remplacement des Qtableview pour fonctionner en Qtablewidget preconfigurer dans Qtdesigner (et peutêtre se débarasser de pandas et des table CC et Acteurs par l'occassion).&#10;&#10;Modification/ajout des bouton d'ajouter et supression des row de la table QtableCC et QtablePers.&#10;&#10;Essai non concluant d'un validator de courriel avec regen.&#10;&#10;&#10;---------------------------&#10;todo : &#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
     <MESSAGE value="0.31&#10;&#10;Message d'erreur lors d'un courriel invalide fonctionne.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement.&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
-    <option name="LAST_COMMIT_MESSAGE" value="0.31&#10;&#10;Message d'erreur lors d'un courriel invalide fonctionne.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement.&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
+    <MESSAGE value="0.32&#10;&#10;Déplacement de la validation d'une classe à directement la fonction newEntrie pour validation avant l'enregistrement.  Courriel fait uniquement pour le moment, le reste à venir.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement. (courriel fonctionnel)&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
+    <option name="LAST_COMMIT_MESSAGE" value="0.32&#10;&#10;Déplacement de la validation d'une classe à directement la fonction newEntrie pour validation avant l'enregistrement.  Courriel fait uniquement pour le moment, le reste à venir.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement. (courriel fonctionnel)&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
