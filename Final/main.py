@@ -325,8 +325,8 @@ class Window(Ui_Application, QDialog):
                             courrielMsg.exec()
                             break
 
-                    # Validation su le mot de passe correspont au standard de sécurité si vide skip
-                    if self.linePwdClient.text():
+                    # Validation su le mot de passe correspont au standard de sécurité si vide skip mais nécessite aussi la présence d'un courriel
+                    if self.linePwdClient.text() and self.lineCourriel.text():
                         password = client.clientPwd
                         if len(password) < 8:
                             print("Le mot de passe du client doit contenir au moins 8 caractères")
@@ -336,13 +336,6 @@ class Window(Ui_Application, QDialog):
                             break
                         elif re.search('[A-Z]', password) is None:
                             print("Le mot de passe du client doit contenir au 1 majuscule")
-                            break
-                        elif self.lineCourriel.text():
-                            clientMsg = QMessageBox()
-                            clientMsg.setIcon(QMessageBox.Warning)
-                            clientMsg.setInformativeText("Un courriel est nécessaire pour le client")
-                            clientMsg.setWindowTitle("Avertissement")
-                            clientMsg.exec()
                             break
                         else:
                             print("Le mot de passe entré est fonctionnel")
