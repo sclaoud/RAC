@@ -329,6 +329,7 @@ class Window(Ui_Application, QDialog):
                     if self.linePwdClient.text() and self.lineCourriel.text():
                         password = client.clientPwd
                         if len(password) < 8:
+
                             print("Le mot de passe du client doit contenir au moins 8 caractères")
                             break
                         elif re.search('[0-9]', password) is None:
