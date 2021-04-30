@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.21&#10;&#10;Ajout des lignes clients et employe dans la listePersonnes ainsi que des checkbox&#10;Reset des champs des sections employés/clients ainsi que les CB&#10;Recherche de solution pour l'affichage des données dans QtableCC... test de la class UpdateModel (QSortFilterProxyModel).&#10;&#10;---------------------------&#10;todo : &#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
+      <change afterPath="$PROJECT_DIR$/Final/data.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/RAC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RAC.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/testregex.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/testregex.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

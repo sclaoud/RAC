@@ -9,8 +9,8 @@ from pathlib import Path
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QRegExpValidator
-from PyQt5.QtCore import QRegExp
-from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog
+from PyQt5.QtCore import QRegExp, QDir
+from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog
 import re
 import csv
 
@@ -558,27 +558,44 @@ class Window(Ui_Application, QDialog):
             return True
         return False
 
-    # Sauvegarde des données en CSV avec pandas TODO : à revoir
+    # Sauvegarde des données en CSV avec module CSV
     def sauvegarder(self):
-
-        file_path = Path.home() / "data.csv"
-        with file_path.open(mode="w", encoding="utf-8", newline="") as file:
-            writer = csv.writer(file)
-            for Personne.listePersonne in Personne.listePersonne[Personne.positionPers]:
-                writer.writerow(Personne.listePersonne)
-        file.close()
+        # si la liste est vide, envoi un message d'erreur
+        if not Personne.listePersonne :
+            userMsg = QMessageBox()
+            userMsg.setIcon(QMessageBox.Warning)
+            userMsg.setInformativeText("Il ni a pas de données à sauvegarder")
+            userMsg.setWindowTitle("Avertissement")
+            userMsg.exec()
+        # sauvegarde en fichier csv des listes personnes et film.
+        if Personne.listePersonne:
+            fileSave, _ = QFileDialog.getSaveFileName(self, "Sauvegarde", QDir.homePath() + "/data.csv",
+                                                     "CSV files(*.csv);;All Files (*)")
+            if fileSave:
+                with open(fileSave, mode="w", encoding="utf-8", newline="") as file:
+                    writer = csv.writer(file, dialect='excel')
+                    writer.writerow(Personne.listePersonne)
+                    writer.writerow(Film.listeFilm)
+                file.close()
 
 
     ### Chargement des données CSV TODO : à revoir
     def charger(self):
+        fileLoad, _ = QFileDialog.getOpenFileNames(self,"Chargement des données", (QDir.homePath()),"CSV Files (*.csv);;All Files (*)")
+
         file_path = Path.home() / "data.csv"
         file = file_path.open(mode="r", encoding="utf-8", newline="")
         reader = csv.reader(file)
-        for row in reader:
+        row1 = next(reader)
+        Personne.listePersonne = row1
+        print (Personne.listePersonne)
+#            int_row = [int(value) for value in row]
+#            Personne.listePersonne.append(int_row)
+#        for row in reader:
             # convertir les rangés en list d'integer
-            int_row= [int(value) for value in row]
+#            int_row= [int(value) for value in row]
             #Append la liste d'integers à Personne.listePersonne
-            Personne.listePersonne.append(int_row)
+#            Personne.listePersonne.append(int_row)
 
         self.UpdateFilm()
         self.PersonneUpdate()
