@@ -5,11 +5,14 @@ Fichier des opérations entre les class et l'interface
 """
 
 # Importation des modules
+from pathlib import Path
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import QRegExp
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog
 import re
+import csv
 
 from TABGUI import Ui_Application
 from classes import *
@@ -557,11 +560,26 @@ class Window(Ui_Application, QDialog):
 
     # Sauvegarde des données en CSV avec pandas TODO : à revoir
     def sauvegarder(self):
-        print(Personne.listePersonne)
+
+        file_path = Path.home() / "data.csv"
+        with file_path.open(mode="w", encoding="utf-8", newline="") as file:
+            writer = csv.writer(file)
+            for Personne.listePersonne in Personne.listePersonne[Personne.positionPers]:
+                writer.writerow(Personne.listePersonne)
+        file.close()
+
 
     ### Chargement des données CSV TODO : à revoir
     def charger(self):
-        print(Personne.listePersonne)
+        file_path = Path.home() / "data.csv"
+        file = file_path.open(mode="r", encoding="utf-8", newline="")
+        reader = csv.reader(file)
+        for row in reader:
+            # convertir les rangés en list d'integer
+            int_row= [int(value) for value in row]
+            #Append la liste d'integers à Personne.listePersonne
+            Personne.listePersonne.append(int_row)
+
         self.UpdateFilm()
         self.PersonneUpdate()
 
