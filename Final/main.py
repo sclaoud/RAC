@@ -459,7 +459,6 @@ class Window(Ui_Application, QDialog):
     ### Personne suivante dans la liste de Personne ### TODO : à retravailler
     def suivantPers(self):
         print(Personne.positionPers)
-#        print(Personne.listePersonne[Personne.positionPers]['sexe'])
         self.linePrenom.setText(Personne.listePersonne[Personne.positionPers]['prenom'])
         self.lineNom.setText(Personne.listePersonne[Personne.positionPers]['nom'])
         if Personne.listePersonne[Personne.positionPers]['sexe'] == -2:
@@ -589,13 +588,10 @@ class Window(Ui_Application, QDialog):
         row1 = next(reader)
         Personne.listePersonne = row1
         print (Personne.listePersonne)
-#            int_row = [int(value) for value in row]
-#            Personne.listePersonne.append(int_row)
-#        for row in reader:
-            # convertir les rangés en list d'integer
-#            int_row= [int(value) for value in row]
-            #Append la liste d'integers à Personne.listePersonne
-#            Personne.listePersonne.append(int_row)
+        row2 = next(reader)
+        Film.listeFilm = row2
+        print (Film.listeFilm)
+
 
         self.UpdateFilm()
         self.PersonneUpdate()
