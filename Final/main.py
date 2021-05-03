@@ -583,10 +583,12 @@ class Window(Ui_Application, QDialog):
         fileLoad, _ = QFileDialog.getOpenFileNames(self,"Chargement des données", (QDir.homePath()),"CSV Files (*.csv);;All Files (*)")
 
         file_path = Path.home() / "data.csv"
-        file = file_path.open(mode="r", encoding="utf-8", newline="")
-        reader = csv.reader(file)
+        file = file_path.open(mode="r", encoding="utf-8")
+#https://docs.python.org/3/library/csv.html
+        reader = csv.reader(file, delimiter=',', escapechar='\\')
         row1 = next(reader)
         Personne.listePersonne = row1
+        Personne.positionPers = row1()
         print (Personne.listePersonne)
         row2 = next(reader)
         Film.listeFilm = row2
