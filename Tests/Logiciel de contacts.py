@@ -44,6 +44,7 @@ class monApp:
         self.ListeDePersonnes = pickle.load(fichier)
         fichier.close()
         self.contactsUpdate()
+        print (self.ListeDePersonnes)
        
 
     def nouvellePersonne(self):

@@ -492,7 +492,7 @@ class Window(Ui_Application, QDialog):
 
         # Affichage des informations dans QtableCC TODO: refaire l'affichage
 
-
+        print (Personne.listePersonne)
         Personne.positionPers += 1
 
         if Personne.positionPers == len(Personne.listePersonne):
@@ -566,34 +566,46 @@ class Window(Ui_Application, QDialog):
             userMsg.setInformativeText("Il ni a pas de données à sauvegarder")
             userMsg.setWindowTitle("Avertissement")
             userMsg.exec()
+
         # sauvegarde en fichier csv des listes personnes et film.
         if Personne.listePersonne:
             fileSave, _ = QFileDialog.getSaveFileName(self, "Sauvegarde", QDir.homePath() + "/data.csv",
                                                      "CSV files(*.csv);;All Files (*)")
+
             if fileSave:
                 with open(fileSave, mode="w", encoding="utf-8", newline="") as file:
-                    writer = csv.writer(file, dialect='excel')
+                    writer = csv.DictWriter(file, dialect='excel', delimiter=",", fieldnames=[])
+#                    writer.writeheader()
                     writer.writerow(Personne.listePersonne)
-                    writer.writerow(Film.listeFilm)
+
                 file.close()
+
+#        # sauvegarde en fichier csv des listes personnes et film.
+#        if Personne.listePersonne:
+#            fileSave, _ = QFileDialog.getSaveFileName(self, "Sauvegarde", QDir.homePath() + "/data.csv",
+#                                                     "CSV files(*.csv);;All Files (*)")
+#            if fileSave:
+#                with open(fileSave, mode="w", encoding="utf-8", newline="") as file:
+#                    writer = csv.writer(file, dialect='excel')
+#                    writer.writerow(Personne.listePersonne)
+#                   writer.writerow(Film.listeFilm)
+#                file.close()
 
 
     ### Chargement des données CSV TODO : à revoir
     def charger(self):
         fileLoad, _ = QFileDialog.getOpenFileNames(self,"Chargement des données", (QDir.homePath()),"CSV Files (*.csv);;All Files (*)")
 
-        file_path = Path.home() / "data.csv"
-        file = file_path.open(mode="r", encoding="utf-8")
-#https://docs.python.org/3/library/csv.html
-        reader = csv.reader(file, delimiter=',', escapechar='\\')
-        row1 = next(reader)
-        Personne.listePersonne = row1
-        Personne.positionPers = row1()
-        print (Personne.listePersonne)
-        row2 = next(reader)
-        Film.listeFilm = row2
-        print (Film.listeFilm)
-
+#        file = file_path.open(mode="r", encoding="utf-8")
+        with open(fileLoad, 'r', encoding="utf-8") as file:
+            reader = csv.reader(file, delimiter=',', quotechar='"', escapechar='\\')
+            row1 = next(reader)
+            Personne.listePersonne = row1
+        print(Personne.listePersonne)
+#        print (Personne.listePersonne)
+#        row2 = next(reader)
+#        Film.listeFilm = row2
+#        print (Film.listeFilm)
 
         self.UpdateFilm()
         self.PersonneUpdate()
