@@ -5,15 +5,13 @@ Fichier des opérations entre les class et l'interface
 """
 
 # Importation des modules
-from pathlib import Path
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import QRegExp, QDir
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog
 import re
 import csv
-import sqlite3
+import pandas as pd
 
 from TABGUI import Ui_Application
 from classes import *
@@ -83,6 +81,7 @@ class WindowActeurs(Ui_Acteurs, QDialog):
 
     # Fenêtre principale
 class Window(Ui_Application, QDialog):
+
     def __init__(self):
         QDialog.__init__(self)
         self.setupUi(self)
@@ -560,6 +559,8 @@ class Window(Ui_Application, QDialog):
 
     # Sauvegarde des données en CSV avec module CSV
     def sauvegarder(self):
+
+        df = pd.DataFrame
         # si la liste est vide, envoi un message d'erreur
         if not Personne.listePersonne :
             userMsg = QMessageBox()
@@ -568,27 +569,23 @@ class Window(Ui_Application, QDialog):
             userMsg.setWindowTitle("Avertissement")
             userMsg.exec()
 
-        if Personne.listePersonne:
-            con = sqlite3.connect('data.db')
-            cur = con.cursor()
-            # Create table
-            cur.execute('''CREATE TABLE stocks
-                           (Prenom, Nom)''')
-            # Insert a row of data
-            cur.execute("INSERT INTO stocks VALUES ('Personne.prenom','Personne.nom')")
-            # Sauvegarder les changements puis fermer la connection.
-            con.commit()
-            con.close()
 
-#        # sauvegarde en fichier csv des listes personnes et film.
-#        if Personne.listePersonne:
-#            fileSave, _ = QFileDialog.getSaveFileName(self, "Sauvegarde", QDir.homePath() + "/data.csv",
-#                                                     "CSV files(*.csv);;All Files (*)")
+        # sauvegarde en fichier csv des listes personnes et film.
+        if Personne.listePersonne:
+            fileSave, _ = QFileDialog.getSaveFileName(self, "Sauvegarde", QDir.homePath() + "/data.csv",
+                                                     "CSV files(*.csv);;All Files (*)")
+            if fileSave:
+                df.to_csv(Personne.listePersonne)
+
+
+        # sauvegarde en fichier csv des listes personnes et film.
+
 #            if fileSave:
+#                keys = Personne.listePersonne[0].keys()
 #                with open(fileSave, mode="w", encoding="utf-8", newline="") as file:
-#                    writer = csv.writer(file, dialect='excel')
-#                    writer.writerow(Personne.listePersonne)
-#                   writer.writerow(Film.listeFilm)
+#                    dict_writer = csv.DictWriter(file, keys, dialect='excel')
+#                    dict_writer.writeheader()
+#                    dict_writer.writerows(Personne.listePersonne)
 #                file.close()
 
 

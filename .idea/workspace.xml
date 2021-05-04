@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.37.2&#10;https://docs.python.org/3/library/csv.html&#10;Chargement des données créer une list de dict au lieu de simplement ajouter les variables en dict...&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
-      <change beforePath="$PROJECT_DIR$/.idea/RAC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RAC.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/classes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.37.5&#10;Revalidation de la facon de sauvegarder les données.  retesté pandas pour la sauvegarde en csv&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -461,7 +455,35 @@
       <option name="project" value="LOCAL" />
       <updated>1620002893764</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="0.37.5&#10;Revalidation de la facon de sauvegarder les données... retest de pandas&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
+      <created>1620158562299</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1620158562299</updated>
+    </task>
+    <task id="LOCAL-00037" summary="0.37.5&#10;Revalidation de la facon de sauvegarder les données... retest de pandas&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
+      <created>1620158579109</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1620158579109</updated>
+    </task>
+    <task id="LOCAL-00038" summary="0.37.5&#10;Revalidation de la facon de sauvegarder les données.  retesté pandas pour la sauvegarde en csv&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
+      <created>1620158688397</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1620158688397</updated>
+    </task>
+    <task id="LOCAL-00039" summary="0.37.5&#10;Revalidation de la facon de sauvegarder les données.  retesté pandas pour la sauvegarde en csv&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
+      <created>1620158817214</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1620158817214</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,8 +500,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="0.011&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)" />
-    <MESSAGE value="0.012&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)" />
     <MESSAGE value="0.1&#10;&#10;TabFilm complété et revampage de la tabPersonne avec des Qlistview.  Repartir à zero avec une GUI qui j'espères sera final." />
     <MESSAGE value="0.11&#10;&#10;Le fait de travailler dans plusieurs fichiers brise les références.  Il est nécessaire de réparer ceux-ci avant de poursuivre." />
     <MESSAGE value="0.12&#10;&#10;Réparer le code brisé par la nouvelle façon de travailler (main/classes/TabGUI)" />
@@ -503,6 +523,8 @@
     <MESSAGE value="0.36&#10;&#10;Tests de sauvegarde/chargement non concluants mais progressif.&#10;&#10;---------------------------&#10;todo : &#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
     <MESSAGE value="0.37.1&#10;&#10;Chargement des données créer une list de dict au lieu de simplement ajouter les variables en dict...&#10;&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
     <MESSAGE value="0.37.2&#10;https://docs.python.org/3/library/csv.html&#10;Chargement des données créer une list de dict au lieu de simplement ajouter les variables en dict...&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
-    <option name="LAST_COMMIT_MESSAGE" value="0.37.2&#10;https://docs.python.org/3/library/csv.html&#10;Chargement des données créer une list de dict au lieu de simplement ajouter les variables en dict...&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
+    <MESSAGE value="0.37.5&#10;Revalidation de la facon de sauvegarder les données... retest de pandas&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
+    <MESSAGE value="0.37.5&#10;Revalidation de la facon de sauvegarder les données.  retesté pandas pour la sauvegarde en csv&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
+    <option name="LAST_COMMIT_MESSAGE" value="0.37.5&#10;Revalidation de la facon de sauvegarder les données.  retesté pandas pour la sauvegarde en csv&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
   </component>
 </project>
