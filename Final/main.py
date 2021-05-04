@@ -13,6 +13,7 @@ from PyQt5.QtCore import QRegExp, QDir
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog
 import re
 import csv
+import sqlite3
 
 from TABGUI import Ui_Application
 from classes import *
@@ -567,18 +568,17 @@ class Window(Ui_Application, QDialog):
             userMsg.setWindowTitle("Avertissement")
             userMsg.exec()
 
-        # sauvegarde en fichier csv des listes personnes et film.
         if Personne.listePersonne:
-            fileSave, _ = QFileDialog.getSaveFileName(self, "Sauvegarde", QDir.homePath() + "/data.csv",
-                                                     "CSV files(*.csv);;All Files (*)")
-
-            if fileSave:
-                with open(fileSave, mode="w", encoding="utf-8", newline="") as file:
-                    writer = csv.DictWriter(file, dialect='excel', delimiter=",", fieldnames=[])
-#                    writer.writeheader()
-                    writer.writerow(Personne.listePersonne)
-
-                file.close()
+            con = sqlite3.connect('data.db')
+            cur = con.cursor()
+            # Create table
+            cur.execute('''CREATE TABLE stocks
+                           (Prenom, Nom)''')
+            # Insert a row of data
+            cur.execute("INSERT INTO stocks VALUES ('Personne.prenom','Personne.nom')")
+            # Sauvegarder les changements puis fermer la connection.
+            con.commit()
+            con.close()
 
 #        # sauvegarde en fichier csv des listes personnes et film.
 #        if Personne.listePersonne:

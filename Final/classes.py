@@ -10,6 +10,7 @@ class Personne(object):
 
     listePersonne = []
     positionPers = 0
+    pdict = {}
 
     def __init__(self, prenom, nom, sexe, parent=None):
         super().__init__(parent)
