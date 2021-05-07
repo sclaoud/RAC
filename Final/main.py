@@ -10,7 +10,7 @@ from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import QRegExp, QDir
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog
 import re
-import csv
+import openpyxl
 import pandas as pd
 
 from TABGUI import Ui_Application
@@ -112,6 +112,8 @@ class Window(Ui_Application, QDialog):
         self.btnAjoutCC.clicked.connect(self.AjoutCC)
         # Bouton pour supprimer une ranger dans la QtableCC
         self.btnSuppCC.clicked.connect(self.SuppCC)
+        # Bouton pour supprimer une ranger dans la QtableCC
+        self.btnModPers.clicked.connect(self.Modif)
 
 
         # Désactiver tant que la cb de la section désiré n'est pas coché
@@ -557,10 +559,9 @@ class Window(Ui_Application, QDialog):
             return True
         return False
 
-    # Sauvegarde des données en CSV avec module CSV
+    # Sauvegarde des données en excel avec Pandas
     def sauvegarder(self):
 
-        df = pd.DataFrame
         # si la liste est vide, envoi un message d'erreur
         if not Personne.listePersonne :
             userMsg = QMessageBox()
@@ -569,40 +570,37 @@ class Window(Ui_Application, QDialog):
             userMsg.setWindowTitle("Avertissement")
             userMsg.exec()
 
-
         # sauvegarde en fichier csv des listes personnes et film.
         if Personne.listePersonne:
-            fileSave, _ = QFileDialog.getSaveFileName(self, "Sauvegarde", QDir.homePath() + "/data.csv",
-                                                     "CSV files(*.csv);;All Files (*)")
-            if fileSave:
-                df.to_csv(Personne.listePersonne)
+            fileSave, _ = QFileDialog.getSaveFileName(self, "Sauvegarde", QDir.homePath() + "/data.xlsx",
+                                                     "XLSM files(*.xlsx);;All Files (*)")
 
-
-        # sauvegarde en fichier csv des listes personnes et film.
-
-#            if fileSave:
-#                keys = Personne.listePersonne[0].keys()
-#                with open(fileSave, mode="w", encoding="utf-8", newline="") as file:
-#                    dict_writer = csv.DictWriter(file, keys, dialect='excel')
-#                    dict_writer.writeheader()
-#                    dict_writer.writerows(Personne.listePersonne)
-#                file.close()
+        if fileSave:
+            dfp = pd.DataFrame(Personne.listePersonne)
+            dff = pd.DataFrame(Film.listeFilm)
+            writer = pd.ExcelWriter(fileSave)
+            dfp.to_excel(writer, sheet_name='Info', index=False)
+            dff.to_excel(writer, sheet_name='Film', index=False)
+            writer.save()
 
 
     ### Chargement des données CSV TODO : à revoir
     def charger(self):
-        fileLoad, _ = QFileDialog.getOpenFileNames(self,"Chargement des données", (QDir.homePath()),"CSV Files (*.csv);;All Files (*)")
+        fileLoad, _ = QFileDialog.getOpenFileName(self,"Chargement des données", (QDir.homePath()),"XLSX Files *.xlsx")
 
-#        file = file_path.open(mode="r", encoding="utf-8")
-        with open(fileLoad, 'r', encoding="utf-8") as file:
-            reader = csv.reader(file, delimiter=',', quotechar='"', escapechar='\\')
-            row1 = next(reader)
-            Personne.listePersonne = row1
-        print(Personne.listePersonne)
-#        print (Personne.listePersonne)
-#        row2 = next(reader)
-#        Film.listeFilm = row2
-#        print (Film.listeFilm)
+        if fileLoad:
+            with open(fileLoad, 'r') as file:
+                xl = pd.read_excel()
+                print (xl)
+#            import os
+#            print(os.getcwd())
+#            print(os.listdir())
+
+
+#            df = pd.read_excel('data.xlsx', engine=xlrd)
+#            Personne.listePersonne = df
+#            list_values = df.values.tolist()
+#            Personne.listePersonne = [list(list_values)]
 
         self.UpdateFilm()
         self.PersonneUpdate()
@@ -631,6 +629,9 @@ class Window(Ui_Application, QDialog):
         indices = self.QtableChar.selectionModel().selectedRows()
         for index in sorted(indices):
             model.removeRow(index.row())
+
+    def Modif(self):
+        print (Personne.listePersonne)
 
 if __name__ == "__main__":
     import sys
