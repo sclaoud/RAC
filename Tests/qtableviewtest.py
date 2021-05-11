@@ -1,83 +1,72 @@
-import sys, os
-from PyQt5 import QtCore, QtGui, QtWidgets
-app=QtWidgets.QApplication(sys.argv)
+# Import necessary modules
+import sys
+from PyQt5.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QDesktopWidget
 
-class TableModel(QtCore.QAbstractTableModel):
-    def __init__(self):
-        QtCore.QAbstractTableModel.__init__(self)
-        self.items=['One','Two','Three','Four','Five','Six','Seven']
-
-    def rowCount(self, parent=QtCore.QModelIndex()):
-        return len(self.items)
-    def columnCount(self, index=QtCore.QModelIndex()):
-        return 1
-
-    def data(self, index, role):
-        if not index.isValid() or not (0<=index.row()<len(self.items)):
-            return QtCore.QVariant()
-
-        item=str(self.items[index.row()])
-
-        if role==QtCore.Qt.DisplayRole:
-            return item
-        else:
-            return QtCore.QVariant()
+# Declare a dictionary variable with marks
+marks = {'CSE-401': [78, 93, 67, 88, 78],
+         'CSE-404': [90, 59, 82, 73, 89],
+         'CSE-406': [81, 80, 74, 83, 67],
+         'CSE-407': [81, 80, 98, 83, 72]}
 
 
-class MySortFilterProxyModel(QtCore.QSortFilterProxyModel):
-    def __init__(self):
-        super(MySortFilterProxyModel, self).__init__()
-        self.cb_status=True
+class TableFromList(QTableWidget):
+    def __init__(self, data, *args):
+        # Call parent constructor
+        QTableWidget.__init__(self, *args)
 
-    def cbChanged(self, arg=None):
-        self.cb_status=arg
-        print (self.cb_status)
-        self.invalidateFilter()
+        # Declare a list of the student IDS
+        self.ID_list = ['0189945', '0154590', '0196734', '0185611', '0178956']
+        # Set the necessary configurations fot the table
+        self.data = data
+        self.resizeColumnsToContents()
+        self.resizeRowsToContents()
+        self.setColumnWidth(0, 100)
+        for i in range(4):
+            self.setColumnWidth(i, 80)
+        self.setMinimumWidth(400)
+        self.setWindowTitle("Mark Sheet")
 
-    def filterAcceptsRow(self, sourceRow, sourceParent):
-        print_when_odd_flag = self.cb_status
-        is_odd = True
-        index = self.sourceModel().index(sourceRow, 0, sourceParent)
-        print ("My Row Data: %s" % self.sourceModel().data(index, role=QtCore.Qt.DisplayRole))
+        # Declare the variable to set the header content
+        headers = []
+        headers.append('')
+        # for loop to read the keys of the dictionary
+        for n, key in enumerate(sorted(self.data.keys())):
+            headers.append(key)
+            # for loop to read the values of the dictionary
+            for m, item in enumerate(self.data[key]):
+                ID = QTableWidgetItem(self.ID_list[m])
+                self.setItem(m, 0, ID)
+                newVal = QTableWidgetItem(str(item))
+                self.setItem(m, n+1, newVal)
 
-        if (sourceRow + 1) % 2 == 0:
-            is_odd = False
+        # Set the header label of the table
+        self.setHorizontalHeaderLabels(headers)
 
-        if print_when_odd_flag:
-            if is_odd:
-                return True
-            else:
-                return False
-        else:
-            if not is_odd:
-                return True
-            else:
-                return False
+        # Set the tooltips for the headers
+        self.horizontalHeaderItem(1).setToolTip("Multimedia ")
+        self.horizontalHeaderItem(2).setToolTip("Artificial Intelligent")
+        self.horizontalHeaderItem(3).setToolTip("Advanced Database")
+        self.horizontalHeaderItem(4).setToolTip("Unix Programming")
 
+        # Read the particular cell value
+        self.clicked.connect(self.on_click)
 
-class Window(QtWidgets.QWidget):
-    def __init__(self):
-        super(Window, self).__init__()
-        mainLayout=QtWidgets.QHBoxLayout()
-        self.setLayout(mainLayout)
-
-        self.viewA=QtWidgets.QTableView()
-        self.viewA.horizontalHeader().ResizeMode(QtWidgets.QHeaderView.Stretch)
-
-        self.myModel=TableModel()
-
-        self.sortModel = MySortFilterProxyModel()
-        self.sortModel.setSourceModel(self.myModel)
-
-        self.viewA.setModel(self.sortModel)
-
-        self.checkBox=QtWidgets.QCheckBox("Show All")
-        self.checkBox.stateChanged.connect(self.sortModel.cbChanged)
-        self.checkBox.setChecked(self.sortModel.cb_status)
-
-        mainLayout.addWidget(self.viewA)
-        mainLayout.addWidget(self.checkBox)
+        # Display the window in the center of the screen
+        win = self.frameGeometry()
+        pos = QDesktopWidget().availableGeometry().center()
+        win.moveCenter(pos)
+        self.move(win.topLeft())
         self.show()
 
-view=Window()
-sys.exit(app.exec_())
+    def on_click(self):
+        for ItemVal in self.selectedItems():
+            # Read the header value based on the selected cell
+            subject = self.horizontalHeaderItem(ItemVal.column()).text()
+            # Print the detail information of the mark
+            print("\n", self.ID_list[ItemVal.row()], " got ", ItemVal.text(), " in ", subject)
+
+# Create app object and execute the app
+app = QApplication(sys.argv)
+table = TableFromList(marks, 5, 5)
+table.show()
+app.exec()

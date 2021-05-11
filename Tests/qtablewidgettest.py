@@ -1,25 +1,43 @@
-from PyQt5.QtWidgets import QTableWidgetItem
-import datetime
+import sys
+from PyQt5.QtWidgets import QApplication, QTableWidget, QTableWidgetItem
+from PyQt5.QtCore import Qt
 
-        data = [('John', datetime.datetime(2019, 5, 5, 0, 54), datetime.datetime(2019, 5, 26, 22, 51, 36)),
-        ('Rex', datetime.datetime(2019, 5, 26, 22, 51, 36), datetime.datetime(2019, 6, 15, 10, 22, 48)),
-        ('Watson', datetime.datetime(2019, 6, 15, 10, 22, 48), datetime.datetime(2019, 7, 8, 13, 33, 36)),
-        ('Manila', datetime.datetime(2019, 7, 8, 13, 33, 36), datetime.datetime(2019, 7, 29, 6, 18)),
-        ('Pete', datetime.datetime(2019, 7, 29, 6, 18), datetime.datetime(2019, 8, 6, 18, 50, 24)),
-        ('Mathew', datetime.datetime(2019, 8, 6, 18, 50, 24), datetime.datetime(2019, 8, 31, 3, 14, 24))]
 
-        numrows = len(data)  # 6 rows in your example
-        numcols = len(data[0])  # 3 columns in your example
+class TableView(QTableWidget):
+    def __init__(self, z, *args):
+        super(TableView, self).__init__(*args)
+        self.z = z
+        self.setz()
+        self.resizeColumnsToContents()
+        self.resizeRowsToContents()
 
-        # Set colums and rows in QTableWidget
-        self.tableWidget.setColumnCount(numcols)
-        self.tableWidget.setRowCount(numrows)
+    def setz(self):
+        horHeaders = []
+        for j, (key, values) in enumerate(sorted(self.z.items())):
+            horHeaders.append(key)
+            for i, value in enumerate(values):
+                newitem = QTableWidgetItem()
+                newitem.setData(Qt.EditRole, value)
+                self.setItem(i, j, newitem)
+        self.setHorizontalHeaderLabels(horHeaders)
 
-        # Loops to add values into QTableWidget
-        for row in range(numrows):
-            for column in range(numcols):
-                # Check if value datatime, if True convert to string
-                if isinstance(data[row][column], datetime.datetime):
-                    self.tableWidget.setItem(row, column, QTableWidgetItem((data[row][column].strftime('%d/%m/%Y %H:%M:%S'))))
-                else:
-                    self.tableWidget.setItem(row, column, QTableWidgetItem((data[row][column])))
+
+def main(args):
+
+    z = {
+        "LEVEL 6 S1": [24.4999999999989, 5.00000000000394, 1.5],
+        "LEVEL 5 S1": [25.4999999999992, 4.99999999999996, 1.5],
+        "LEVEL 4 S1": [25.4999999999992, 4.99999999999996, 1.5],
+        "LEVEL 3 S1": [25.4999999999992, 3.41666666666662, 1.5],
+        "LEVEL 2 S1": [25.4999999999992, 3.91666666666663, 3.0],
+        "LEVEL 1 S1": [25.4999999999992, 4.99999999999996, 1.33333333333333],
+    }
+
+    app = QApplication(args)
+    table = TableView(z, 3, 6)
+    table.show()
+    sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    main(sys.argv)
