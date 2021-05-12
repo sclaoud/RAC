@@ -1,31 +1,23 @@
 
-from PyQt5.QtCore import pyqtProperty, QCoreApplication, QObject, QUrl
-from PyQt5.QtQml import qmlRegisterType, QQmlComponent, QQmlEngine
-
 """
 Emplacement des classes
 
 """
 
+# class personne avec informations de bases
+class Personne(object):
 
-class Personne(QObject):
-    "Personne"
-    def __init__(self, nom, prenom, sexe, parent=None):
+    listePersonne = []
+    positionPers = 0
+    pdict = {}
+
+    def __init__(self, prenom, nom, sexe, parent=None):
         super().__init__(parent)
-        self._nom = nom
         self._prenom = prenom
-        self._sexe = sexe
-        self._carteCredits = []
-
-    @pyqtProperty(str)
-    def nom(self):
-        return self._nom
-
-    @nom.setter
-    def nom(self, nom):
         self._nom = nom
+        self._sexe = sexe
 
-    @pyqtProperty(str)
+    @property
     def prenom(self):
         return self._prenom
 
@@ -33,7 +25,15 @@ class Personne(QObject):
     def prenom(self, prenom):
         self._prenom = prenom
 
-    @pyqtProperty(str)
+    @property
+    def nom(self):
+        return self._nom
+
+    @nom.setter
+    def nom(self, nom):
+        self._nom = nom
+
+    @property
     def sexe(self):
         return self._sexe
 
@@ -42,135 +42,226 @@ class Personne(QObject):
         self._sexe = sexe
 
 
-#Getters and Setters
-    def get_CarteCredits(self):
-        return self._carteCredits
-    def get_nom(self):
-        return self._nom
-    def get_prenom(self):
-        return self._prenom
-    def get_sexe(self):
-        return self._sexe
-    def set_nom(self, nom):
-        self._nom = nom
-    def set_prenom(self, prenom):
-        self._prenom = prenom
-    def set_sexe(self, sexe):
-        self._sexe = sexe
+class client (Personne):
 
-#Méthodes
-    def ajouterCarteCredit(self, carteCredit):
-        self._carteCredits.append(carteCredit)
-    def __str__(self):
-        return "Le prénom est {}, le nom est {}, le sexe est {}".format(self._prenom, self._nom, self._sexe)
-
-
-class Client(Personne):
-    "client"
-    def __init__(self, dateInsc, courriel, pwdClient):
+    def __init__(self, dateInsc, courriel, clientPwd, prenom, nom, sexe):
+        super().__init__(prenom, nom, sexe)
         self._dateInsc = dateInsc
         self._courriel = courriel
-        self._pwdClient = pwdClient
+        self._clientPwd = clientPwd
         return
 
-#getter setter
-    def getdateInsc(self):
+    @property
+    def dateInsc(self):
         return self._dateInsc
-    def getcourriel(self):
-        return self._courriel
-    def getpwdClient(self):
-        return self._pwdClient
 
-    def set_dateInscr(self):
-        return self._dateInsc
-    def set_courriel(self):
-        return self._courriel
-    def set_pwdClient(self):
-        return self._pwdClient
+    @dateInsc.setter
+    def dateInsc(self, dateInsc):
+        self._dateInsc = dateInsc
 
-class acteur(Personne):
-    "acteur"
-    def __init__(self, nomChar, debutJob, finJob, cachet):
-        self._nomchar = nomChar
-        self._debutJob = debutJob
-        self._finJob = finJob
+    @property
+    def courriel(self):
+        return self._courriel
+
+    @courriel.setter
+    def courriel(self, courriel):
+        self._courriel = courriel
+
+    @property
+    def clientPwd(self):
+        return self._clientPwd
+
+    @clientPwd.setter
+    def clientPwd(self, clientPwd):
+        self._clientPwd = clientPwd
+
+
+class cartedeCredits (client):
+
+    listCC = []
+    CCposition = 0
+
+    def __init__(self, numeroCC, dateCC, codeCC, dateInsc, courriel, clientPwd, prenom, nom, sexe):
+        super().__init__(dateInsc, courriel, clientPwd, prenom, nom, sexe)
+        self._numeroCC = numeroCC
+        self._dateCC = dateCC
+        self._codeCC = codeCC
+        return
+
+    @property
+    def numeroCC(self):
+        return self._numeroCC
+
+    @numeroCC.setter
+    def numeroCC(self, numeroCC):
+        self._numeroCC = numeroCC
+
+    @property
+    def dateCC(self):
+        return self._dateCC
+
+    @dateCC.setter
+    def dateCC(self, dateCC):
+        self._dateCC = dateCC
+
+    @property
+    def codeCC(self):
+        return self._codeCC
+
+    @codeCC.setter
+    def codeCC(self, codeCC):
+        self._codeCC = codeCC
+
+
+# class des acteurs, enfant de personne
+class acteurs (Personne):
+
+    listeActeurs = [{
+            'TitreFilm': 'titreFilm',
+            'Personnage': 'personnage',
+            'dateDebut': 'debutEmploi',
+            'dateFin': 'finEmploi',
+            'cachet': 'cachet',
+            }]
+
+    def __init__(self, titreFilm, personnage, debutEmploi, finEmploi, cachet, prenom, nom, sexe):
+        super().__init__(prenom, nom, sexe)
+        self._titreFilm = titreFilm
+        self._personnage = personnage
+        self._debutEmploi = debutEmploi
+        self._finEmploi = finEmploi
         self._cachet = cachet
         return
 
-#getter setter
-    def get_nomChar(self):
-        return self._nomchar
-    def get_debutJob(self):
-        return self._debutJob
-    def get_finJob(self):
-        return self._finJob
-    def get_cachet(self):
+    @property
+    def titreFilm(self):
+        return self._titreFilm
+
+    @titreFilm.setter
+    def titreFilm(self, titreFilm):
+        self._titreFilm = titreFilm
+
+    @property
+    def personnage(self):
+        return self._personnage
+
+    @personnage.setter
+    def personnage(self, personnage):
+        self._personnage = personnage
+
+    @property
+    def debutEmploi(self):
+        return self._debutEmploi
+
+    @debutEmploi.setter
+    def debutEmploi(self, debutEmploi):
+        self._debutEmploi = debutEmploi
+
+    @property
+    def finEmploi(self):
+        return self._finEmploi
+
+    @finEmploi.setter
+    def finEmploi(self, finEmploi):
+        self._finEmploi = finEmploi
+
+    @property
+    def cachet(self):
         return self._cachet
 
-    def set_nomchar(self):
-        return self._nomchar
-    def set_debutJob(self):
-        return self._debutJob
-    def set_finJob(self):
-        return self._finJob
-    def set_cachet(self):
-        return self._cachet
+    @cachet.setter
+    def cachet(self, cachet):
+        self._cachet = cachet
 
-class employe(Personne):
-    "Employés"
-    def __init__(self, dateEmb, username, pwdEmp, access):
+
+class employe (Personne):
+
+    def __init__(self, dateEmb, username, empPwd, acces, prenom, nom, sexe):
+        super().__init__(prenom, nom, sexe)
         self._dateEmb = dateEmb
         self._username = username
-        self._pwdEmp = pwdEmp
-        self._access = access
+        self._empPwd = empPwd
+        self._acces = acces
         return
 
-#getter setter
-    def get_dateEmp(self):
+    @property
+    def dateEmb(self):
         return self._dateEmb
-    def get_username(self):
+
+    @dateEmb.setter
+    def dateEmb(self, dateEmb):
+        self._dateEmb = dateEmb
+
+    @property
+    def username(self):
         return self._username
-    def get_pwdEmp(self):
-        return self._pwdEmp
-    def get_access(self):
-        return self._access
 
-    def set_dateEmb(self):
-        return self._dateEmb
-    def set_username(self):
-        return self._username
-    def set_pwdEmp(self):
-        return self._pwdEmp
-    def set_access(self):
-        return self._access
+    @username.setter
+    def username(self, username):
+        self._username = username
 
-class CarteCredit:
-    def __init__(self, numero, compagnie):
-        self._numero = numero
-        self._compagnie = compagnie
-    #Getters and Setters
-    def getNumero(self):
-        return self._numero
-    def getCompagnie(self):
-        return self._compagnie
-    def setNumero(self, numero):
-        if len(numero == 16):
-            self._numero = numero
-    def __str__(self):
-        return "Le numero est {} et la compagnie est {}".format(self._numero, self._compagnie)
+    @property
+    def empPWD(self):
+        return self._empPwd
+
+    @empPWD.setter
+    def empPWD(self, empPwd):
+        self._empPwd = empPwd
+
+    @property
+    def acces(self):
+        return self._acces
+
+    @acces.setter
+    def acces(self, acces):
+        self._acces = acces
 
 
-class film:
-    "Films"
-    def __init__(self, nomFilm, dureeFilm, descFilm):
+# class contenant les informations sur les films
+class Film(object):
+
+    positionFilm = 0
+    listeFilm = []
+
+    def __init__(self, nomFilm, dureeFilm, descFilm, catFilm):
         self._nomFilm = nomFilm
         self._dureeFilm = dureeFilm
         self._descFilm = descFilm
+        self._catFilm = catFilm
+        return
 
-
-#getter setter
-    def get_nomFilm(self):
+    @property
+    def nomFilm(self):
         return self._nomFilm
-    def set_nomFilm(self, nomFilm):
-        self._nomFilm = nomFilm
 
+    @nomFilm.setter
+    def nomFilm(self, SnomFilm):
+        self._nomFilm = SnomFilm
+
+    @nomFilm.deleter
+    def nomFilm(self):
+        del self._nomFilm
+
+    @property
+    def dureeFilm(self):
+        return self._dureeFilm
+
+    @dureeFilm.setter
+    def dureeFilm(self, dureeFilm):
+        self._dureeFilm = dureeFilm
+
+    @property
+    def descFilm(self):
+        return self._descFilm
+
+    @descFilm.setter
+    def descFilm(self, descFilm):
+        self._descFilm = descFilm
+
+    @property
+    def catFilm(self):
+        return self._catFilm
+
+    @catFilm.setter
+    def catFilm(self, catFilm):
+        self._catFilm = catFilm

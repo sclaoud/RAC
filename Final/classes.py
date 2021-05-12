@@ -78,7 +78,8 @@ class client (Personne):
 
 class cartedeCredits (client):
 
-    listCC = [{'Numero': '435345353', 'date': '2000-01-01', 'Codesecret': '345'}]
+    listCC = []
+    CCposition = 0
 
     def __init__(self, numeroCC, dateCC, codeCC, dateInsc, courriel, clientPwd, prenom, nom, sexe):
         super().__init__(dateInsc, courriel, clientPwd, prenom, nom, sexe)

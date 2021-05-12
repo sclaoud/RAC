@@ -5,18 +5,20 @@ Fichier des opérations entre les class et l'interface
 """
 
 # Importation des modules
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 from PyQt5.QtGui import QRegExpValidator, QStandardItemModel, QStandardItem
 from PyQt5.QtCore import QRegExp, QDir
-from PyQt5.Qt   import QColor
-from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog, QTableWidgetItem, QAbstractItemView
+from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog, QTableWidgetItem
 import re
 import pandas as pd
+import random
 
 from TABUI import Ui_Application
+from cartedecredits import Ui_UI_CC
+from Acteurs import Ui_Acteurs
 from classes import *
 
-"""
+
 # Fenêtre de gestions des cartes de crédits
 class WindowCC(Ui_UI_CC, QDialog):
     # Force l'utilisation de chiffre uniquement
@@ -107,7 +109,6 @@ class WindowActeurs(Ui_Acteurs, QDialog):
 
         print(acteurs.listeActeurs)
 
-"""
 
     # Fenêtre principale
 class Window(Ui_Application, QDialog):
@@ -117,20 +118,18 @@ class Window(Ui_Application, QDialog):
         self.setupUi(self)
 
 
+
         #validation des lignes avec limitations textes/chiffres uniquements
         regexText = QRegExpValidator(QRegExp(r'^[a-zA-Z]*$'))
         self.lineNom.setValidator(regexText)
         self.linePrenom.setValidator(regexText)
 
+        # Bouton pour ajouter d'une rangé dans Qtablechar
+        self.btnGestionPers.clicked.connect(self.ModifPers)
+
 
         # Bouton pour ajouter une ranger dans la QtableCC
-        self.btnAjoutCC.clicked.connect(self.AjoutCC)
-        # Bouton pour supprimer une ranger dans la QtableCC
-        self.btnSuppCC.clicked.connect(self.SuppCC)
-        # Bouton pour ajouter une ranger dans la QtableChar
-        self.btnAjoutPers.clicked.connect(self.AjoutPers)
-        # Bouton pour supprimer une ranger dans la QtableChar
-        self.btnSuppPers.clicked.connect(self.SuppPers)
+        self.btnGestionCC.clicked.connect(self.ModifCC)
 
         #test avec bouton modifier de film
         self.btnModFilm.clicked.connect(self.ModifFilm)
@@ -142,15 +141,14 @@ class Window(Ui_Application, QDialog):
         self.linePwdEmp.setDisabled(True)
         self.comboAcces.setDisabled(True)
         self.QtableChar.setDisabled(True)
-        self.btnAjoutCC.setDisabled(True)
-        self.btnSuppCC.setDisabled(True)
+        self.btnGestionCC.setDisabled(True)
         self.linePwdClient.setDisabled(True)
         self.dateInsc.setDisabled(True)
         self.lineCourriel.setDisabled(True)
         self.QtableCC.setDisabled(True)
-        self.btnAjoutPers.setDisabled(True)
-        self.btnSuppPers.setDisabled(True)
-
+        self.btnGestionPers.setDisabled(True)
+        self.btnUpdatePers.setDisabled(True)
+        self.btnUpdateCC.setDisabled(True)
 
         # Echomode pour les Password
         self.linePwdClient.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
@@ -158,36 +156,22 @@ class Window(Ui_Application, QDialog):
 
         # Checkbox si la personne est artiste, active la section Artiste si coché
         self.cbActeur.toggled.connect(self.QtableChar.setEnabled)
-        self.cbActeur.toggled.connect(self.btnSuppPers.setEnabled)
-        self.cbActeur.toggled.connect(self.btnAjoutPers.setEnabled)
+        self.cbActeur.toggled.connect(self.btnGestionPers.setEnabled)
+        self.cbActeur.toggled.connect(self.btnUpdatePers.setEnabled)
         # Checkbox si la personne est Client, active la section client si coché
         self.cbClient.toggled.connect(self.QtableCC.setEnabled)
         self.cbClient.toggled.connect(self.dateInsc.setEnabled)
         self.cbClient.toggled.connect(self.lineCourriel.setEnabled)
         self.cbClient.toggled.connect(self.linePwdClient.setEnabled)
-        self.cbClient.toggled.connect(self.btnAjoutCC.setEnabled)
-        self.cbClient.toggled.connect(self.btnSuppCC.setEnabled)
+        self.cbClient.toggled.connect(self.btnGestionCC.setEnabled)
+        self.cbClient.toggled.connect(self.btnUpdateCC.setEnabled)
         # Checkbox si la personne est employé, active la section employé si coché
         self.cbEmploye.toggled.connect(self.dateEmb.setEnabled)
         self.cbEmploye.toggled.connect(self.lineUsername.setEnabled)
         self.cbEmploye.toggled.connect(self.linePwdEmp.setEnabled)
         self.cbEmploye.toggled.connect(self.comboAcces.setEnabled)
 
-        # Ajustement de la fenêtre QtableCC
-        header = self.QtableCC.horizontalHeader()
-        header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
-        header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
-        # Ajustement de la fenêtre QtableChar
-        header = self.QtableChar.horizontalHeader()
-        header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
-        header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
 
-        #Liste temporaires des changements dans la fenêtre QtableCC
-        self.changed_CC = []
-        #Vérification des cellules dans QtableCC suite à l'écriture
-        self.QtableCC.itemChanged.connect(self.log_changeCC)
 
         # Fonction de fermeture 'closeEvent' lorsque l'on appui sur le bouton
         self.btnFermer.clicked.connect(self.closeEvent)
@@ -233,6 +217,10 @@ class Window(Ui_Application, QDialog):
         self.btnSauvegarder.clicked.connect(self.sauvegarder)
         # Bouton de chargement des données
         self.btnCharger.clicked.connect(self.charger)
+        # Bouton de MAJ des cartes de crédits pour rafraichir QTableCC
+        self.btnUpdateCC.clicked.connect(self.PopulateCC)
+        # Bouton de MAJ des Personnages jouer par les acteurs dans QTablePers
+#        self.btnUpdatePers.clicked.connect(self.PopulateActeur)
 
     #### Fonctions ####
 
@@ -347,11 +335,6 @@ class Window(Ui_Application, QDialog):
         employe.username = self.lineUsername.text()
         employe.empPWD = self.linePwdEmp.text()
         employe.acces = self.comboAcces.currentIndex()
-
-#        cartedeCredits.numeroCC =
-#        cartedeCredits.dateCC =
-#        cartedeCredits.codeCC =
-
         # Valide si au moins les premières informations sont entrés
         while self.linePrenom.text() and self.lineNom.text() and self.sexeBtnG.checkedButton():
             # Si une des sections est coché, valider que celle-ci est remplie
@@ -466,15 +449,6 @@ class Window(Ui_Application, QDialog):
 
 
     def enregistrement(self):
-
-        #Nettoyage des données
-        for item in self.changed_CC:
-            self.QtableCC.blockSignals(True)
-            item.setBackground(QColor("white"))
-            self.QtableCC.blockSignals(False)
-             #= item.text(), item.column(), item.row()
-
-        #Enregistrement des données de la personnes dans un dictionnaire indexé
         Personne_dict = {
             'prenom': Personne.prenom,
             'nom': Personne.nom,
@@ -493,7 +467,6 @@ class Window(Ui_Application, QDialog):
 
         Personne.listePersonne.append(Personne_dict)
 
-
         # Reset des champs pour une nouvelle entrée
         self.linePrenom.setText("")
         self.lineNom.setText("")
@@ -507,8 +480,6 @@ class Window(Ui_Application, QDialog):
         self.lineUsername.setText("")
         self.linePwdEmp.setText("")
         self.comboAcces.setCurrentIndex(1)
-        self.QtableCC.setRowCount(0)
-        self.QtableChar.setRowCount(0)
         print(Personne.listePersonne)
         self.PersonneUpdate()
 
@@ -598,7 +569,7 @@ class Window(Ui_Application, QDialog):
             Personne.positionPers = len(Personne.listePersonne) - 1
         self.PersonneUpdate()
 
-    # Fenêtre de confirmation de la fermeture de l'application TODO : Message d'erreur à fix
+    # Fenêtre de confirmation de la fermeture de l'application
     def closeEvent(self):
         msgBox = QMessageBox()
         msgBox.setIcon(QMessageBox.Information)
@@ -643,7 +614,7 @@ class Window(Ui_Application, QDialog):
 #            dff.to_excel(writer, sheet_name='Film', index=False)
 #            writer.save()
 
-    ### Chargement des données CSV TODO : à revoir
+    ### Chargement des données CSV
     def charger(self):
 #        df = pd.DataFrame
 #        filepath, _ = QFileDialog.getOpenFileName(self,"Chargement des données", (QDir.homePath()),"XLSX Files *.xlsx")
@@ -654,6 +625,7 @@ class Window(Ui_Application, QDialog):
             df = pd.read_csv(filepath, header=1)
             Personne.listePersonne =df
             print (Personne.listePersonne)
+
 
 #            df1 = pd.read_excel(filepath, engine='openpyxl', header=0,  na_filter= False, sheet_name='Info')
 #            df2 = pd.read_excel(filepath, engine='openpyxl', sheet_name='Film')
@@ -666,29 +638,18 @@ class Window(Ui_Application, QDialog):
         self.PersonneUpdate()
 
     # Ajout d'une nouvelle rangée pour inscrire une nouvelle carte de crédit
-    def AjoutCC(self):
-        rowPosition = self.QtableCC.rowCount()
-        self.QtableCC.insertRow(rowPosition)
+    def ModifCC(self):
+        FenetreCC = WindowCC()
+        FenetreCC.exec_()
 
-    # Supprimer la rangée d'une carte de crédit
-    def SuppCC(self):
-        row = self.QtableCC.currentRow()
-        self.QtableCC.removeRow(row)
-
-    # Ajout d'une nouvelle rangée pour inscrire un nouveau personnage d'acteur
-    def AjoutPers(self):
-        rowPosition = self.QtableChar.rowCount()
-        self.QtableChar.insertRow(rowPosition)
-
-    # Supprimer la rangée d'un personnage d'acteur
-    def SuppPers(self):
-        row = self.QtableChar.currentRow()
-        self.QtableChar.removeRow(row)
+     #Ajout d'une nouvelle rangée pour inscrire un nouveau personnage d'acteur
+    def ModifPers(self):
+        FenetreActeurs = WindowActeurs()
+        FenetreActeurs.exec_()
 
     def ModifFilm(self):
         print (Film.listeFilm.loc[Film.positionFilm])
 
-#Inutilisé pour le moment
     def PopulateCC(self):
         spisok = cartedeCredits.listCC
         if spisok:
@@ -702,16 +663,6 @@ class Window(Ui_Application, QDialog):
                     item = (list(spisok[row].values())[column])
                     self.QtableCC.setItem(row, column, QTableWidgetItem(item))
 
-
-    def log_changeCC(self, item):
-        self.QtableCC.blockSignals(True)
-        item.setBackground(QColor('red'))
-        self.QtableCC.blockSignals(False)
-        self.changed_CC.append(item)
-        print (item.text(), item.column(), item.row())
-
-
-        print(cartedeCredits.listCC)
 
 if __name__ == "__main__":
     import sys

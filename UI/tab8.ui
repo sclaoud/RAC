@@ -440,7 +440,7 @@
       <string>Employé</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnGestionCC">
+    <widget class="QPushButton" name="btnAjoutCC">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -450,10 +450,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Modifier</string>
+      <string>Ajouter</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnGestionPers">
+    <widget class="QPushButton" name="btnAjoutPers">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -463,10 +463,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Modifier</string>
+      <string>Ajouter</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnUpdateCC">
+    <widget class="QPushButton" name="btnDelCC">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -476,10 +476,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>MAJ</string>
+      <string>Supprimer</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnUpdatePers">
+    <widget class="QPushButton" name="btnDelPers">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -489,7 +489,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>MAJ</string>
+      <string>Supprimer</string>
      </property>
     </widget>
    </widget>
