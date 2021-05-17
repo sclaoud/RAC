@@ -1,77 +1,54 @@
-# runs with Python 2.7 and PyQt4
-from PyQt5 import QtGui, QtCore, QtWidgets
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QTableWidget, QPushButton, QTableWidgetItem
-import sys
+from PyQt5.QtCore import Qt
+import PyQt5
+from PyQt5.QtWidgets import QDialog, QGridLayout, QLabel, QPushButton, QTableWidgetItem, QTableWidget
 
+class Dlg(QDialog):
 
-class App(QtWidgets.QMainWindow):
+    def __init__(self):
+        QDialog.__init__(self)
+        self.layout = QGridLayout(self)
+        self.label1 = QLabel('FERTILIZACION SUBSUELO')
+        self.btn = QPushButton('RUN')
+        self.btn.setFixedWidth(100)
 
-    def __init__(self, parent=None):
-        super(App, self).__init__(parent)
-        self.setMinimumSize(600,200)
+        nb_row = 5
+        nb_col = 2
 
-        self.all_data = [["John", True, "01234", 24],
-                         ["Joe", False, "05671", 13],
-                         ["Johnna", True, "07145", 44] ]
+        #creating empty table
+        data = [ [] for i in range(nb_row) ]
 
-        self.mainbox = QWidget(self)
-        self.layout = QVBoxLayout()
-        self.mainbox.setLayout(self.layout)
-        self.setCentralWidget(self.mainbox)
+        for i in range(nb_row):
+            for j in range(nb_col):
+                data[i].append('')
 
-        self.table = QTableWidget(self)
-        self.layout.addWidget(self.table)
+        self.table1 = QTableWidget()
 
-        self.button = QPushButton('Update',self)
-        self.layout.addWidget(self.button)
+        self.table1.setRowCount(nb_row)
+        self.table1.setColumnCount(nb_col)
+        self.table1.setHorizontalHeaderLabels(['LIMITE 1', 'LIMITE 2'])
 
-        self.click_btn_printouts()
-        self.button.clicked.connect(self.update)
+        for row in range (nb_row):
+            for col in range(nb_col):
+                item = QTableWidgetItem(str(data[row][col]))
+                self.table1.setItem(row, col, item)
 
-    def click_btn_printouts(self):
+        self.layout.addWidget(self.label1, 0, 0)
+        self.layout.addWidget(self.table1, 1, 0)
+        self.layout.addWidget(self.btn, 2, 0)
 
-        self.table.setRowCount(len(self.all_data))
-        self.tableFields = ["Name", "isSomething", "someProperty", "someNumber"]
-        self.table.setColumnCount(len(self.tableFields))
-        self.table.setHorizontalHeaderLabels(self.tableFields)
-        self.checkbox_list = []
-        for i, self.item in enumerate(self.all_data):
-            FullName = QTableWidgetItem(str(self.item[0]))
-            FullName.setFlags(FullName.flags() & ~QtCore.Qt.ItemIsEditable)
-            PreviouslyMailed = QTableWidgetItem(str(self.item[1]))
-            LearnersDate = QTableWidgetItem(str(self.item[2]))
-            RestrictedDate = QTableWidgetItem(str(self.item[3]))
+        self.btn.clicked.connect(self.print_table_values)
 
-            self.table.setItem(i, 0, FullName)
-            self.table.setItem(i, 1, PreviouslyMailed)
-            self.table.setItem(i, 2, LearnersDate)
-            self.table.setItem(i, 3, RestrictedDate)
+    def print_table_values(self, data):
 
-        self.changed_items = []
-        self.table.itemChanged.connect(self.log_change)
+        nb_row = 5
+        nb_col = 2
 
-    def log_change(self, item):
-        self.table.blockSignals(True)
-        item.setBackground(QColor("red"))
-        self.table.blockSignals(False)
-        self.changed_items.append(item)
-        print (item.text(), item.column(), item.row())
+        for row in range (nb_row):
+            for col in range(nb_col):
+                print(row, col, self.table1.item(row, col).text())
 
-    def update(self):
-        print ("Updating ")
-        for item in self.changed_items:
-            self.table.blockSignals(True)
-            item.setBackgroundColor(QtGui.QColor("white"))
-            self.table.blockSignals(False)
-            self.writeToDatabase(item)
-
-    def writeToDatabase(self, item):
-        text, col, row = item.text(), item.column(), item.row()
-        #write those to database with your own code
-
-
-if __name__=='__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    thisapp = App()
-    thisapp.show()
-    sys.exit(app.exec_())
+w = Dlg()
+w.resize(350,300)
+w.setWindowTitle('fertilizacion_abono')
+w.setWindowFlags(Qt.WindowStaysOnTopHint)
+w.show()

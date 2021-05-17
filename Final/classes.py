@@ -80,6 +80,7 @@ class cartedeCredits (client):
 
     listCC = []
     CCposition = 0
+    CC = {}
 
     def __init__(self, numeroCC, dateCC, codeCC, dateInsc, courriel, clientPwd, prenom, nom, sexe):
         super().__init__(dateInsc, courriel, clientPwd, prenom, nom, sexe)

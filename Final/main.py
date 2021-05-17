@@ -16,98 +16,6 @@ import pandas as pd
 from TABUI import Ui_Application
 from classes import *
 
-"""
-# Fenêtre de gestions des cartes de crédits
-class WindowCC(Ui_UI_CC, QDialog):
-    # Force l'utilisation de chiffre uniquement
-
-
-    def __init__(self):
-        QDialog.__init__(self)
-        self.setupUi(self)
-        #Regex de chiffre pour les cartes de crédits
-        regexnum = QRegExpValidator(QRegExp(r'[0-9]+'))
-        #Maximum de caractère entrable limité
-        self.NumeroCC.setMaxLength(16)
-        self.codesecretCC.setMaxLength(3)
-        self.NumeroCC.setValidator(regexnum)
-        # bouton pour cacher la fenêtre
-        self.btnCloseCC.clicked.connect(self.hide)
-        # Sauvegardes des informations de cartes de crédit et affichage dans la fenêtre principale
-        self.btnSaveCC.clicked.connect(self.newCC)
-        # bouton suivant pour la carte de crédit
-        self.btnSvCC.clicked.connect(self.SuivantCC)
-
-
-    # Fonction de sauvegarde des informations de cartes de crédit
-    def newCC (self):
-        cartedeCredits.numeroCC = self.NumeroCC.text()
-        cartedeCredits.dateCC = self.expCC.text()
-        cartedeCredits.codeCC = self.codesecretCC.text()
-
-        #Sauvegarde des informations dans un dict
-        CC_dict = {
-            'Numero': cartedeCredits.numeroCC,
-            'date': cartedeCredits.dateCC,
-            'Codesecret': cartedeCredits.codeCC,
-        }
-        cartedeCredits.listCC.append(CC_dict)
-
-    def SuivantCC(self):
-        print(cartedeCredits.positionPers)
-        print(cartedeCredits.listCC)
-        self.TitreFilm.setText(Personne.listePersonne[cartedeCredits.listCC[cartedeCredits.CCposition]['Numero']])
-        self.TitreFilm.setText(Personne.listePersonne[cartedeCredits.listCC[cartedeCredits.CCposition]['Date']])
-        self.TitreFilm.setText(Personne.listePersonne[cartedeCredits.listCC[cartedeCredits.CCposition]['Code']])
-        i = 0
-        while self.model.item(i):
-            item = self.model.item(i)
-            if i in self.cat_film_list:
-                item.setCheckState(QtCore.Qt.Checked)
-            else:
-                item.setCheckState(QtCore.Qt.Unchecked)
-            i += 1
-
-        Film.positionFilm += 1
-
-        if Film.positionFilm == len(Film.listeFilm):
-            Film.positionFilm = 0
-        self.UpdateFilm()
-
-    # Fenêtre de gestions des personnages des acteurs
-class WindowActeurs(Ui_Acteurs, QDialog):
-    def __init__(self):
-        QDialog.__init__(self)
-        self.setupUi(self)
-
-        # bouton pour cacher la fenêtre
-        self.btnCloseActeur.clicked.connect(self.hide)
-        # Sauvegardes des informations des personnages joués et affichage dans la fenêtre principale
-        self.btnSaveActeur.clicked.connect(self.newPers)
-
-    # Fonction de sauvegarde des informations des personnages joués
-    def newPers(self):
-        acteurs.titreFilm = self.TitreduFilm.text()
-        acteurs.personnage = self.NomPers.text()
-        acteurs.debutEmploi = self.dateDebut.time()
-        acteurs.finEmploi = self.DateFin.time()
-        acteurs.cachet = self.cachet.text()
-
-        # Sauvegarde des informations dans un dict
-        Acteurs_dict = {
-            'TitreFilm': acteurs.titreFilm,
-            'Personnage' : acteurs.personnage,
-            'dateDebut' : acteurs.debutEmploi,
-            'dateFin': acteurs.finEmploi,
-            'cachet': acteurs.cachet,
-            }
-        # Transfert du dictionnaire dans la listeActeurs
-        acteurs.listeActeurs.append(Acteurs_dict)
-        # Affichage des informations dans QtableActeurs
-
-        print(acteurs.listeActeurs)
-
-"""
 
     # Fenêtre principale
 class Window(Ui_Application, QDialog):
@@ -134,6 +42,9 @@ class Window(Ui_Application, QDialog):
 
         #test avec bouton modifier de film
         self.btnModFilm.clicked.connect(self.ModifFilm)
+
+        #test avec le bouton modifier de personne
+        self.btnModPers.clicked.connect(self.ModifPers)
 
 
         # Désactiver tant que la cb de la section désiré n'est pas coché
@@ -334,6 +245,12 @@ class Window(Ui_Application, QDialog):
     def UpdateFilm(self):
         self.tabMain.setTabText(1, "Film ({})".format(len(Film.listeFilm)))
 
+    # Bouton pour mettre à jour une personne (Présentement en test)
+    def ModifPers(self):
+        # search for the item
+        print (cartedeCredits.listCC)
+
+
     ### Enregistrement de l'entré et remise à zero ### à retravailler
     def Validation(self):
         # inscription des informations dans les class correspondantes
@@ -347,6 +264,8 @@ class Window(Ui_Application, QDialog):
         employe.username = self.lineUsername.text()
         employe.empPWD = self.linePwdEmp.text()
         employe.acces = self.comboAcces.currentIndex()
+
+
 
 #        cartedeCredits.numeroCC =
 #        cartedeCredits.dateCC =
@@ -488,7 +407,8 @@ class Window(Ui_Application, QDialog):
             'acces': employe.acces,
             'cbClient': self.cbClient.checkState(),
             'cbActeur': self.cbActeur.checkState(),
-            'cbEmploye': self.cbEmploye.checkState()
+            'cbEmploye': self.cbEmploye.checkState(),
+            'listCC' : cartedeCredits.CC()
         }
 
         Personne.listePersonne.append(Personne_dict)
@@ -707,11 +627,37 @@ class Window(Ui_Application, QDialog):
         self.QtableCC.blockSignals(True)
         item.setBackground(QColor('red'))
         self.QtableCC.blockSignals(False)
-        self.changed_CC.append(item)
         print (item.text(), item.column(), item.row())
+        row = self.QtableCC.rowCount()
+        column = self.QtableCC.columnCount()
+        CC = []
+        for r in range(row):
+            for c in range(column):
+                it = self.QtableCC.item(r,c)
+                if it:
+                    text = it.text()
+                    CC.append(text)
+                    print( CC, len(CC))
+        cartedeCredits.CC = (CC)
+#        column = 0
+        # rowCount() This property holds the number of rows in the table
+#        for row in range(self.QtableCC.rowCount()):
+#                if item.column() == 0:
+#                    cartedeCredits.numeroCC = (str(item.text()))
+#                if item.column() == 1:
+#                    cartedeCredits.dateCC = (str(item.text()))
+#                if item.column() == 2:
+#                    cartedeCredits.codeCC = (str(item.text()))
 
+#        print (cartedeCredits.numeroCC, cartedeCredits.dateCC, cartedeCredits.codeCC)
+#        for item.row() in item:
+#            cartedeCredits.CCposition = len(cartedeCredits.listCC)
+#            cartedeCredits.numeroCC = item.text()
+#
+#        self.changed_CC.append(str(item.text()))
+#        print (self.changed_CC)
+#        print (item.text(), item.column(), item.row())
 
-        print(cartedeCredits.listCC)
 
 if __name__ == "__main__":
     import sys
