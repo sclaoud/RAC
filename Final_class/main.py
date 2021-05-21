@@ -408,7 +408,6 @@ class Window(Ui_Application, QDialog):
             'cbClient': self.cbClient.checkState(),
             'cbActeur': self.cbActeur.checkState(),
             'cbEmploye': self.cbEmploye.checkState(),
-            'listCC' : cartedeCredits.CC()
         }
 
         Personne.listePersonne.append(Personne_dict)
