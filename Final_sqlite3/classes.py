@@ -8,14 +8,12 @@ Emplacement des classes
 # class personne avec informations de bases
 class Personne(object):
 
-    listePersonne = []
-    positionPers = 0
-
-    def __init__(self, prenom, nom, sexe, parent=None):
+    def __init__(self, prenom, nom, sexe, position, parent=None):
         super().__init__(parent)
         self._prenom = prenom
         self._nom = nom
         self._sexe = sexe
+        self._position = position
 
     @property
     def prenom(self):
@@ -41,6 +39,13 @@ class Personne(object):
     def sexe(self, sexe):
         self._sexe = sexe
 
+    @property
+    def position(self):
+        return self._position
+
+    @position.setter
+    def position(self, position):
+        self._position = position
 
 class client (Personne):
 

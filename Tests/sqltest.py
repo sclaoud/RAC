@@ -1,148 +1,79 @@
 import sys
-from PyQt5 import QtCore, QtWidgets
-from pymysql import Error
-from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlError
-rowNo = 1
-
-try:
-    con = QSqlDatabase.addDatabase("QSQLITE")
-    con.setDatabaseName("data.db")
-    print("Database created")
-
-except:
-    print("failed to create database")
-finally:
-    cursor = QSqlDatabase.cursor()
-    sql = "SELECT id, nome, email, senha, data_cadastro, niveis_acesso_id, validacao, ativo, como_chegou FROM usuarios ORDER BY nome ASC"
-    cursor.execute(sql)
-    con.close()
-
-if not con.open():
-    print("Database Error: %s" % con.lastError().databaseText())
-    sys.exit()
+from PyQt5 import QtCore, QtGui, QtWidgets, QtSql
 
 
+class Ui_MainWindow(object):
 
 
-class Ui_Dialog(object):
+def setupUi(self, MainWindow):
+    # Setting mainwindow
+    MainWindow.setObjectName("MainWindow")
+    MainWindow.resize(432, 813)
+    MainWindow.setMinimumSize(QtCore.QSize(432, 813))
+    MainWindow.setMaximumSize(QtCore.QSize(432, 813))
 
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(448, 300)
+    self.centralwidget = QtWidgets.QWidget(MainWindow)
+    self.centralwidget.setObjectName("centralwidget")
+    self.frame = QtWidgets.QFrame(self.centralwidget)
+    self.frame.setGeometry(QtCore.QRect(0, 0, 781, 821))
 
-        self.lineEdit_name = QtWidgets.QLineEdit(Dialog)
-        self.lineEdit_name.setGeometry(QtCore.QRect(130, 50, 241, 21))
-        self.lineEdit_name.setInputMethodHints(QtCore.Qt.ImhUppercaseOnly)
-        self.lineEdit_name.setObjectName("lineEdit_name")
+    self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+    self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+    self.frame.setObjectName("frame")
 
-        self.lineEdit_email = QtWidgets.QLineEdit(Dialog)
-        self.lineEdit_email.setGeometry(QtCore.QRect(130, 90, 191, 21))
-        self.lineEdit_email.setInputMethodHints(QtCore.Qt.ImhEmailCharactersOnly)
-        self.lineEdit_email.setObjectName("lineEdit_email")
+    # setting up the output table
+    self.tableWidget = QtWidgets.QTableWidget(self.frame)
+    self.tableWidget.setGeometry(QtCore.QRect(0, 10, 431, 731))
+    self.tableWidget.setRowCount(10)
+    self.tableWidget.setColumnCount(2)
+    self.tableWidget.setObjectName("tableWidget")
 
-        self.lineEdit_pwd = QtWidgets.QLineEdit(Dialog)
-        self.lineEdit_pwd.setGeometry(QtCore.QRect(130, 130, 131, 21))
-        self.lineEdit_pwd.setInputMethodHints(QtCore.Qt.ImhSensitiveData | QtCore.Qt.ImhUppercaseOnly)
-        self.lineEdit_pwd.setObjectName("lineEdit_pwd")
+    # initializing items to be added in the table
+    item = QtWidgets.QTableWidgetItem()
+    item1 = QtWidgets.QTableWidgetItem()
+    # inserting above items to the table
+    self.tableWidget.setHorizontalHeaderItem(0, item)
+    self.tableWidget.setHorizontalHeaderItem(1, item1)
+    self.tableWidget.horizontalHeader().setDefaultSectionSize(185)
+    self.tableWidget.verticalHeader().setMinimumSectionSize(50)
+    MainWindow.setCentralWidget(self.centralwidget)
 
-        self.lineEdit_market = QtWidgets.QLineEdit(Dialog)
-        self.lineEdit_market.setGeometry(QtCore.QRect(130, 170, 131, 21))
-        self.lineEdit_market.setInputMethodHints(QtCore.Qt.ImhUppercaseOnly)
-        self.lineEdit_market.setObjectName("lineEdit_market")
+    self.retranslateUi(MainWindow)
+    QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        self.pushButton_first = QtWidgets.QPushButton(Dialog)
-        self.pushButton_first.setGeometry(QtCore.QRect(70, 240, 61, 28))
-        self.pushButton_first.setObjectName("pushButton_first")
-        self.pushButton_first.clicked.connect(ShowFirst)
+    # connection to the database
+    self.QSqlDatabase.addDatabase("QMYSQL")
+    self.db.setHostName("geeksforgeeks")
+    self.db.setDatabaseName("gfgdb")
+    self.db.setUserName("geeks")
+    self.db.setPassword("gfg")
+    # executing MySql query
+    self.qry = QString("SELECT * FROM employee")
+    self.query = QSqlQuery()
+    self.query.prepare(self.qry)
+    self.query.exec()
 
-        self.pushButton_previous = QtWidgets.QPushButton(Dialog)
-        self.pushButton_previous.setGeometry(QtCore.QRect(150, 240, 61, 28))
-        self.pushButton_previous.setObjectName("pushButton_previous")
-        self.pushButton_previous.clicked.connect(ShowPrevious)
-
-        self.pushButton_next = QtWidgets.QPushButton(Dialog)
-        self.pushButton_next.setGeometry(QtCore.QRect(230, 240, 61, 28))
-        self.pushButton_next.setObjectName("pushButton_next")
-        self.pushButton_next.clicked.connect(ShowNext)
-
-        self.pushButton_last = QtWidgets.QPushButton(Dialog)
-        self.pushButton_last.setGeometry(QtCore.QRect(310, 240, 61, 28))
-        self.pushButton_last.setObjectName("pushButton_last")
-        self.pushButton_last.clicked.connect(ShowLast)
-
-        self.retranslateUi(Dialog)
-
-    def retranslateUi(self, Dialog):
-        _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.pushButton_first.setText(_translate("Dialog", "<<"))
-        self.pushButton_previous.setText(_translate("Dialog", "<"))
-        self.pushButton_next.setText(_translate("Dialog", ">"))
-        self.pushButton_last.setText(_translate("Dialog", ">>"))
-
-        ShowFirst(self)
+    # displaying output of query in the table
+    for row_number, row_data in enumerate(self.query.result()):
+        for column_number, data in enumerate(row_data):
+            self.tableWidget.setItem(row_number, column_number, QtWidgets.QTableWidgetItem(data)
 
 
-def ShowFirst(self):
-    try:
-        cursor.execute(sql)
-        row = cursor.fetchone()
-        if row:
-            ui.lineEdit_name.setText(row[1])
-            ui.lineEdit_email.setText(row[2])
-            ui.lineEdit_pwd.setText(row[3])
-            ui.lineEdit_market.setText(row[8])
-    except Error as e:
-        print("Error in accessing table")
-
-
-def ShowPrevious(self):
-    global rowNo
-    rowNo -= 1
-    sql = "SELECT id, nome, email, senha, data_cadastro, niveis_acesso_id, validacao, ativo, como_chegou FROM usuarios WHERE id=" + str(
-        rowNo) + " ORDER BY nome ASC"
-    cursor.execute(sql)
-    row = cursor.fetchone()
-
-    if row:
-        ui.lineEdit_name.setText(row[1])
-        ui.lineEdit_email.setText(row[2])
-        ui.lineEdit_pwd.setText(row[3])
-        ui.lineEdit_market.setText(row[8])
-    else:
-        rowNo += 1
-
-
-def ShowNext(self):
-    global rowNo
-    rowNo += 1
-    sql = "SELECT id, nome, email, senha, data_cadastro, niveis_acesso_id, validacao, ativo, como_chegou FROM usuarios WHERE id=" + str(
-        rowNo) + " ORDER BY nome ASC"
-    cursor.execute(sql)
-    row = cursor.fetchone()
-
-    if row:
-        ui.lineEdit_name.setText(row[1])
-        ui.lineEdit_email.setText(row[2])
-        ui.lineEdit_pwd.setText(row[3])
-        ui.lineEdit_market.setText(row[8])
-    else:
-        rowNo -= 1
-
-
-def ShowLast(self):
-    cursor.execute(sql)
-    for row in cursor.fetchall():
-        ui.lineEdit_name.setText(row[1])
-        ui.lineEdit_email.setText(row[2])
-        ui.lineEdit_pwd.setText(row[3])
-        ui.lineEdit_market.setText(row[8])
+def retranslateUi(self, MainWindow):
+    _translate = QtCore.QCoreApplication.translate
+    MainWindow.setWindowTitle(_translate("MainWindow", "List of All Employee(GFGdb)"))
+    item = self.tableWidget.horizontalHeaderItem(0)
+    item.setText(_translate("MainWindow", "NAME"))
+    item1 = self.tableWidget.horizontalHeaderItem(1)
+    item1.setText(_translate("MainWindow", "SALARY"))
 
 
 if __name__ == "__main__":
+    import sys
+
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
     sys.exit(app.exec_())

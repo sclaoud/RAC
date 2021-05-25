@@ -28,6 +28,8 @@ class Window(Ui_Application, QDialog):
         QDialog.__init__(self)
         self.setupUi(self)
 
+        con.open()
+
         #validation des lignes avec limitations textes/chiffres uniquements
         regexText = QRegExpValidator(QRegExp(r'^[a-zA-Z]*$'))
         self.lineNom.setValidator(regexText)
@@ -190,6 +192,8 @@ class Window(Ui_Application, QDialog):
         self.UpdateFilm()
         print(Film.listeFilm)
 
+
+
     # Film suivant dans la liste de Film
     def suivantFilm(self):
         print(Film.positionFilm)
@@ -236,6 +240,7 @@ class Window(Ui_Application, QDialog):
             Film.positionFilm = len(Film.listeFilm) - 1
         self.UpdateFilm()
 
+
     # choix bouton radio sexe
     def radio_button_clicked(self):
         Personne.sexe = self.sexeBtnG.checkedButton().text()
@@ -244,9 +249,12 @@ class Window(Ui_Application, QDialog):
 
     # Met à jour le nombre de personne dans le système
     def PersonneUpdate(self):
-        query = QSqlQuery("SELECT id FROM Personne")
-        print (query)
-        self.tabMain.setTabText(0, "Personne ({})".format((query.value(0))))
+        position = QSqlQuery()
+        position.exec_("select * from Personne")
+        index = position.record().indexOf('id')
+        self.tabMain.setTabText(0, "Personne ({})".format(position.value(index)))
+        print(position.value(index))
+        print (position.lastError().text())
 
     # Update de la liste des films
     def UpdateFilm(self):
@@ -254,9 +262,8 @@ class Window(Ui_Application, QDialog):
 
     # Bouton pour mettre à jour une personne (Présentement en test)
     def ModifPers(self):
-        # search for the item
-        print (cartedeCredits.listCC)
-
+        query = QSqlQuery()
+        print (query.lastError().text())
 
     ### Enregistrement de l'entré et remise à zero ### à retravailler
     def Validation(self):
@@ -282,25 +289,60 @@ class Window(Ui_Application, QDialog):
             VALUES (?, ?, ?)
             """
         )
+        idq.prepare(
+            """
+            INSERT INTO Client (
+                DateInsc,
+                Courriel,
+                ClientPwd
+            )
+            VALUES (?, ?, ?)
+            """
+        )
 
         idq.addBindValue(Personne.prenom)
         idq.addBindValue(Personne.nom)
         idq.addBindValue(Personne.sexe)
+        idq.addBindValue(client.dateInsc)
+        idq.addBindValue(client.courriel)
+        idq.addBindValue(client.clientPwd)
         idq.exec()
 
 
 
     ### Personne suivante dans la liste de Personne ###
     def suivantPers(self):
-        query = QSqlQuery("SELECT id, Prenom, Nom, Sexe FROM Personne")
-        QSqlQuery.next
-        Personne.prenom = query.value(0)
-        print(Personne.prenom)
+#        query = QSqlQuery('SELECT id, Prenom, Nom, Sexe FROM Personne')
+#        query.next()
+        query = QSqlQuery()
+        query.exec_("select * from Personne")
+        index = query.record().indexOf('id')
+        query.next()
+        print(query.value(index))
+        Personne.prenom = query.value('Prenom')
+        Personne.nom = query.value('Nom')
+        Personne.sexe = query.value('Sexe')
+        self.linePrenom.setText(Personne.prenom)
+        self.lineNom.setText(Personne.nom)
+        if Personne.sexe == -2:
+            self.rbtnH.setChecked(True)
+        if Personne.sexe == -3:
+            self.rbtnF.setChecked(True)
+        if Personne.sexe == -4:
+            self.rbtnNA.setChecked(True)
+
+        self.PersonneUpdate()
+
+#        print(query.lastError().text())
 
 
     ###Personne précédente dans la liste de Personne ###
     def precedentPers(self):
-        self.PersonneUpdate()
+        query = QSqlQuery()
+        query.exec_("select * from Personne")
+        index = query.record().indexOf('id')
+        while query.previous():
+            print(query.value(index))
 
     # Fenêtre de confirmation de la fermeture de l'application TODO : Message d'erreur à fix
     def closeEvent(self):

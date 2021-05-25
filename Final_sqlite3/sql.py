@@ -3,14 +3,18 @@ import sys
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 
 # Create the connection
-con = QSqlDatabase.addDatabase("QSQLITE")
-con.setDatabaseName("data.db")
-print("Database created")
 
-# Open the connection
-if not con.open():
-    print("Database Error: %s" % con.lastError().databaseText())
-    sys.exit(1)
+try:
+    con = QSqlDatabase.addDatabase("QSQLITE")
+    con.setDatabaseName("data.db")
+    print("Database created")
+    con.open()
+
+finally:
+    # Open the connection
+    if not con.open():
+        print("Database Error: %s" % con.lastError().databaseText())
+        sys.exit(1)
 
 # Create a query and execute it right away using .exec()
 createTableQuery = QSqlQuery()
@@ -81,14 +85,11 @@ createTableQuery.exec(
 createTableQuery.exec(
     """
     CREATE TABLE Film (
+        id INTEGER AUTOINCREMENT UNIQUE NOT NULL,
         NomFilm VARCHAR(40) NOT NULL,
         DureeFilm VARCHAR(40) NOT NULL,
         DescFilm VARCHAR(40) NOT NULL,
-        CatFilm acces(40) NOT NULL,
-        id INTEGER,
-        PRIMARY KEY (Username),
-        CONSTRAINT FK_PersonOrder FOREIGN KEY (id)
-        REFERENCES Personne(id)
+        CatFilm VARCHAR(40) NULL,
     )
     """
 )
