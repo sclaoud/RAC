@@ -2,8 +2,10 @@ import sys
 
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 
-# Create the connection
+#Racroucie a utiliser dans tout le code pour QsqlQuery
+query = QSqlQuery()
 
+# Create the connection
 try:
     con = QSqlDatabase.addDatabase("QSQLITE")
     con.setDatabaseName("data.db")
@@ -26,7 +28,8 @@ createTableQuery.exec(
         Nom VARCHAR(40) NOT NULL,
         Sexe int NOT NULL
     )
-    """)
+    """
+)
 createTableQuery.exec(
     """
     CREATE TABLE CartedeCredits (
@@ -35,7 +38,7 @@ createTableQuery.exec(
         CodeCC int NOT NULL,
         id INTEGER,
         PRIMARY KEY (NumeroCC),
-        CONSTRAINT FK_PersonOrder FOREIGN KEY (id)
+        CONSTRAINT Personne FOREIGN KEY (id)
         REFERENCES Personne(id)
     )
     """
@@ -48,7 +51,7 @@ createTableQuery.exec(
         ClientPwd VARCHAR(40) NOT NULL,
         id INTEGER,
         PRIMARY KEY (courriel),
-        CONSTRAINT FK_PersonOrder FOREIGN KEY (id)
+        CONSTRAINT Personne FOREIGN KEY (id)
         REFERENCES Personne(id)
     )
     """
@@ -63,7 +66,7 @@ createTableQuery.exec(
         Cachet VARCHAR(40) NOT NULL,
         id INTEGER,
         PRIMARY KEY (Personnage),
-        CONSTRAINT FK_PersonOrder FOREIGN KEY (id)
+        CONSTRAINT Personne FOREIGN KEY (id)
         REFERENCES Personne(id)
     )
     """
@@ -74,23 +77,24 @@ createTableQuery.exec(
         DateEmb VARCHAR(40) NOT NULL,
         Username VARCHAR(40) NOT NULL,
         empPwd VARCHAR(40) NOT NULL,
-        DateFin acces(40) NOT NULL,
+        DateFin VARCHAR(40) NOT NULL,
+        acces VARCHAR(40) NOT NULL,
         id INTEGER,
         PRIMARY KEY (Username),
-        CONSTRAINT FK_PersonOrder FOREIGN KEY (id)
+        CONSTRAINT Personne FOREIGN KEY (id)
         REFERENCES Personne(id)
     )
     """
 )
 createTableQuery.exec(
     """
-    CREATE TABLE Film (
-        id INTEGER AUTOINCREMENT UNIQUE NOT NULL,
-        NomFilm VARCHAR(40) NOT NULL,
-        DureeFilm VARCHAR(40) NOT NULL,
-        DescFilm VARCHAR(40) NOT NULL,
-        CatFilm VARCHAR(40) NULL,
-    )
+    CREATE TABLE "Film" (
+        "NomFilm"	VARCHAR(40) NOT NULL,
+        "DureeFilm"	VARCHAR(40) NOT NULL,
+        "DescFilm"	VARCHAR(255) NOT NULL,
+        "CatFilm"	NUMERIC NOT NULL,
+        PRIMARY KEY("NomFilm")
+	)
     """
 )
 print(con.tables())

@@ -21,7 +21,6 @@ from TABUI import Ui_Application
 from classes import *
 from sql    import *
 
-
     # Fenêtre principale
 class Window(Ui_Application, QDialog):
     def __init__(self):
@@ -151,6 +150,7 @@ class Window(Ui_Application, QDialog):
         self.btnCharger.clicked.connect(self.charger)
 
         self.PersonneUpdate()
+        self.UpdateFilm()
 
     #### Fonctions ####
 
@@ -160,105 +160,71 @@ class Window(Ui_Application, QDialog):
         Film.dureeFilm = self.dureeFilm.time()
         Film.descFilm = self.textDescFilm.toPlainText()
 
+        # Enregistrement des checkbox de catégories cochés
         model = self.listCatFilm.model()
         cat_film_list = []
         for i, v in enumerate(self.cbListCatFilm):
             item = model.item(i)
             if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:
-                print(i, v)
-                cat_film_list.append(i)
+#                print(i, v)
+                #Sauvegarde des int en str
+                cat_film_list.append(str(i))
         Film.catFilm = cat_film_list
+        print (Film.catFilm)
 
-        # Efface les champs #
-        self.TitreFilm.setText("")
-        self.dureeFilm.setTime(QtCore.QTime(00, 00))
-        self.textDescFilm.setText("")
-        # Efface les checkbox #
-        model = self.listCatFilm.model()
-        for index in range(model.rowCount()):
-            item = model.item(index)
-            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:
-                item.setCheckState(QtCore.Qt.Unchecked)
-
-        film_dict = {
-            'Titre': Film.nomFilm,
-            'duree': Film.dureeFilm,
-            'description': Film.descFilm,
-            'categories': Film.catFilm
-        }
-
-        Film.listeFilm.append(film_dict)
-
+        #enregistrement du nouveau film dans la BD SQL
+        nf = QSqlQuery()
+        nf.prepare(
+           """
+            INSERT INTO Film (
+                NomFilm,
+                DureeFilm,
+                DescFilm,
+                CatFilm
+            )
+            VALUES (?, ?, ?, ?)
+            """
+        )
+        nf.addBindValue(Film.nomFilm)
+        nf.addBindValue(Film.dureeFilm)
+        nf.addBindValue(Film.descFilm)
+        nf.addBindValue(Film.catFilm)
+        nf.exec()
+        print (nf.lastError().text())
         self.UpdateFilm()
-        print(Film.listeFilm)
-
-
 
     # Film suivant dans la liste de Film
     def suivantFilm(self):
-        print(Film.positionFilm)
-        print(Film.listeFilm)
-        self.TitreFilm.setText(Film.listeFilm[Film.positionFilm]['Titre'])
-        self.textDescFilm.setText(Film.listeFilm[Film.positionFilm]['description'])
-        self.dureeFilm.setTime(Film.listeFilm[Film.positionFilm]['duree'])
-        self.cat_film_list = (Film.listeFilm[Film.positionFilm]['categories'])
-        i = 0
-        while self.model.item(i):
-            item = self.model.item(i)
-            if i in self.cat_film_list:
-                item.setCheckState(QtCore.Qt.Checked)
-            else:
-                item.setCheckState(QtCore.Qt.Unchecked)
-            i += 1
-
-        Film.positionFilm += 1
-
-        if Film.positionFilm == len(Film.listeFilm):
-            Film.positionFilm = 0
         self.UpdateFilm()
 
     # Film précédent dans la liste de film
 
     def precedentFilm(self):
-        print(Film.positionFilm)
-        self.TitreFilm.setText(Film.listeFilm[Film.positionFilm]['Titre'])
-        self.textDescFilm.setText(Film.listeFilm[Film.positionFilm]['description'])
-        self.dureeFilm.setTime(Film.listeFilm[Film.positionFilm]['duree'])
-        self.cat_film_list = (Film.listeFilm[Film.positionFilm]['categories'])
-        i = 0
-        while self.model.item(i):
-            item = self.model.item(i)
-            if i in self.cat_film_list:
-                item.setCheckState(QtCore.Qt.Checked)
-            else:
-                item.setCheckState(QtCore.Qt.Unchecked)
-            i += 1
-
-        Film.positionFilm -= 1
-
-        if Film.positionFilm < 0:
-            Film.positionFilm = len(Film.listeFilm) - 1
         self.UpdateFilm()
 
 
     # choix bouton radio sexe
     def radio_button_clicked(self):
         Personne.sexe = self.sexeBtnG.checkedButton().text()
-
         print(Personne.sexe)
 
     # Met à jour le nombre de personne dans le système
     def PersonneUpdate(self):
-        position = QSqlQuery()
-        position.exec_("select * from Personne")
-        index = position.record().indexOf('id')
-        self.tabMain.setTabText(0, "Personne ({})".format(position.value(index)))
-        print(position.value(index))
-        print (position.lastError().text())
+        pp = QSqlQuery()
+        pp.exec_("select * from Personne")
+        index = pp.record().indexOf('id')
+        self.tabMain.setTabText(0, "Personne ({})".format(pp.value(index)))
+        print(pp.value(index))
+        print (pp.lastError().text())
 
     # Update de la liste des films
     def UpdateFilm(self):
-        self.tabMain.setTabText(1, "Film ({})".format(len(Film.listeFilm)))
+        pf = QSqlQuery()
+        pf.exec_("select * from Personne")
+        index = pf.record().indexOf('NomFilm')
+        self.tabMain.setTabText(1, "Film ({})".format(pf.value(index)))
+        print(pf.value(index))
+        print (pf.lastError().text())
 
     # Bouton pour mettre à jour une personne (Présentement en test)
     def ModifPers(self):
@@ -278,9 +244,10 @@ class Window(Ui_Application, QDialog):
         employe.empPWD = self.linePwdEmp.text()
         employe.acces = self.comboAcces.currentIndex()
 
+
         idq = QSqlQuery()
         idq.prepare(
-            """
+           """
             INSERT INTO Personne (
                 Prenom,
                 Nom,
@@ -289,6 +256,11 @@ class Window(Ui_Application, QDialog):
             VALUES (?, ?, ?)
             """
         )
+        idq.addBindValue(Personne.prenom)
+        idq.addBindValue(Personne.nom)
+        idq.addBindValue(Personne.sexe)
+        idq.exec()
+
         idq.prepare(
             """
             INSERT INTO Client (
@@ -300,14 +272,10 @@ class Window(Ui_Application, QDialog):
             """
         )
 
-        idq.addBindValue(Personne.prenom)
-        idq.addBindValue(Personne.nom)
-        idq.addBindValue(Personne.sexe)
         idq.addBindValue(client.dateInsc)
         idq.addBindValue(client.courriel)
         idq.addBindValue(client.clientPwd)
         idq.exec()
-
 
 
     ### Personne suivante dans la liste de Personne ###
