@@ -10,7 +10,8 @@ from PyQt5 import QtSql
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlError
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import QRegExpValidator, QStandardItemModel, QStandardItem
-from PyQt5.QtCore import QRegExp, QDir
+from PyQt5.QtCore import QRegExp, QDir, Qt
+from PyQt5.QtWidgets import QListView
 from PyQt5.Qt   import QColor
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog, QTableWidgetItem, QAbstractItemView
 import re
@@ -127,18 +128,21 @@ class Window(Ui_Application, QDialog):
         self.listedesAcces = {"Consultant", "employé", "sécurité", "administrateur", "Direction"}
         self.comboAcces.addItems(self.listedesAcces)
 
-
-
-# QlisteView de la liste des catégories de films
+        # QlisteView de la liste des catégories de films
         self.model = QStandardItemModel()
+        query.exec("SELECT name FROM PRAGMA_TABLE_INFO('CatFilm')")
+        list = query.value()
+#        query.exec_("PRAGMA table_info('CatFilm')")
+#        list = query.value('name')
+        print (list)
+        self.cbListCatFilm = {"bob"}
         # Liste des catégories de films (n'est pas iterable)
-        self.cbListCatFilm = {"Animation", "Fantaisie", "Science-Fiction", "Horreur", "Drame",
-                              "Thriller", "Documentaire", "Comédie"}
         for list in self.cbListCatFilm:
             item = QStandardItem(list)
             item.setCheckable(True)
             self.model.appendRow(item)
         self.listCatFilm.setModel(self.model)
+
 
         # Remplissage du champ Titre
         self.TitreFilm.setText("Titre du film")
@@ -154,6 +158,7 @@ class Window(Ui_Application, QDialog):
 
     #### Fonctions ####
 
+
     # Enregistrement de l'entré et remise à zero des films
     def newFilm(self):
         Film.nomFilm = self.TitreFilm.text()
@@ -168,7 +173,7 @@ class Window(Ui_Application, QDialog):
             if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:
 #                print(i, v)
                 #Sauvegarde des int en str
-                cat_film_list.append(str(i))
+                cat_film_list.append(str(v))
         Film.catFilm = cat_film_list
         print (Film.catFilm)
 

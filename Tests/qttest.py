@@ -1,44 +1,71 @@
-import sys
+class TableModel(QSqlTableModel):
+    def __init__(self, *args, **kwargs):
+        QSqlTableModel.__init__(self, *args, **kwargs)
+        self.checkeable_data = {}
 
-from PyQt5.QtWidgets import (
-    QApplication, QDialog, QMainWindow, QMessageBox
-)
-from PyQt5.uic import loadUi
+    def flags(self, index):
+        fl = QSqlTableModel.flags(self, index)
+        if index.column() == 1:
+            fl |= Qt.ItemIsUserCheckable
+        return fl
 
-from main_window_ui import Ui_MainWindow
+    def data(self, index, role=Qt.DisplayRole):
+        if role == Qt.CheckStateRole and (
+            self.flags(index) & Qt.ItemIsUserCheckable != Qt.NoItemFlags
+        ):
+            if index.row() not in self.checkeable_data.keys():
+                self.setData(index, Qt.Unchecked, Qt.CheckStateRole)
+            return self.checkeable_data[index.row()]
+        else:
+            return QSqlTableModel.data(self, index, role)
 
-class Window(QMainWindow, Ui_MainWindow):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setupUi(self)
-        self.connectSignalsSlots()
+    def setData(self, index, value, role=Qt.EditRole):
+        if role == Qt.CheckStateRole and (
+            self.flags(index) & Qt.ItemIsUserCheckable != Qt.NoItemFlags
+        ):
+            self.checkeable_data[index.row()] = value
+            self.dataChanged.emit(index, index, (role,))
+            return True
+        return QSqlTableModel.setData(self, index, value, role)
 
-    def connectSignalsSlots(self):
-        self.action_Exit.triggered.connect(self.close)
-        self.action_Find_Replace.triggered.connect(self.findAndReplace)
-        self.action_About.triggered.connect(self.about)
+    def createConnection():
+        db = QSqlDatabase.addDatabase("QSQLITE");
+        db.setDatabaseName(":memory:");
+        if not db.open():
+            print("Cannot open database"),
+            print("Unable to establish a database connection.\n"
+                            "This example needs SQLite support. Please read "
+                            "the Qt SQL driver documentation for information how "
+                            "to build it.\n\n"
+                            "Click Cancel to exit.")
+            return False
 
-    def findAndReplace(self):
-        dialog = FindReplaceDialog(self)
-        dialog.exec()
+    query = QSqlQuery()
+    query.exec_("create table person (id INTEGER PRIMARY KEY AUTOINCREMENT, "
+               "firstname VARCHAR(20), lastname VARCHAR(20))");
+    query.exec_("insert into person(firstname, lastname) values('Danny', 'Young')");
+    query.exec_("insert into person(firstname, lastname) values('Christine', 'Holand')");
+    query.exec_("insert into person(firstname, lastname) values('Lars', 'Gordon')");
+    query.exec_("insert into person(firstname, lastname) values('Roberto', 'Robitaille')");
+    query.exec_("insert into person(firstname, lastname) values('Maria', 'Papadopoulos')");
 
-    def about(self):
-        QMessageBox.about(
-            self,
-            "About Sample Editor",
-            "<p>A sample text editor app built with:</p>"
-            "<p>- PyQt</p>"
-            "<p>- Qt Designer</p>"
-            "<p>- Python</p>",
-        )
+    return True
 
-class FindReplaceDialog(QDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        loadUi("ui/find_replace.ui", self)
+class Widget(QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        lv = QListView(self)
+        self.setCentralWidget(lv)
+        model = TableModel(self)
+        model.setTable("person")
+        model.select()
+        lv.setModel(model)
+        lv.setModelColumn(1)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = QApplication(sys.argv)
-    win = Window()
-    win.show()
-    sys.exit(app.exec())
+    if not createConnection():
+        sys.exit(-1)
+    ex = Widget()
+    ex.show()
+    sys.exit(app.exec_())

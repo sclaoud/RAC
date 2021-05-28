@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtSql import QSqlDatabase, QSqlQuery
+from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlQueryModel, QSqlTableModel
 
 #Racroucie a utiliser dans tout le code pour QsqlQuery
 query = QSqlQuery()
@@ -33,68 +33,82 @@ createTableQuery.exec(
 createTableQuery.exec(
     """
     CREATE TABLE CartedeCredits (
+        id INTEGER,
         NumeroCC int NOT NULL,
         DateCC int NOT NULL,
         CodeCC int NOT NULL,
-        id INTEGER,
         PRIMARY KEY (NumeroCC),
-        CONSTRAINT Personne FOREIGN KEY (id)
-        REFERENCES Personne(id)
+        FOREIGN KEY (id) REFERENCES Personne(id)
     )
     """
 )
 createTableQuery.exec(
     """
     CREATE TABLE Client (
+        id INTEGER,
         DateInsc int NOT NULL,
         Courriel VARCHAR(255) NOT NULL,
         ClientPwd VARCHAR(40) NOT NULL,
-        id INTEGER,
         PRIMARY KEY (courriel),
-        CONSTRAINT Personne FOREIGN KEY (id)
-        REFERENCES Personne(id)
+        FOREIGN KEY (id) REFERENCES Personne(id)
     )
     """
 )
 createTableQuery.exec(
     """
     CREATE TABLE Acteurs (
+        id INTEGER,
         TitreFilm VARCHAR(40) NOT NULL,
         Personnage VARCHAR(40) NOT NULL,
         DateDebut VARCHAR(40) NOT NULL,
         DateFin VARCHAR(40) NOT NULL,
         Cachet VARCHAR(40) NOT NULL,
-        id INTEGER,
         PRIMARY KEY (Personnage),
-        CONSTRAINT Personne FOREIGN KEY (id)
-        REFERENCES Personne(id)
+        FOREIGN KEY (id) REFERENCES Personne(id)
     )
     """
 )
 createTableQuery.exec(
     """
     CREATE TABLE employe (
+        id INTEGER,
         DateEmb VARCHAR(40) NOT NULL,
         Username VARCHAR(40) NOT NULL,
         empPwd VARCHAR(40) NOT NULL,
         DateFin VARCHAR(40) NOT NULL,
         acces VARCHAR(40) NOT NULL,
-        id INTEGER,
         PRIMARY KEY (Username),
-        CONSTRAINT Personne FOREIGN KEY (id)
-        REFERENCES Personne(id)
+        FOREIGN KEY (id) REFERENCES Personne(id)
     )
     """
 )
 createTableQuery.exec(
     """
     CREATE TABLE "Film" (
+    	"idf"	INTEGER NOT NULL UNIQUE,
         "NomFilm"	VARCHAR(40) NOT NULL,
         "DureeFilm"	VARCHAR(40) NOT NULL,
         "DescFilm"	VARCHAR(255) NOT NULL,
-        "CatFilm"	NUMERIC NOT NULL,
-        PRIMARY KEY("NomFilm")
+        "CatFilm"	VARCHAR(40) NOT NULL,
+        PRIMARY KEY("idf" AUTOINCREMENT)
 	)
     """
 )
+createTableQuery.exec(
+    """
+    CREATE TABLE "CatFilm" (
+        "idf"	INTEGER,
+        "Animation"	INTEGER,
+        "Fantaisie"	INTEGER,
+        "Science-Fiction"	INTEGER,
+        "Horreur"	INTEGER,
+        "Drame"	INTEGER,
+        "Thriller"	INTEGER,
+        "Documentaire"	INTEGER,
+        "Comédie"	INTEGER,
+        FOREIGN KEY(idf) REFERENCES Film (idf)
+    )
+    """
+)
+
 print(con.tables())
