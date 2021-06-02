@@ -111,10 +111,6 @@ class Window(Ui_Application, QDialog):
         self.btnFermer.clicked.connect(self.closeEvent)
         # Entré un nouveau film
         self.btnNvFilm.clicked.connect(self.newFilm)
-        # Bouton précédent de la tab Films
-        self.btnPrecedentFilm.clicked.connect(self.precedentFilm)
-        # Bouton Suivant de la tab Films
-        self.btnSuivantFilm.clicked.connect(self.suivantFilm)
         # Entré une nouvelle personne
         self.btnNvPers.clicked.connect(self.Validation)
 
@@ -146,16 +142,11 @@ class Window(Ui_Application, QDialog):
         self.TitreFilm.setText("Titre du film")
         # Remplissage du champ Synopsis
         self.textDescFilm.setText('Inscrire la synopsie du film')
-        # Bouton de sauvegarde des données
-        self.btnSauvegarder.clicked.connect(self.sauvegarder)
-        # Bouton de chargement des données
-        self.btnCharger.clicked.connect(self.charger)
         # Remplir la liste des ID et des champs au besoin
         self.comboboxID()
         #Si sélection d'un contenu de la comboboxID
         self.comboID.currentIndexChanged.connect(self.PersonneUpdate)
 
-        self.PersonneUpdate()
         self.UpdateFilm()
 
     #### Fonctions ####
@@ -166,8 +157,8 @@ class Window(Ui_Application, QDialog):
         idquery = QSqlQuery("SELECT id  FROM Personne")
         while idquery.next():
             listid.append(str(idquery.value('id')))
-#        print(listid)
         self.comboID.addItems(listid)
+        self.PersonneUpdate()
 
 
     # Enregistrement de l'entré et remise à zero des films
@@ -209,16 +200,6 @@ class Window(Ui_Application, QDialog):
         print (nf.lastError().text())
         self.UpdateFilm()
 
-    # Film suivant dans la liste de Film
-    def suivantFilm(self):
-        self.UpdateFilm()
-
-    # Film précédent dans la liste de film
-
-    def precedentFilm(self):
-        self.UpdateFilm()
-
-
     # choix bouton radio sexe
     def radio_button_clicked(self):
         Personne.sexe = self.sexeBtnG.checkedButton().text()
@@ -237,6 +218,7 @@ class Window(Ui_Application, QDialog):
         ppid = self.comboID.currentText()
         query = QSqlQuery()
         #Prepare le query en limitant la sélection de la rangé à la var PPID (ID selectionner dans comboID)
+#        query.prepare('SELECT * FROM Client INNER JOIN Personne ON client.id = Personne.id')
         query.prepare('Select * FROM Personne WHERE id is :1')
         query.bindValue(':1', ppid) #Pointe la variable :1 vers ppid
         query.exec()
@@ -282,9 +264,9 @@ class Window(Ui_Application, QDialog):
         employe.empPWD = self.linePwdEmp.text()
         employe.acces = self.comboAcces.currentIndex()
 
-
-        idq = QSqlQuery()
-        idq.prepare(
+        #query Personne
+        qp = QSqlQuery()
+        qp.prepare(
            """
             INSERT INTO Personne (
                 Prenom,
@@ -294,12 +276,13 @@ class Window(Ui_Application, QDialog):
             VALUES (?, ?, ?)
             """
         )
-        idq.addBindValue(Personne.prenom)
-        idq.addBindValue(Personne.nom)
-        idq.addBindValue(Personne.sexe)
-        idq.exec()
+        qp.addBindValue(Personne.prenom)
+        qp.addBindValue(Personne.nom)
+        qp.addBindValue(Personne.sexe)
+        qp.exec()
 
-        idq.prepare(
+        qc = QSqlQuery()
+        qc.prepare(
             """
             INSERT INTO Client (
                 DateInsc,
@@ -310,31 +293,32 @@ class Window(Ui_Application, QDialog):
             """
         )
 
-        idq.addBindValue(client.dateInsc)
-        idq.addBindValue(client.courriel)
-        idq.addBindValue(client.clientPwd)
-        idq.exec()
+        qc.addBindValue(client.dateInsc)
+        qc.addBindValue(client.courriel)
+        qc.addBindValue(client.clientPwd)
+        qc.exec()
 
+        self.cleanupPers() # clean up
 
-    ### Personne suivante dans la liste de Personne ###
-    def suivantPers(self):
-        query = QSqlQuery("select id, Prenom, Nom, Sexe from Personne")
-        while query.next():
-            index = query.record().indexOf('id')
-            print(query.value(index))
-            Personne.prenom = query.value('Prenom')
-            Personne.nom = query.value('Nom')
-            Personne.sexe = query.value('Sexe')
-            self.linePrenom.setText(Personne.prenom)
-            self.lineNom.setText(Personne.nom)
-            if Personne.sexe == -2:
-                self.rbtnH.setChecked(True)
-            if Personne.sexe == -3:
-                self.rbtnF.setChecked(True)
-            if Personne.sexe == -4:
-                self.rbtnNA.setChecked(True)
+    #Cleanup des champs une fois l'enregistrement
+    def cleanupPers(self):
+        # Reset des champs pour une nouvelle entrée
+        self.linePrenom.setText("")
+        self.lineNom.setText("")
+        self.cbClient.setChecked(False)
+        self.cbEmploye.setChecked(False)
+        self.cbActeur.setChecked(False)
+        self.dateInsc.setDate(QtCore.QDate(2021, 1, 1))
+        self.lineCourriel.setText("")
+        self.linePwdClient.setText("")
+        self.dateEmb.setDate(QtCore.QDate(2021, 1, 1))
+        self.lineUsername.setText("")
+        self.linePwdEmp.setText("")
+        self.comboAcces.setCurrentIndex(1)
+        self.QtableCC.setRowCount(0)
+        self.QtableChar.setRowCount(0)
 
-        self.PersonneUpdate()
+        self.comboboxID()
 
     # Fenêtre de confirmation de la fermeture de l'application TODO : Message d'erreur à fix
     def closeEvent(self):
@@ -350,14 +334,6 @@ class Window(Ui_Application, QDialog):
         if res == QMessageBox.Cancel:
             return True
         return False
-
-    # Sauvegarde des données en excel avec Pandas
-    def sauvegarder(self):
-        print ("save")
-
-    ### Chargement des données CSV TODO : à revoir
-    def charger(self):
-        print ("load")
 
     # Ajout d'une nouvelle rangée pour inscrire une nouvelle carte de crédit
     def AjoutCC(self):

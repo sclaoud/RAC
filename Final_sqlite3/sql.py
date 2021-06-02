@@ -44,12 +44,12 @@ createTableQuery.exec(
 createTableQuery.exec(
     """
     CREATE TABLE Client (
-        id INTEGER,
-        DateInsc int NOT NULL,
-        Courriel VARCHAR(255) NOT NULL,
-        ClientPwd VARCHAR(40) NOT NULL,
-        PRIMARY KEY (courriel),
-        FOREIGN KEY (id) REFERENCES Personne(id)
+        id	INTEGER NOT NULL,
+        DateInsc	VARCHAR(40)  NOT NULL,
+        Courriel	VARCHAR(255) NOT NULL,
+        ClientPwd	VARCHAR(40) NOT NULL,
+        FOREIGN KEY("id") REFERENCES "Personne"("id"),
+        PRIMARY KEY("courriel")
     )
     """
 )

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'tab11.ui'
+# Form implementation generated from reading ui file 'TAB12.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -268,12 +268,6 @@ class Ui_Application(object):
         self.tabMain.addTab(self.tabPersonne, "")
         self.tabFilms = QtWidgets.QWidget()
         self.tabFilms.setObjectName("tabFilms")
-        self.btnPrecedentFilm = QtWidgets.QPushButton(self.tabFilms)
-        self.btnPrecedentFilm.setGeometry(QtCore.QRect(50, 140, 31, 23))
-        self.btnPrecedentFilm.setObjectName("btnPrecedentFilm")
-        self.btnSuivantFilm = QtWidgets.QPushButton(self.tabFilms)
-        self.btnSuivantFilm.setGeometry(QtCore.QRect(110, 140, 31, 23))
-        self.btnSuivantFilm.setObjectName("btnSuivantFilm")
         self.verticalLayoutWidget_3 = QtWidgets.QWidget(self.tabFilms)
         self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(20, 20, 160, 112))
         self.verticalLayoutWidget_3.setObjectName("verticalLayoutWidget_3")
@@ -310,16 +304,17 @@ class Ui_Application(object):
         self.listCatFilm = QtWidgets.QListView(self.tabFilms)
         self.listCatFilm.setGeometry(QtCore.QRect(490, 30, 171, 192))
         self.listCatFilm.setObjectName("listCatFilm")
+        self.comboIDF = QtWidgets.QComboBox(self.tabFilms)
+        self.comboIDF.setGeometry(QtCore.QRect(100, 140, 69, 21))
+        self.comboIDF.setObjectName("comboIDF")
+        self.label_9 = QtWidgets.QLabel(self.tabFilms)
+        self.label_9.setGeometry(QtCore.QRect(40, 140, 47, 13))
+        self.label_9.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_9.setObjectName("label_9")
         self.tabMain.addTab(self.tabFilms, "")
         self.btnFermer = QtWidgets.QPushButton(Application)
         self.btnFermer.setGeometry(QtCore.QRect(890, 590, 75, 23))
         self.btnFermer.setObjectName("btnFermer")
-        self.btnSauvegarder = QtWidgets.QPushButton(Application)
-        self.btnSauvegarder.setGeometry(QtCore.QRect(540, 590, 158, 23))
-        self.btnSauvegarder.setObjectName("btnSauvegarder")
-        self.btnCharger = QtWidgets.QPushButton(Application)
-        self.btnCharger.setGeometry(QtCore.QRect(700, 590, 158, 23))
-        self.btnCharger.setObjectName("btnCharger")
 
         self.retranslateUi(Application)
         self.tabMain.setCurrentIndex(0)
@@ -371,16 +366,13 @@ class Ui_Application(object):
         self.btnSuppPers.setText(_translate("Application", "Supprimer"))
         self.label_8.setText(_translate("Application", "ID"))
         self.tabMain.setTabText(self.tabMain.indexOf(self.tabPersonne), _translate("Application", "Personne"))
-        self.btnPrecedentFilm.setText(_translate("Application", "<"))
-        self.btnSuivantFilm.setText(_translate("Application", ">"))
         self.btnNvFilm.setText(_translate("Application", "Nouveau"))
         self.btnModFilm.setText(_translate("Application", "Modifier"))
         self.btnSupFilm.setText(_translate("Application", "Supprimer"))
         self.label_2.setText(_translate("Application", "Catégories du film"))
+        self.label_9.setText(_translate("Application", "ID"))
         self.tabMain.setTabText(self.tabMain.indexOf(self.tabFilms), _translate("Application", "Films"))
         self.btnFermer.setText(_translate("Application", "Fermer"))
-        self.btnSauvegarder.setText(_translate("Application", "Sauvegarder"))
-        self.btnCharger.setText(_translate("Application", "Charger"))
 
 
 if __name__ == "__main__":
