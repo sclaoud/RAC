@@ -226,20 +226,43 @@ class Window(Ui_Application, QDialog):
 
     # Met à jour le nombre de personne dans le système
     def PersonneUpdate(self):
-        pp = QSqlQuery("SELECT id FROM Personne")
+        pp = QSqlQuery("SELECT * FROM Personne")
         pp.last()
         rec = pp.value('id')
         self.tabMain.setTabText(0, "Personne ({})".format(rec))
-#        print (pp.lastError().text())
+#        print (pp.lastError().text()
+
+
+        # récupérer le ID sélectionné dans comboboxID
+        ppid = self.comboID.currentText()
+        query = QSqlQuery()
+        #Prepare le query en limitant la sélection de la rangé à la var PPID (ID selectionner dans comboID)
+        query.prepare('Select * FROM Personne WHERE id is :1')
+        query.bindValue(':1', ppid) #Pointe la variable :1 vers ppid
+        query.exec()
+        while query.next():
+#            print (ppid)
+            Personne.prenom = query.value('Prenom')
+            Personne.nom = query.value('Nom')
+            Personne.sexe = query.value('Sexe')
+            self.linePrenom.setText(Personne.prenom)
+            self.lineNom.setText(Personne.nom)
+            if Personne.sexe == -2:
+                self.rbtnH.setChecked(True)
+            if Personne.sexe == -3:
+                self.rbtnF.setChecked(True)
+            if Personne.sexe == -4:
+                self.rbtnNA.setChecked(True)
+
+
 
     # Update de la liste des films
     def UpdateFilm(self):
-        pf = QSqlQuery()
-        pf.exec_("select * from Personne")
-        index = pf.record().indexOf('NomFilm')
-        self.tabMain.setTabText(1, "Film ({})".format(pf.value(index)))
-        print(pf.value(index))
-        print (pf.lastError().text())
+        pf = QSqlQuery("SELECT idf FROM Film")
+        pf.last()
+        rec = pf.value('idf')
+        self.tabMain.setTabText(1, "Film ({})".format(rec))
+#        print (pf.lastError().text())
 
     # Bouton pour mettre à jour une personne (Présentement en test)
     def ModifPers(self):
