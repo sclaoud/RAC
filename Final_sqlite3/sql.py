@@ -2,8 +2,7 @@ import sys
 
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlQueryModel, QSqlTableModel
 
-#Racroucie a utiliser dans tout le code pour QsqlQuery
-query = QSqlQuery()
+# Query pour les demandes ID universel
 
 # Create the connection
 try:
@@ -97,15 +96,15 @@ createTableQuery.exec(
 createTableQuery.exec(
     """
     CREATE TABLE "CatFilm" (
-        "idf"	INTEGER,
-        "Animation"	INTEGER,
-        "Fantaisie"	INTEGER,
-        "Science-Fiction"	INTEGER,
-        "Horreur"	INTEGER,
-        "Drame"	INTEGER,
-        "Thriller"	INTEGER,
-        "Documentaire"	INTEGER,
-        "Comédie"	INTEGER,
+        "idf"	INTEGER NOT NULL,
+        "Animation"	INTEGER NOT NULL,
+        "Fantaisie"	INTEGER NOT NULL,
+        "Science-Fiction"	INTEGER NOT NULL,
+        "Horreur"	INTEGER NOT NULL,
+        "Drame"	INTEGER NOT NULL,
+        "Thriller"	INTEGER NOT NULL,
+        "Documentaire"	INTEGER NOT NULL,
+        "Comédie"	INTEGER NOT NULL,
         FOREIGN KEY(idf) REFERENCES Film (idf)
     )
     """

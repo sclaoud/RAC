@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.42&#10;&#10;Enregistrement de la TAB FIlm fonctionnel sauf catFILM (solution a réfléchir).&#10;&#10;- Enregistrement des données clients fonctionnels mais non linké à la personne.&#10;-Incrémentialisation du nombre d'entré dans les TABS non-fonctionnel (return none)">
+      <change afterPath="$PROJECT_DIR$/UI/tab11.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final_class/data.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_sqlite3/TABUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/TABUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/data.db" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/data.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/sql.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/data.db" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/data.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/qttest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/qttest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.db" beforeDir="false" afterPath="$PROJECT_DIR$/data.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/sqltest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/sqltest.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,8 +205,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main (1)" />
-        <item itemvalue="Python.sql" />
         <item itemvalue="Python.sqltest" />
+        <item itemvalue="Python.sql" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.QtablewidgetUpdate (1)" />
       </list>
@@ -548,7 +550,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622058158908</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="0.42.1&#10;Différentes tests pour appeler les catégories depuis une tables créer a cette effet.... SELECT name FROM PRAGMA_TABLE_INFO('CatFilm') semble prometteur mais ne retourne pas de donnée lorsqu'en PYQT alors que fonctionnel en sqlite.  à suivre">
+      <created>1622230802874</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1622230802874</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -565,7 +574,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="0.17&#10;&#10;Modification de la classe cartedecredits et de la fonction newCC pour ajouter des cartes de crédit et en faire l'affichage avec pandas (a venir)&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
     <MESSAGE value="0.18&#10;&#10;Modification des qlistview en qtableview et utilisation de pandas pour l'affichage des données.  Préparation des fenêtres CC et acteurs.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
     <MESSAGE value="0.19&#10;&#10;Work-in-progress : Ajoute des données des cartes de crédits en pandas.dataframes (apparaissent vident pour le moment)&#10;&#10;Idem pour la table qtableview.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
     <MESSAGE value="0.20&#10;&#10;Sauvegarde des données la fenêtre Acteurs dans la liste listeActeurs.&#10;Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs)&#10;Ajout des lignes clients et employe dans la listePersonnes (comboAcces a validé)&#10;&#10;---------------------------&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;- Valider les sous-listes acteurs et CC.&#10;- Sauvegarde/Chargement." />
@@ -590,7 +598,8 @@
     <MESSAGE value="0.40&#10;&#10;Retour aux sources.... changement pour SQLite en espérant réglé les troubles.&#10;&#10;- Travail sur le retour des données dans SQL." />
     <MESSAGE value="0.41&#10;&#10;Retour des données Personnes (prenom/Nom/Sexe) fonctionnels.&#10;- Enregistrement des données clients non-fonctionnels.&#10;-création de la table Film non-fonctionnel." />
     <MESSAGE value="0.42&#10;&#10;Enregistrement de la TAB FIlm fonctionnel sauf catFILM (solution a réfléchir).&#10;&#10;- Enregistrement des données clients fonctionnels mais non linké à la personne.&#10;-Incrémentialisation du nombre d'entré dans les TABS non-fonctionnel (return none)" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.42&#10;&#10;Enregistrement de la TAB FIlm fonctionnel sauf catFILM (solution a réfléchir).&#10;&#10;- Enregistrement des données clients fonctionnels mais non linké à la personne.&#10;-Incrémentialisation du nombre d'entré dans les TABS non-fonctionnel (return none)" />
+    <MESSAGE value="0.42.1&#10;Différentes tests pour appeler les catégories depuis une tables créer a cette effet.... SELECT name FROM PRAGMA_TABLE_INFO('CatFilm') semble prometteur mais ne retourne pas de donnée lorsqu'en PYQT alors que fonctionnel en sqlite.  à suivre" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.42.1&#10;Différentes tests pour appeler les catégories depuis une tables créer a cette effet.... SELECT name FROM PRAGMA_TABLE_INFO('CatFilm') semble prometteur mais ne retourne pas de donnée lorsqu'en PYQT alors que fonctionnel en sqlite.  à suivre" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

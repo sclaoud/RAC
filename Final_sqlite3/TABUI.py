@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'tab9.ui'
+# Form implementation generated from reading ui file 'tab11.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -141,9 +141,6 @@ class Ui_Application(object):
         self.horizontalLayout_2.addWidget(self.rbtnNA)
         self.verticalLayout_17.addLayout(self.horizontalLayout_2)
         self.horizontalLayout.addLayout(self.verticalLayout_17)
-        self.btnPrecedent = QtWidgets.QPushButton(self.tabPersonne)
-        self.btnPrecedent.setGeometry(QtCore.QRect(60, 70, 31, 23))
-        self.btnPrecedent.setObjectName("btnPrecedent")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.tabPersonne)
         self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(160, 20, 160, 112))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
@@ -246,9 +243,6 @@ class Ui_Application(object):
         self.cbClient = QtWidgets.QCheckBox(self.tabPersonne)
         self.cbClient.setGeometry(QtCore.QRect(10, 140, 50, 17))
         self.cbClient.setObjectName("cbClient")
-        self.btnSuivant = QtWidgets.QPushButton(self.tabPersonne)
-        self.btnSuivant.setGeometry(QtCore.QRect(110, 70, 31, 23))
-        self.btnSuivant.setObjectName("btnSuivant")
         self.cbEmploye = QtWidgets.QCheckBox(self.tabPersonne)
         self.cbEmploye.setGeometry(QtCore.QRect(10, 450, 63, 17))
         self.cbEmploye.setObjectName("cbEmploye")
@@ -264,6 +258,13 @@ class Ui_Application(object):
         self.btnSuppPers = QtWidgets.QPushButton(self.tabPersonne)
         self.btnSuppPers.setGeometry(QtCore.QRect(0, 370, 75, 23))
         self.btnSuppPers.setObjectName("btnSuppPers")
+        self.comboID = QtWidgets.QComboBox(self.tabPersonne)
+        self.comboID.setGeometry(QtCore.QRect(70, 30, 69, 21))
+        self.comboID.setObjectName("comboID")
+        self.label_8 = QtWidgets.QLabel(self.tabPersonne)
+        self.label_8.setGeometry(QtCore.QRect(20, 30, 47, 13))
+        self.label_8.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_8.setObjectName("label_8")
         self.tabMain.addTab(self.tabPersonne, "")
         self.tabFilms = QtWidgets.QWidget()
         self.tabFilms.setObjectName("tabFilms")
@@ -343,9 +344,8 @@ class Ui_Application(object):
         self.rbtnH.setText(_translate("Application", "Homme"))
         self.rbtnF.setText(_translate("Application", "Femme"))
         self.rbtnNA.setText(_translate("Application", "Préfère ne pas répondre"))
-        self.btnPrecedent.setText(_translate("Application", "<"))
         self.btnNvPers.setText(_translate("Application", "Nouveau"))
-        self.btnModPers.setText(_translate("Application", "Modifier"))
+        self.btnModPers.setText(_translate("Application", "Enregistrer"))
         self.btnSupPers.setText(_translate("Application", "Supprimer"))
         self.label_7.setText(_translate("Application", "Personnages joués dans les films"))
         item = self.QtableChar.horizontalHeaderItem(0)
@@ -364,12 +364,12 @@ class Ui_Application(object):
         self.label_14.setText(_translate("Application", "Type d\'accès"))
         self.cbActeur.setText(_translate("Application", "Acteur"))
         self.cbClient.setText(_translate("Application", "Client"))
-        self.btnSuivant.setText(_translate("Application", ">"))
         self.cbEmploye.setText(_translate("Application", "Employé"))
         self.btnAjoutCC.setText(_translate("Application", "Ajouter"))
         self.btnAjoutPers.setText(_translate("Application", "Ajouter"))
         self.btnSuppCC.setText(_translate("Application", "Supprimer"))
         self.btnSuppPers.setText(_translate("Application", "Supprimer"))
+        self.label_8.setText(_translate("Application", "ID"))
         self.tabMain.setTabText(self.tabMain.indexOf(self.tabPersonne), _translate("Application", "Personne"))
         self.btnPrecedentFilm.setText(_translate("Application", "<"))
         self.btnSuivantFilm.setText(_translate("Application", ">"))

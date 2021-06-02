@@ -22,6 +22,8 @@ from TABUI import Ui_Application
 from classes import *
 from sql    import *
 
+
+
     # Fenêtre principale
 class Window(Ui_Application, QDialog):
     def __init__(self):
@@ -115,10 +117,6 @@ class Window(Ui_Application, QDialog):
         self.btnSuivantFilm.clicked.connect(self.suivantFilm)
         # Entré une nouvelle personne
         self.btnNvPers.clicked.connect(self.Validation)
-        # Bouton Précédent de la tab Personne
-        self.btnPrecedent.clicked.connect(self.precedentPers)
-        # Bouton Suivant de la tab Personne
-        self.btnSuivant.clicked.connect(self.suivantPers)
 
         # Maximum de 40 Caracteres pour le nom et prenom
         self.linePrenom.setMaxLength(40)
@@ -130,11 +128,11 @@ class Window(Ui_Application, QDialog):
 
         # QlisteView de la liste des catégories de films
         self.model = QStandardItemModel()
-        query.exec("SELECT name FROM PRAGMA_TABLE_INFO('CatFilm')")
-        list = query.value()
+        listquery = QSqlQuery("SELECT name FROM PRAGMA_TABLE_INFO('CatFilm')")
 #        query.exec_("PRAGMA table_info('CatFilm')")
 #        list = query.value('name')
-        print (list)
+#        list = listquery.value()
+        print (listquery.value(0))
         self.cbListCatFilm = {"bob"}
         # Liste des catégories de films (n'est pas iterable)
         for list in self.cbListCatFilm:
@@ -152,11 +150,24 @@ class Window(Ui_Application, QDialog):
         self.btnSauvegarder.clicked.connect(self.sauvegarder)
         # Bouton de chargement des données
         self.btnCharger.clicked.connect(self.charger)
+        # Remplir la liste des ID et des champs au besoin
+        self.comboboxID()
+        #Si sélection d'un contenu de la comboboxID
+        self.comboID.currentIndexChanged.connect(self.PersonneUpdate)
 
         self.PersonneUpdate()
         self.UpdateFilm()
 
     #### Fonctions ####
+
+    def comboboxID(self):
+        listid = []
+        self.comboID.clear() #Supprimer les items présent et éviter la duplication
+        idquery = QSqlQuery("SELECT id  FROM Personne")
+        while idquery.next():
+            listid.append(str(idquery.value('id')))
+#        print(listid)
+        self.comboID.addItems(listid)
 
 
     # Enregistrement de l'entré et remise à zero des films
@@ -215,12 +226,11 @@ class Window(Ui_Application, QDialog):
 
     # Met à jour le nombre de personne dans le système
     def PersonneUpdate(self):
-        pp = QSqlQuery()
-        pp.exec_("select * from Personne")
-        index = pp.record().indexOf('id')
-        self.tabMain.setTabText(0, "Personne ({})".format(pp.value(index)))
-        print(pp.value(index))
-        print (pp.lastError().text())
+        pp = QSqlQuery("SELECT id FROM Personne")
+        pp.last()
+        rec = pp.value('id')
+        self.tabMain.setTabText(0, "Personne ({})".format(rec))
+#        print (pp.lastError().text())
 
     # Update de la liste des films
     def UpdateFilm(self):
@@ -285,37 +295,23 @@ class Window(Ui_Application, QDialog):
 
     ### Personne suivante dans la liste de Personne ###
     def suivantPers(self):
-#        query = QSqlQuery('SELECT id, Prenom, Nom, Sexe FROM Personne')
-#        query.next()
-        query = QSqlQuery()
-        query.exec_("select * from Personne")
-        index = query.record().indexOf('id')
-        query.next()
-        print(query.value(index))
-        Personne.prenom = query.value('Prenom')
-        Personne.nom = query.value('Nom')
-        Personne.sexe = query.value('Sexe')
-        self.linePrenom.setText(Personne.prenom)
-        self.lineNom.setText(Personne.nom)
-        if Personne.sexe == -2:
-            self.rbtnH.setChecked(True)
-        if Personne.sexe == -3:
-            self.rbtnF.setChecked(True)
-        if Personne.sexe == -4:
-            self.rbtnNA.setChecked(True)
+        query = QSqlQuery("select id, Prenom, Nom, Sexe from Personne")
+        while query.next():
+            index = query.record().indexOf('id')
+            print(query.value(index))
+            Personne.prenom = query.value('Prenom')
+            Personne.nom = query.value('Nom')
+            Personne.sexe = query.value('Sexe')
+            self.linePrenom.setText(Personne.prenom)
+            self.lineNom.setText(Personne.nom)
+            if Personne.sexe == -2:
+                self.rbtnH.setChecked(True)
+            if Personne.sexe == -3:
+                self.rbtnF.setChecked(True)
+            if Personne.sexe == -4:
+                self.rbtnNA.setChecked(True)
 
         self.PersonneUpdate()
-
-#        print(query.lastError().text())
-
-
-    ###Personne précédente dans la liste de Personne ###
-    def precedentPers(self):
-        query = QSqlQuery()
-        query.exec_("select * from Personne")
-        index = query.record().indexOf('id')
-        while query.previous():
-            print(query.value(index))
 
     # Fenêtre de confirmation de la fermeture de l'application TODO : Message d'erreur à fix
     def closeEvent(self):

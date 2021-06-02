@@ -1,3 +1,8 @@
+from PyQt5.QtSql import QSqlTableModel, QSqlDatabase, QSqlQuery
+from PyQt5 import Qt
+from PyQt5.QtWidgets import QMainWindow, QListView, QApplication
+import sys
+
 class TableModel(QSqlTableModel):
     def __init__(self, *args, **kwargs):
         QSqlTableModel.__init__(self, *args, **kwargs)
@@ -28,28 +33,18 @@ class TableModel(QSqlTableModel):
             return True
         return QSqlTableModel.setData(self, index, value, role)
 
-    def createConnection():
-        db = QSqlDatabase.addDatabase("QSQLITE");
-        db.setDatabaseName(":memory:");
-        if not db.open():
-            print("Cannot open database"),
-            print("Unable to establish a database connection.\n"
-                            "This example needs SQLite support. Please read "
-                            "the Qt SQL driver documentation for information how "
-                            "to build it.\n\n"
-                            "Click Cancel to exit.")
-            return False
+def createConnection():
+    db = QSqlDatabase.addDatabase("QSQLITE");
+    db.setDatabaseName("data.db");
+    if not db.open():
+        print("Cannot open database"),
+        print("Unable to establish a database connection.\n"
+                        "This example needs SQLite support. Please read "
+                        "the Qt SQL driver documentation for information how "
+                        "to build it.\n\n"
+                        "Click Cancel to exit.")
+        return False
 
-    query = QSqlQuery()
-    query.exec_("create table person (id INTEGER PRIMARY KEY AUTOINCREMENT, "
-               "firstname VARCHAR(20), lastname VARCHAR(20))");
-    query.exec_("insert into person(firstname, lastname) values('Danny', 'Young')");
-    query.exec_("insert into person(firstname, lastname) values('Christine', 'Holand')");
-    query.exec_("insert into person(firstname, lastname) values('Lars', 'Gordon')");
-    query.exec_("insert into person(firstname, lastname) values('Roberto', 'Robitaille')");
-    query.exec_("insert into person(firstname, lastname) values('Maria', 'Papadopoulos')");
-
-    return True
 
 class Widget(QMainWindow):
     def __init__(self):
