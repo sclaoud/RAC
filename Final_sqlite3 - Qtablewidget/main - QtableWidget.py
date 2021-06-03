@@ -13,7 +13,7 @@ from PyQt5.QtGui import QRegExpValidator, QStandardItemModel, QStandardItem
 from PyQt5.QtCore import QRegExp, QDir, Qt
 from PyQt5.QtWidgets import QListView
 from PyQt5.Qt   import QColor
-from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog, QTableWidgetItem, QAbstractItemView, QTableView
+from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog, QTableWidgetItem, QAbstractItemView
 import re
 import pandas as pd
 
@@ -37,14 +37,14 @@ class Window(Ui_Application, QDialog):
         self.lineNom.setValidator(regexText)
         self.linePrenom.setValidator(regexText)
 
+
         # Bouton pour ajouter une ranger dans la QtableCC
         self.btnAjoutCC.clicked.connect(self.AjoutCC)
         # Bouton pour supprimer une ranger dans la QtableCC
         self.btnSuppCC.clicked.connect(self.SuppCC)
-
-        # Bouton pour ajouter une ranger dans la QtableAct
+        # Bouton pour ajouter une ranger dans la QtableChar
         self.btnAjoutPers.clicked.connect(self.AjoutPers)
-        # Bouton pour supprimer une ranger dans la QtableAct
+        # Bouton pour supprimer une ranger dans la QtableChar
         self.btnSuppPers.clicked.connect(self.SuppPers)
 
         #test avec bouton modifier de film
@@ -56,16 +56,16 @@ class Window(Ui_Application, QDialog):
 
         # Désactiver tant que la cb de la section désiré n'est pas coché
         self.dateEmb.setDisabled(True)
-        self.QtableCC.setDisabled(True)
         self.lineUsername.setDisabled(True)
         self.linePwdEmp.setDisabled(True)
         self.comboAcces.setDisabled(True)
-        self.QtableAct.setDisabled(True)
+        self.QtableChar.setDisabled(True)
         self.btnAjoutCC.setDisabled(True)
         self.btnSuppCC.setDisabled(True)
         self.linePwdClient.setDisabled(True)
         self.dateInsc.setDisabled(True)
         self.lineCourriel.setDisabled(True)
+        self.QtableCC.setDisabled(True)
         self.btnAjoutPers.setDisabled(True)
         self.btnSuppPers.setDisabled(True)
 
@@ -75,7 +75,7 @@ class Window(Ui_Application, QDialog):
         self.linePwdEmp.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
 
         # Checkbox si la personne est artiste, active la section Artiste si coché
-        self.cbActeur.toggled.connect(self.QtableAct.setEnabled)
+        self.cbActeur.toggled.connect(self.QtableChar.setEnabled)
         self.cbActeur.toggled.connect(self.btnSuppPers.setEnabled)
         self.cbActeur.toggled.connect(self.btnAjoutPers.setEnabled)
         # Checkbox si la personne est Client, active la section client si coché
@@ -91,7 +91,21 @@ class Window(Ui_Application, QDialog):
         self.cbEmploye.toggled.connect(self.linePwdEmp.setEnabled)
         self.cbEmploye.toggled.connect(self.comboAcces.setEnabled)
 
+        # Ajustement de la fenêtre QtableCC
+        header = self.QtableCC.horizontalHeader()
+        header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
+        # Ajustement de la fenêtre QtableChar
+        header = self.QtableChar.horizontalHeader()
+        header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
 
+        #Liste temporaires des changements dans la fenêtre QtableCC
+        self.changed_CC = []
+        #Vérification des cellules dans QtableCC suite à l'écriture
+        self.QtableCC.itemChanged.connect(self.log_changeCC)
 
         # Fonction de fermeture 'closeEvent' lorsque l'on appui sur le bouton
         self.btnFermer.clicked.connect(self.closeEvent)
@@ -123,24 +137,10 @@ class Window(Ui_Application, QDialog):
             self.model.appendRow(item)
         self.listCatFilm.setModel(self.model)
 
-        # Model pour La table CartedeCredit
-        self.modelcc = QSqlTableModel(self)
-        self.modelcc.setTable("CartedeCredits")
-        self.modelcc.setEditStrategy(QSqlTableModel.OnFieldChange)
-        self.modelcc.select()
-        # Set up the view
-        self.QtableCC.setModel(self.modelcc)
-        self.QtableCC.resizeColumnsToContents()
-
-        # Model pour La table Acteurs
-        self.modelact = QSqlTableModel(self)
-        self.modelact.setTable("Acteurs")
-        self.modelact.setEditStrategy(QSqlTableModel.OnFieldChange)
-        self.modelact.select()
-        # Set up the view
-        self.QtableAct.setModel(self.modelact)
-        self.QtableAct.resizeColumnsToContents()
-
+        # Remplissage du champ Titre
+        self.TitreFilm.setText("Titre du film")
+        # Remplissage du champ Synopsis
+        self.textDescFilm.setText('Inscrire la synopsie du film')
         # Remplir la liste des ID et des champs au besoin
         self.comboboxID()
         #Si sélection d'un contenu de la comboboxID
@@ -216,7 +216,8 @@ class Window(Ui_Application, QDialog):
         # récupérer le ID sélectionné dans comboboxID
         ppid = self.comboID.currentText()
 
-        #Prepare le query en filtrant la var PPID (ID selectionner dans comboID)
+        #Prepare le query en limitant la sélection de la rangé à la var PPID (ID selectionner dans comboID)
+#        query.prepare('SELECT * FROM Client INNER JOIN Personne ON client.id = Personne.id')
         query = QSqlQuery()
         query.prepare('Select * FROM Personne WHERE id is :1')
         query.bindValue(':1', ppid) #Pointe la variable :1 vers ppid
@@ -238,17 +239,28 @@ class Window(Ui_Application, QDialog):
             # Active les sections selon ce qui est coché dans la BD
             if query.value('cbc') == 2:
                 self.cbClient.setChecked(True)
-                #Filtre du model de la table Carte de crédits pour n'afficher que les cartes ayant un lien avec la personne
-                self.modelcc.setFilter("id = '%s'" % ppid)
-                self.modelcc.select()
             if query.value('cba') == 2:
                 self.cbActeur.setChecked(True)
-                #Filtre du model de la table Acteur pour n'afficher que les personnages ayant un lien avec la personne
-                self.modelact.setFilter("id = '%s'" % ppid)
-                self.modelact.select()
             if query.value('cbe') == 2:
                 self.cbEmploye.setChecked(True)
 
+        cc = QSqlQuery()
+        cc.prepare('Select * FROM CartedeCredits WHERE id is :1')
+        cc.bindValue(':1', ppid) #Pointe la variable :1 vers ppid
+        cc.exec()
+#        result = cc.value()
+        tablerow = 0
+        for row in enumerate():
+            self.QtableCC.setItem(tablerow, 0, QTableWidgetItem(row[0]))
+            self.QtableCC.setItem(tablerow, 1, QTableWidgetItem(row[1]))
+            self.QtableCC.setItem(tablerow, 2, QTableWidgetItem(row[2]))
+            tablerow+=1
+#        tablerow = 0
+#        for row in query.exec("SELECT * FROM CartedeCredits"):
+#            self.QtableCC.setItem(tablerow, 0, QTableWidgetItem(row[0]))
+#            self.QtableCC.setItem(tablerow, 1, QTableWidgetItem(row[1]))
+#            self.QtableCC.setItem(tablerow, 2, QTableWidgetItem(row[2]))
+#            tablerow+=1
 
     # Update de la liste des films
     def UpdateFilm(self):
@@ -320,6 +332,23 @@ class Window(Ui_Application, QDialog):
             db.addBindValue(client.courriel)
             db.addBindValue(client.clientPwd)
             db.exec()
+            db.prepare( #Préparation d'insertion des données des cartes de crétuis
+                """
+                ..
+                INSERT INTO CartedeCredits (
+                    id,
+                    NumeroCC,
+                    DateCC,
+                    CodeCC
+                )
+                VALUES (?, ?, ?)
+                """
+            )
+            db.addBindValue(id)
+            db.addBindValue(client.dateInsc)
+            db.addBindValue(client.courriel)
+            db.addBindValue(client.clientPwd)
+            db.exec()
 
         self.cleanupPers() # clean up
 
@@ -338,6 +367,8 @@ class Window(Ui_Application, QDialog):
         self.lineUsername.setText("")
         self.linePwdEmp.setText("")
         self.comboAcces.setCurrentIndex(1)
+        self.QtableCC.setRowCount(0)
+        self.QtableChar.setRowCount(0)
 
         self.comboboxID()
 
@@ -358,31 +389,29 @@ class Window(Ui_Application, QDialog):
 
     # Ajout d'une nouvelle rangée pour inscrire une nouvelle carte de crédit
     def AjoutCC(self):
-        rowPosition = self.modelcc.rowCount()
-        self.modelcc.insertRow(rowPosition)
+        rowPosition = self.QtableCC.rowCount()
+        self.QtableCC.insertRow(rowPosition)
 
     # Supprimer la rangée d'une carte de crédit
     def SuppCC(self):
-        self.modelcc.removeRow(self.QtableCC.currentIndex().row())
-        self.modelcc.submit()
-        self.modelcc.select()
+        row = self.QtableCC.currentRow()
+        self.QtableCC.removeRow(row)
 
     # Ajout d'une nouvelle rangée pour inscrire un nouveau personnage d'acteur
     def AjoutPers(self):
-        rowPosition = self.modelact.rowCount()
-        self.modelact.insertRow(rowPosition)
+        rowPosition = self.QtableChar.rowCount()
+        self.QtableChar.insertRow(rowPosition)
 
     # Supprimer la rangée d'un personnage d'acteur
     def SuppPers(self):
-        self.modelact.removeRow(self.QtableAct.currentIndex().row())
-        self.modelact.submit()
-        self.modelact.select()
+        row = self.QtableChar.currentRow()
+        self.QtableChar.removeRow(row)
 
     def ModifFilm(self):
         print (Film.listeFilm.loc[Film.positionFilm])
 
 
-    def log_change(self, item):
+    def log_changeCC(self, item):
         print("CC")
 
 

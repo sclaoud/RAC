@@ -115,61 +115,13 @@
            </widget>
           </item>
           <item>
-           <widget class="QTableWidget" name="QtableCC">
+           <widget class="QTableView" name="QtableCC">
             <property name="midLineWidth">
              <number>3</number>
             </property>
             <property name="alternatingRowColors">
              <bool>true</bool>
             </property>
-            <property name="columnCount">
-             <number>3</number>
-            </property>
-            <attribute name="horizontalHeaderCascadingSectionResizes">
-             <bool>true</bool>
-            </attribute>
-            <attribute name="horizontalHeaderDefaultSectionSize">
-             <number>100</number>
-            </attribute>
-            <attribute name="horizontalHeaderHighlightSections">
-             <bool>true</bool>
-            </attribute>
-            <attribute name="horizontalHeaderMinimumSectionSize">
-             <number>1</number>
-            </attribute>
-            <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="horizontalHeaderStretchLastSection">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="verticalHeaderDefaultSectionSize">
-             <number>30</number>
-            </attribute>
-            <attribute name="verticalHeaderHighlightSections">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="verticalHeaderMinimumSectionSize">
-             <number>1</number>
-            </attribute>
-            <attribute name="verticalHeaderStretchLastSection">
-             <bool>false</bool>
-            </attribute>
-            <column>
-             <property name="text">
-              <string>Numéro</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Date d'expiration</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Code secret</string>
-             </property>
-            </column>
            </widget>
           </item>
          </layout>
@@ -327,47 +279,10 @@
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="QtableChar">
+         <widget class="QTableView" name="QtableAct">
           <property name="alternatingRowColors">
            <bool>true</bool>
           </property>
-          <property name="columnCount">
-           <number>5</number>
-          </property>
-          <attribute name="horizontalHeaderMinimumSectionSize">
-           <number>1</number>
-          </attribute>
-          <attribute name="horizontalHeaderStretchLastSection">
-           <bool>false</bool>
-          </attribute>
-          <attribute name="verticalHeaderMinimumSectionSize">
-           <number>1</number>
-          </attribute>
-          <column>
-           <property name="text">
-            <string>Titre du film</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Personnage</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Date de début</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Date de fin</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Cachet</string>
-           </property>
-          </column>
          </widget>
         </item>
        </layout>

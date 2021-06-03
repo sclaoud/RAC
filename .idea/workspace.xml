@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.42&#10;&#10;Enregistrement de la TAB FIlm fonctionnel sauf catFILM (solution a réfléchir).&#10;&#10;- Enregistrement des données clients fonctionnels mais non linké à la personne.&#10;-Incrémentialisation du nombre d'entré dans les TABS non-fonctionnel (return none)">
-      <change afterPath="$PROJECT_DIR$/UI/tab12.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Final_sqlite3/TABUI - QtableWidget.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Final_sqlite3/main - QtableWidget.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/TABUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/TABUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/data.db" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/data.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/sql.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab12.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tab12.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +75,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main (1)">
-    <configuration name="QtablewidgetUpdate (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="TABUI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -81,11 +83,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Final_sqlite3" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/QtablewidgetUpdate.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Final_sqlite3/TABUI.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -136,7 +138,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -144,11 +146,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Final" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Final_class" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Final/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Final_class/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -202,10 +204,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main (1)" />
+        <item itemvalue="Python.TABUI" />
+        <item itemvalue="Python.main (2)" />
         <item itemvalue="Python.sqltest" />
         <item itemvalue="Python.sql" />
-        <item itemvalue="Python.main" />
-        <item itemvalue="Python.QtablewidgetUpdate (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -217,13 +219,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612103305731</updated>
-    </task>
-    <task id="LOCAL-00002" summary="0.004&#10;&#10;Recommencer pour la 2eme">
-      <created>1612387869879</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1612387869879</updated>
     </task>
     <task id="LOCAL-00003" summary="0.005&#10;&#10;Checkbox enable/disable et echoMode">
       <created>1612458991515</created>
@@ -561,7 +556,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622662129518</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="0.46&#10;&#10;- Effacage des champs après enregistrement comme avant.&#10;- Update dynamique du comboboxID et autres champs.">
+      <created>1622665674001</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1622665674001</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -578,7 +580,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="0.20&#10;&#10;Sauvegarde des données la fenêtre Acteurs dans la liste listeActeurs.&#10;Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs)&#10;Ajout des lignes clients et employe dans la listePersonnes (comboAcces a validé)&#10;&#10;---------------------------&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;- Valider les sous-listes acteurs et CC.&#10;- Sauvegarde/Chargement." />
     <MESSAGE value="0.21&#10;&#10;Ajout des lignes clients et employe dans la listePersonnes ainsi que des checkbox&#10;Reset des champs des sections employés/clients ainsi que les CB&#10;Recherche de solution pour l'affichage des données dans QtableCC... test de la class UpdateModel (QSortFilterProxyModel).&#10;&#10;---------------------------&#10;todo : &#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
     <MESSAGE value="0.21.1&#10;test" />
     <MESSAGE value="0.30&#10;&#10;Remplacement des Qtableview pour fonctionner en Qtablewidget preconfigurer dans Qtdesigner (et peutêtre se débarasser de pandas et des table CC et Acteurs par l'occassion).&#10;&#10;Modification/ajout des bouton d'ajouter et supression des row de la table QtableCC et QtablePers.&#10;&#10;Essai non concluant d'un validator de courriel avec regen.&#10;&#10;&#10;---------------------------&#10;todo : &#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
@@ -603,7 +604,8 @@
     <MESSAGE value="0.42.1&#10;Différentes tests pour appeler les catégories depuis une tables créer a cette effet.... SELECT name FROM PRAGMA_TABLE_INFO('CatFilm') semble prometteur mais ne retourne pas de donnée lorsqu'en PYQT alors que fonctionnel en sqlite.  à suivre" />
     <MESSAGE value="0.43&#10;&#10;- PersonneUpdate fonctionne à nouveau (value de id)&#10;- ComboBoxID fonctionne avec le nombre de ID." />
     <MESSAGE value="0.45&#10;&#10;- PersonneUpdate change les champs Personnes selon le ID selectionné." />
-    <option name="LAST_COMMIT_MESSAGE" value="0.45&#10;&#10;- PersonneUpdate change les champs Personnes selon le ID selectionné." />
+    <MESSAGE value="0.46&#10;&#10;- Effacage des champs après enregistrement comme avant.&#10;- Update dynamique du comboboxID et autres champs." />
+    <option name="LAST_COMMIT_MESSAGE" value="0.46&#10;&#10;- Effacage des champs après enregistrement comme avant.&#10;- Update dynamique du comboboxID et autres champs." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
