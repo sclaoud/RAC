@@ -23,12 +23,12 @@ createTableQuery.exec(
     """
     CREATE TABLE Personne (
         id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
-        Prenom VARCHAR(40) NOT NULL,
-        Nom VARCHAR(40) NOT NULL,
-        Sexe int NOT NULL,
-        cbc int NULL,
-        cba int NULL,
-        cbe int NULL
+        Prenom VARCHAR(40),
+        Nom VARCHAR(40),
+        Sexe int,
+        cbc int,
+        cba int,
+        cbe int
     )
     """
 )
@@ -36,10 +36,9 @@ createTableQuery.exec(
     """
     CREATE TABLE CartedeCredits (
         id INTEGER,
-        NumeroCC int NOT NULL,
-        DateCC int NOT NULL,
-        CodeCC int NOT NULL,
-        PRIMARY KEY (NumeroCC),
+        NumeroCC int,
+        DateCC int,
+        CodeCC int,
         FOREIGN KEY (id) REFERENCES Personne(id)
     )
     """
@@ -48,9 +47,9 @@ createTableQuery.exec(
     """
     CREATE TABLE Client (
 	"id"	INTEGER,
-	"DateInsc"	VARCHAR(40) NOT NULL,
-	"Courriel"	VARCHAR(255) NOT NULL,
-	"ClientPwd"	VARCHAR(40) NOT NULL,
+	"DateInsc"	VARCHAR(40),
+	"Courriel"	VARCHAR(255),
+	"ClientPwd"	VARCHAR(40),
 	FOREIGN KEY("id") REFERENCES "Personne"("id")
     )
     """
@@ -59,12 +58,11 @@ createTableQuery.exec(
     """
     CREATE TABLE Acteurs (
         id INTEGER,
-        TitreFilm VARCHAR(40) NOT NULL,
-        Personnage VARCHAR(40) NOT NULL,
-        DateDebut VARCHAR(40) NOT NULL,
-        DateFin VARCHAR(40) NOT NULL,
-        Cachet VARCHAR(40) NOT NULL,
-        PRIMARY KEY (Personnage),
+        TitreFilm VARCHAR(40),
+        Personnage VARCHAR(40),
+        DateDebut VARCHAR(40),
+        DateFin VARCHAR(40),
+        Cachet VARCHAR(40),
         FOREIGN KEY (id) REFERENCES Personne(id)
     )
     """
@@ -73,12 +71,10 @@ createTableQuery.exec(
     """
     CREATE TABLE employe (
         id INTEGER,
-        DateEmb VARCHAR(40) NOT NULL,
-        Username VARCHAR(40) NOT NULL,
-        empPwd VARCHAR(40) NOT NULL,
-        DateFin VARCHAR(40) NOT NULL,
-        acces VARCHAR(40) NOT NULL,
-        PRIMARY KEY (Username),
+        DateEmb VARCHAR(40),
+        Username VARCHAR(40),
+        empPwd VARCHAR(40),
+        acces INTEGER,
         FOREIGN KEY (id) REFERENCES Personne(id)
     )
     """
@@ -87,10 +83,10 @@ createTableQuery.exec(
     """
     CREATE TABLE "Film" (
     	"idf"	INTEGER NOT NULL UNIQUE,
-        "NomFilm"	VARCHAR(40) NOT NULL,
-        "DureeFilm"	VARCHAR(40) NOT NULL,
-        "DescFilm"	VARCHAR(255) NOT NULL,
-        "CatFilm"	VARCHAR(40) NOT NULL,
+        "NomFilm"	VARCHAR(40),
+        "DureeFilm"	VARCHAR(40),
+        "DescFilm"	VARCHAR(255),
+        "CatFilm"	VARCHAR(40),
         PRIMARY KEY("idf" AUTOINCREMENT)
 	)
     """
@@ -98,15 +94,15 @@ createTableQuery.exec(
 createTableQuery.exec(
     """
     CREATE TABLE "CatFilm" (
-        "idf"	INTEGER NOT NULL,
-        "Animation"	INTEGER NOT NULL,
-        "Fantaisie"	INTEGER NOT NULL,
-        "Science-Fiction"	INTEGER NOT NULL,
-        "Horreur"	INTEGER NOT NULL,
-        "Drame"	INTEGER NOT NULL,
-        "Thriller"	INTEGER NOT NULL,
-        "Documentaire"	INTEGER NOT NULL,
-        "Comédie"	INTEGER NOT NULL,
+        "idf"	INTEGER,
+        "Animation"	INTEGER,
+        "Fantaisie"	INTEGER,
+        "Science-Fiction"	INTEGER,
+        "Horreur"	INTEGER,
+        "Drame"	INTEGER,
+        "Thriller"	INTEGER,
+        "Documentaire"	INTEGER,
+        "Comédie"	INTEGER,
         FOREIGN KEY(idf) REFERENCES Film (idf)
     )
     """

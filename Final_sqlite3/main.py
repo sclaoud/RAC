@@ -10,7 +10,7 @@ from PyQt5 import QtSql
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlError
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import QRegExpValidator, QStandardItemModel, QStandardItem
-from PyQt5.QtCore import QRegExp, QDir, Qt
+from PyQt5.QtCore import QRegExp, QDir, Qt, QDate
 from PyQt5.QtWidgets import QListView
 from PyQt5.Qt   import QColor
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog, QTableWidgetItem, QAbstractItemView, QTableView
@@ -218,16 +218,14 @@ class Window(Ui_Application, QDialog):
 
         #Prepare le query en filtrant la var PPID (ID selectionner dans comboID)
         query = QSqlQuery()
-        query.prepare('Select * FROM Personne WHERE id is :1')
-        query.bindValue(':1', ppid) #Pointe la variable :1 vers ppid
+        query.prepare('SELECT * FROM Personne CROSS JOIN Client, employe ON Personne.id = Client.id WHERE Personne.id is :id')
+        query.bindValue(':id', ppid) #Pointe la variable :1 vers ppid
         query.exec()
         while query.next():
 #            print (ppid)
-            Personne.prenom = query.value('Prenom')
-            Personne.nom = query.value('Nom')
             Personne.sexe = query.value('Sexe')
-            self.linePrenom.setText(Personne.prenom)
-            self.lineNom.setText(Personne.nom)
+            self.linePrenom.setText(query.value('Prenom'))
+            self.lineNom.setText(query.value('Nom'))
             # Coche le bon radioButton selon la var Personne.Sexe
             if Personne.sexe == -2:
                 self.rbtnH.setChecked(True)
@@ -241,6 +239,11 @@ class Window(Ui_Application, QDialog):
                 #Filtre du model de la table Carte de crédits pour n'afficher que les cartes ayant un lien avec la personne
                 self.modelcc.setFilter("id = '%s'" % ppid)
                 self.modelcc.select()
+                #convertion de la date d'inscription de string en date
+                clientdate = QDate.fromString(query.value('DateInsc'), "yyyy-MM-dd")
+                self.dateInsc.setDate(clientdate)
+                self.lineCourriel.setText(query.value('Courriel'))
+                self.linePwdClient.setText(query.value('ClientPwd'))
             if query.value('cba') == 2:
                 self.cbActeur.setChecked(True)
                 #Filtre du model de la table Acteur pour n'afficher que les personnages ayant un lien avec la personne
@@ -248,6 +251,14 @@ class Window(Ui_Application, QDialog):
                 self.modelact.select()
             if query.value('cbe') == 2:
                 self.cbEmploye.setChecked(True)
+                # convertion de la date d'embauche de string en date
+                embdate = QDate.fromString(query.value('DateEmb'), "yyyy-MM-dd")
+                self.dateInsc.setDate(embdate)
+                self.lineUsername.setText(query.value('Username'))
+                self.linePwdEmp.setText(query.value('empPwd'))
+                acces = query.value('acces')
+                print (acces)
+#                self.comboAcces.setCurrentIndex(acces)
 
 
     # Update de la liste des films
@@ -299,28 +310,40 @@ class Window(Ui_Application, QDialog):
         db.addBindValue(self.cbEmploye.checkState())
         db.exec()
 
+        id = db.lastInsertId()  # Recupérer le dernier ID utiliser pour lié les infos
+        print(id)
         # Si la Checkbox section Client est checked
         if self.cbClient.isChecked():
-            id = db.lastInsertId() # Recupérer le dernier ID utiliser pour lié les infos
-            print (id)
             db.prepare( #préparation d'insertion des données dans la table client
-                """
-                ..
-                INSERT INTO Client (
-                    id,
-                    DateInsc,
-                    Courriel,
-                    ClientPwd
-                )
-                VALUES (?, ?, ?)
-                """
-            )
+                """INSERT INTO Client (id, DateInsc, Courriel, ClientPwd)
+                VALUES (?, ?, ?, ?)
+                """ )
             db.addBindValue(id)
             db.addBindValue(client.dateInsc)
             db.addBindValue(client.courriel)
             db.addBindValue(client.clientPwd)
             db.exec()
-
+            print(db.lastError().text())
+        if self.cbEmploye.isChecked():
+            db.prepare( #préparation d'insertion des données dans la table employe
+                """
+                INSERT INTO employe (
+                    id,
+                    DateEmb,
+                    Username,
+                    empPwd,
+                    acces
+                )
+                VALUES (?, ?, ?, ?, ?)
+                """
+            )
+            db.addBindValue(id)
+            db.addBindValue(employe.dateEmb)
+            db.addBindValue(employe.username)
+            db.addBindValue(employe.empPWD)
+            db.addBindValue(employe.acces)
+            db.exec()
+            print(db.lastError().text())
         self.cleanupPers() # clean up
 
     #Cleanup des champs une fois l'enregistrement
@@ -341,7 +364,7 @@ class Window(Ui_Application, QDialog):
 
         self.comboboxID()
 
-    # Fenêtre de confirmation de la fermeture de l'application TODO : Message d'erreur à fix
+    # Fenêtre de confirmation de la fermeture de l'application
     def closeEvent(self):
         msgBox = QMessageBox()
         msgBox.setIcon(QMessageBox.Information)
