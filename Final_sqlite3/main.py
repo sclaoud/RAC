@@ -42,15 +42,18 @@ class Window(Ui_Application, QDialog):
         self.btnSuppCC.clicked.connect(self.SuppCC)
 
         # Bouton pour ajouter une ranger dans la QtableAct
-        self.btnAjoutPers.clicked.connect(self.AjoutPers)
+        self.btnAjoutPers.clicked.connect(self.AjoutAct)
         # Bouton pour supprimer une ranger dans la QtableAct
-        self.btnSuppPers.clicked.connect(self.SuppPers)
+        self.btnSuppPers.clicked.connect(self.SuppAct)
 
         #test avec bouton modifier de film
         self.btnVF.clicked.connect(self.ModifFilm)
 
         #Vidange des champs de la TAB Personne pour permettre un nouvel enregistrement
         self.btnVP.clicked.connect(self.ViderPers)
+
+        #Supression des tables comprenant le ID sélectionné
+        self.btnSupPers.clicked.connect(self.SuppPers)
 
         # Désactiver tant que la cb de la section désiré n'est pas coché
         self.dateEmb.setDisabled(True)
@@ -117,6 +120,7 @@ class Window(Ui_Application, QDialog):
         # Model pour La table CartedeCredit
         self.modelcc = QSqlTableModel(self)
         self.modelcc.setTable("CartedeCredits")
+        self.modelcc.removeColumn(0) #Cache la column des ID
         self.modelcc.setEditStrategy(QSqlTableModel.OnFieldChange)
         self.modelcc.select()
         # Set up the view
@@ -126,6 +130,7 @@ class Window(Ui_Application, QDialog):
         # Model pour La table Acteurs
         self.modelact = QSqlTableModel(self)
         self.modelact.setTable("Acteurs")
+        self.modelact.removeColumn(0) #Cache la column des ID
         self.modelact.setEditStrategy(QSqlTableModel.OnFieldChange)
         self.modelact.select()
         # Set up the view
@@ -156,8 +161,13 @@ class Window(Ui_Application, QDialog):
         idquery = QSqlQuery("SELECT id  FROM Personne")
         while idquery.next():
             listid.append(str(idquery.value('id')))
+            rec = idquery.value('id')
         self.comboID.addItems(listid)
-        self.PersonneUpdate()
+
+        #Affiche le nombre de personne à coté de la TAB de façon dynamique
+        self.tabMain.setTabText(0, "Personne ({})".format(rec))
+
+        self.PersonneUpdate() # Populate la tab selon le ID
 
     # Enregistrement de l'entré et remise à zero des films
     def newFilm(self):
@@ -205,11 +215,6 @@ class Window(Ui_Application, QDialog):
 
     # Met à jour les données selon le ID
     def PersonneUpdate(self):
-        #Affiche le nombre de personne à coté de la TAB
-        pp = QSqlQuery("SELECT * FROM Personne")
-        pp.last()
-        rec = pp.value('id')
-        self.tabMain.setTabText(0, "Personne ({})".format(rec))
         # récupérer le ID sélectionné dans comboboxID
         ppid = self.comboID.currentText()
 
@@ -266,6 +271,15 @@ class Window(Ui_Application, QDialog):
         rec = pf.value('idf')
         self.tabMain.setTabText(1, "Film ({})".format(rec))
 #        print (pf.lastError().text())
+
+    def SuppPers(self):
+        # récupérer le ID sélectionné dans comboboxID
+        ppid = self.comboID.currentText()
+
+        query = QSqlQuery()
+        query.prepare('DELETE FROM Personne, Client, employe, Acteurs, CartedeCredits WHERE id = %s',ppid)
+        query.exec()
+        print(query.lastError().text())
 
     ### Enregistrement de l'entré et remise à zero ### à retravailler
     def Validation(self):
@@ -342,8 +356,10 @@ class Window(Ui_Application, QDialog):
     #Cleanup des champs une fois l'enregistrement
     def ViderPers(self):
         # Reset des champs pour une nouvelle entrée
+        self.comboID.setCurrentIndex(00)
         self.linePrenom.setText("")
         self.lineNom.setText("")
+        self.rbtnNA.setChecked(True) #Radio Ne pas répondre activé car ne peut avoir aucune réponse par défaut
         self.cbClient.setChecked(False)
         self.cbEmploye.setChecked(False)
         self.cbActeur.setChecked(False)
@@ -388,12 +404,12 @@ class Window(Ui_Application, QDialog):
         self.modelcc.select()
 
     # Ajout d'une nouvelle rangée pour inscrire un nouveau personnage d'acteur
-    def AjoutPers(self):
+    def AjoutAct(self):
         rowPosition = self.modelact.rowCount()
         self.modelact.insertRow(rowPosition)
 
     # Supprimer la rangée d'un personnage d'acteur
-    def SuppPers(self):
+    def SuppAct(self):
         self.modelact.removeRow(self.QtableAct.currentIndex().row())
         self.modelact.submit()
         self.modelact.select()
