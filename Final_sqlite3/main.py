@@ -14,8 +14,7 @@ from PyQt5.QtCore import QRegExp, QDir, Qt, QDate
 from PyQt5.QtWidgets import QListView
 from PyQt5.Qt   import QColor
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog, QTableWidgetItem, QAbstractItemView, QTableView
-import re
-import pandas as pd
+
 
 
 from TABUI import Ui_Application
@@ -104,10 +103,6 @@ class Window(Ui_Application, QDialog):
         self.linePrenom.setMaxLength(40)
         self.lineNom.setMaxLength(40)
 
-        # Liste des choix du combobox comboAcces pour les employés
-        self.listedesAcces = {"Consultant", "employé", "sécurité", "administrateur", "Direction"}
-        self.comboAcces.addItems(self.listedesAcces)
-
         # QlisteView de la liste des catégories de films
         self.model = QStandardItemModel()
         listquery = QSqlQuery("SELECT name FROM PRAGMA_TABLE_INFO('CatFilm')")
@@ -141,14 +136,23 @@ class Window(Ui_Application, QDialog):
         self.QtableAct.setModel(self.modelact)
         self.QtableAct.resizeColumnsToContents()
 
-        # Remplir la liste des ID et des champs au besoin
-        self.comboboxID()
         #Si sélection d'un contenu de la comboboxID
         self.comboID.currentIndexChanged.connect(self.PersonneUpdate)
 
         self.UpdateFilm()
-
+        # Remplir la combobox des Accès
+        self.comboboxAcces()
+        # Remplir la combobox des ID et des champs au besoin
+        self.comboboxID()
     #### Fonctions ####
+
+    # Liste des choix du combobox comboAcces pour les employés
+    def comboboxAcces(self):
+        la = []
+        laquery = QSqlQuery("SELECT list FROM CatAcces")
+        while laquery.next():
+            la.append(str(laquery.value('list')))
+        self.comboAcces.addItems(la)
 
     def comboboxID(self):
         listid = []
@@ -158,7 +162,6 @@ class Window(Ui_Application, QDialog):
             listid.append(str(idquery.value('id')))
         self.comboID.addItems(listid)
         self.PersonneUpdate()
-
 
     # Enregistrement de l'entré et remise à zero des films
     def newFilm(self):
@@ -211,14 +214,13 @@ class Window(Ui_Application, QDialog):
         pp.last()
         rec = pp.value('id')
         self.tabMain.setTabText(0, "Personne ({})".format(rec))
-#        print (pp.lastError().text()
-
         # récupérer le ID sélectionné dans comboboxID
         ppid = self.comboID.currentText()
 
         #Prepare le query en filtrant la var PPID (ID selectionner dans comboID)
         query = QSqlQuery()
-        query.prepare('SELECT * FROM Personne CROSS JOIN Client, employe ON Personne.id = Client.id WHERE Personne.id is :id')
+        query.prepare('SELECT * FROM Personne WHERE id is :id')
+#        query.prepare('SELECT * FROM Personne CROSS JOIN Client, employe ON Personne.id = Client.id WHERE Personne.id is :id')
         query.bindValue(':id', ppid) #Pointe la variable :1 vers ppid
         query.exec()
         while query.next():
@@ -259,7 +261,7 @@ class Window(Ui_Application, QDialog):
                 acces = query.value('acces')
                 print (acces)
 #                self.comboAcces.setCurrentIndex(acces)
-
+            print (query.lastError().text())
 
     # Update de la liste des films
     def UpdateFilm(self):

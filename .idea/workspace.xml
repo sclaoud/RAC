@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.42&#10;&#10;Enregistrement de la TAB FIlm fonctionnel sauf catFILM (solution a réfléchir).&#10;&#10;- Enregistrement des données clients fonctionnels mais non linké à la personne.&#10;-Incrémentialisation du nombre d'entré dans les TABS non-fonctionnel (return none)">
-      <change afterPath="$PROJECT_DIR$/Final_sqlite3/data.db" afterDir="false" />
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.37.2&#10;https://docs.python.org/3/library/csv.html&#10;Chargement des données créer une list de dict au lieu de simplement ajouter les variables en dict...&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
+      <change beforePath="$PROJECT_DIR$/.idea/RAC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RAC.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_sqlite3/data.db" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/data.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/sql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.db" beforeDir="false" afterPath="$PROJECT_DIR$/data.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -441,126 +442,7 @@
       <option name="project" value="LOCAL" />
       <updated>1620002893764</updated>
     </task>
-    <task id="LOCAL-00036" summary="0.37.5&#10;Revalidation de la facon de sauvegarder les données... retest de pandas&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
-      <created>1620158562299</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1620158562299</updated>
-    </task>
-    <task id="LOCAL-00037" summary="0.37.5&#10;Revalidation de la facon de sauvegarder les données... retest de pandas&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
-      <created>1620158579109</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1620158579109</updated>
-    </task>
-    <task id="LOCAL-00038" summary="0.37.5&#10;Revalidation de la facon de sauvegarder les données.  retesté pandas pour la sauvegarde en csv&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
-      <created>1620158688397</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1620158688397</updated>
-    </task>
-    <task id="LOCAL-00039" summary="0.37.5&#10;Revalidation de la facon de sauvegarder les données.  retesté pandas pour la sauvegarde en csv&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
-      <created>1620158817214</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1620158817214</updated>
-    </task>
-    <task id="LOCAL-00040" summary="0.37.5&#10;Revalidation de la facon de sauvegarder les données.  retesté pandas pour la sauvegarde en csv&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
-      <created>1620158857381</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1620158857381</updated>
-    </task>
-    <task id="LOCAL-00041" summary="0.37.6&#10;Revalidation de la facon de sauvegarder les données.  Pandas est fonctionnel mais le chargement des données en problématique.&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
-      <created>1620413577743</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1620413577743</updated>
-    </task>
-    <task id="LOCAL-00042" summary="0.37.7&#10;&#10;Sauvegarde des données fonctionnels mais chargement en CSV ne semble pas correspondent.  Changement du de la table QtableWdiget et travail sur l'update de la tableCC.&#10;Ajout de restrictions dans la fenêtre windowsCC&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
-      <created>1620761643504</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1620761643504</updated>
-    </task>
-    <task id="LOCAL-00043" summary="0.38&#10;&#10;Retourner sur TABUI6 avec le modèle Qtablwidget, plus facile a implanté que qtableview.  Réussi a ajuster les tables au besoin et a inscrire les données ainsi que cleaner le tout lors de l'enregistrement.  Ne manque qu'à exporter les données dans les variables cartedecredits.listeCC.&#10;&#10;Ajout de log_changeCC pour la modification des données dans la tableCC.  Si efficace, verra pour ajouter aux autres tables et emplacements.&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
-      <created>1620849472922</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1620849472922</updated>
-    </task>
-    <task id="LOCAL-00044" summary="0.39&#10;&#10;Inscription de QtableCC dans la listeCC incertain, ne peut ajouter la liste au dict Personne_dict, revalider la facon de fonctionner.&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin.">
-      <created>1621280197283</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1621280197283</updated>
-    </task>
-    <task id="LOCAL-00045" summary="0.40&#10;&#10;Retour aux sources.... changement pour SQLite en espérant réglé les troubles.&#10;&#10;- Travail sur le retour des données dans SQL.">
-      <created>1621623724602</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1621623724602</updated>
-    </task>
-    <task id="LOCAL-00046" summary="0.41&#10;&#10;Retour des données Personnes (prenom/Nom/Sexe) fonctionnels.&#10;- Enregistrement des données clients non-fonctionnels.&#10;-création de la table Film non-fonctionnel.">
-      <created>1621971860811</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1621971860811</updated>
-    </task>
-    <task id="LOCAL-00047" summary="0.42&#10;&#10;Enregistrement de la TAB FIlm fonctionnel sauf catFILM (solution a réfléchir).&#10;&#10;- Enregistrement des données clients fonctionnels mais non linké à la personne.&#10;-Incrémentialisation du nombre d'entré dans les TABS non-fonctionnel (return none)">
-      <created>1622058158908</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1622058158908</updated>
-    </task>
-    <task id="LOCAL-00048" summary="0.42.1&#10;Différentes tests pour appeler les catégories depuis une tables créer a cette effet.... SELECT name FROM PRAGMA_TABLE_INFO('CatFilm') semble prometteur mais ne retourne pas de donnée lorsqu'en PYQT alors que fonctionnel en sqlite.  à suivre">
-      <created>1622230802874</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1622230802874</updated>
-    </task>
-    <task id="LOCAL-00049" summary="0.43&#10;&#10;- PersonneUpdate fonctionne à nouveau (value de id)&#10;- ComboBoxID fonctionne avec le nombre de ID.">
-      <created>1622652689821</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1622652689821</updated>
-    </task>
-    <task id="LOCAL-00050" summary="0.45&#10;&#10;- PersonneUpdate change les champs Personnes selon le ID selectionné.">
-      <created>1622662129518</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1622662129518</updated>
-    </task>
-    <task id="LOCAL-00051" summary="0.46&#10;&#10;- Effacage des champs après enregistrement comme avant.&#10;- Update dynamique du comboboxID et autres champs.">
-      <created>1622665674001</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1622665674001</updated>
-    </task>
-    <task id="LOCAL-00052" summary="0.50&#10;&#10;Nouvelle direction au projet, remplacement des tablewidget par des QtableView.&#10;&#10;Ajout de filtre sur les model des tables pour filtrer selon le ID.">
-      <created>1622740586194</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1622740586194</updated>
-    </task>
-    <option name="localTasksCounter" value="53" />
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -577,6 +459,20 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="0.011&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)" />
+    <MESSAGE value="0.012&#10;&#10;Approche d'une solution pour la liste de catégorie selon les checkbox.&#10;&#10;       for i, v in enumerate(self.cbListCatFilm):&#10;            item = model.item(i)&#10;            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:&#10;                print (i,v)" />
+    <MESSAGE value="0.1&#10;&#10;TabFilm complété et revampage de la tabPersonne avec des Qlistview.  Repartir à zero avec une GUI qui j'espères sera final." />
+    <MESSAGE value="0.11&#10;&#10;Le fait de travailler dans plusieurs fichiers brise les références.  Il est nécessaire de réparer ceux-ci avant de poursuivre." />
+    <MESSAGE value="0.12&#10;&#10;Réparer le code brisé par la nouvelle façon de travailler (main/classes/TabGUI)" />
+    <MESSAGE value="0.13&#10;&#10;Code réparer, retravaillage du TabGUI depuis QTdesigner pour ajouter des boutons de modifications et changer certains noms." />
+    <MESSAGE value="0.14&#10;&#10;Ajout de 2 nouvelles fenêtres pour la gestions des Cartes de crédits et des personnages des acteurs.  Quelques tests de sauvegarde et ajout de la liste déroulante pour comboAcces." />
+    <MESSAGE value="0.15&#10;&#10;Création de la fonction de sauvegarde, chargement en trouble à revoir.&#10;&#10;Création des sous-class client/cartedecredit/acteurs/employe" />
+    <MESSAGE value="0.16&#10;&#10;Décoration du module main.&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
+    <MESSAGE value="0.17&#10;&#10;Modification de la classe cartedecredits et de la fonction newCC pour ajouter des cartes de crédit et en faire l'affichage avec pandas (a venir)&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
+    <MESSAGE value="0.18&#10;&#10;Modification des qlistview en qtableview et utilisation de pandas pour l'affichage des données.  Préparation des fenêtres CC et acteurs.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
+    <MESSAGE value="0.19&#10;&#10;Work-in-progress : Ajoute des données des cartes de crédits en pandas.dataframes (apparaissent vident pour le moment)&#10;&#10;Idem pour la table qtableview.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
+    <MESSAGE value="0.20&#10;&#10;Sauvegarde des données la fenêtre Acteurs dans la liste listeActeurs.&#10;Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs)&#10;Ajout des lignes clients et employe dans la listePersonnes (comboAcces a validé)&#10;&#10;---------------------------&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;- Valider les sous-listes acteurs et CC.&#10;- Sauvegarde/Chargement." />
+    <MESSAGE value="0.21&#10;&#10;Ajout des lignes clients et employe dans la listePersonnes ainsi que des checkbox&#10;Reset des champs des sections employés/clients ainsi que les CB&#10;Recherche de solution pour l'affichage des données dans QtableCC... test de la class UpdateModel (QSortFilterProxyModel).&#10;&#10;---------------------------&#10;todo : &#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
     <MESSAGE value="0.21.1&#10;test" />
     <MESSAGE value="0.30&#10;&#10;Remplacement des Qtableview pour fonctionner en Qtablewidget preconfigurer dans Qtdesigner (et peutêtre se débarasser de pandas et des table CC et Acteurs par l'occassion).&#10;&#10;Modification/ajout des bouton d'ajouter et supression des row de la table QtableCC et QtablePers.&#10;&#10;Essai non concluant d'un validator de courriel avec regen.&#10;&#10;&#10;---------------------------&#10;todo : &#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
     <MESSAGE value="0.31&#10;&#10;Message d'erreur lors d'un courriel invalide fonctionne.&#10;&#10;---------------------------&#10;todo : &#10;- If validation est en erreur, ne pas poursuivre l'enregistrement.&#10;&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider le fonctionnement des entrés avec Qtablewidget et les informations.&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
@@ -588,27 +484,6 @@
     <MESSAGE value="0.36&#10;&#10;Tests de sauvegarde/chargement non concluants mais progressif.&#10;&#10;---------------------------&#10;todo : &#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
     <MESSAGE value="0.37.1&#10;&#10;Chargement des données créer une list de dict au lieu de simplement ajouter les variables en dict...&#10;&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
     <MESSAGE value="0.37.2&#10;https://docs.python.org/3/library/csv.html&#10;Chargement des données créer une list de dict au lieu de simplement ajouter les variables en dict...&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
-    <MESSAGE value="0.37.5&#10;Revalidation de la facon de sauvegarder les données... retest de pandas&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
-    <MESSAGE value="0.37.5&#10;Revalidation de la facon de sauvegarder les données.  retesté pandas pour la sauvegarde en csv&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
-    <MESSAGE value="0.37.6&#10;Revalidation de la facon de sauvegarder les données.  Pandas est fonctionnel mais le chargement des données en problématique.&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
-    <MESSAGE value="0.37.7&#10;&#10;Sauvegarde des données fonctionnels mais chargement en CSV ne semble pas correspondent.  Changement du de la table QtableWdiget et travail sur l'update de la tableCC.&#10;Ajout de restrictions dans la fenêtre windowsCC&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
-    <MESSAGE value="0.38&#10;&#10;Retourner sur TABUI6 avec le modèle Qtablwidget, plus facile a implanté que qtableview.  Réussi a ajuster les tables au besoin et a inscrire les données ainsi que cleaner le tout lors de l'enregistrement.  Ne manque qu'à exporter les données dans les variables cartedecredits.listeCC.&#10;&#10;Ajout de log_changeCC pour la modification des données dans la tableCC.  Si efficace, verra pour ajouter aux autres tables et emplacements.&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
-    <MESSAGE value="0.39&#10;&#10;Inscription de QtableCC dans la listeCC incertain, ne peut ajouter la liste au dict Personne_dict, revalider la facon de fonctionner.&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
-    <MESSAGE value="0.40&#10;&#10;Retour aux sources.... changement pour SQLite en espérant réglé les troubles.&#10;&#10;- Travail sur le retour des données dans SQL." />
-    <MESSAGE value="0.41&#10;&#10;Retour des données Personnes (prenom/Nom/Sexe) fonctionnels.&#10;- Enregistrement des données clients non-fonctionnels.&#10;-création de la table Film non-fonctionnel." />
-    <MESSAGE value="0.42&#10;&#10;Enregistrement de la TAB FIlm fonctionnel sauf catFILM (solution a réfléchir).&#10;&#10;- Enregistrement des données clients fonctionnels mais non linké à la personne.&#10;-Incrémentialisation du nombre d'entré dans les TABS non-fonctionnel (return none)" />
-    <MESSAGE value="0.42.1&#10;Différentes tests pour appeler les catégories depuis une tables créer a cette effet.... SELECT name FROM PRAGMA_TABLE_INFO('CatFilm') semble prometteur mais ne retourne pas de donnée lorsqu'en PYQT alors que fonctionnel en sqlite.  à suivre" />
-    <MESSAGE value="0.43&#10;&#10;- PersonneUpdate fonctionne à nouveau (value de id)&#10;- ComboBoxID fonctionne avec le nombre de ID." />
-    <MESSAGE value="0.45&#10;&#10;- PersonneUpdate change les champs Personnes selon le ID selectionné." />
-    <MESSAGE value="0.46&#10;&#10;- Effacage des champs après enregistrement comme avant.&#10;- Update dynamique du comboboxID et autres champs." />
-    <MESSAGE value="0.50&#10;&#10;Nouvelle direction au projet, remplacement des tablewidget par des QtableView.&#10;&#10;Ajout de filtre sur les model des tables pour filtrer selon le ID." />
-    <option name="LAST_COMMIT_MESSAGE" value="0.50&#10;&#10;Nouvelle direction au projet, remplacement des tablewidget par des QtableView.&#10;&#10;Ajout de filtre sur les model des tables pour filtrer selon le ID." />
-  </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="__exception__" />
-      </configuration>
-    </watches-manager>
+    <option name="LAST_COMMIT_MESSAGE" value="0.37.2&#10;https://docs.python.org/3/library/csv.html&#10;Chargement des données créer une list de dict au lieu de simplement ajouter les variables en dict...&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
   </component>
 </project>

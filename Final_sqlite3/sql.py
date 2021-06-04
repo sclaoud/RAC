@@ -107,5 +107,17 @@ createTableQuery.exec(
     )
     """
 )
+#Table contenant la liste des types d'accès
+createTableQuery.exec(
+    """
+    CREATE TABLE "CatAcces" (
+	"list"	VARCHAR(60) UNIQUE
+    )
+    """
+)
+
+insquery = QSqlQuery() # Insertion de la liste déroulante des accès par une table
+insquery.prepare("INSERT INTO CatAcces (list) VALUES ('Consultant'), ('employé'), ('Direction'), ('Sécurité'), ('Admin')")
+insquery.exec()
 
 print(con.tables())
