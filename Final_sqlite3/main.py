@@ -47,11 +47,10 @@ class Window(Ui_Application, QDialog):
         self.btnSuppPers.clicked.connect(self.SuppPers)
 
         #test avec bouton modifier de film
-        self.btnModFilm.clicked.connect(self.ModifFilm)
+        self.btnVF.clicked.connect(self.ModifFilm)
 
-        #test avec le bouton modifier de personne
-        self.btnModPers.clicked.connect(self.ModifPers)
-
+        #Vidange des champs de la TAB Personne pour permettre un nouvel enregistrement
+        self.btnVP.clicked.connect(self.ViderPers)
 
         # Désactiver tant que la cb de la section désiré n'est pas coché
         self.dateEmb.setDisabled(True)
@@ -67,7 +66,6 @@ class Window(Ui_Application, QDialog):
         self.lineCourriel.setDisabled(True)
         self.btnAjoutPers.setDisabled(True)
         self.btnSuppPers.setDisabled(True)
-
 
         # Echomode pour les Password
         self.linePwdClient.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
@@ -90,14 +88,12 @@ class Window(Ui_Application, QDialog):
         self.cbEmploye.toggled.connect(self.linePwdEmp.setEnabled)
         self.cbEmploye.toggled.connect(self.comboAcces.setEnabled)
 
-
-
         # Fonction de fermeture 'closeEvent' lorsque l'on appui sur le bouton
         self.btnFermer.clicked.connect(self.closeEvent)
-        # Entré un nouveau film
-        self.btnNvFilm.clicked.connect(self.newFilm)
-        # Entré une nouvelle personne
-        self.btnNvPers.clicked.connect(self.Validation)
+        # Enregistrement d'un nouveau film
+        self.btnEF.clicked.connect(self.newFilm)
+        # Enregistrement d'une nouvelle personne
+        self.btnEP.clicked.connect(self.Validation)
 
         # Maximum de 40 Caracteres pour le nom et prenom
         self.linePrenom.setMaxLength(40)
@@ -271,11 +267,6 @@ class Window(Ui_Application, QDialog):
         self.tabMain.setTabText(1, "Film ({})".format(rec))
 #        print (pf.lastError().text())
 
-    # Bouton pour mettre à jour une personne (Présentement en test)
-    def ModifPers(self):
-        query = QSqlQuery()
-        print (query.lastError().text())
-
     ### Enregistrement de l'entré et remise à zero ### à retravailler
     def Validation(self):
         Personne.prenom = self.linePrenom.text()
@@ -346,10 +337,10 @@ class Window(Ui_Application, QDialog):
             db.addBindValue(employe.acces)
             db.exec()
             print(db.lastError().text())
-        self.cleanupPers() # clean up
+            print('L\'enregistrement est complété')
 
     #Cleanup des champs une fois l'enregistrement
-    def cleanupPers(self):
+    def ViderPers(self):
         # Reset des champs pour une nouvelle entrée
         self.linePrenom.setText("")
         self.lineNom.setText("")
@@ -363,8 +354,12 @@ class Window(Ui_Application, QDialog):
         self.lineUsername.setText("")
         self.linePwdEmp.setText("")
         self.comboAcces.setCurrentIndex(1)
+        # Filtre des model des tables Acteurs et CartedeCredtis pour apparaitre vide
+        self.modelact.setFilter("id = 0")
+        self.modelact.select()
+        self.modelcc.setFilter("id = 0")
+        self.modelcc.select()
 
-        self.comboboxID()
 
     # Fenêtre de confirmation de la fermeture de l'application
     def closeEvent(self):
