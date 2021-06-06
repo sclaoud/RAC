@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlQueryModel, QSqlTableModel, QSqlDriver, QSqlRecord
+from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlQueryModel, QSqlTableModel, QSqlDriver, QSqlRecord, QSqlRelationalTableModel
 
 # Query pour les demandes ID universel
 

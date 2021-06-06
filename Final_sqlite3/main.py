@@ -112,23 +112,23 @@ class Window(Ui_Application, QDialog):
         self.listCatFilm.setModel(self.model)
 
         # Model pour La table CartedeCredit
-        self.modelcc = QSqlTableModel(self)
+        self.modelcc = QSqlRelationalTableModel(self)
         self.modelcc.setTable("CartedeCredits")
-        self.modelcc.removeColumn(0) #Cache la column des ID
         self.modelcc.setEditStrategy(QSqlTableModel.OnFieldChange)
         self.modelcc.select()
         # Set up the view
         self.QtableCC.setModel(self.modelcc)
+        self.QtableCC.setColumnHidden(0, True) #Cache la column ID
         self.QtableCC.resizeColumnsToContents()
 
         # Model pour La table Acteurs
-        self.modelact = QSqlTableModel(self)
+        self.modelact = QSqlRelationalTableModel(self)
         self.modelact.setTable("Acteurs")
-        self.modelact.removeColumn(0) #Cache la column des ID
         self.modelact.setEditStrategy(QSqlTableModel.OnFieldChange)
         self.modelact.select()
         # Set up the view
         self.QtableAct.setModel(self.modelact)
+        self.QtableAct.setColumnHidden(0, True)#Cache la column des ID
         self.QtableAct.resizeColumnsToContents()
 
         #Si sélection d'un contenu de la comboboxID
@@ -217,11 +217,9 @@ class Window(Ui_Application, QDialog):
         #Prepare le query en filtrant la var PPID (ID selectionner dans comboID)
         query = QSqlQuery()
         query.prepare('SELECT * FROM Personne WHERE id is :id')
-#        query.prepare('SELECT * FROM Personne CROSS JOIN Client, employe ON Personne.id = Client.id WHERE Personne.id is :id')
         query.bindValue(':id', self.ppid) #Pointe la variable :1 vers ppid
         query.exec()
         while query.next():
-#            print (ppid)
             Personne.sexe = query.value('Sexe')
             self.linePrenom.setText(query.value('Prenom'))
             self.lineNom.setText(query.value('Nom'))
@@ -429,8 +427,11 @@ class Window(Ui_Application, QDialog):
     # Ajout d'une nouvelle rangée pour inscrire une nouvelle carte de crédit
     def AjoutCC(self):
         rowPosition = self.modelcc.rowCount()
-        self.modelcc.insertRow(rowPosition)
-        self.modelcc.setData(0, self.ppid)
+        rec = self.modelcc.record()
+        rec.setValue('id', self.ppid)
+        self.modelcc.insertRecord(rowPosition, rec)
+
+
 
     # Supprimer la rangée d'une carte de crédit
     def SuppCC(self):
@@ -441,7 +442,9 @@ class Window(Ui_Application, QDialog):
     # Ajout d'une nouvelle rangée pour inscrire un nouveau personnage d'acteur
     def AjoutAct(self):
         rowPosition = self.modelact.rowCount()
-        self.modelact.insertRow(rowPosition)
+        rec = self.modelact.record()
+        rec.setValue('id', self.ppid)
+        self.modelact.insertRecord(rowPosition, rec)
 
     # Supprimer la rangée d'un personnage d'acteur
     def SuppAct(self):
