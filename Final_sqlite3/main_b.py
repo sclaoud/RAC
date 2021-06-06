@@ -6,9 +6,10 @@ Fichier des opérations entre les class et l'interface
 
 # Importation des modules
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtGui import QRegExpValidator, QStandardItemModel, QStandardItem, QColor
+from PyQt5.QtGui import QRegExpValidator, QStandardItemModel, QStandardItem
 from PyQt5.QtCore import QRegExp, QDir, Qt, QDate
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog, QTableWidgetItem, QAbstractItemView, QTableView
+
 
 
 from TABUI import Ui_Application
@@ -139,7 +140,6 @@ class Window(Ui_Application, QDialog):
         self.comboboxAcces()
         # Remplir la combobox des ID et des champs au besoin
         self.comboboxID()
-
     #### Fonctions ####
 
     # Liste des choix du combobox comboAcces pour les employés
@@ -210,15 +210,14 @@ class Window(Ui_Application, QDialog):
 
     # Met à jour les données selon le ID
     def PersonneUpdate(self):
-
         # récupérer le ID sélectionné dans comboboxID
-        self.ppid = int(self.comboID.currentText())
+        ppid = self.comboID.currentText()
 
         #Prepare le query en filtrant la var PPID (ID selectionner dans comboID)
         query = QSqlQuery()
         query.prepare('SELECT * FROM Personne WHERE id is :id')
 #        query.prepare('SELECT * FROM Personne CROSS JOIN Client, employe ON Personne.id = Client.id WHERE Personne.id is :id')
-        query.bindValue(':id', self.ppid) #Pointe la variable :1 vers ppid
+        query.bindValue(':id', ppid) #Pointe la variable :1 vers ppid
         query.exec()
         while query.next():
 #            print (ppid)
@@ -232,71 +231,33 @@ class Window(Ui_Application, QDialog):
                 self.rbtnF.setChecked(True)
             if Personne.sexe == -4:
                 self.rbtnNA.setChecked(True)
-
-    # Active les sections selon ce qui est coché dans la BD
-            # Si la checkbox client est coché, lance la fonction loadclient sinon s'assure que les champs sont vide
+            # Active les sections selon ce qui est coché dans la BD
             if query.value('cbc') == 2:
-                self.loadclient()
-            else:
-                self.cbClient.setChecked(False)
-                cdate = QDate.fromString("2021-01-01", "yyyy-MM-d")
-                self.dateInsc.setDate(cdate)
-                self.lineCourriel.setText("")
-                self.linePwdClient.setText("")
-
-# Si la checkbox acteur est coché, load la table acteur sinon vide la fenetre
+                self.cbClient.setChecked(True)
+                #Filtre du model de la table Carte de crédits pour n'afficher que les cartes ayant un lien avec la personne
+                self.modelcc.setFilter("id = '%s'" % ppid)
+                self.modelcc.select()
+                #convertion de la date d'inscription de string en date
+                clientdate = QDate.fromString(query.value('DateInsc'), "yyyy-MM-dd")
+                self.dateInsc.setDate(clientdate)
+                self.lineCourriel.setText(query.value('Courriel'))
+                self.linePwdClient.setText(query.value('ClientPwd'))
             if query.value('cba') == 2:
                 self.cbActeur.setChecked(True)
-                # Filtre du model de la table Acteur pour n'afficher que les personnages ayant un lien avec la personne
-                self.modelact.setFilter("id = '%s'" % self.ppid)
+                #Filtre du model de la table Acteur pour n'afficher que les personnages ayant un lien avec la personne
+                self.modelact.setFilter("id = '%s'" % ppid)
                 self.modelact.select()
-            else:
-                self.cbActeur.setChecked(False)
-                # Filtre du model de la table Acteur pour n'afficher que les personnages ayant un lien avec la personne
-                self.modelact.setFilter("id = 0")
-                self.modelact.select()
-
-            # Si la checkbox employe est coché, load la table employe
             if query.value('cbe') == 2:
-                self.loademploye()
-            else:
-                self.cbEmploye.setChecked(False)
-                self.lineUsername.setText("")
-                self.linePwdEmp.setText("")
-                self.comboAcces.setCurrentIndex(0)
-
-
-    #charge la section client si cbc est coché
-    def loadclient(self):
-        cquery = QSqlQuery()
-        self.cbClient.setChecked(True)
-        #Filtre du model de la table Carte de crédits pour n'afficher que les cartes ayant un lien avec la personne
-        self.modelcc.setFilter("id = '%s'" % self.ppid)
-        self.modelcc.select()
-        #convertion de la date d'inscription de string en date
-        clientdate = QDate.fromString(cquery.value('DateInsc'), "yyyy-MM-d")
-        self.dateInsc.setDate(clientdate)
-        self.lineCourriel.setText(cquery.value('Courriel'))
-        self.linePwdClient.setText(cquery.value('ClientPwd'))
-
-
-    # Charge les données de l'employé si la checkbox est coché
-    def loademploye(self):
-        equery = QSqlQuery()
-        self.cbEmploye.setChecked(True)
-        equery.prepare('SELECT * FROM employe WHERE id is :id') #condition que le id est sélectionné
-        equery.bindValue(':id', self.ppid)  # Pointe la variable :1 vers ppid
-        equery.exec()
-        while equery.next():
-            # convertion de la date d'embauche de string en date
-            embdate = QDate.fromString(equery.value('DateEmb'), "yyyy-MM-d")
-            self.dateEmb.setDate(embdate)
-            # Remplissage des champs selon les données recoltés
-            self.lineUsername.setText(equery.value('Username'))
-            self.linePwdEmp.setText(equery.value('empPwd'))
-            acces = equery.value('acces')
-            self.comboAcces.setCurrentIndex(acces)
-
+                self.cbEmploye.setChecked(True)
+                # convertion de la date d'embauche de string en date
+                embdate = QDate.fromString(query.value('DateEmb'), "yyyy-MM-dd")
+                self.dateInsc.setDate(embdate)
+                self.lineUsername.setText(query.value('Username'))
+                self.linePwdEmp.setText(query.value('empPwd'))
+                acces = query.value('acces')
+                print (acces)
+#                self.comboAcces.setCurrentIndex(acces)
+            print (query.lastError().text())
 
     # Update de la liste des films
     def UpdateFilm(self):
@@ -430,7 +391,6 @@ class Window(Ui_Application, QDialog):
     def AjoutCC(self):
         rowPosition = self.modelcc.rowCount()
         self.modelcc.insertRow(rowPosition)
-        self.modelcc.setData(0, self.ppid)
 
     # Supprimer la rangée d'une carte de crédit
     def SuppCC(self):
@@ -454,9 +414,7 @@ class Window(Ui_Application, QDialog):
 
 
     def log_change(self, item):
-        self.QtableCC.blockSignals(True)
-        item.setBackground(QColor('red'))
-        self.QtableCC.blockSignals(False)
+        print("CC")
 
 
 if __name__ == "__main__":
