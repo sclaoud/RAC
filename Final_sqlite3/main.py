@@ -309,7 +309,7 @@ class Window(Ui_Application, QDialog):
         ppid = self.comboID.currentText()
 
         query = QSqlQuery()
-        query.prepare('DELETE FROM Personne, Client, employe, Acteurs, CartedeCredits WHERE id = %s',ppid)
+        query.prepare('DELETE * FROM Personne, Client, employe, Acteurs, CartedeCredits WHERE id = %s',ppid)
         query.exec()
         print(query.lastError().text())
 

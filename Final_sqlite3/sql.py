@@ -39,7 +39,7 @@ createTableQuery.exec(
         NumeroCC int,
         DateCC int,
         CodeCC int,
-        FOREIGN KEY (id) REFERENCES Personne(id)
+        FOREIGN KEY (id) REFERENCES Personne(id) ON DELETE CASCADE 
     )
     """
 )
@@ -50,7 +50,7 @@ createTableQuery.exec(
 	"DateInsc"	VARCHAR(40),
 	"Courriel"	VARCHAR(255),
 	"ClientPwd"	VARCHAR(40),
-	FOREIGN KEY("id") REFERENCES "Personne"("id")
+	FOREIGN KEY("id") REFERENCES "Personne"("id") ON DELETE CASCADE
     )
     """
 )
@@ -63,7 +63,7 @@ createTableQuery.exec(
         DateDebut VARCHAR(40),
         DateFin VARCHAR(40),
         Cachet VARCHAR(40),
-        FOREIGN KEY (id) REFERENCES Personne(id)
+        FOREIGN KEY (id) REFERENCES Personne(id) ON DELETE CASCADE
     )
     """
 )
@@ -75,7 +75,7 @@ createTableQuery.exec(
         Username VARCHAR(40),
         empPwd VARCHAR(40),
         acces INTEGER,
-        FOREIGN KEY (id) REFERENCES Personne(id)
+        FOREIGN KEY (id) REFERENCES Personne(id) ON DELETE CASCADE
     )
     """
 )
