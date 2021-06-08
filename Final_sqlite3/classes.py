@@ -4,7 +4,6 @@ Emplacement des classes
 
 """
 
-
 # class personne avec informations de bases
 class Personne(object):
 

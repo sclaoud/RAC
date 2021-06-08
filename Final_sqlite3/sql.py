@@ -10,6 +10,8 @@ try:
     con.setDatabaseName("data.db")
     print("Database created")
     con.open()
+    con.exec("PRAGMA foreign_keys = ON")
+    print(con.lastError().text())
 
 finally:
     # Open the connection
@@ -35,7 +37,7 @@ createTableQuery.exec(
 createTableQuery.exec(
     """
     CREATE TABLE CartedeCredits (
-        id INTEGER,
+        id VARCHAR(4),
         NumeroCC int,
         DateCC int,
         CodeCC int,
@@ -46,7 +48,7 @@ createTableQuery.exec(
 createTableQuery.exec(
     """
     CREATE TABLE Client (
-	"id"	INTEGER,
+	"id"	VARCHAR(4),
 	"DateInsc"	VARCHAR(40),
 	"Courriel"	VARCHAR(255),
 	"ClientPwd"	VARCHAR(40),
@@ -57,7 +59,7 @@ createTableQuery.exec(
 createTableQuery.exec(
     """
     CREATE TABLE Acteurs (
-        id INTEGER,
+        id VARCHAR(4),
         TitreFilm VARCHAR(40),
         Personnage VARCHAR(40),
         DateDebut VARCHAR(40),
@@ -70,7 +72,7 @@ createTableQuery.exec(
 createTableQuery.exec(
     """
     CREATE TABLE employe (
-        id INTEGER,
+        id VARCHAR(4),
         DateEmb VARCHAR(40),
         Username VARCHAR(40),
         empPwd VARCHAR(40),
@@ -86,15 +88,6 @@ createTableQuery.exec(
         "NomFilm"	VARCHAR(40),
         "DureeFilm"	VARCHAR(40),
         "DescFilm"	VARCHAR(255),
-        "CatFilm"	VARCHAR(40),
-        PRIMARY KEY("idf" AUTOINCREMENT)
-	)
-    """
-)
-createTableQuery.exec(
-    """
-    CREATE TABLE "CatFilm" (
-        "idf"	INTEGER,
         "Animation"	INTEGER,
         "Fantaisie"	INTEGER,
         "Science-Fiction"	INTEGER,
@@ -102,9 +95,9 @@ createTableQuery.exec(
         "Drame"	INTEGER,
         "Thriller"	INTEGER,
         "Documentaire"	INTEGER,
-        "Comédie"	INTEGER,
-        FOREIGN KEY(idf) REFERENCES Film (idf)
-    )
+        "Comedie"	INTEGER,
+        PRIMARY KEY("idf" AUTOINCREMENT)
+	)
     """
 )
 #Table contenant la liste des types d'accès

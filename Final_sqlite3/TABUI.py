@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'tab13.ui'
+# Form implementation generated from reading ui file 'tab14.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -232,6 +232,10 @@ class Ui_Application(object):
         self.label_8.setGeometry(QtCore.QRect(20, 30, 47, 13))
         self.label_8.setAlignment(QtCore.Qt.AlignCenter)
         self.label_8.setObjectName("label_8")
+        self.cbVP = QtWidgets.QCheckBox(self.tabPersonne)
+        self.cbVP.setGeometry(QtCore.QRect(39, 70, 101, 20))
+        self.cbVP.setLayoutDirection(QtCore.Qt.RightToLeft)
+        self.cbVP.setObjectName("cbVP")
         self.tabMain.addTab(self.tabPersonne, "")
         self.tabFilms = QtWidgets.QWidget()
         self.tabFilms.setObjectName("tabFilms")
@@ -278,6 +282,10 @@ class Ui_Application(object):
         self.label_9.setGeometry(QtCore.QRect(40, 140, 47, 13))
         self.label_9.setAlignment(QtCore.Qt.AlignCenter)
         self.label_9.setObjectName("label_9")
+        self.cbVF = QtWidgets.QCheckBox(self.tabFilms)
+        self.cbVF.setGeometry(QtCore.QRect(70, 170, 101, 20))
+        self.cbVF.setLayoutDirection(QtCore.Qt.RightToLeft)
+        self.cbVF.setObjectName("cbVF")
         self.tabMain.addTab(self.tabFilms, "")
         self.btnFermer = QtWidgets.QPushButton(Application)
         self.btnFermer.setGeometry(QtCore.QRect(890, 590, 75, 23))
@@ -316,12 +324,14 @@ class Ui_Application(object):
         self.btnSuppCC.setText(_translate("Application", "Supprimer"))
         self.btnSuppPers.setText(_translate("Application", "Supprimer"))
         self.label_8.setText(_translate("Application", "ID"))
+        self.cbVP.setText(_translate("Application", "Nouvelle entrée?"))
         self.tabMain.setTabText(self.tabMain.indexOf(self.tabPersonne), _translate("Application", "Personne"))
         self.btnEF.setText(_translate("Application", "Enregistrer"))
         self.btnSupFilm.setText(_translate("Application", "Supprimer"))
         self.btnVF.setText(_translate("Application", "Vider"))
         self.label_2.setText(_translate("Application", "Catégories du film"))
         self.label_9.setText(_translate("Application", "ID"))
+        self.cbVF.setText(_translate("Application", "Nouvelle entrée?"))
         self.tabMain.setTabText(self.tabMain.indexOf(self.tabFilms), _translate("Application", "Films"))
         self.btnFermer.setText(_translate("Application", "Fermer"))
 
