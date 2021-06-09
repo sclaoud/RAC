@@ -4,15 +4,17 @@ Emplacement des classes
 
 """
 
+from PyQt5.QtCore import Qt
+from PyQt5.QtSql import QSqlTableModel
+
 # class personne avec informations de bases
 class Personne(object):
 
-    def __init__(self, prenom, nom, sexe, position, parent=None):
+    def __init__(self, prenom, nom, sexe, parent=None):
         super().__init__(parent)
         self._prenom = prenom
         self._nom = nom
         self._sexe = sexe
-        self._position = position
 
     @property
     def prenom(self):
@@ -38,14 +40,8 @@ class Personne(object):
     def sexe(self, sexe):
         self._sexe = sexe
 
-    @property
-    def position(self):
-        return self._position
 
-    @position.setter
-    def position(self, position):
-        self._position = position
-
+# class comprenant les informations des clients
 class client (Personne):
 
     def __init__(self, dateInsc, courriel, clientPwd, prenom, nom, sexe):
@@ -80,105 +76,7 @@ class client (Personne):
         self._clientPwd = clientPwd
 
 
-class cartedeCredits (client):
-
-    listCC = []
-    CCposition = 0
-    CC = {}
-
-    def __init__(self, numeroCC, dateCC, codeCC, dateInsc, courriel, clientPwd, prenom, nom, sexe):
-        super().__init__(dateInsc, courriel, clientPwd, prenom, nom, sexe)
-        self._numeroCC = numeroCC
-        self._dateCC = dateCC
-        self._codeCC = codeCC
-        return
-
-    @property
-    def numeroCC(self):
-        return self._numeroCC
-
-    @numeroCC.setter
-    def numeroCC(self, numeroCC):
-        self._numeroCC = numeroCC
-
-    @property
-    def dateCC(self):
-        return self._dateCC
-
-    @dateCC.setter
-    def dateCC(self, dateCC):
-        self._dateCC = dateCC
-
-    @property
-    def codeCC(self):
-        return self._codeCC
-
-    @codeCC.setter
-    def codeCC(self, codeCC):
-        self._codeCC = codeCC
-
-
-# class des acteurs, enfant de personne
-class acteurs (Personne):
-
-    listeActeurs = [{
-            'TitreFilm': 'titreFilm',
-            'Personnage': 'personnage',
-            'dateDebut': 'debutEmploi',
-            'dateFin': 'finEmploi',
-            'cachet': 'cachet',
-            }]
-
-    def __init__(self, titreFilm, personnage, debutEmploi, finEmploi, cachet, prenom, nom, sexe):
-        super().__init__(prenom, nom, sexe)
-        self._titreFilm = titreFilm
-        self._personnage = personnage
-        self._debutEmploi = debutEmploi
-        self._finEmploi = finEmploi
-        self._cachet = cachet
-        return
-
-    @property
-    def titreFilm(self):
-        return self._titreFilm
-
-    @titreFilm.setter
-    def titreFilm(self, titreFilm):
-        self._titreFilm = titreFilm
-
-    @property
-    def personnage(self):
-        return self._personnage
-
-    @personnage.setter
-    def personnage(self, personnage):
-        self._personnage = personnage
-
-    @property
-    def debutEmploi(self):
-        return self._debutEmploi
-
-    @debutEmploi.setter
-    def debutEmploi(self, debutEmploi):
-        self._debutEmploi = debutEmploi
-
-    @property
-    def finEmploi(self):
-        return self._finEmploi
-
-    @finEmploi.setter
-    def finEmploi(self, finEmploi):
-        self._finEmploi = finEmploi
-
-    @property
-    def cachet(self):
-        return self._cachet
-
-    @cachet.setter
-    def cachet(self, cachet):
-        self._cachet = cachet
-
-
+# class pour les informations des employes, enfant de Personne
 class employe (Personne):
 
     def __init__(self, dateEmb, username, empPwd, acces, prenom, nom, sexe):
@@ -225,14 +123,10 @@ class employe (Personne):
 # class contenant les informations sur les films
 class Film(object):
 
-    positionFilm = 0
-    listeFilm = []
-
-    def __init__(self, nomFilm, dureeFilm, descFilm, catFilm):
+    def __init__(self, nomFilm, dureeFilm, descFilm):
         self._nomFilm = nomFilm
         self._dureeFilm = dureeFilm
         self._descFilm = descFilm
-        self._catFilm = catFilm
         return
 
     @property
@@ -262,11 +156,3 @@ class Film(object):
     @descFilm.setter
     def descFilm(self, descFilm):
         self._descFilm = descFilm
-
-    @property
-    def catFilm(self):
-        return self._catFilm
-
-    @catFilm.setter
-    def catFilm(self, catFilm):
-        self._catFilm = catFilm

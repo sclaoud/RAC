@@ -6,13 +6,11 @@ Fichier des opérations entre les class et l'interface
 
 # Importation des modules
 from datetime import time
-
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtGui import QRegExpValidator, QStandardItemModel, QStandardItem, QColor
-from PyQt5.QtCore import QRegExp, QDir, Qt, QDate, QTime
-from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog, QTableWidgetItem, QAbstractItemView, \
-    QTableView, QPushButton, QListView
-
+from PyQt5.QtGui import QRegExpValidator, QStandardItemModel, QStandardItem
+from PyQt5.QtCore import QRegExp, Qt, QDate, QTime
+from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QAbstractItemView
+from PyQt5.QtSql import QSqlRelationalTableModel, QSqlTableModel
 from TABUI import Ui_Application
 from classes import *
 from sql import *
@@ -23,8 +21,6 @@ class Window(Ui_Application, QDialog):
     def __init__(self):
         QDialog.__init__(self)
         self.setupUi(self)
-
-        self.ppid = str(self.comboID.currentText())
 
         # validation des lignes avec limitations textes/chiffres uniquements
         regexText = QRegExpValidator(QRegExp(r'^[a-zA-Z]*$'))
@@ -92,7 +88,7 @@ class Window(Ui_Application, QDialog):
         # Fonction de fermeture 'closeEvent' lorsque l'on appui sur le bouton
         self.btnFermer.clicked.connect(self.closeEvent)
         # Enregistrement d'un nouveau film
-        self.btnEF.clicked.connect(self.newFilm)
+        self.btnEF.clicked.connect(self.ValidationF)
         # Enregistrement d'une nouvelle personne
         self.btnEP.clicked.connect(self.ValidationP)
 
@@ -100,18 +96,17 @@ class Window(Ui_Application, QDialog):
         self.linePrenom.setMaxLength(40)
         self.lineNom.setMaxLength(40)
 
-        # Model de la liste des catégories de films
-        self.model = QStandardItemModel()
-        self.cbListCatFilm = {"Animation", "Fantaisie", "Science-Fiction", "Horreur", "Drame",
-                              "Thriller", "Documentaire", "Comédie"}
-        # Liste des catégories de films (n'est pas iterable)
-        for list in self.cbListCatFilm:
-            item = QStandardItem(list)
-            item.setCheckable(True)
-            self.model.appendRow(item)
-        self.listCatFilm.setModel(self.model)
+    # Model des catégories de Films pour la tab Film
+        self.modelcf = QSqlTableModel()
+        self.modelcf.setTable("Categories")
+        self.modelcf.setEditStrategy(QSqlTableModel.OnFieldChange)
+        self.modelcf.select()
+        self.listCatFilm.setModel(self.modelcf)
+        self.listCatFilm.setSelectionMode(2)
+        #Sauvegarde les catégories selectionnés
+        self.listCatFilm.selectionModel().selectionChanged.connect(self.Selectcat)
 
-        # Model pour La table CartedeCredit
+    # Model pour La table CartedeCredit
         self.modelcc = QSqlRelationalTableModel(self)
         self.modelcc.setTable("CartedeCredits")
         self.modelcc.setEditStrategy(QSqlTableModel.OnFieldChange)
@@ -121,7 +116,7 @@ class Window(Ui_Application, QDialog):
         self.QtableCC.setColumnHidden(0, True)  # Cache la column ID
         self.QtableCC.resizeColumnsToContents()
 
-        # Model pour La table Acteurs
+    # Model pour La table Acteurs
         self.modelact = QSqlRelationalTableModel(self)
         self.modelact.setTable("Acteurs")
         self.modelact.setEditStrategy(QSqlTableModel.OnFieldChange)
@@ -146,6 +141,12 @@ class Window(Ui_Application, QDialog):
 
     #### Fonctions ####
 
+# Section de la TAB Film
+
+    def Selectcat(self):
+        print('hello')
+
+
     # Liste des ID Personne indexé dans la combobox de selection
     def comboF(self):
         listid = []
@@ -154,22 +155,94 @@ class Window(Ui_Application, QDialog):
         while idquery.next():
             listid.append(str(idquery.value('idf')))
         self.comboIDF.addItems(listid)  # Ajouter la liste de ID à la comboBox
-
         self.UpdateFilm()  # Populate la tab selon le ID
 
-    def ValidationP(self):
-        if self.cbVP.isChecked():
-            self.Enregistrement()
+    # Valide si la case de nouvel enregistrement de la tab Film est coché ou non
+    def ValidationF(self):
+        if self.cbVF.isChecked():
+            self.newFilm()
         else:
-            self.MAJP()
+            self.MAJF()
 
-    # Liste des choix du combobox comboAcces pour les employés
-    def comboboxAcces(self):
-        la = []
-        laquery = QSqlQuery("SELECT list FROM CatAcces")
-        while laquery.next():
-            la.append(str(laquery.value('list')))
-        self.comboAcces.addItems(la)
+    # Enregistrement de l'entré et remise à zero des films
+    def newFilm(self):
+        Film.nomFilm = self.TitreFilm.text()
+        Film.dureeFilm = self.dureeFilm.time()
+        Film.descFilm = self.textDescFilm.toPlainText()
+
+
+        # enregistrement du nouveau film dans la BD SQL
+        nf = QSqlQuery()
+        nf.prepare(
+            """
+            INSERT INTO Film (NomFilm, DureeFilm, DescFilm)
+            values (?, ?, ?)
+            """
+        )
+        nf.addBindValue(Film.nomFilm)
+        nf.addBindValue(Film.dureeFilm)
+        nf.addBindValue(Film.descFilm)
+        nf.exec()
+        self.comboF()  # Reload de l'indexation et de la fenêtre.
+
+    #Update du film sélectionné si la case Nouvelle entrée n'est pas coché
+    def MAJF(self):
+        Film.nomFilm = self.TitreFilm.text()
+        Film.dureeFilm = self.dureeFilm.time()
+        Film.descFilm = self.textDescFilm.toPlainText()
+
+        uf = QSqlQuery()
+        uf.prepare(
+            """
+        UPDATE Film SET 
+            NomFilm=:nf, 
+            DureeFilm=:nt, 
+            DescFilm=:nd
+        WHERE id is :idf
+            """
+        )
+        uf.bindValue(':nf', Film.nomFilm)
+        uf.bindValue(':nt', Film.dureeFilm)
+        uf.bindValue(':nd', Film.descFilm)
+        uf.bindValue(':idf', self.idf)
+        uf.exec()
+        self.comboF()  # Reload de l'indexation et de la fenêtre.
+
+    # Supression d'un film de la BD
+    def SuppFilm(self):
+        query = QSqlQuery()
+        query.prepare("DELETE FROM Film WHERE idf is :idf")  # condition que le id est sélectionné
+        query.bindValue(':idf', self.idf)
+        query.exec()
+        self.comboF()  # Call comboboxID pour mettre à jour
+
+    # Cleanup des champs une fois l'enregistrement
+    def ViderFilm(self):
+        # Reset des champs pour une nouvelle entrée
+        self.comboID.setCurrentIndex(00)
+        self.TitreFilm.setText("")
+        self.textDescFilm.setText("")
+        qtime = time()
+        self.dureeFilm.setTime(qtime)
+        self.Catfilmtable()
+
+    # Update la tab des films selon le ID sélectionné
+    def UpdateFilm(self):
+        query = QSqlQuery()
+        # Définition de la var idf avec l'index de la liste déroulante Film
+        self.idf = str(self.comboIDF.currentText())
+        # Prepare le query en filtrant la var PPID (ID selectionner dans comboID)
+        query.prepare('SELECT * FROM Film WHERE idf is :idf')
+        query.bindValue(':idf', self.idf)  # Pointe la variable :idf vers idf
+        query.exec()
+        while query.next():
+            ftime = QTime.fromString(query.value('DureeFilm'))
+            self.TitreFilm.setText(query.value('NomFilm'))
+            self.dureeFilm.setTime(ftime)
+            self.textDescFilm.setText(query.value('DescFilm'))
+#        self.modelcf.setFilter("id = '%s'" % self.idf)
+
+#  Section de la TAB Personne
 
     # Liste des ID Personne indexé dans la combobox de selection
     def comboboxID(self):
@@ -182,80 +255,12 @@ class Window(Ui_Application, QDialog):
 
         self.PersonneUpdate()  # Populate la tab selon le ID
 
-    # Enregistrement de l'entré et remise à zero des films
-    def newFilm(self):
-        Film.nomFilm = self.TitreFilm.text()
-        Film.dureeFilm = self.dureeFilm.time()
-        Film.descFilm = self.textDescFilm.toPlainText()
-
-        # Enregistrement des checkbox de catégories cochés
-        model = self.listCatFilm.model()
-        cat_film_list = []
-        cat_film_list.clear()
-        for i, v in enumerate(self.cbListCatFilm):
-            item = model.item(i)
-            if item.isCheckable() and item.checkState() == QtCore.Qt.Checked:
-                # Sauvegarde des int en str
-                cat_film_list.append(str(v))
-#        print(Film.catFilm)
-
-        if 'Animation' in cat_film_list:
-            animation = 2
+    # Valide sur la case de nouvel enregistrement de la tab Personne est coché ou non
+    def ValidationP(self):
+        if self.cbVP.isChecked():
+            self.Enregistrement()
         else:
-            animation = 0
-        if 'Fantaisie' in cat_film_list:
-            fantaisie = 2
-        else:
-            fantaisie = 0
-        if 'Science-Fiction' in cat_film_list:
-            syfy = 2
-        else:
-            syfy = 0
-        if 'Horreur' in cat_film_list:
-            horreur = 2
-        else:
-            horreur = 0
-        if 'Drame' in cat_film_list:
-            drame = 2
-        else:
-            drame = 0
-        if 'Thriller' in cat_film_list:
-            thriller = 2
-        else:
-            thriller = 0
-        if 'Documentaire' in cat_film_list:
-            documentaire = 2
-        else:
-            documentaire = 0
-        if 'Comédie' in cat_film_list:
-            comedie = 2
-        else:
-            comedie = 0
-
-
-        # enregistrement du nouveau film dans la BD SQL
-        nf = QSqlQuery()
-        nf.prepare(
-            """
-            INSERT INTO Film (
-            NomFilm=:nf
-            )
-            """
-        )
-        nf.bindValue(':nf', Film.nomFilm)
-#        nf.bindValue(':tf', Film.dureeFilm)
-#        nf.bindValue(':df', Film.descFilm)
-#        nf.bindValue(':ca', animation)
-#        nf.bindValue(':cf', fantaisie)
-#        nf.bindValue(':cs', syfy)
-#        nf.bindValue(':ch', horreur)
-#        nf.bindValue(':cd', drame)
-#        nf.bindValue(':ct', thriller)
-#        nf.bindValue(':cd', documentaire)
-#        nf.bindValue(':cc', comedie)
-        nf.exec()
-        self.comboF()
-        print(nf.lastError().text())
+            self.MAJP()
 
     # choix bouton radio sexe
     def radio_button_clicked(self):
@@ -264,9 +269,7 @@ class Window(Ui_Application, QDialog):
     # Met à jour les données selon le ID
     def PersonneUpdate(self):
         query = QSqlQuery()
-
         self.ppid = str(self.comboID.currentText())
-
         # Prepare le query en filtrant la var PPID (ID selectionner dans comboID)
         query.prepare('SELECT * FROM Personne WHERE id is :id')
         query.bindValue(':id', self.ppid)  # Pointe la variable :1 vers ppid
@@ -353,20 +356,6 @@ class Window(Ui_Application, QDialog):
             acces = equery.value('acces')
             self.comboAcces.setCurrentIndex(acces)
 
-    # Update la tab des films selon le ID sélectionné
-    def UpdateFilm(self):
-        query = QSqlQuery()
-        self.idf = str(self.comboIDF.currentText())
-        # Prepare le query en filtrant la var PPID (ID selectionner dans comboID)
-        query.prepare('SELECT * FROM Film WHERE idf is :idf')
-        query.bindValue(':idf', self.idf)  # Pointe la variable :idf vers idf
-        query.exec()
-        while query.next():
-            ftime = QTime.fromString(query.value('DureeFilm'))
-            self.TitreFilm.setText(query.value('NomFilm'))
-            self.dureeFilm.setTime(ftime)
-            self.textDescFilm.setText(query.value('DescFilm'))
-
     # Suppression des informations de la personne dans toute les tables si existantes
     def SuppPers(self):
         query = QSqlQuery()
@@ -386,13 +375,6 @@ class Window(Ui_Application, QDialog):
         query.bindValue(':id', self.ppid)
         query.exec()
         self.comboboxID()  # Call comboboxID pour mettre à jour
-
-    def SuppFilm(self):
-        query = QSqlQuery()
-        query.prepare("DELETE FROM Film WHERE idf is :idf")  # condition que le id est sélectionné
-        query.bindValue(':idf', self.idf)
-        query.exec()
-        self.comboF()  # Call comboboxID pour mettre à jour
 
     # Mise-à-jour de l'index en cours si cbVP n'est pas coché
     def MAJP(self):
@@ -551,29 +533,6 @@ class Window(Ui_Application, QDialog):
         self.modelcc.setFilter("id = 0")
         self.modelcc.select()
 
-    def ViderFilm(self):
-        # Reset des champs pour une nouvelle entrée
-        self.comboID.setCurrentIndex(00)
-        self.TitreFilm.setText("")
-        self.textDescFilm.setText("")
-        qtime = time()
-        self.dureeFilm.setTime(qtime)
-
-    # Fenêtre de confirmation de la fermeture de l'application
-    def closeEvent(self):
-        msgBox = QMessageBox()
-        msgBox.setIcon(QMessageBox.Information)
-        msgBox.setText("Êtes-vous sure de quitter?")
-        msgBox.setWindowTitle("Message de fermeture")
-        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        #   Choix du message de fermeture
-        res = msgBox.exec_()
-        if res == QMessageBox.Ok:
-            sys.exit()
-        if res == QMessageBox.Cancel:
-            return True
-        return False
-
     # Ajout d'une nouvelle rangée pour inscrire une nouvelle carte de crédit
     def AjoutCC(self):
         rowPosition = self.modelcc.rowCount()
@@ -600,6 +559,28 @@ class Window(Ui_Application, QDialog):
         self.modelact.submit()
         self.modelact.select()
 
+    # Liste des choix du combobox comboAcces pour les employés
+    def comboboxAcces(self):
+        la = []
+        laquery = QSqlQuery("SELECT list FROM CatAcces")
+        while laquery.next():
+            la.append(str(laquery.value('list')))
+        self.comboAcces.addItems(la)
+
+    # Fenêtre de confirmation de la fermeture de l'application
+    def closeEvent(self, QDialog):
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText("Êtes-vous sure de quitter?")
+        msgBox.setWindowTitle("Message de fermeture")
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        #   Choix du message de fermeture
+        res = msgBox.exec_()
+        if res == QMessageBox.Ok:
+            sys.exit()
+        if res == QMessageBox.Cancel:
+            return True
+        return False
 
 if __name__ == "__main__":
     import sys
@@ -609,3 +590,5 @@ if __name__ == "__main__":
     win = Window()
     win.show()
     sys.exit(app.exec())
+
+#        print(nf.lastError().text())

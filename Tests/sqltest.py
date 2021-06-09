@@ -10,7 +10,7 @@ class TableModel(QSqlTableModel):
 
     def flags(self, index):
         fl = QSqlTableModel.flags(self, index)
-        if index.column() == 1:
+        if index.column() == 0:
             fl |= Qt.ItemIsUserCheckable
         return fl
 
@@ -52,10 +52,10 @@ class Widget(QMainWindow):
         lv = QListView(self)
         self.setCentralWidget(lv)
         model = TableModel(self)
-        model.setTable("Personne")
+        model.setTable("person")
         model.select()
         lv.setModel(model)
-        lv.setModelColumn(1)
+        lv.setModelColumn(0)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
