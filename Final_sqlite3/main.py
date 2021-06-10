@@ -7,13 +7,44 @@ Fichier des opérations entre les class et l'interface
 # Importation des modules
 from datetime import time
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtGui import QRegExpValidator, QStandardItemModel, QStandardItem
-from PyQt5.QtCore import QRegExp, Qt, QDate, QTime
-from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QAbstractItemView
-from PyQt5.QtSql import QSqlRelationalTableModel, QSqlTableModel
+from PyQt5.QtGui import QRegExpValidator
+from PyQt5.QtCore import QRegExp, QDate, QTime
+from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QLineEdit, QPushButton, QVBoxLayout
+from PyQt5.QtSql import QSqlRelationalTableModel
 from TABUI import Ui_Application
 from classes import *
 from sql import *
+
+# Fenêtre de login
+class Login(QDialog):
+    def __init__(self, parent=None):
+        super(Login, self).__init__(parent)
+        self.login = QLineEdit(self)
+        self.pwd = QLineEdit(self)
+        self.pwd.setEchoMode(QLineEdit.Password)
+        self.buttonLogin = QPushButton('Login', self)
+        self.buttonLogin.clicked.connect(self.handleLogin)
+        layout = QVBoxLayout(self)
+        layout.addWidget(self.login)
+        layout.addWidget(self.pwd)
+        layout.addWidget(self.buttonLogin)
+
+    def handleLogin(self):
+        vquery = QSqlQuery()
+        vquery.prepare("""SELECT * FROM sql_service
+                        LEFT JOIN employe 
+                        ON sql_service.Acces = employe.Acces""")
+        vquery.exec()
+        while vquery.seek():
+            if (self.login.text() == vquery.value('sql_service.Username') and
+                self.pwd.text() == vquery.value('sql_service.password')):
+                self.accept()
+            else:
+                badmsg = QMessageBox()
+                badmsg.setIcon(QMessageBox.Warning)
+                badmsg.setWindowTitle('Erreur !')
+                badmsg.setText('Erreur de username ou mot de passe')
+                badmsg.exec()
 
 
 # Fenêtre principale
@@ -65,14 +96,18 @@ class Window(Ui_Application, QDialog):
         self.btnSuppPers.setDisabled(True)
 
         # Echomode pour les Password
-        self.linePwdClient.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
-        self.linePwdEmp.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
+        self.linePwdClient.setEchoMode(QLineEdit.PasswordEchoOnEdit)
+        self.linePwdEmp.setEchoMode(QLineEdit.PasswordEchoOnEdit)
 
-        # Checkbox si la personne est artiste, active la section Artiste si coché
+    # Désactive les checkbox pour les Qtable si la personne n'a pas été créer pour raison de bug (le id doit exister)
+        self.cbVP.toggled.connect(self.cbActeur.setDisabled)
+        self.cbVP.toggled.connect(self.cbClient.setDisabled)
+
+    # Checkbox si la personne est artiste, active la section Artiste
         self.cbActeur.toggled.connect(self.QtableAct.setEnabled)
         self.cbActeur.toggled.connect(self.btnSuppPers.setEnabled)
         self.cbActeur.toggled.connect(self.btnAjoutPers.setEnabled)
-        # Checkbox si la personne est Client, active la section client si coché
+    # Checkbox si la personne est Client, active la section client
         self.cbClient.toggled.connect(self.QtableCC.setEnabled)
         self.cbClient.toggled.connect(self.dateInsc.setEnabled)
         self.cbClient.toggled.connect(self.lineCourriel.setEnabled)
@@ -103,7 +138,7 @@ class Window(Ui_Application, QDialog):
         self.modelcf.select()
         self.listCatFilm.setModel(self.modelcf)
         self.listCatFilm.setSelectionMode(2)
-        #Sauvegarde les catégories selectionnés
+        # Sauvegarde les catégories selectionnés
         self.listCatFilm.selectionModel().selectionChanged.connect(self.Selectcat)
 
     # Model pour La table CartedeCredit
@@ -143,9 +178,13 @@ class Window(Ui_Application, QDialog):
 
 # Section de la TAB Film
 
+    # Ajoute les catégories selectionnés de la liste des catégories de films dans une liste
     def Selectcat(self):
-        print('hello')
-
+        cf = []
+        for i in self.listCatFilm.selectedIndexes():
+            cf.append(i.data())
+        # transfert la list temporaire dans Film.categorie mais doit pouvoir oublier les elements non selectionné
+        Film.categories = cf
 
     # Liste des ID Personne indexé dans la combobox de selection
     def comboF(self):
@@ -155,7 +194,6 @@ class Window(Ui_Application, QDialog):
         while idquery.next():
             listid.append(str(idquery.value('idf')))
         self.comboIDF.addItems(listid)  # Ajouter la liste de ID à la comboBox
-        self.UpdateFilm()  # Populate la tab selon le ID
 
     # Valide si la case de nouvel enregistrement de la tab Film est coché ou non
     def ValidationF(self):
@@ -183,9 +221,63 @@ class Window(Ui_Application, QDialog):
         nf.addBindValue(Film.dureeFilm)
         nf.addBindValue(Film.descFilm)
         nf.exec()
+
+        idf = nf.lastInsertId()  # Recupérer le dernier ID utiliser pour lié les infos
+
+        # Valide si chacune des valeurs existe dans la liste des catégories de film
+        if 'Animation' in Film.categories:
+            Animation = 2
+        if 'Animation' not in Film.categories:
+            Animation = 0
+        if 'Comedie' in Film.categories:
+            Comedie = 2
+        if 'Comedie' not in Film.categories:
+            Comedie = 0
+        if 'Documentaire' in Film.categories:
+            Documentaire = 2
+        if 'Documentaire' not in Film.categories:
+            Documentaire = 0
+        if 'Drame' in Film.categories:
+            Drame = 2
+        if 'Drame' not in Film.categories:
+            Drame = 0
+        if 'Fantaisie' in Film.categories:
+            Fantaisie = 2
+        if 'Fantaisie' not in Film.categories:
+            Fantaisie = 0
+        if 'Horreur' in Film.categories:
+            Horreur = 2
+        if 'Horreur' not in Film.categories:
+            Horreur = 0
+        if 'ScienceFiction' in Film.categories:
+            ScienceFiction = 2
+        if 'ScienceFiction' not in Film.categories:
+            ScienceFiction = 0
+        if 'Thriller' in Film.categories:
+            Thriller = 2
+        if 'Thriller' not in Film.categories:
+            Thriller = 0
+
+        nf.prepare(  # préparation d'insertion des données dans la table client
+            """INSERT INTO CatFilm (idf, Animation, Comedie, Documentaire, Drame,
+             Fantaisie, Horreur, ScienceFiction, Thriller)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """)
+        nf.addBindValue(idf)
+        nf.addBindValue(Animation)
+        nf.addBindValue(Comedie)
+        nf.addBindValue(Documentaire)
+        nf.addBindValue(Drame)
+        nf.addBindValue(Fantaisie)
+        nf.addBindValue(Horreur)
+        nf.addBindValue(ScienceFiction)
+        nf.addBindValue(Thriller)
+        nf.exec()
+
+        self.ViderFilm() # Vide les champs
         self.comboF()  # Reload de l'indexation et de la fenêtre.
 
-    #Update du film sélectionné si la case Nouvelle entrée n'est pas coché
+    # Update du film sélectionné si la case Nouvelle entrée n'est pas coché
     def MAJF(self):
         Film.nomFilm = self.TitreFilm.text()
         Film.dureeFilm = self.dureeFilm.time()
@@ -206,6 +298,57 @@ class Window(Ui_Application, QDialog):
         uf.bindValue(':nd', Film.descFilm)
         uf.bindValue(':idf', self.idf)
         uf.exec()
+
+        # Valide si chacune des valeurs existe dans la liste des catégories de film
+        if 'Animation' in Film.categories:
+            Animation = 2
+        if 'Animation' not in Film.categories:
+            Animation = 0
+        if 'Comedie' in Film.categories:
+            Comedie = 2
+        if 'Comedie' not in Film.categories:
+            Comedie = 0
+        if 'Documentaire' in Film.categories:
+            Documentaire = 2
+        if 'Documentaire' not in Film.categories:
+            Documentaire = 0
+        if 'Drame' in Film.categories:
+            Drame = 2
+        if 'Drame' not in Film.categories:
+            Drame = 0
+        if 'Fantaisie' in Film.categories:
+            Fantaisie = 2
+        if 'Fantaisie' not in Film.categories:
+            Fantaisie = 0
+        if 'Horreur' in Film.categories:
+            Horreur = 2
+        if 'Horreur' not in Film.categories:
+            Horreur = 0
+        if 'ScienceFiction' in Film.categories:
+            ScienceFiction = 2
+        if 'ScienceFiction' not in Film.categories:
+            ScienceFiction = 0
+        if 'Thriller' in Film.categories:
+            Thriller = 2
+        if 'Thriller' not in Film.categories:
+            Thriller = 0
+
+        uf.prepare(  # préparation d'insertion des données dans la table client
+            """UPDATE CatFilm SET Animation=:ca, Comedie=:cc, Documentaire=:cd,
+             Drame=:cdd, Fantaisie=:cf, Horreur=:ch, ScienceFiction=:cs, Thriller=:ct
+            WHERE idf is :idf
+            """)
+        uf.bindValue(':idf', self.idf)
+        uf.bindValue(':ca', Animation)
+        uf.bindValue(':cc', Comedie)
+        uf.bindValue(':cd', Documentaire)
+        uf.bindValue(':cdd', Drame)
+        uf.bindValue(':cf', Fantaisie)
+        uf.bindValue(':ch', Horreur)
+        uf.bindValue(':cs', ScienceFiction)
+        uf.bindValue(':ct', Thriller)
+        uf.exec()
+
         self.comboF()  # Reload de l'indexation et de la fenêtre.
 
     # Supression d'un film de la BD
@@ -224,7 +367,7 @@ class Window(Ui_Application, QDialog):
         self.textDescFilm.setText("")
         qtime = time()
         self.dureeFilm.setTime(qtime)
-        self.Catfilmtable()
+        self.listCatFilm.clearSelection()
 
     # Update la tab des films selon le ID sélectionné
     def UpdateFilm(self):
@@ -240,7 +383,30 @@ class Window(Ui_Application, QDialog):
             self.TitreFilm.setText(query.value('NomFilm'))
             self.dureeFilm.setTime(ftime)
             self.textDescFilm.setText(query.value('DescFilm'))
-#        self.modelcf.setFilter("id = '%s'" % self.idf)
+        # Remplie la liste des categorie selon la selection
+        Film.categories.clear()  # clear de la liste précédente
+        cquery = QSqlQuery()
+        cquery.prepare('SELECT * FROM CatFilm WHERE idf is :idf')  # condition que le id est sélectionné
+        cquery.bindValue(':idf', self.idf)  # Pointe la variable idf vers idf
+        cquery.exec()
+        # Selection les items dans la list selon la liste rapporter de la table catfilm
+        while cquery.next():
+            if cquery.value('Animation') == 2:
+                self.listCatFilm.setCurrentIndex(self.modelcf.index(0, 0))
+            if cquery.value('Comedie') == 2:
+                self.listCatFilm.setCurrentIndex(self.modelcf.index(1, 0))
+            if cquery.value('Documentaire') == 2:
+                self.listCatFilm.setCurrentIndex(self.modelcf.index(2, 0))
+            if cquery.value('Drame') == 2:
+                self.listCatFilm.setCurrentIndex(self.modelcf.index(3, 0))
+            if cquery.value('Fantaisie') == 2:
+                self.listCatFilm.setCurrentIndex(self.modelcf.index(4, 0))
+            if cquery.value('Horreur') == 2:
+                self.listCatFilm.setCurrentIndex(self.modelcf.index(5, 0))
+            if cquery.value('ScienceFiction') == 2:
+                self.listCatFilm.setCurrentIndex(self.modelcf.index(6, 0))
+            if cquery.value('Thriller') == 2:
+                self.listCatFilm.setCurrentIndex(self.modelcf.index(7, 0))
 
 #  Section de la TAB Personne
 
@@ -584,11 +750,19 @@ class Window(Ui_Application, QDialog):
 
 if __name__ == "__main__":
     import sys
-
     app = QApplication(sys.argv)
-    Application = QtWidgets.QDialog()
+    login = Login()
+
+    if login.exec_() == QDialog.Accepted:
+        window = Window()
+        window.show()
+        sys.exit(app.exec_())
+
+
+
+
+"""    app = QApplication(sys.argv)
+    Application = QDialog()
     win = Window()
     win.show()
-    sys.exit(app.exec())
-
-#        print(nf.lastError().text())
+    sys.exit(app.exec())"""

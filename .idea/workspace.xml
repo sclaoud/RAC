@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.55&#10;&#10;Tab Personne terminer sauf quelques bugs.&#10;Tab Film trouble avec l'enregistrement et la catégorisation des données.">
-      <change afterPath="$PROJECT_DIR$/UI/tab15.ui" afterDir="false" />
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.56&#10;&#10;Amélioration de la TAB film, reste la sauvegarde des catégories selectionnés pour la BD.">
+      <change afterPath="$PROJECT_DIR$/UI/login.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_sqlite3/TABUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/TABUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/data.db" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/data.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final_sqlite3/main_b.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/sql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/sqltest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/sqltest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab15.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tab15.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +117,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="login" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="RAC" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Final_sqlite3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Final_sqlite3/login.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -159,27 +180,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="sql" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="RAC" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Final_sqlite3" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Final_sqlite3/sql.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="sqltest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -204,10 +204,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main (1)" />
+        <item itemvalue="Python.login" />
         <item itemvalue="Python.sqltest" />
         <item itemvalue="Python.TABUI" />
         <item itemvalue="Python.main (2)" />
-        <item itemvalue="Python.sql" />
       </list>
     </recent_temporary>
   </component>
@@ -465,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623179679752</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="0.56&#10;&#10;Amélioration de la TAB film, reste la sauvegarde des catégories selectionnés pour la BD.">
+      <created>1623270340896</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1623270340896</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -482,7 +489,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="0.1&#10;&#10;TabFilm complété et revampage de la tabPersonne avec des Qlistview.  Repartir à zero avec une GUI qui j'espères sera final." />
     <MESSAGE value="0.11&#10;&#10;Le fait de travailler dans plusieurs fichiers brise les références.  Il est nécessaire de réparer ceux-ci avant de poursuivre." />
     <MESSAGE value="0.12&#10;&#10;Réparer le code brisé par la nouvelle façon de travailler (main/classes/TabGUI)" />
     <MESSAGE value="0.13&#10;&#10;Code réparer, retravaillage du TabGUI depuis QTdesigner pour ajouter des boutons de modifications et changer certains noms." />
@@ -507,6 +513,7 @@
     <MESSAGE value="0.37.2&#10;https://docs.python.org/3/library/csv.html&#10;Chargement des données créer une list de dict au lieu de simplement ajouter les variables en dict...&#10;&#10;---------------------------&#10;todo :&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;&#10;- Valider les sous-listes acteurs et CC.&#10;[Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs) ne fonctionne pas.]&#10;&#10;- Sauvegarde/Chargement.&#10;&#10;-Mettre des restrictions sur les champs selon le besoin." />
     <MESSAGE value="0.53&#10;&#10;Modification des boutons personnes pour changer la facon d'enregistrement et ajustement d'un bouton &quot;vider&quot; pour vider les champs." />
     <MESSAGE value="0.55&#10;&#10;Tab Personne terminer sauf quelques bugs.&#10;Tab Film trouble avec l'enregistrement et la catégorisation des données." />
-    <option name="LAST_COMMIT_MESSAGE" value="0.55&#10;&#10;Tab Personne terminer sauf quelques bugs.&#10;Tab Film trouble avec l'enregistrement et la catégorisation des données." />
+    <MESSAGE value="0.56&#10;&#10;Amélioration de la TAB film, reste la sauvegarde des catégories selectionnés pour la BD." />
+    <option name="LAST_COMMIT_MESSAGE" value="0.56&#10;&#10;Amélioration de la TAB film, reste la sauvegarde des catégories selectionnés pour la BD." />
   </component>
 </project>

@@ -123,10 +123,13 @@ class employe (Personne):
 # class contenant les informations sur les films
 class Film(object):
 
-    def __init__(self, nomFilm, dureeFilm, descFilm):
+    categories = []
+
+    def __init__(self, nomFilm, dureeFilm, descFilm, categories):
         self._nomFilm = nomFilm
         self._dureeFilm = dureeFilm
         self._descFilm = descFilm
+        self._categories = categories
         return
 
     @property

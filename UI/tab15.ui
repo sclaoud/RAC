@@ -116,6 +116,9 @@
           </item>
           <item>
            <widget class="QTableView" name="QtableCC">
+            <property name="toolTip">
+             <string>La personne doit avoir été créer avant que cette table soit disponible.</string>
+            </property>
             <property name="midLineWidth">
              <number>3</number>
             </property>
@@ -280,6 +283,9 @@
         </item>
         <item>
          <widget class="QTableView" name="QtableAct">
+          <property name="toolTip">
+           <string>La personne doit avoir été créer avant que cette table soit disponible.</string>
+          </property>
           <property name="alternatingRowColors">
            <bool>true</bool>
           </property>
@@ -431,7 +437,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>340</y>
+       <y>360</y>
        <width>75</width>
        <height>23</height>
       </rect>
@@ -457,7 +463,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>370</y>
+       <y>390</y>
        <width>75</width>
        <height>23</height>
       </rect>
@@ -505,7 +511,7 @@
       <enum>Qt::RightToLeft</enum>
      </property>
      <property name="text">
-      <string>Nouvelle entrée?</string>
+      <string>Nouvelle entrée</string>
      </property>
     </widget>
    </widget>
@@ -580,7 +586,7 @@
       <string>Catégories du film</string>
      </property>
     </widget>
-    <widget class="QListWidget" name="listCatFilm">
+    <widget class="QListView" name="listCatFilm">
      <property name="geometry">
       <rect>
        <x>490</x>
@@ -629,7 +635,7 @@
       <enum>Qt::RightToLeft</enum>
      </property>
      <property name="text">
-      <string>Nouvelle entrée?</string>
+      <string>Nouvelle entrée</string>
      </property>
     </widget>
    </widget>

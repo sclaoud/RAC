@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'tab14.ui'
+# Form implementation generated from reading ui file 'tab15.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -217,13 +217,13 @@ class Ui_Application(object):
         self.btnAjoutCC.setGeometry(QtCore.QRect(0, 220, 75, 23))
         self.btnAjoutCC.setObjectName("btnAjoutCC")
         self.btnAjoutPers = QtWidgets.QPushButton(self.tabPersonne)
-        self.btnAjoutPers.setGeometry(QtCore.QRect(0, 340, 75, 23))
+        self.btnAjoutPers.setGeometry(QtCore.QRect(0, 360, 75, 23))
         self.btnAjoutPers.setObjectName("btnAjoutPers")
         self.btnSuppCC = QtWidgets.QPushButton(self.tabPersonne)
         self.btnSuppCC.setGeometry(QtCore.QRect(0, 250, 75, 23))
         self.btnSuppCC.setObjectName("btnSuppCC")
         self.btnSuppPers = QtWidgets.QPushButton(self.tabPersonne)
-        self.btnSuppPers.setGeometry(QtCore.QRect(0, 370, 75, 23))
+        self.btnSuppPers.setGeometry(QtCore.QRect(0, 390, 75, 23))
         self.btnSuppPers.setObjectName("btnSuppPers")
         self.comboID = QtWidgets.QComboBox(self.tabPersonne)
         self.comboID.setGeometry(QtCore.QRect(70, 30, 69, 21))
@@ -302,6 +302,7 @@ class Ui_Application(object):
         self.label_5.setText(_translate("Application", "courriel"))
         self.label_6.setText(_translate("Application", "Mot de passe"))
         self.labelCarteCredits.setText(_translate("Application", "Cartes de crédits du client"))
+        self.QtableCC.setToolTip(_translate("Application", "La personne doit avoir été créer avant que cette table soit disponible."))
         self.label_18.setText(_translate("Application", "Prenom"))
         self.label.setText(_translate("Application", "Nom"))
         self.label_3.setText(_translate("Application", "Sexe"))
@@ -312,6 +313,7 @@ class Ui_Application(object):
         self.btnSupPers.setText(_translate("Application", "Supprimer"))
         self.btnVP.setText(_translate("Application", "Vider"))
         self.label_7.setText(_translate("Application", "Personnages joués dans les films"))
+        self.QtableAct.setToolTip(_translate("Application", "La personne doit avoir été créer avant que cette table soit disponible."))
         self.label_11.setText(_translate("Application", "Date d\'embauche"))
         self.label_12.setText(_translate("Application", "code utilisateur"))
         self.label_13.setText(_translate("Application", "Mot de passe"))
@@ -324,14 +326,14 @@ class Ui_Application(object):
         self.btnSuppCC.setText(_translate("Application", "Supprimer"))
         self.btnSuppPers.setText(_translate("Application", "Supprimer"))
         self.label_8.setText(_translate("Application", "ID"))
-        self.cbVP.setText(_translate("Application", "Nouvelle entrée?"))
+        self.cbVP.setText(_translate("Application", "Nouvelle entrée"))
         self.tabMain.setTabText(self.tabMain.indexOf(self.tabPersonne), _translate("Application", "Personne"))
         self.btnEF.setText(_translate("Application", "Enregistrer"))
         self.btnSupFilm.setText(_translate("Application", "Supprimer"))
         self.btnVF.setText(_translate("Application", "Vider"))
         self.label_2.setText(_translate("Application", "Catégories du film"))
         self.label_9.setText(_translate("Application", "ID"))
-        self.cbVF.setText(_translate("Application", "Nouvelle entrée?"))
+        self.cbVF.setText(_translate("Application", "Nouvelle entrée"))
         self.tabMain.setTabText(self.tabMain.indexOf(self.tabFilms), _translate("Application", "Films"))
         self.btnFermer.setText(_translate("Application", "Fermer"))
 

@@ -6,9 +6,17 @@ from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 try:
     con = QSqlDatabase.addDatabase("QSQLITE")
     con.setDatabaseName("data.db")
-    print("Database created")
+    print("Connection à la BD")
+    pq = QSqlQuery()
+    pq.exec("PRAGMA foreign_keys")
+    if pq.value('foreign_keys') == 1:
+        print('Foreign_key actifs')
+    if pq.value('foreign_keys') == 0:
+        print('Foreign_key désactivé')
+    pq.exec("PRAGMA foreign_keys = ON")
     con.open()
     print(con.lastError().text())
+#    print(pq.lastError().text())
 
 finally:
     # Si cela ne fonctionne pas, retourne une erreur
@@ -18,6 +26,7 @@ finally:
 
 # Création des tables si celle-ci n'existe pas dans la BD
 createTableQuery = QSqlQuery()
+  # Crée la table Personne, table principale
 createTableQuery.exec(
     """
     CREATE TABLE Personne (
@@ -31,6 +40,7 @@ createTableQuery.exec(
     )
     """
 )
+  # Crée la table CartedeCredits, enfant de Personne
 createTableQuery.exec(
     """
     CREATE TABLE CartedeCredits (
@@ -42,6 +52,7 @@ createTableQuery.exec(
     )
     """
 )
+  # Crée la table cartedecrédit, enfant de Personne
 createTableQuery.exec(
     """
     CREATE TABLE Client (
@@ -53,6 +64,7 @@ createTableQuery.exec(
     )
     """
 )
+  # Crée la table acteurs, enfant de Personne
 createTableQuery.exec(
     """
     CREATE TABLE Acteurs (
@@ -66,6 +78,7 @@ createTableQuery.exec(
     )
     """
 )
+  # Crée la table des employé, enfant de Personne
 createTableQuery.exec(
     """
     CREATE TABLE employe (
@@ -73,11 +86,13 @@ createTableQuery.exec(
         DateEmb VARCHAR(40),
         Username VARCHAR(40),
         empPwd VARCHAR(40),
-        acces INTEGER,
+        Acces VARCHAR(60),
         FOREIGN KEY (id) REFERENCES Personne(id) ON DELETE CASCADE
+        FOREIGN KEY("Acces") REFERENCES CatAcces(list)
     )
     """
 )
+  # Crée la table des informations des films
 createTableQuery.exec("""
     CREATE TABLE "Film" (
         idf INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
@@ -85,7 +100,7 @@ createTableQuery.exec("""
         DureeFilm VARCHAR(40),
         DescFilm VARCHAR(255))
     """)
-
+  # Crée la table des catégorie de films
 createTableQuery.exec("""
     CREATE TABLE "CatFilm" (
         idf INTEGER,
@@ -100,21 +115,23 @@ createTableQuery.exec("""
         FOREIGN KEY (idf) REFERENCES Film(idf) ON DELETE CASCADE)
     """)
 
-# Table contenant la liste des types de catégories de films
-#createTableQuery.exec("""CREATE TABLE "Categories" ("categories" VARCHAR(60) UNIQUE)""")
+# Crée une table à part d'accès de service et insert les comptes de base
+
+createTableQuery.exec("""CREATE TABLE "sql_service" (
+                    "Username" VARCHAR(60) UNIQUE,
+                    "password" VARCHAR(60) UNIQUE,
+                    "Acces" VARCHAR(60),
+                    FOREIGN KEY("Acces") REFERENCES CatAcces(list)              
+                    )""")
 
 # Table contenant la liste des types d'accès
 createTableQuery.exec("""CREATE TABLE "CatAcces" ("list" VARCHAR(60) UNIQUE)""")
 
 insquery = QSqlQuery()  # Insertion de la liste déroulante des accès par une table
 insquery.prepare("""INSERT INTO CatAcces (list) 
-                VALUES ('Consultant'), ('employé'), ('Direction'), ('Sécurité'), ('Admin')""")
+                VALUES ('Lecture/Ecriture'), ('Lecture')""")
 insquery.exec()
-# Insertion de la liste des catégorie dans la table CatFilm
-#insquery.prepare("""INSERT INTO Categories (categories)
-#                VALUES ('Animation'), ('Comedie'), ('Documentaire'),
-#                 ('Drame'), ('Fantaisie'), ('Horreur'),
-#                  ('ScienceFiction'), ('Thriller')""")
-#insquery.exec()
-
-print(con.tables())
+insquery.prepare("""INSERT INTO sql_service (Username, password, Acces)
+                    VALUES ('admin', 'Bonjour123', 'Lecture/Ecriture'),
+                    ('consultant', 'Nouveau123', 'Lecture')""")
+insquery.exec()
