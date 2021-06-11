@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'tab15.ui'
+# Form implementation generated from reading ui file 'tab16.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -290,6 +290,10 @@ class Ui_Application(object):
         self.btnFermer = QtWidgets.QPushButton(Application)
         self.btnFermer.setGeometry(QtCore.QRect(890, 590, 75, 23))
         self.btnFermer.setObjectName("btnFermer")
+        self.label_acces = QtWidgets.QLabel(Application)
+        self.label_acces.setGeometry(QtCore.QRect(286, 10, 571, 21))
+        self.label_acces.setText("")
+        self.label_acces.setObjectName("label_acces")
 
         self.retranslateUi(Application)
         self.tabMain.setCurrentIndex(0)

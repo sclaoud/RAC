@@ -7,6 +7,36 @@ Emplacement des classes
 from PyQt5.QtCore import Qt
 from PyQt5.QtSql import QSqlTableModel
 
+# Info de l'usager qui se connecte à la BD
+class user(object):
+
+    def __init__(self, login, pwd, acces):
+        self._login = login
+        self._pwd = pwd
+        self._acces = acces
+
+    @property
+    def login(self):
+        return self._login
+    @login.setter
+    def login(self, login):
+        self._login = login
+
+    @property
+    def pwd(self):
+        return self._pwd
+    @pwd.setter
+    def pwd(self, pwd):
+        self._pwd = pwd
+
+    @property
+    def acces(self):
+        return self._acces
+    @acces.setter
+    def acces(self, acces):
+        self._acces = acces
+
+
 # class personne avec informations de bases
 class Personne(object):
 

@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.56&#10;&#10;Amélioration de la TAB film, reste la sauvegarde des catégories selectionnés pour la BD.">
-      <change afterPath="$PROJECT_DIR$/UI/login.ui" afterDir="false" />
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.57&#10;&#10;Les TAB sont complétés outre quelques bugs à régler.&#10;Après relecture du travail demander, création d'une fenêtre de login.  &#10;Pointe les login sur la table employé et sql_service.&#10;-----------------------------------------------------">
+      <change afterPath="$PROJECT_DIR$/UI/tab16.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021-06-03_8_01_p_m__[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021-06-03_8_01_p_m___Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/TABUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/TABUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/data.db" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/data.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/sql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tab15.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tab15.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +60,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sqlcipher" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="two.files.diff.last.used.folder" value="$PROJECT_DIR$/venv" />
@@ -472,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623270340896</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="0.57&#10;&#10;Les TAB sont complétés outre quelques bugs à régler.&#10;Après relecture du travail demander, création d'une fenêtre de login.  &#10;Pointe les login sur la table employé et sql_service.&#10;-----------------------------------------------------&#10;TODO : &#10;- Restreindre des champs QtableWidget&#10;- Ajuster le login avec query.seek()">
+      <created>1623355298278</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1623355298278</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -489,7 +497,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="0.11&#10;&#10;Le fait de travailler dans plusieurs fichiers brise les références.  Il est nécessaire de réparer ceux-ci avant de poursuivre." />
     <MESSAGE value="0.12&#10;&#10;Réparer le code brisé par la nouvelle façon de travailler (main/classes/TabGUI)" />
     <MESSAGE value="0.13&#10;&#10;Code réparer, retravaillage du TabGUI depuis QTdesigner pour ajouter des boutons de modifications et changer certains noms." />
     <MESSAGE value="0.14&#10;&#10;Ajout de 2 nouvelles fenêtres pour la gestions des Cartes de crédits et des personnages des acteurs.  Quelques tests de sauvegarde et ajout de la liste déroulante pour comboAcces." />
@@ -514,6 +521,7 @@
     <MESSAGE value="0.53&#10;&#10;Modification des boutons personnes pour changer la facon d'enregistrement et ajustement d'un bouton &quot;vider&quot; pour vider les champs." />
     <MESSAGE value="0.55&#10;&#10;Tab Personne terminer sauf quelques bugs.&#10;Tab Film trouble avec l'enregistrement et la catégorisation des données." />
     <MESSAGE value="0.56&#10;&#10;Amélioration de la TAB film, reste la sauvegarde des catégories selectionnés pour la BD." />
-    <option name="LAST_COMMIT_MESSAGE" value="0.56&#10;&#10;Amélioration de la TAB film, reste la sauvegarde des catégories selectionnés pour la BD." />
+    <MESSAGE value="0.57&#10;&#10;Les TAB sont complétés outre quelques bugs à régler.&#10;Après relecture du travail demander, création d'une fenêtre de login.  &#10;Pointe les login sur la table employé et sql_service.&#10;-----------------------------------------------------&#10;TODO : &#10;- Restreindre des champs QtableWidget&#10;- Ajuster le login avec query.seek()" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.57&#10;&#10;Les TAB sont complétés outre quelques bugs à régler.&#10;Après relecture du travail demander, création d'une fenêtre de login.  &#10;Pointe les login sur la table employé et sql_service.&#10;-----------------------------------------------------&#10;TODO : &#10;- Restreindre des champs QtableWidget&#10;- Ajuster le login avec query.seek()" />
   </component>
 </project>
