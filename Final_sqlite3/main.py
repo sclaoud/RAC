@@ -8,9 +8,9 @@ Fichier des opérations entre les class et l'interface
 from datetime import time
 from PyQt5 import QtCore
 from PyQt5.QtGui import QRegExpValidator
-from PyQt5.QtCore import QRegExp, QDate, QTime
-from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QLineEdit, QPushButton, QVBoxLayout
-from PyQt5.QtSql import QSqlRelationalTableModel
+from PyQt5.QtCore import QRegExp, QDate, QTime, Qt
+from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QLineEdit, QPushButton, QVBoxLayout, QItemDelegate, QCalendarWidget
+from PyQt5.QtSql import QSqlRelationalTableModel, QSqlTableModel
 from TABUI import Ui_Application
 import re
 from classes import *
@@ -32,6 +32,7 @@ class Login(QDialog):
         layout.addWidget(self.pwd)
         layout.addWidget(self.buttonLogin)
 
+    # Vérification des informations entrées dans les champs
     def handleLogin(self):
 
         user.login = self.login.text()
@@ -46,7 +47,7 @@ class Login(QDialog):
                 user.acces = self.vquery.value('employe.Acces')
                 self.reussit()
 
-
+  # Si réussi passe à la fenêtre principale
     def reussit(self):
         if user.acces == 'Lecture':
             self.accept()
@@ -420,6 +421,7 @@ class Window(Ui_Application, QDialog):
         self.QtableCC.setModel(self.modelcc)
         self.QtableCC.setColumnHidden(0, True)  # Cache la column ID
         self.QtableCC.resizeColumnsToContents()
+        self.QtableCC.setItemDelegate(DelegateNCC())
 
     # Model pour La table Acteurs
         self.modelact = QSqlRelationalTableModel(self)
@@ -430,6 +432,7 @@ class Window(Ui_Application, QDialog):
         self.QtableAct.setModel(self.modelact)
         self.QtableAct.setColumnHidden(0, True)  # Cache la column des ID
         self.QtableAct.resizeColumnsToContents()
+        self.QtableAct.setItemDelegate(DelegateAct())
 
         # Si sélection d'un contenu de la comboboxID
         self.comboID.currentIndexChanged.connect(self.PersonneUpdate)
@@ -891,18 +894,6 @@ class Window(Ui_Application, QDialog):
                             pwdMsg.setInformativeText("Le mot de passe du client doit contenir au moins 8 caractères")
                             pwdMsg.setWindowTitle("Mot de passe")
                             pwdMsg.exec()
-                        elif re.search('[0-9]', password) is None:
-                            pwdMsg = QMessageBox()
-                            pwdMsg.setIcon(QMessageBox.Warning)
-                            pwdMsg.setInformativeText("Le mot de passe du client doit contenir au moins 1 chiffre")
-                            pwdMsg.setWindowTitle("Mot de passe")
-                            pwdMsg.exec()
-                        elif re.search('[A-Z]', password) is None:
-                            pwdMsg = QMessageBox()
-                            pwdMsg.setIcon(QMessageBox.Warning)
-                            pwdMsg.setInformativeText("Le mot de passe du client doit contenir au 1 majuscule")
-                            pwdMsg.setWindowTitle("Mot de passe")
-                            pwdMsg.exec()
                         else:
                             # Toute les informations clients sont correct et vont pasés à l'update
                             self.MAJP_client()
@@ -915,7 +906,30 @@ class Window(Ui_Application, QDialog):
 
         # Si la checkbox section employe est checked
         if self.cbEmploye.isChecked():
-            self.MAJP_employe()
+            uq = QSqlQuery()
+            if self.lineUsername.text() and self.linePwdEmp.text():
+                #Validation du Username et ensuite du Mot de passe
+                uq.prepare("SELECT Username FROM employe")
+                uq.exec()
+                while uq.next():
+                    cl.append(uq.value('Username'))
+                if client.courriel in cl:
+                    courrielMsg = QMessageBox()
+                    courrielMsg.setIcon(QMessageBox.Warning)
+                    courrielMsg.setInformativeText("Le Username doit être unique")
+                    courrielMsg.setWindowTitle("Username")
+                    courrielMsg.exec()
+                    # Validation du mot de passe
+                    empPWD = employe.empPWD
+                    if len(empPWD) < 8:
+                        pwdMsg = QMessageBox()
+                        pwdMsg.setIcon(QMessageBox.Warning)
+                        pwdMsg.setInformativeText("Le mot de passe de l'employé doit contenir au moins 8 caractères")
+                        pwdMsg.setWindowTitle("Mot de passe")
+                        pwdMsg.exec()
+                    else:
+                        self.MAJP_employe()
+
 
     # Met à jour les champs de la section client si les conditions sont réunis
     def MAJP_employe(self):
@@ -947,8 +961,10 @@ class Window(Ui_Application, QDialog):
 
     # Enregistrement de l'entré
     def ValP(self):
+        vs = 0 # Variable pour permettre l'enregistrement ou non
         cl = [] # listing des courriels pour validation
-        cquery = QSqlQuery() # Query pour le courriel
+        cq = QSqlQuery() # Query pour le courriel
+        uq = QSqlQuery() # Query pour le courriel
 
         Personne.prenom = self.linePrenom.text()
         Personne.nom = self.lineNom.text()
@@ -962,25 +978,25 @@ class Window(Ui_Application, QDialog):
         employe.acces = self.comboAcces.currentIndex()
 
         # Si la Checkbox section Client est checked
-        while self.cbClient.isChecked():
-            # Validation du courriel
-            regexmail = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
-            if re.search(regexmail, client.courriel):
-                # Valide si le courriel est unique ou non
-                cquery.prepare("SELECT Courriel FROM Client")
-                cquery.exec()
-                while cquery.next():
-                    cl.append(cquery.value('Courriel'))
-                if client.courriel in cl:
-                    courrielMsg = QMessageBox()
-                    courrielMsg.setIcon(QMessageBox.Warning)
-                    courrielMsg.setInformativeText("Le courriel doit être unique")
-                    courrielMsg.setWindowTitle("Courriel")
-                    courrielMsg.exec()
-                    break
-                else:
-                    # Validation du mot de passe si le courriel est correct
-                    if self.linePwdClient.text() and self.lineCourriel.text():
+        if self.cbClient.isChecked() :
+            #si les champs sont remplis
+            if self.linePwdClient.text() and self.lineCourriel.text() :
+                # Validation du courriel
+                regexmail = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
+                if re.search(regexmail, client.courriel):
+                    # Valide si le courriel est unique ou non
+                    cq.prepare("SELECT Courriel FROM Client")
+                    cq.exec()
+                    while cq.next():
+                        cl.append(cq.value('Courriel'))
+                    if client.courriel in cl:
+                        courrielMsg = QMessageBox()
+                        courrielMsg.setIcon(QMessageBox.Warning)
+                        courrielMsg.setInformativeText("Le courriel doit être unique")
+                        courrielMsg.setWindowTitle("Courriel")
+                        courrielMsg.exec()
+                        # Validation du mot de passe si le courriel est correct
+                    if self.linePwdClient.text():
                         password = client.clientPwd
                         if len(password) < 8:
                             pwdMsg = QMessageBox()
@@ -988,100 +1004,120 @@ class Window(Ui_Application, QDialog):
                             pwdMsg.setInformativeText("Le mot de passe du client doit contenir au moins 8 caractères")
                             pwdMsg.setWindowTitle("Mot de passe")
                             pwdMsg.exec()
-                            break
-                        elif re.search('[0-9]', password) is None:
-                            pwdMsg = QMessageBox()
-                            pwdMsg.setIcon(QMessageBox.Warning)
-                            pwdMsg.setInformativeText("Le mot de passe du client doit contenir au moins 1 chiffre")
-                            pwdMsg.setWindowTitle("Mot de passe")
-                            pwdMsg.exec()
-                            break
-                        elif re.search('[A-Z]', password) is None:
-                            pwdMsg = QMessageBox()
-                            pwdMsg.setIcon(QMessageBox.Warning)
-                            pwdMsg.setInformativeText("Le mot de passe du client doit contenir au 1 majuscule")
-                            pwdMsg.setWindowTitle("Mot de passe")
-                            pwdMsg.exec()
-                            break
-                        else:
-                            # Toute les informations clients sont correct et vont pasés à l'update
-                            print("Toutes les informations sont valides")
-            else:
-                cmsg = QMessageBox()
-                cmsg.setIcon(QMessageBox.Warning)
-                cmsg.setInformativeText("Le courriel est invalide")
-                cmsg.setWindowTitle("Courriel")
-                cmsg.exec()
-                break
+                            vs = 0  # S'assure que l'enregistrement ne se fait pas.
+                        else :
+                            print ('hello')
+                            vs = 1
+                else:
+                    cmsg = QMessageBox()
+                    cmsg.setIcon(QMessageBox.Warning)
+                    cmsg.setInformativeText("Le courriel est invalide")
+                    cmsg.setWindowTitle("Courriel")
+                    cmsg.exec()
+                    vs = 0  # S'assure que l'enregistrement ne se fait pas.
+            else :
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Warning)
+                msg.setInformativeText("Des informations sont manquantes")
+                msg.setWindowTitle("Informations manquantes")
+                msg.exec()
+                vs = 0  # S'assure que l'enregistrement ne se fait pas.
 
-        # Si la checkbox section employe est checked
         if self.cbEmploye.isChecked():
-            self.savePE()
+            if self.lineUsername.text() and self.linePwdEmp.text():
+                #Validation du Username et ensuite du Mot de passe
+                uq.prepare("SELECT Username FROM employe")
+                uq.exec()
+                while uq.next():
+                    cl.append(uq.value('Username'))
+                if client.courriel in cl:
+                    courrielMsg = QMessageBox()
+                    courrielMsg.setIcon(QMessageBox.Warning)
+                    courrielMsg.setInformativeText("Le Username doit être unique")
+                    courrielMsg.setWindowTitle("Username")
+                    courrielMsg.exec()
+                    # Validation du mot de passe
+                    empPWD = employe.empPWD
+                    if len(empPWD) < 8:
+                        pwdMsg = QMessageBox()
+                        pwdMsg.setIcon(QMessageBox.Warning)
+                        pwdMsg.setInformativeText("Le mot de passe de l'employé doit contenir au moins 8 caractères")
+                        pwdMsg.setWindowTitle("Mot de passe")
+                        pwdMsg.exec()
+                        vs = 0  # S'assure que l'enregistrement ne se fait pas.
+                    else:
+                        vs = 1
+            else:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Warning)
+                msg.setInformativeText("Des informations sont manquantes")
+                msg.setWindowTitle("Informations manquantes")
+                msg.exec()
+                vs = 0 # S'assure que l'enregistrement ne se fait pas.
+        print(vs)
+        if vs == 1 :
+            self.save()
 
-        else:
-            # query principale pour la personne
-            db = QSqlQuery()
-            db.prepare(  # Préparation d'insertion des données dans la table Personne
-                """
-                INSERT INTO Personne (
-                    Prenom,
-                    Nom,
-                    Sexe,
-                    cbc,
-                    cba,
-                    cbe
-                )
-                VALUES (?, ?, ?, ?, ?, ?)
-                """
-            )
-            db.addBindValue(Personne.prenom)
-            db.addBindValue(Personne.nom)
-            db.addBindValue(Personne.sexe)
-            db.addBindValue(self.cbClient.checkState())
-            db.addBindValue(self.cbActeur.checkState())
-            db.addBindValue(self.cbEmploye.checkState())
-            db.exec()
-
-            # Met à jour la fenêtre
-            self.comboboxID()
-
-    def Save_PC(self):
+    def save(self):
+        # query principale pour la personne
         db = QSqlQuery()
-        id = db.lastInsertId()  # Recupérer le dernier ID utiliser pour lié les infos
-        db.prepare(  # préparation d'insertion des données dans la table client
+        db.prepare(  # Préparation d'insertion des données dans la table Personne
+            """
+            INSERT INTO Personne (
+                Prenom,
+                Nom,
+                Sexe,
+                cbc,
+                cba,
+                cbe
+            )
+            VALUES (?, ?, ?, ?, ?, ?)
+            """
+        )
+        db.addBindValue(Personne.prenom)
+        db.addBindValue(Personne.nom)
+        db.addBindValue(Personne.sexe)
+        db.addBindValue(self.cbClient.checkState())
+        db.addBindValue(self.cbActeur.checkState())
+        db.addBindValue(self.cbEmploye.checkState())
+        db.exec()
+
+        # Si la Checkbox section Client est checked
+        if self.cbClient.isChecked() :
+            # Toute les informations clients sont correct et vont pasés à l'update
+            id = db.lastInsertId()  # Recupérer le dernier ID utiliser pour lié les infos
+            db.prepare(  # préparation d'insertion des données dans la table client
                 """INSERT INTO Client (id, DateInsc, Courriel, ClientPwd)
                 VALUES (?, ?, ?, ?)
                 """)
-        db.addBindValue(id)
-        db.addBindValue(client.dateInsc)
-        db.addBindValue(client.courriel)
-        db.addBindValue(client.clientPwd)
-        db.exec()
-        # Met à jour la fenêtre
-        self.comboboxID()
+            db.addBindValue(id)
+            db.addBindValue(client.dateInsc)
+            db.addBindValue(client.courriel)
+            db.addBindValue(client.clientPwd)
+            db.exec()
+            print(db.lastError().text())
 
-    # Si la checkbox section employe est checked
-    def Save_employe(self):
-        db = QSqlQuery()
-        id = db.lastInsertId()  # Recupérer le dernier ID utiliser pour lié les infos
-        db.prepare(  # préparation d'insertion des données dans la table employe
-            """
-            INSERT INTO employe (
-                id,
-                DateEmb,
-                Username,
-                empPwd,
-                Acces
+        # Si la checkbox section employe est checked
+        if self.cbEmploye.isChecked():
+            id = db.lastInsertId()  # Recupérer le dernier ID utiliser pour lié les infos
+            db.prepare(  # préparation d'insertion des données dans la table employe
+                """
+                INSERT INTO employe (
+                    id,
+                    DateEmb,
+                    Username,
+                    empPwd,
+                    Acces
+                )
+                VALUES (?, ?, ?, ?, ?)
+                """
             )
-            VALUES (?, ?, ?, ?, ?)
-            """
-        )
-        db.addBindValue(id)
-        db.addBindValue(employe.dateEmb)
-        db.addBindValue(employe.username)
-        db.addBindValue(employe.empPWD)
-        db.addBindValue(employe.acces)
-        db.exec()
+            db.addBindValue(id)
+            db.addBindValue(employe.dateEmb)
+            db.addBindValue(employe.username)
+            db.addBindValue(employe.empPWD)
+            db.addBindValue(employe.acces)
+            db.exec()
 
         # Met à jour la fenêtre
         self.comboboxID()

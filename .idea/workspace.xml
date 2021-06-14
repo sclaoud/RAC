@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.57&#10;&#10;Les TAB sont complétés outre quelques bugs à régler.&#10;Après relecture du travail demander, création d'une fenêtre de login.  &#10;Pointe les login sur la table employé et sql_service.&#10;-----------------------------------------------------">
-      <change afterPath="$PROJECT_DIR$/UI/tab16.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021-06-03_8_01_p_m__[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021-06-03_8_01_p_m___Default_Changelist_.xml" beforeDir="false" />
+    <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.58&#10;&#10;- Correction à apporter, validation de la validation avant enregistrement (Msg d'erreurs)&#10;- Restreindre des champs QtableWidget&#10;- Ajuster le login pour ne faire apparaitre le message d'erreur qu'une fois&#10;- Encryption à venir">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021-06-05_8_07_p_m__[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021-06-05_8_07_p_m___Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final_sqlite3/TABUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/TABUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/data.db" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/data.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final_sqlite3/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final_sqlite3/sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final_sqlite3/sql.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab16.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tab16.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +57,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../sqlcipher" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -480,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623355298278</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="0.58&#10;&#10;- Correction à apporter, validation de la validation avant enregistrement (Msg d'erreurs)&#10;- Restreindre des champs QtableWidget&#10;- Ajuster le login pour ne faire apparaitre le message d'erreur qu'une fois&#10;- Encryption à venir">
+      <created>1623442626320</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1623442626320</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -497,7 +503,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="0.12&#10;&#10;Réparer le code brisé par la nouvelle façon de travailler (main/classes/TabGUI)" />
     <MESSAGE value="0.13&#10;&#10;Code réparer, retravaillage du TabGUI depuis QTdesigner pour ajouter des boutons de modifications et changer certains noms." />
     <MESSAGE value="0.14&#10;&#10;Ajout de 2 nouvelles fenêtres pour la gestions des Cartes de crédits et des personnages des acteurs.  Quelques tests de sauvegarde et ajout de la liste déroulante pour comboAcces." />
     <MESSAGE value="0.15&#10;&#10;Création de la fonction de sauvegarde, chargement en trouble à revoir.&#10;&#10;Création des sous-class client/cartedecredit/acteurs/employe" />
@@ -522,6 +527,7 @@
     <MESSAGE value="0.55&#10;&#10;Tab Personne terminer sauf quelques bugs.&#10;Tab Film trouble avec l'enregistrement et la catégorisation des données." />
     <MESSAGE value="0.56&#10;&#10;Amélioration de la TAB film, reste la sauvegarde des catégories selectionnés pour la BD." />
     <MESSAGE value="0.57&#10;&#10;Les TAB sont complétés outre quelques bugs à régler.&#10;Après relecture du travail demander, création d'une fenêtre de login.  &#10;Pointe les login sur la table employé et sql_service.&#10;-----------------------------------------------------&#10;TODO : &#10;- Restreindre des champs QtableWidget&#10;- Ajuster le login avec query.seek()" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.57&#10;&#10;Les TAB sont complétés outre quelques bugs à régler.&#10;Après relecture du travail demander, création d'une fenêtre de login.  &#10;Pointe les login sur la table employé et sql_service.&#10;-----------------------------------------------------&#10;TODO : &#10;- Restreindre des champs QtableWidget&#10;- Ajuster le login avec query.seek()" />
+    <MESSAGE value="0.58&#10;&#10;- Correction à apporter, validation de la validation avant enregistrement (Msg d'erreurs)&#10;- Restreindre des champs QtableWidget&#10;- Ajuster le login pour ne faire apparaitre le message d'erreur qu'une fois&#10;- Encryption à venir" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.58&#10;&#10;- Correction à apporter, validation de la validation avant enregistrement (Msg d'erreurs)&#10;- Restreindre des champs QtableWidget&#10;- Ajuster le login pour ne faire apparaitre le message d'erreur qu'une fois&#10;- Encryption à venir" />
   </component>
 </project>

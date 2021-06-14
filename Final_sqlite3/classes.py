@@ -4,8 +4,10 @@ Emplacement des classes
 
 """
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtSql import QSqlTableModel
+from PyQt5.QtCore import QRegExp
+from PyQt5.QtGui import QRegExpValidator
+from PyQt5.QtWidgets import QStyledItemDelegate, QLineEdit, QDateEdit, QTextEdit, QSpinBox
+from main import *
 
 # Info de l'usager qui se connecte à la BD
 class user(object):
@@ -189,3 +191,83 @@ class Film(object):
     @descFilm.setter
     def descFilm(self, descFilm):
         self._descFilm = descFilm
+
+#  Les classes de delegation pour les Qtableview
+# Delegation pour la tableCC
+class DelegateNCC(QItemDelegate):
+    def createEditor(self, widget, option, index):
+        if index.column() == 1: #Seulement la colonne DateCC
+            editor = QLineEdit(widget)
+            editor.setInputMask("0000 0000 0000 0000") #Mask pour les numero de cartes
+            return editor
+        if index.column() == 2:
+            editor = QDateEdit()
+            editor.setDisplayFormat("yyyy-M-d")
+            editor.setCalendarPopup(True)
+            editor.setDate(QDate.fromString(str("yyyy-M-d")))
+            return editor
+        if index.column() ==3:
+            editor = QLineEdit(widget)
+            editor.setInputMask("000") # Mask pour code secret
+            return editor
+
+    def setEditorData(self, lineEdit, QModelIndex):
+        if QModelIndex.column() == 1: #Seulement la colonne DateCC
+            text = QModelIndex.model().data(QModelIndex, Qt.EditRole)
+            lineEdit.setText(str(text))
+        if QModelIndex.column() == 2: # Seulement la colonne Date
+            print("Rien a ajouter, createEditor fait deja la job")
+        if QModelIndex.column() == 3: # Champ codeSecret
+            text = QModelIndex.model().data(QModelIndex, Qt.EditRole)
+            lineEdit.setText(str(text))
+
+#  # Delegation pour la table Acteur
+class DelegateAct(QItemDelegate):
+    def createEditor(self, widget, option, index):
+        if index.column() == 1: #Seulement la colonne TitreFilm
+            editor = QLineEdit(widget)
+            editor.setMaxLength(60) # 60 characters devraient être suffisant pour le titre
+            return editor
+        if index.column() == 2:
+            editor = QLineEdit(widget)
+            editor.setMaxLength(40) # 40 characters devraient être suffisant pour nom du personnage
+            return editor
+        if index.column() ==3: # Date de debut du tournage
+            editor = QDateEdit()
+            editor.setDisplayFormat("yyyy-M-d")
+            editor.setCalendarPopup(True)
+            editor.setDate(QDate.fromString(str("yyyy-M-d")))
+            return editor
+        if index.column() ==4: # Date de fin du tournage
+            editor = QDateEdit()
+            editor.setDisplayFormat("yyyy-M-d")
+            editor.setCalendarPopup(True)
+            editor.setDate(QDate.fromString(str("yyyy-M-d")))
+            # Date minimum basé sur la cellule précédente
+            editor.setMinimumDate(QDate.fromString(self.pd, "yyyy-M-d"))
+            return editor
+        if index.column() ==5: # Cachet reçu par l'artiste
+            editor = QSpinBox()
+            editor.setSuffix("k $")
+            editor.setGeometry(500, 500, 200, 40)
+            editor.setMaximum(999999999)
+            return editor
+
+
+    def setEditorData(self, lineEdit, QModelIndex):
+        if QModelIndex.column() == 1: #Seulement la colonne TitreFilm
+            text = QModelIndex.model().data(QModelIndex, Qt.EditRole)
+            lineEdit.setText(str(text))
+        if QModelIndex.column() == 2: #Seulement le nom du personnage
+            text = QModelIndex.model().data(QModelIndex, Qt.EditRole)
+            lineEdit.setText(str(text))
+        if QModelIndex.column() == 3: # Permet de recuperer la date inscrite
+            text = QModelIndex.model().data(QModelIndex, Qt.EditRole)
+            self.pd = text # Création de la date minimum pour la date de fin
+            print("Rien a ajouter, createEditor fait deja la job")
+        if QModelIndex.column() == 4:  # Inutiliser pour la date de fin
+            print("Rien a ajouter, createEditor fait deja la job")
+        if QModelIndex.column() == 5: # Seulement pour la colonne Cachet
+            print("Rien a ajouter, createEditor fait deja la job")
+#            text = QModelIndex.model().data(QModelIndex, Qt.EditRole)
+#            lineEdit.setText(str(text))
