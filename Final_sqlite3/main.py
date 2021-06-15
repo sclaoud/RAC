@@ -9,7 +9,7 @@ from datetime import time
 from PyQt5 import QtCore
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import QRegExp, QDate, QTime, Qt
-from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QLineEdit, QPushButton, QVBoxLayout, QItemDelegate, QCalendarWidget
+from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QLineEdit, QPushButton, QVBoxLayout, QItemDelegate, QCalendarWidget, QDateEdit, QSpinBox
 from PyQt5.QtSql import QSqlRelationalTableModel, QSqlTableModel
 from TABUI import Ui_Application
 import re

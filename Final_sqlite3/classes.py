@@ -4,9 +4,6 @@ Emplacement des classes
 
 """
 
-from PyQt5.QtCore import QRegExp
-from PyQt5.QtGui import QRegExpValidator
-from PyQt5.QtWidgets import QStyledItemDelegate, QLineEdit, QDateEdit, QTextEdit, QSpinBox
 from main import *
 
 # Info de l'usager qui se connecte à la BD
@@ -249,7 +246,6 @@ class DelegateAct(QItemDelegate):
         if index.column() ==5: # Cachet reçu par l'artiste
             editor = QSpinBox()
             editor.setSuffix("k $")
-            editor.setGeometry(500, 500, 200, 40)
             editor.setMaximum(999999999)
             return editor
 
@@ -269,5 +265,7 @@ class DelegateAct(QItemDelegate):
             print("Rien a ajouter, createEditor fait deja la job")
         if QModelIndex.column() == 5: # Seulement pour la colonne Cachet
             print("Rien a ajouter, createEditor fait deja la job")
-#            text = QModelIndex.model().data(QModelIndex, Qt.EditRole)
-#            lineEdit.setText(str(text))
+
+
+    def setModelData(self, editor, model, index):
+        model.setData(index, editor.text())

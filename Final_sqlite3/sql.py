@@ -2,22 +2,15 @@ import sys
 
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 
-
 # Crée la connection
 try:
     con = QSqlDatabase.addDatabase("QSQLITE")
+    con.setPassword("test")
     con.setDatabaseName("data.db")
+    con.setConnectOptions("QSQLITE_USE_CIPHER=sqlcipher")
     print("Connection à la BD")
-    pq = QSqlQuery()
-    pq.exec("PRAGMA foreign_keys")
-    if pq.value('foreign_keys') == 1:
-        print('Foreign_key actifs')
-    if pq.value('foreign_keys') == 0:
-        print('Foreign_key désactivé')
-    pq.exec("PRAGMA foreign_keys = ON")
     con.open()
     print(con.lastError().text())
-#    print(pq.lastError().text())
 
 finally:
     # Si cela ne fonctionne pas, retourne une erreur

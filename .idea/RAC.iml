@@ -5,9 +5,13 @@
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Final" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/UI" />
+      <excludeFolder url="file://$MODULE_DIR$/Tests" />
+      <excludeFolder url="file://$MODULE_DIR$/QtCipherSqlitePlugin" />
+      <excludeFolder url="file://$MODULE_DIR$/Final_sqlite3 - Qtablewidget" />
+      <excludeFolder url="file://$MODULE_DIR$/Final_class" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.8 (RAC) (3)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="TEST" />
   </component>
 </module>
