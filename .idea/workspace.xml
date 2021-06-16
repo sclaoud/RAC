@@ -5,172 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="1.0.0 fichiers finaux seulements">
-      <change afterPath="$PROJECT_DIR$/CRITICAL.spec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TABUI.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/Analysis-00.toc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/COLLECT-00.toc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/EXE-00.toc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/PKG-00.pkg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/PKG-00.toc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/PYZ-00.pyz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/PYZ-00.toc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/Tree-00.toc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/Tree-01.toc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/Tree-02.toc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/base_library.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/main.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/main.exe.manifest" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/warn-main.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/xref-main.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/data.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/MSVCP140.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/iconengines/qsvgicon.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/imageformats/qgif.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/imageformats/qicns.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/imageformats/qico.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/imageformats/qjpeg.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/imageformats/qsvg.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/imageformats/qtga.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/imageformats/qtiff.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/imageformats/qwbmp.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/imageformats/qwebp.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/platforms/qminimal.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/platforms/qoffscreen.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/platforms/qwebgl.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/platforms/qwindows.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/platformthemes/qxdgdesktopportal.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/sqldrivers/qsqlite.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/sqldrivers/qsqlodbc.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/sqldrivers/qsqlpsql.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/plugins/styles/qwindowsvistastyle.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_ar.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_bg.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_ca.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_cs.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_da.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_de.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_en.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_es.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_fi.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_fr.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_gd.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_he.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_hu.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_it.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_ja.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_ko.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_lv.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_pl.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_ru.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_sk.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_tr.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_uk.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/Qt/translations/qtbase_zh_TW.qm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/QtCore.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/QtGui.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/QtSql.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/QtWidgets.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/PyQt5/sip.cp38-win_amd64.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/Qt5Core.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/Qt5DBus.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/Qt5Gui.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/Qt5Network.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/Qt5Qml.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/Qt5Quick.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/Qt5Sql.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/Qt5Svg.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/Qt5WebSockets.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/Qt5Widgets.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/VCRUNTIME140.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/VCRUNTIME140_1.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/_asyncio.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/_bz2.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/_ctypes.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/_decimal.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/_hashlib.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/_lzma.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/_multiprocessing.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/_overlapped.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/_queue.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/_socket.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/_ssl.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/_win32sysloader.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-console-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-datetime-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-debug-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-errorhandling-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-file-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-file-l1-2-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-file-l2-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-handle-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-heap-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-interlocked-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-libraryloader-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-localization-l1-2-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-memory-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-namedpipe-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-processenvironment-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-processthreads-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-processthreads-l1-1-1.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-profile-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-rtlsupport-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-string-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-synch-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-synch-l1-2-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-sysinfo-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-timezone-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-core-util-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-crt-conio-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-crt-convert-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-crt-environment-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-crt-filesystem-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-crt-heap-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-crt-locale-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-crt-math-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-crt-process-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-crt-runtime-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-crt-stdio-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-crt-string-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-crt-time-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/api-ms-win-crt-utility-l1-1-0.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/base_library.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/d3dcompiler_47.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/icudt58.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/icuin58.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/icuuc58.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/libEGL.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/libGLESv2.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/libcrypto-1_1-x64.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/libffi-7.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/libpng16.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/libssl-1_1-x64.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/main.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/main.exe.manifest" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/opengl32sw.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/pyexpat.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/python3.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/python38.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/pywintypes38.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/select.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/sip.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/ucrtbase.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/unicodedata.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/win32api.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/win32evtlog.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main/zlib.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.spec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/RAC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RAC.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testapp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final_sqlite3/TABUI.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final_sqlite3/classes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final_sqlite3/data.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final_sqlite3/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final_sqlite3/sql.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,28 +68,7 @@
       <recent name="C:\Users\pcadmin\Documents\GitHub\RAC" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
-    <configuration name="TABUI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="RAC" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Final_sqlite3" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Final_sqlite3/TABUI.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittests in testapp.py">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -337,34 +153,41 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="sqltest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in C:/git_repos/RAC/test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="RAC" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\JPH\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/sqltest.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in testapp.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="RAC" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/testapp.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests in testapp.py" />
+        <item itemvalue="Python tests.Unittests in C:/git_repos/RAC/test.py" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.login" />
-        <item itemvalue="Python.sqltest" />
-        <item itemvalue="Python.TABUI" />
       </list>
     </recent_temporary>
   </component>
@@ -664,7 +487,21 @@
       <option name="project" value="LOCAL" />
       <updated>1623787822377</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="1.0.0 fichiers finaux seulements">
+      <created>1623869434710</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1623869434710</updated>
+    </task>
+    <task id="LOCAL-00046" summary="1.0.0 fichiers finaux seulements">
+      <created>1623869477638</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1623869477638</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -687,7 +524,6 @@
       <path value="$PROJECT_DIR$/QtCipherSqlitePlugin/sqlitecipher/QtCipherSqlitePlugin/sqlitecipher/QtCipherSqlitePlugin" />
       <path value="$PROJECT_DIR$/QtCipherSqlitePlugin/sqlitecipher/QtCipherSqlitePlugin/sqlitecipher/QtCipherSqlitePlugin/QtCipherSqlitePlugin" />
     </ignored-roots>
-    <MESSAGE value="0.17&#10;&#10;Modification de la classe cartedecredits et de la fonction newCC pour ajouter des cartes de crédit et en faire l'affichage avec pandas (a venir)&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
     <MESSAGE value="0.18&#10;&#10;Modification des qlistview en qtableview et utilisation de pandas pour l'affichage des données.  Préparation des fenêtres CC et acteurs.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
     <MESSAGE value="0.19&#10;&#10;Work-in-progress : Ajoute des données des cartes de crédits en pandas.dataframes (apparaissent vident pour le moment)&#10;&#10;Idem pour la table qtableview.&#10;&#10;-------------&#10;Ajout de les Qeditline dateInsc/courriel/Pwd à la listePersonne à venir." />
     <MESSAGE value="0.20&#10;&#10;Sauvegarde des données la fenêtre Acteurs dans la liste listeActeurs.&#10;Ajout des CC et personnages dans la liste personne.&#10;Personne.listePersonne.extend(listCC et listeActeurs)&#10;Ajout des lignes clients et employe dans la listePersonnes (comboAcces a validé)&#10;&#10;---------------------------&#10;- Faire le lien pour suivant/precedent de listePersonne pour caller les bonnes variables.&#10;- Affichage des variables dans les tables avec pandas? (CC et acteurs)&#10;- Valider les sous-listes acteurs et CC.&#10;- Sauvegarde/Chargement." />
@@ -712,6 +548,7 @@
     <MESSAGE value="0.60&#10;&#10;- Encryption à venir" />
     <MESSAGE value="1.0.0&#10;&#10;Complétés avec bugs pouvant être corrigés si nécessaires." />
     <MESSAGE value="0.60&#10;&#10;- Encryption à venir&#10;Update change log." />
-    <option name="LAST_COMMIT_MESSAGE" value="0.60&#10;&#10;- Encryption à venir&#10;Update change log." />
+    <MESSAGE value="1.0.0 fichiers finaux seulements" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.0.0 fichiers finaux seulements" />
   </component>
 </project>
