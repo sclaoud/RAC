@@ -5,7 +5,70 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="0.60&#10;&#10;- Encryption à venir&#10;Update change log.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/RAC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RAC.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_class/Acteurs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_class/TABUI.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_class/cartedecredits.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_class/classes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_class/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_sqlite3 - Qtablewidget/TABUI - QtableWidget.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_sqlite3 - Qtablewidget/TABUI.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_sqlite3 - Qtablewidget/classes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_sqlite3 - Qtablewidget/main - QtableWidget.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_sqlite3 - Qtablewidget/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_sqlite3 - Qtablewidget/sql.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Acteurs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Data export.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Logiciel de contacts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/QTableWtest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/QtablewidgetUpdate.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/TABUI.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Tab.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/TabGUI.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/cartedecredits.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/classes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/classes2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/data.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/demo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/example.qml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/main_window_ui.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/pandastest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/qtablewidgettest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/qttest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/sqltest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/tab3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/testCB.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/testTab.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/testregex.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/Acteurs.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/Cartedecredits.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/TAB.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/films.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/login.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/main.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/martin_class_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/personne.pyproject.user" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/personne.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab10.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab11.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab12.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab13.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab14.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab15.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab16.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab2.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab3.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab4.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab5.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab6.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab7.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab8.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tab9.ui" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +100,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Tests/TabGUI.py" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="ProjectId" id="1nq2Soz3tWqDCRvhKZ5tJq2aVtG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -54,9 +114,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sqlcipher" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
     <property name="two.files.diff.last.used.folder" value="$PROJECT_DIR$/venv" />
   </component>
   <component name="RecentsManager">
