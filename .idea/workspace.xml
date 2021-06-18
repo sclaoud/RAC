@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="754319d7-5173-4283-b256-411fb83d0b89" name="Default Changelist" comment="1.0.0 fichiers finaux seulements">
-      <change afterPath="$PROJECT_DIR$/data.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testapp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testapp.py" beforeDir="false" afterPath="$PROJECT_DIR$/testapp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,8 +183,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Unittests in testapp.py" />
-        <item itemvalue="Python tests.Unittests in C:/git_repos/RAC/test.py" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python tests.Unittests in C:/git_repos/RAC/test.py" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.login" />
       </list>
